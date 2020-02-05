@@ -21,4 +21,8 @@ public class LottoNumber {
     private static boolean isInLottoNumberRange(int lottoNumber) {
         return MINIMUM_LOTTO_NUMBER <= lottoNumber && lottoNumber <= MAXIMUM_LOTTO_NUMBER;
     }
+
+    public int getLottoNumber() {
+        return lottoNumber;
+    }
 }

@@ -9,6 +9,7 @@ public class LottoGame {
     }
 
     public void run() {
+        ConsoleOutput.printBuyingMessage(amount);
         Lottos lottos = makeLottosAuto(amount);
         System.out.println(lottos.toString());
 

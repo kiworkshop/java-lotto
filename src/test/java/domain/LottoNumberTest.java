@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -43,4 +46,27 @@ public class LottoNumberTest {
         assertThat(minimumLottoNumber.getLottoNumber()).isEqualTo(MINIMUM_LOTTO_NUMBER);
         assertThat(maximumLottoNumber.getLottoNumber()).isEqualTo(MAXIMUM_LOTTO_NUMBER);
     }
+
+    public static Set<LottoNumber> getLottoNumberSetFixture() {
+        Set<LottoNumber> lottoNumberSet = new HashSet<>();
+        lottoNumberSet.add(LottoNumber.from(1));
+        lottoNumberSet.add(LottoNumber.from(2));
+        lottoNumberSet.add(LottoNumber.from(3));
+        lottoNumberSet.add(LottoNumber.from(4));
+        lottoNumberSet.add(LottoNumber.from(5));
+        lottoNumberSet.add(LottoNumber.from(6));
+        return lottoNumberSet;
+    }
+
+    public static Set<LottoNumber> getDuplicateLottoNumberSetFixture() {
+        Set<LottoNumber> lottoNumberSet = new HashSet<>();
+        lottoNumberSet.add(LottoNumber.from(1));
+        lottoNumberSet.add(LottoNumber.from(1));
+        lottoNumberSet.add(LottoNumber.from(3));
+        lottoNumberSet.add(LottoNumber.from(4));
+        lottoNumberSet.add(LottoNumber.from(5));
+        lottoNumberSet.add(LottoNumber.from(6));
+        return lottoNumberSet;
+    }
+
 }

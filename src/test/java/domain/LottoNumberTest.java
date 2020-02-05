@@ -1,25 +1,46 @@
 package domain;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoNumberTest {
 
     private static final int MINIMUM_LOTTO_NUMBER = 1;
     private static final int MAXIMUM_LOTTO_NUMBER = 46;
-    private static final int THRESHOLD_UNDER_LOTTO_NUMBER_RANGE = 0;
-    private static final int THRESHOLD_OVER_LOTTO_NUMBER_RANGE = 47;
+    private static final int NUMBER_UNDER_LOTTO_NUMBER_RANGE = 0;
+    private static final int NUMBER_OVER_LOTTO_NUMBER_RANGE = 47;
+
+    private LottoNumber minimumLottoNumber;
+    private LottoNumber maximumLottoNumber;
+
+    @BeforeEach
+    void setUp() {
+        minimumLottoNumber = LottoNumber.from(MINIMUM_LOTTO_NUMBER);
+        maximumLottoNumber = LottoNumber.from(MAXIMUM_LOTTO_NUMBER);
+    }
 
     @Test
+    @DisplayName("로또 번호 최소 값 미만의 로또 번호 생성시 예외 발생")
+    void testMinimumLottoNumberThreshold() {
+        assertThatThrownBy(() -> LottoNumber.from(NUMBER_UNDER_LOTTO_NUMBER_RANGE))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 번호 최대 값 초과의 로또 번호 생성시 예외 발생")
+    void testMaximumLottoNumberThreshold() {
+        assertThatThrownBy(() -> LottoNumber.from(NUMBER_OVER_LOTTO_NUMBER_RANGE))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 번호 추출")
     void testLottoNumber() {
-        LottoNumber minimumLottoNumber = LottoNumber.from(MINIMUM_LOTTO_NUMBER);
-        LottoNumber maximumLottoNumber = LottoNumber.from(MAXIMUM_LOTTO_NUMBER);
-
-        assertThatThrownBy(() -> LottoNumber.from(THRESHOLD_UNDER_LOTTO_NUMBER_RANGE))
-                .isInstanceOf(IllegalArgumentException.class);
-
-        assertThatThrownBy(() -> LottoNumber.from(THRESHOLD_OVER_LOTTO_NUMBER_RANGE))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(minimumLottoNumber.getLottoNumber()).isEqualTo(MINIMUM_LOTTO_NUMBER);
+        assertThat(maximumLottoNumber.getLottoNumber()).isEqualTo(MAXIMUM_LOTTO_NUMBER);
     }
 }

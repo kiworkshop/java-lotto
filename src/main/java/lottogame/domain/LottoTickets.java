@@ -1,7 +1,9 @@
 package lottogame.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LottoTickets {
 
@@ -18,14 +20,21 @@ public class LottoTickets {
 
     private static List<LottoTicket> generateLottoTickets(int lottoCount) {
         List<LottoTicket> lottoTickets = new ArrayList<>();
-        for(int i = 0; i < lottoCount; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             LottoTicket lottoTicket = generateLottoTicket();
             lottoTickets.add(lottoTicket);
         }
+
+        checkForDuplicates(lottoTickets);
         return lottoTickets;
     }
 
     private static LottoTicket generateLottoTicket() {
         return LottoTicket.generateLottoTicket();
+    }
+
+    private static void checkForDuplicates(List<LottoTicket> lottoTickets) {
+        Set<LottoTicket> lottoTicketSet = new HashSet<>(lottoTickets);
+        if (lottoTickets.size() != lottoTicketSet.size()) throw new IllegalArgumentException();
     }
 }

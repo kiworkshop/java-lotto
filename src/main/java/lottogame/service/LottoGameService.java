@@ -1,5 +1,6 @@
 package lottogame.service;
 
+import lottogame.domain.LottoTickets;
 import lottogame.domain.MoneyAmount;
 
 public class LottoGameService {
@@ -10,5 +11,9 @@ public class LottoGameService {
 
     public int getLottoCount(MoneyAmount moneyAmount) {
         return moneyAmount.calculateLottoCount();
+    }
+
+    public LottoTickets generateLottoTickets(int lottoCount) {
+        return LottoTickets.with(lottoCount);
     }
 }

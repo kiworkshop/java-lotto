@@ -20,6 +20,6 @@ public class LottoGameController {
 
         int lottoCount = lottoGameService.getLottoCount(moneyAmount);
 
-        LottoTickets lottoTickets = LottoTickets.with(lottoCount);
+        LottoTickets lottoTickets = lottoGameService.generateLottoTickets(lottoCount);
     }
 }

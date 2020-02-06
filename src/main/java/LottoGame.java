@@ -5,7 +5,7 @@ public class LottoGame {
 
     public LottoGame() {
         this.budget = ConsoleInput.inputBudget();
-        this.amount = budget/LOTTO_PRICE;
+        this.amount = budget / LOTTO_PRICE;
     }
 
     public void run() {

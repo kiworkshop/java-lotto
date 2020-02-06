@@ -16,5 +16,7 @@ public class LottoGameController {
     public void run() {
         int moneyAmountInput = inputView.getMoneyAmountInput();
         MoneyAmount moneyAmount = lottoGameService.getMoneyAmount(moneyAmountInput);
+
+        int lottoCount = lottoGameService.getLottoCount(moneyAmount);
     }
 }

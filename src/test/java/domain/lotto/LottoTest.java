@@ -1,11 +1,11 @@
-package domain;
+package domain.lotto;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 
-import static domain.LottoNumberTest.getDuplicateLottoNumberSetFixture;
-import static domain.LottoNumberTest.getLottoNumberSetFixture;
+import static domain.lotto.LottoNumberTest.getDuplicateLottoNumberSetFixture;
+import static domain.lotto.LottoNumberTest.getLottoNumberSetFixture;
 
 import static org.assertj.core.api.Assertions.*;
 

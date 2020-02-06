@@ -13,6 +13,7 @@ public class ConsoleInput {
 
     public static List<Integer> inputWinningNumbers() {
         System.out.println("지난 주 당첨 번호를 입력해주세요");
-        return Arrays.asList(scanner.nextLine().split(",")).stream().map(Integer::valueOf).collect(Collectors.toList());
+        String winningNumbers = scanner.next();    //TODO 왜 nextline안돼? ㅠ
+        return Arrays.stream(winningNumbers.split(",")).map(Integer::parseInt).collect(Collectors.toList());
     }
 }

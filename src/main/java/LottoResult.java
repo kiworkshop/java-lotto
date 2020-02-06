@@ -3,6 +3,7 @@ import java.util.List;
 
 public class LottoResult {
     private HashMap<Integer, Integer> matchCount;
+    private int[] prizeMoney = {0, 0, 5000, 50000, 1500000, 2000000000};
 
     public LottoResult(HashMap<Integer, Integer> matchCount) {
         this.matchCount = matchCount;
@@ -10,11 +11,20 @@ public class LottoResult {
 
     public static LottoResult of(List<Integer> matchCounts) {
         HashMap<Integer, Integer> matchCount = new HashMap<>();
-        for (int i = 0; i <= 6; i++) {
+        for (int i = 3; i <= 6; i++) {
             int finalI = i;
             matchCount.put(i, (int) matchCounts.stream().filter(Count -> Count.equals(finalI)).count());
         }
         return new LottoResult(matchCount);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 3; i <= 6; i++) {
+            sb.append(i + "개 일치 (" + prizeMoney[i-1] + ") - " + matchCount.get(i) + "개\n");
+        }
+        return sb.toString();
     }
 
     public int get3Match() {

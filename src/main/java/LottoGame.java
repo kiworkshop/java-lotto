@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class LottoGame {
     public static final int LOTTO_PRICE = 1000;
     private int budget;
@@ -12,7 +14,8 @@ public class LottoGame {
         ConsoleOutput.printBuyingMessage(amount);
         Lottos lottos = makeLottosAuto(amount);
         System.out.println(lottos.toString());
-        ConsoleInput.inputWinningNumbers();
+        List<Integer> winningNumbers = ConsoleInput.inputWinningNumbers();
+        ConsoleOutput.printResults(lottos.getResults(winningNumbers));
 
     }
 

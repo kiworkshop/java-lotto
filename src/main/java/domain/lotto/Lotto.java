@@ -19,6 +19,14 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
+    int match(Lotto targetLotto) {
+        return (int) lottoNumbers.stream().filter(targetLotto::contains).count();
+    }
+
+    boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
+    }
+
     public Set<LottoNumber> getLottoNumbers() {
         return lottoNumbers;
     }

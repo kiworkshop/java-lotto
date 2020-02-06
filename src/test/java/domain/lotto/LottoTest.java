@@ -13,9 +13,9 @@ public class LottoTest {
 
     @Test
     void testLotto() {
-        Set<LottoNumber> lottoNumberSet = getLottoNumberSetFixture();
+        Set<LottoNumber> lottoNumbers = getLottoNumberSetFixture();
 
-        Lotto lotto = Lotto.from(lottoNumberSet);
+        Lotto lotto = Lotto.from(lottoNumbers);
         assertThat(lotto);
     }
 
@@ -25,5 +25,10 @@ public class LottoTest {
 
         assertThatThrownBy(() -> Lotto.from(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    public static Lotto getLottoFromOneToSixFixture() {
+        Set<LottoNumber> lottoNumbers = getLottoNumberSetFixture();
+        return Lotto.from(lottoNumbers);
     }
 }

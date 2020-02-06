@@ -31,4 +31,8 @@ public class LottoNumbers {
     public List<Integer> selectLottoNumbersBy(int boundaryIndex) {
         return lottoNumbers.subList(0, boundaryIndex);
     }
+
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers;
+    }
 }

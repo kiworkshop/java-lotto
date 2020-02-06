@@ -1,5 +1,6 @@
 package lottogame.controller;
 
+import lottogame.domain.LottoTickets;
 import lottogame.domain.MoneyAmount;
 import lottogame.service.LottoGameService;
 import lottogame.view.InputView;
@@ -18,5 +19,7 @@ public class LottoGameController {
         MoneyAmount moneyAmount = lottoGameService.getMoneyAmount(moneyAmountInput);
 
         int lottoCount = lottoGameService.getLottoCount(moneyAmount);
+
+        LottoTickets lottoTickets = LottoTickets.with(lottoCount);
     }
 }

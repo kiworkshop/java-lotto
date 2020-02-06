@@ -3,11 +3,10 @@ package domain.lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Set;
-
-import static domain.lotto.LottoNumberTest.getDuplicateLottoNumberSetFixture;
-import static domain.lotto.LottoNumberTest.getLottoNumberSetFixture;
+import static domain.lotto.LottoNumberTest.getOneLottoNumberFixture;
 import static domain.lotto.LottoNumberTest.getSevenLottoNumberFixture;
+import static domain.lotto.LottoTest.getLottoFromOneToSixFixture;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningLottoTest {
@@ -15,27 +14,32 @@ class WinningLottoTest {
     @Test
     @DisplayName("WinningLotto를 생성하는 메서드 생성")
     void testWinningLotto() {
-        Set<LottoNumber> lottoNumbers = getLottoNumberSetFixture();
+        Lotto winningLotto = getLottoFromOneToSixFixture();
         LottoNumber sevenLottoNumber = getSevenLottoNumberFixture();
-        WinningLotto.from(lottoNumbers, sevenLottoNumber);
-    }
-
-    @Test
-    @DisplayName("WinningLotto를 생성하는 상황에서 예외 발생 당첨 번호는 6개여야 한다.")
-    void duplicateLottoNumberThrowsException() {
-        Set<LottoNumber> duplicateLottoNumbers = getDuplicateLottoNumberSetFixture();
-        LottoNumber sevenLottoNumber = getSevenLottoNumberFixture();
-
-        assertThatThrownBy(() -> WinningLotto.from(duplicateLottoNumbers, sevenLottoNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+        WinningLotto.from(winningLotto, sevenLottoNumber);
     }
 
     @Test
     @DisplayName("WinningLotto를 생성하는 상황에서 예외 발생. 보너스 번호는 당첨 번호에 없는 번호여야 한다.")
     void lottoNumberHasBonusNumberThrowsException() {
-        Set<LottoNumber> lottoNumbers = getLottoNumberSetFixture();
+        Lotto winningLotto = getLottoFromOneToSixFixture();
+        LottoNumber oneLottoNumber = getOneLottoNumberFixture();
 
-        assertThatThrownBy(() -> WinningLotto.from(lottoNumbers, lottoNumbers.iterator().next()))
+        assertThatThrownBy(() -> WinningLotto.from(winningLotto, oneLottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void testWinningLottoMatches() {
+        WinningLotto winningLotto = getWinningLottoFromOneToSixWithSevenFixture();
+        Lotto lotto = getLottoFromOneToSixFixture();
+
+        assertThat(winningLotto.match(lotto)).isEqualTo(6);
+    }
+
+    public static WinningLotto getWinningLottoFromOneToSixWithSevenFixture() {
+        Lotto winningLotto = getLottoFromOneToSixFixture();
+        LottoNumber sevenLottoNumber = getSevenLottoNumberFixture();
+        return WinningLotto.from(winningLotto, sevenLottoNumber);
     }
 }

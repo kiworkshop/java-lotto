@@ -1,26 +1,25 @@
 package domain.lotto;
 
-import java.util.Set;
-
 public class WinningLotto {
 
     private static final int LOTTO_NUMBER_SIZE = 6;
 
-    private Set<LottoNumber> lottoNumbers;
+    private Lotto winningLotto;
     private LottoNumber bonusNumber;
 
-    public static WinningLotto from(Set<LottoNumber> lottoNumbers, LottoNumber bonusNumber) {
-        if (lottoNumbers.size() != LOTTO_NUMBER_SIZE) {
+    public static WinningLotto from(Lotto winningLotto, LottoNumber bonusNumber) {
+        if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
-        if (lottoNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
-        }
-        return new WinningLotto(lottoNumbers, bonusNumber);
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 
-    private WinningLotto(Set<LottoNumber> lottoNumbers, LottoNumber bonusNumber) {
-        this.lottoNumbers = lottoNumbers;
+    private WinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    public int match(Lotto userLotto) {
+        return winningLotto.match(userLotto);
     }
 }

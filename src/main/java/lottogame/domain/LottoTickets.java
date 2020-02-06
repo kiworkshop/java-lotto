@@ -12,7 +12,20 @@ public class LottoTickets {
     }
 
     public static LottoTickets with(int lottoCount) {
-        List<LottoTicket> lottoTickets = new ArrayList<>();
+        List<LottoTicket> lottoTickets = generateLottoTickets(lottoCount);
         return new LottoTickets(lottoTickets);
+    }
+
+    private static List<LottoTicket> generateLottoTickets(int lottoCount) {
+        List<LottoTicket> lottoTickets = new ArrayList<>();
+        for(int i = 0; i < lottoCount; i++) {
+            LottoTicket lottoTicket = generateLottoTicket();
+            lottoTickets.add(lottoTicket);
+        }
+        return lottoTickets;
+    }
+
+    private static LottoTicket generateLottoTicket() {
+        return LottoTicket.generateLottoTicket();
     }
 }

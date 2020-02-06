@@ -13,9 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LottoNumberTest {
 
     private static final int MINIMUM_LOTTO_NUMBER = 1;
-    private static final int MAXIMUM_LOTTO_NUMBER = 46;
-    private static final int NUMBER_UNDER_LOTTO_NUMBER_RANGE = 0;
-    private static final int NUMBER_OVER_LOTTO_NUMBER_RANGE = 47;
+    private static final int MAXIMUM_LOTTO_NUMBER = 45;
 
     private LottoNumber minimumLottoNumber;
     private LottoNumber maximumLottoNumber;
@@ -29,14 +27,14 @@ public class LottoNumberTest {
     @Test
     @DisplayName("로또 번호 최소 값 미만의 로또 번호 생성시 예외 발생")
     void testMinimumLottoNumberThreshold() {
-        assertThatThrownBy(() -> LottoNumber.from(NUMBER_UNDER_LOTTO_NUMBER_RANGE))
+        assertThatThrownBy(() -> LottoNumber.from(MINIMUM_LOTTO_NUMBER - 1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("로또 번호 최대 값 초과의 로또 번호 생성시 예외 발생")
     void testMaximumLottoNumberThreshold() {
-        assertThatThrownBy(() -> LottoNumber.from(NUMBER_OVER_LOTTO_NUMBER_RANGE))
+        assertThatThrownBy(() -> LottoNumber.from(MAXIMUM_LOTTO_NUMBER + 1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -67,6 +65,10 @@ public class LottoNumberTest {
         lottoNumberSet.add(LottoNumber.from(5));
         lottoNumberSet.add(LottoNumber.from(6));
         return lottoNumberSet;
+    }
+
+    public static LottoNumber getOneLottoNumberFixture() {
+        return LottoNumber.from(1);
     }
 
     public static LottoNumber getSevenLottoNumberFixture() {

@@ -70,4 +70,7 @@ public class LottoNumberTest {
         return lottoNumberSet;
     }
 
+    public static LottoNumber getSevenLottoNumberFixture() {
+        return LottoNumber.from(7);
+    }
 }

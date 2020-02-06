@@ -18,4 +18,8 @@ public class Lotto {
     private Lotto(Set<LottoNumber> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
     }
+
+    public Set<LottoNumber> getLottoNumbers() {
+        return lottoNumbers;
+    }
 }

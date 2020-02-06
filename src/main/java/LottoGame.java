@@ -12,6 +12,7 @@ public class LottoGame {
         ConsoleOutput.printBuyingMessage(amount);
         Lottos lottos = makeLottosAuto(amount);
         System.out.println(lottos.toString());
+        ConsoleInput.inputWinningNumbers();
 
     }
 

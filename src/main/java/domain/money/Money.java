@@ -6,7 +6,7 @@ public class Money {
 
     private int money;
 
-    public static Money from (int money) {
+    public static Money from(int money) {
         if (money < 0) {
             throw new IllegalArgumentException();
         }

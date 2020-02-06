@@ -6,8 +6,8 @@ import java.util.Set;
 
 import static domain.lotto.LottoNumberTest.getDuplicateLottoNumberSetFixture;
 import static domain.lotto.LottoNumberTest.getLottoNumberSetFixture;
-
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoTest {
 

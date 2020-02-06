@@ -1,6 +1,5 @@
 package domain.lotto;
 
-import java.lang.reflect.WildcardType;
 import java.util.Set;
 
 public class WinningLotto {

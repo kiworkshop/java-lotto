@@ -37,4 +37,8 @@ public class LottoTickets {
         Set<LottoTicket> lottoTicketSet = new HashSet<>(lottoTickets);
         if (lottoTickets.size() != lottoTicketSet.size()) throw new IllegalArgumentException();
     }
+
+    public List<LottoTicket> getLottoTickets() {
+        return lottoTickets;
+    }
 }

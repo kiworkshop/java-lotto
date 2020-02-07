@@ -33,4 +33,8 @@ public enum Rank {
         }
         return MISS;
     }
+
+    public long getWinningMoney() {
+        return winningMoney;
+    }
 }

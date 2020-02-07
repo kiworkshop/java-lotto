@@ -2,16 +2,18 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoResult {
+    private static final int WINNING_COUNT_FROM = 3;
+    private static final int WINNING_COUNT_TO = 6;
     private HashMap<Integer, Integer> matchCount;
     private int[] PRIZE_FOR_ORDER = {0, 0, 5000, 50000, 1500000, 2000000000};
 
-    public LottoResult(HashMap<Integer, Integer> matchCount) {
+    private LottoResult(HashMap<Integer, Integer> matchCount) {
         this.matchCount = matchCount;
     }
 
-    public static LottoResult of(List<Integer> matchCounts) {
+    static LottoResult of(List<Integer> matchCounts) {
         HashMap<Integer, Integer> matchCount = new HashMap<>();
-        for (int i = 3; i <= 6; i++) {
+        for (int i = WINNING_COUNT_FROM; i <= WINNING_COUNT_TO; i++) {
             int finalI = i;
             matchCount.put(i, (int) matchCounts.stream().filter(Count -> Count.equals(finalI)).count());
         }
@@ -21,26 +23,10 @@ public class LottoResult {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 3; i <= 6; i++) {
+        for (int i = WINNING_COUNT_FROM; i <= WINNING_COUNT_TO; i++) {
             sb.append(i + "개 일치 (" + PRIZE_FOR_ORDER[i - 1] + ") - " + matchCount.get(i) + "개\n");
         }
         return sb.toString();
-    }
-
-    public int get3Match() {
-        return matchCount.get(3);
-    }
-
-    public int get4Match() {
-        return matchCount.get(4);
-    }
-
-    public int get5Match() {
-        return matchCount.get(5);
-    }
-
-    public int get6Match() {
-        return matchCount.get(6);
     }
 
     public int getMatch(int matchedCountInLottto) {
@@ -49,7 +35,7 @@ public class LottoResult {
 
     public int getPrize() {
         int prize = 0;
-        for (int i = 3; i <= 6; i++) {
+        for (int i = WINNING_COUNT_FROM; i <= WINNING_COUNT_TO; i++) {
             prize += getMatch(i) * PRIZE_FOR_ORDER[i - 1];
         }
         return prize;

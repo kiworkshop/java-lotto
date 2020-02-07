@@ -1,19 +1,22 @@
 import java.util.*;
 
 public class Lotto {
+    private static final int NUMBER_OF_BALLS = 45;
+    private static final int RAFFLE_FROM_INDEX = 0;
+    private static final int RAFFLE_TO_INDEX = 6;
     private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         this.numbers = numbers;    //TODO 숫자 검증 추가
     }
 
-    public static Lotto autoGenerate() {
+    static Lotto autoGenerate() {
         List<Integer> numbers = new ArrayList<>();
-        for (int i = 1; i <= 45; i++) {
+        for (int i = 1; i <= NUMBER_OF_BALLS; i++) {
             numbers.add(i);
         }
         Collections.shuffle(numbers);
-        List<Integer> generatedNumbers = numbers.subList(0, 6);
+        List<Integer> generatedNumbers = numbers.subList(RAFFLE_FROM_INDEX, RAFFLE_TO_INDEX);
         Collections.sort(generatedNumbers);
         return new Lotto(generatedNumbers);
     }

@@ -19,13 +19,18 @@ public class LottoTicket {
     return new LottoTicket(new RandomNumberStrategy());
   }
 
-
   protected List<Integer> generateLottoNumbers(NumberStrategy numberStrategy) {
     return numberStrategy.generateNumbers(LOTTO_NUMBERS_SIZE, LOTTO_MAX_NUMBER);
   }
 
   public void showLottoNumbers() {
-    System.out.println(lottoNumbers.toArray());
+    System.out.println(lottoNumbers.toArray().toString());
+  }
+
+  public int calculateNumOfMatch(List<Integer> winningNumbers) {
+    return (int) lottoNumbers.stream()
+        .filter(winningNumbers::contains)
+        .count();
   }
 
 }

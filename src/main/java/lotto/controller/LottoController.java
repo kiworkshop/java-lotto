@@ -19,6 +19,6 @@ public class LottoController {
 
     String lastWinningNumbersInput = consoleInputView.getWinningNumbers();
     List<Integer> winningNumbers = ticketService.generateWinningTicket(lastWinningNumbersInput);
-    consoleOutputView.showResult(statisticService.calculateResult(winningNumbers));
+    consoleOutputView.showResult(statisticService.calculateResult(lottoTickets, winningNumbers, priceForTickets));
   }
 }

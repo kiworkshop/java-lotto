@@ -2,13 +2,16 @@ package lottogame.domain.lottoticket;
 
 import lottogame.domain.LottoNumbers;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LottoTicket {
 
     private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final String LOTTO_NUMBER_DELIMITER = ",";
 
     private List<Integer> selectedLottoNumbers;
 
@@ -17,6 +20,14 @@ public class LottoTicket {
 
     private LottoTicket(final List<Integer> selectedLottoNumbers) {
         this.selectedLottoNumbers = selectedLottoNumbers;
+    }
+
+    public static LottoTicket of(String lottoNumbersString) {
+        List<Integer> lottoNumbers = toLottoNumbers(lottoNumbersString);
+
+        List<Integer> sortedLottoNumbers = sortLottoNumbers(lottoNumbers);
+
+        return new LottoTicket(sortedLottoNumbers);
     }
 
     public LottoTicket generateLottoTicket() {
@@ -30,7 +41,15 @@ public class LottoTicket {
         return new LottoTicket(sortedLottoNumbers);
     }
 
-    private List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
+    private static List<Integer> toLottoNumbers(String lottoNumberString) {
+        String[] lottoNumbers = lottoNumberString.split(LOTTO_NUMBER_DELIMITER);
+        return Arrays.stream(lottoNumbers)
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
+    private static List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
         lottoNumbers.sort(Comparator.naturalOrder());
         return lottoNumbers;
     }

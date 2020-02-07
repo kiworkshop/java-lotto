@@ -30,7 +30,8 @@ public class LottoTickets {
     }
 
     private static LottoTicket generateLottoTicket() {
-        return LottoTicket.generateLottoTicket();
+        LottoTicket lottoTicket = new LottoTicket();
+        return lottoTicket.generateLottoTicket();
     }
 
     private static void checkForDuplicates(List<LottoTicket> lottoTickets) {

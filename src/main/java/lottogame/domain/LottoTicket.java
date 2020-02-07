@@ -2,19 +2,23 @@ package lottogame.domain;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class LottoTicket {
 
-    private static LottoNumbers lottoNumbers = new LottoNumbers();
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    private final List<Integer> selectedLottoNumbers;
+    private List<Integer> selectedLottoNumbers;
 
-    public LottoTicket(List<Integer> selectedLottoNumbers) {
+    public LottoTicket() {
+    }
+
+    private LottoTicket(final List<Integer> selectedLottoNumbers) {
         this.selectedLottoNumbers = selectedLottoNumbers;
     }
 
-    public static LottoTicket generateLottoTicket() {
+    public LottoTicket generateLottoTicket() {
+        LottoNumbers lottoNumbers = new LottoNumbers();
         lottoNumbers.shuffle();
 
         List<Integer> selectedLottoNumbers = lottoNumbers.selectLottoNumbersBy(LOTTO_NUMBER_COUNT);
@@ -24,7 +28,7 @@ public class LottoTicket {
         return new LottoTicket(sortedLottoNumbers);
     }
 
-    private static List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
+    private List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
         lottoNumbers.sort(Comparator.naturalOrder());
         return lottoNumbers;
     }
@@ -32,5 +36,18 @@ public class LottoTicket {
     @Override
     public String toString() {
         return selectedLottoNumbers.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LottoTicket that = (LottoTicket) o;
+        return Objects.equals(selectedLottoNumbers, that.selectedLottoNumbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(selectedLottoNumbers);
     }
 }

@@ -1,14 +1,16 @@
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+class LottoResultTest {
 
-class LottosTest {
 
     @Test
-    void testCheckResults() {
+    @DisplayName("상금을 계산해라")
+    void testGetPrize() {
         //given
         Lottos lottos = new Lottos();
         Integer[] lottoNumber1 = {1, 2, 3, 4, 5, 6};
@@ -29,10 +31,7 @@ class LottosTest {
         //when
         LottoResult lottoResult = lottos.getResults(winningNumberList);
 
-
-        assertThat(lottoResult.getMatch(3)).isEqualTo(1);
-        assertThat(lottoResult.getMatch(4)).isEqualTo(1);
-        assertThat(lottoResult.getMatch(5)).isEqualTo(1);
-        assertThat(lottoResult.getMatch(6)).isEqualTo(1);
+        //then
+        assertThat(lottoResult.getPrize()).isEqualTo(2001555000);
     }
 }

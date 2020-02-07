@@ -16,6 +16,12 @@ public class LottoGame {
         System.out.println(lottos.toString());
         List<Integer> winningNumbers = ConsoleInput.inputWinningNumbers();
         ConsoleOutput.printResults(lottos.getResults(winningNumbers));
+        ConsoleOutput.printEarnningRate(getEarningRate(lottos.getResults(winningNumbers).getPrize(), amount * LOTTO_PRICE));
+
+    }
+
+    private int getEarningRate(int prize, int cost) {
+        return prize * 100 / cost;
 
     }
 

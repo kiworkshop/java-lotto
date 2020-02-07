@@ -1,6 +1,6 @@
 package lottogame.domain;
 
-import lottogame.domain.LottoTicket.LottoTickets;
+import lottogame.domain.lottoticket.LottoTickets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

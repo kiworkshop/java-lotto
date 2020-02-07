@@ -14,4 +14,8 @@ public class UserLottos {
     private UserLottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

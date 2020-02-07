@@ -31,8 +31,6 @@ public class LottoTicket {
 
     @Override
     public String toString() {
-        return "LottoTicket{" +
-                "selectedLottoNumbers=" + selectedLottoNumbers +
-                '}';
+        return selectedLottoNumbers.toString();
     }
 }

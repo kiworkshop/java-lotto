@@ -15,5 +15,7 @@ class RankTest {
         assertThat(Rank.valueOf(2)).isEqualTo(Rank.MISS);
         assertThat(Rank.valueOf(1)).isEqualTo(Rank.MISS);
         assertThat(Rank.valueOf(0)).isEqualTo(Rank.MISS);
+
+        assertThat(Rank.MISS.getWinningMoney()).isEqualTo(0);
     }
 }

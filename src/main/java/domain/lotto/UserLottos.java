@@ -5,7 +5,7 @@ import java.util.List;
 
 public class UserLottos {
 
-    List<Lotto> lottos = new ArrayList<>();
+    List<Lotto> lottos;
 
     public static UserLottos from(List<Lotto> lottos) {
         return new UserLottos(lottos);

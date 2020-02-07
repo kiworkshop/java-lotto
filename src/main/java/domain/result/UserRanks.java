@@ -15,7 +15,11 @@ public class UserRanks {
 
     public double getProfitRate() {
         double totalProfit = ranks.stream().mapToDouble(Rank::getWinningMoney).sum();
-        return totalProfit / (ranks.size() * PRICE_PER_LOTTO) * PERCENTAGE;
+        return (totalProfit - getPurchasePrice()) / getPurchasePrice() * PERCENTAGE;
+    }
+
+    private int getPurchasePrice() {
+        return ranks.size() * PRICE_PER_LOTTO;
     }
 
     public int count(Rank rank) {

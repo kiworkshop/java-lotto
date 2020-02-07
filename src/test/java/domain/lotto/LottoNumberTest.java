@@ -45,6 +45,13 @@ public class LottoNumberTest {
         assertThat(maximumLottoNumber.getLottoNumber()).isEqualTo(MAXIMUM_LOTTO_NUMBER);
     }
 
+    @Test
+    @DisplayName("로또 번호를 출력하는 테스트")
+    void testToString() {
+        assertThat(minimumLottoNumber.toString()).isEqualTo("1");
+        assertThat(maximumLottoNumber.toString()).isEqualTo("45");
+    }
+
     public static Set<LottoNumber> getLottoNumberSetFixture() {
         Set<LottoNumber> lottoNumberSet = new HashSet<>();
         lottoNumberSet.add(LottoNumber.from(1));

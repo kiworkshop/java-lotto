@@ -16,7 +16,7 @@ public class LottoTest {
         Set<LottoNumber> lottoNumbers = getLottoNumberSetFixture();
 
         Lotto lotto = Lotto.from(lottoNumbers);
-        assertThat(lotto);
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
     @Test

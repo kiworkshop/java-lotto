@@ -1,6 +1,6 @@
 package lottogame.service;
 
-import lottogame.domain.LottoTickets;
+import lottogame.domain.LottoTicket.LottoTickets;
 import lottogame.domain.MoneyAmount;
 
 public class LottoGameService {

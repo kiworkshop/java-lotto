@@ -1,4 +1,4 @@
-package lottogame.domain;
+package lottogame.domain.LottoTicket;
 
 import java.util.ArrayList;
 import java.util.HashSet;

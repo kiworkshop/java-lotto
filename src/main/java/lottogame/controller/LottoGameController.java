@@ -1,6 +1,6 @@
 package lottogame.controller;
 
-import lottogame.domain.LottoTickets;
+import lottogame.domain.LottoTicket.LottoTickets;
 import lottogame.domain.MoneyAmount;
 import lottogame.service.LottoGameService;
 import lottogame.view.InputView;

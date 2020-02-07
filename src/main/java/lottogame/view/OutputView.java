@@ -1,7 +1,7 @@
 package lottogame.view;
 
-import lottogame.domain.LottoTicket;
-import lottogame.domain.LottoTickets;
+import lottogame.domain.LottoTicket.LottoTicket;
+import lottogame.domain.LottoTicket.LottoTickets;
 
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public void printLottoTickets(LottoTickets lottoTickets) {
-        for(LottoTicket lottoTicket : lottoTickets.getLottoTickets()) {
+        for (LottoTicket lottoTicket : lottoTickets.getLottoTickets()) {
             printLottoTicket(lottoTicket);
         }
     }

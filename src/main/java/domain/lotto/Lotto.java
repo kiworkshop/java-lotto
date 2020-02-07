@@ -1,6 +1,8 @@
 package domain.lotto;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -29,5 +31,12 @@ public class Lotto {
 
     public Set<LottoNumber> getLottoNumbers() {
         return lottoNumbers;
+    }
+
+    @Override
+    public String toString() {
+        List<LottoNumber> lottoNumberList = lottoNumbers.stream()
+                .sorted().collect(Collectors.toList());
+        return lottoNumberList.toString();
     }
 }

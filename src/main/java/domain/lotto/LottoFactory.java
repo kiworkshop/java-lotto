@@ -1,8 +1,8 @@
 package domain.lotto;
 
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LottoFactory {
 
@@ -14,9 +14,10 @@ public class LottoFactory {
     }
 
     private static Set<LottoNumber> getLottoNumbers() {
-        return IntStream.rangeClosed(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER)
-                .limit(6)
+        return new Random().ints(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER)
                 .distinct()
+                .limit(6)
+                .sorted()
                 .mapToObj(LottoNumber::from)
                 .collect(Collectors.toSet());
     }

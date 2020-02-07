@@ -34,7 +34,7 @@ public class LottoPrinter {
     private static void printRanks(UserRanks userRanks) {
         System.out.println("3개 일치 (5000원) - " + userRanks.count(Rank.FOURTH) + "개");
         System.out.println("4개 일치 (50000원) - " + userRanks.count(Rank.THIRD) + "개");
-        System.out.println("5개 일치 (1500000원) - " + userRanks.count(Rank.FOURTH) + "개");
+        System.out.println("5개 일치 (1500000원) - " + userRanks.count(Rank.SECOND) + "개");
         System.out.println("6개 일치 (2000000000원) - " + userRanks.count(Rank.FIRST) + "개");
     }
 

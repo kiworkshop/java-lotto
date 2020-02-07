@@ -11,20 +11,21 @@ public class LottoTicket {
   private static final int LOTTO_MAX_NUMBER = 45;
   private List<Integer> lottoNumbers = new ArrayList<>();
 
-  private LottoTicket() {
-    lottoNumbers.addAll(generateLottoNumbers(new RandomNumberStrategy()));
+  private LottoTicket(NumberStrategy numberStrategy) {
+    lottoNumbers.addAll(generateLottoNumbers(numberStrategy));
   }
 
-  public static LottoTicket of() {
-    return new LottoTicket();
+  public static LottoTicket ofRandom() {
+    return new LottoTicket(new RandomNumberStrategy());
   }
+
 
   protected List<Integer> generateLottoNumbers(NumberStrategy numberStrategy) {
-    List<Integer> numbers = new ArrayList<>();
-    for (int i = 0; i < LOTTO_NUMBERS_SIZE; i++) {
-      numbers.add(numberStrategy.generateNumber(LOTTO_MAX_NUMBER));
-    }
-    return numbers;
+    return numberStrategy.generateNumbers(LOTTO_NUMBERS_SIZE, LOTTO_MAX_NUMBER);
+  }
+
+  public void showLottoNumbers() {
+    System.out.println(lottoNumbers.toArray());
   }
 
 }

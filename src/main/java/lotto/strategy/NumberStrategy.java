@@ -1,5 +1,7 @@
 package lotto.strategy;
 
+import java.util.List;
+
 public interface NumberStrategy {
-  int generateNumber(int maxNumber);
+  List<Integer> generateNumbers(int numbersSize, int maxNumber);
 }

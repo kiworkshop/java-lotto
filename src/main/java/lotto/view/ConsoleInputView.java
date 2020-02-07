@@ -7,6 +7,11 @@ public class ConsoleInputView {
 
   public int getPriceInput() {
     System.out.println("구매금액을 입력해주세요.");
-    return scan.nextInt();
+    return Integer.parseInt(scan.nextLine());
+  }
+
+  public String getWinningNumbers() {
+    System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+    return scan.nextLine();
   }
 }

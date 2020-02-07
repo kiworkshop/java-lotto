@@ -1,5 +1,7 @@
 package domain.lotto;
 
+import domain.result.Rank;
+
 public class WinningLotto {
 
     private static final int LOTTO_NUMBER_SIZE = 6;
@@ -19,7 +21,11 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public int match(Lotto userLotto) {
+    public Rank getRank(Lotto userLotto) {
+        return Rank.valueOf(countMatches(userLotto));
+    }
+
+    private int countMatches(Lotto userLotto) {
         return winningLotto.match(userLotto);
     }
 }

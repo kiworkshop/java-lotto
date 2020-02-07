@@ -1,5 +1,6 @@
 package domain.lotto;
 
+import domain.result.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,7 @@ class WinningLottoTest {
         WinningLotto winningLotto = getWinningLottoFromOneToSixWithSevenFixture();
         Lotto lotto = getLottoFromOneToSixFixture();
 
-        assertThat(winningLotto.match(lotto)).isEqualTo(6);
+        assertThat(winningLotto.getRank(lotto)).isEqualTo(Rank.FIRST);
     }
 
     public static WinningLotto getWinningLottoFromOneToSixWithSevenFixture() {

@@ -8,8 +8,6 @@ import domain.lotto.WinningLotto;
 import domain.money.LottoMoney;
 import domain.result.Rank;
 import domain.result.UserRanks;
-import view.input.LottoInputScanner;
-import view.output.LottoOutputPrinter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,22 +17,22 @@ import java.util.stream.Collectors;
 
 public class LottoController {
 
-    public void run() {
-        LottoMoney lottoMoney = getMoneyFromUser();
-        UserLottos userLottos = getUserLottos(lottoMoney);
-        LottoOutputPrinter.printUserLottos(userLottos);
-        WinningLotto winningLotto = getWinningLotto();
-        UserRanks userRanks = getUserRank(winningLotto, userLottos);
-        LottoOutputPrinter.printUserRanks(userRanks);
+    public LottoMoney createMoney(String inputMoneyFromUser) {
+        return LottoMoney.from(parseMoneyToInt(inputMoneyFromUser));
     }
 
-    private LottoMoney getMoneyFromUser() {
-        int moneyFromUser = parseMoneyToInt(inputMoneyFromUser());
-        return LottoMoney.from(moneyFromUser);
+    public UserLottos publishUserLottos(LottoMoney lottoMoney) {
+        return getUserLottos(lottoMoney);
     }
 
-    private String inputMoneyFromUser() {
-        return LottoInputScanner.askLottoPurchacePrice();
+    public WinningLotto createWinningLotto(String inputLotto, String inputBonus) {
+        Lotto winningLotto = parseInputToLotto(inputLotto);
+        LottoNumber bonusNumber = parseInputToBonusNumber(inputBonus);
+        return WinningLotto.from(winningLotto, bonusNumber);
+    }
+
+    public UserRanks createUserRanks(WinningLotto winningLotto, UserLottos userLottos) {
+        return getUserRank(winningLotto, userLottos);
     }
 
     private int parseMoneyToInt(String inputMoney) {
@@ -52,12 +50,6 @@ public class LottoController {
         }
 
         return UserLottos.from(lottos);
-    }
-
-    private WinningLotto getWinningLotto() {
-        Lotto winningLotto = parseInputToLotto(LottoInputScanner.askLottoWinningNumber());
-        LottoNumber bonusNumber = parseInputToBonusNumber(LottoInputScanner.askBonusNumber());
-        return WinningLotto.from(winningLotto, bonusNumber);
     }
 
     private Lotto parseInputToLotto(String input) {

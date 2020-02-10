@@ -3,14 +3,27 @@ package lottogame.domain.statistics;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningStatistics {
 
-    private List<LottoStatistics> winningStatistics;
+    private final List<LottoStatistics> winningStatistics;
 
-    public static WinningStatistics computeLottoStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
-        //computeFisrstPrizeLottoStatistics();
-        return new WinningStatistics();
+    public WinningStatistics(List<LottoStatistics> winningStatistics) {
+        this.winningStatistics = winningStatistics;
+    }
+
+    public static WinningStatistics computeWinningStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
+        List<LottoStatistics> winningStatistics = new ArrayList<>();
+        for (LottoTicket lottoTicket : lottoTickets.getLottoTickets()) {
+            LottoStatistics lottoStatistics = LottoStatistics.computeLottoStatistics(lottoTicket, lottoResult);
+            winningStatistics.add(lottoStatistics);
+        }
+        return new WinningStatistics(winningStatistics);
+    }
+
+    public List<LottoStatistics> getWinningStatistics() {
+        return winningStatistics;
     }
 }

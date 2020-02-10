@@ -24,6 +24,6 @@ public class LottoGameService {
     }
 
     public WinningStatistics generateWinningStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
-        return WinningStatistics.computeLottoStatistics(lottoTickets, lottoResult);
+        return WinningStatistics.computeWinningStatistics(lottoTickets, lottoResult);
     }
 }

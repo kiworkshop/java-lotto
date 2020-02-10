@@ -22,15 +22,4 @@ class LottoTicketsTest {
         // then
         assertThat(lottoTickets.getLottoTickets().size()).isEqualTo(lottoCount);
     }
-
-    @Test
-    void 로또가_중복될_경우_예외처리된다() {
-        // given
-
-        // when
-
-        // then
-
-    }
-
 }

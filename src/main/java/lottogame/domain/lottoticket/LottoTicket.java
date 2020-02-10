@@ -15,33 +15,12 @@ public class LottoTicket {
 
     private List<Integer> selectedLottoNumbers;
 
-    public LottoTicket() {
-    }
-
-    private LottoTicket(final List<Integer> selectedLottoNumbers) {
-        if(selectedLottoNumbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
-        }
-        this.selectedLottoNumbers = selectedLottoNumbers;
-    }
-
     public static LottoTicket of(String lottoNumbersString) {
         List<Integer> lottoNumbers = toLottoNumbers(lottoNumbersString);
 
         lottoNumbers.forEach(LottoNumbers::validateLottoNumber);
 
         List<Integer> sortedLottoNumbers = sortLottoNumbers(lottoNumbers);
-
-        return new LottoTicket(sortedLottoNumbers);
-    }
-
-    public LottoTicket generateLottoTicket() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
-        lottoNumbers.shuffle();
-
-        List<Integer> selectedLottoNumbers = lottoNumbers.selectLottoNumbersBy(LOTTO_NUMBER_COUNT);
-
-        List<Integer> sortedLottoNumbers = sortLottoNumbers(selectedLottoNumbers);
 
         return new LottoTicket(sortedLottoNumbers);
     }
@@ -57,6 +36,27 @@ public class LottoTicket {
     private static List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
         lottoNumbers.sort(Comparator.naturalOrder());
         return lottoNumbers;
+    }
+
+    public LottoTicket() {
+    }
+
+    private LottoTicket(final List<Integer> selectedLottoNumbers) {
+        if(selectedLottoNumbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException();
+        }
+        this.selectedLottoNumbers = selectedLottoNumbers;
+    }
+
+    public LottoTicket generateLottoTicket() {
+        LottoNumbers lottoNumbers = new LottoNumbers();
+        lottoNumbers.shuffle();
+
+        List<Integer> selectedLottoNumbers = lottoNumbers.selectLottoNumbersBy(LOTTO_NUMBER_COUNT);
+
+        List<Integer> sortedLottoNumbers = sortLottoNumbers(selectedLottoNumbers);
+
+        return new LottoTicket(sortedLottoNumbers);
     }
 
     public List<Integer> getSelectedLottoNumbers() {

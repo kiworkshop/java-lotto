@@ -1,4 +1,4 @@
-package output;
+package view.output;
 
 import domain.lotto.Lotto;
 import domain.lotto.UserLottos;
@@ -7,7 +7,7 @@ import domain.result.UserRanks;
 
 import java.util.List;
 
-public class LottoPrinter {
+public class LottoOutputPrinter {
 
     private static final String RANK_FORMAT = "%d개 일치 (%d원) - %d개";
 

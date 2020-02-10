@@ -10,15 +10,15 @@ public class Lotto {
 
     private Set<LottoNumber> lottoNumbers;
 
+    private Lotto(Set<LottoNumber> lottoNumbers) {
+        this.lottoNumbers = lottoNumbers;
+    }
+
     public static Lotto from(Set<LottoNumber> lottoNumbers) {
         if (lottoNumbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
         return new Lotto(lottoNumbers);
-    }
-
-    private Lotto(Set<LottoNumber> lottoNumbers) {
-        this.lottoNumbers = lottoNumbers;
     }
 
     int match(Lotto targetLotto) {

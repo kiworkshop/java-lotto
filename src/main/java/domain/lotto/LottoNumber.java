@@ -9,15 +9,15 @@ public class LottoNumber implements Comparable {
 
     private int lottoNumber;
 
+    private LottoNumber(int lottoNumber) {
+        this.lottoNumber = lottoNumber;
+    }
+
     public static LottoNumber from(int lottoNumber) {
         if (lottoNumber < MINIMUM_LOTTO_NUMBER || lottoNumber > MAXIMUM_LOTTO_NUMBER) {
             throw new IllegalArgumentException();
         }
         return new LottoNumber(lottoNumber);
-    }
-
-    private LottoNumber(int lottoNumber) {
-        this.lottoNumber = lottoNumber;
     }
 
     public int getLottoNumber() {

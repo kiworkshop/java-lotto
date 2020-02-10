@@ -1,22 +1,22 @@
 package domain.money;
 
-public class Money {
+public class LottoMoney {
 
     private static int PRICE_PER_LOTTO = 1000;
 
     private int money;
 
-    public static Money from(int money) {
+    public static LottoMoney from(int money) {
         if (money < 0) {
             throw new IllegalArgumentException();
         }
         if (money % PRICE_PER_LOTTO != 0) {
             throw new IllegalArgumentException();
         }
-        return new Money(money);
+        return new LottoMoney(money);
     }
 
-    private Money(int money) {
+    private LottoMoney(int money) {
         this.money = money;
     }
 

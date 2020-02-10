@@ -9,16 +9,16 @@ public class WinningLotto {
     private Lotto winningLotto;
     private LottoNumber bonusNumber;
 
+    private WinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
+        this.winningLotto = winningLotto;
+        this.bonusNumber = bonusNumber;
+    }
+
     public static WinningLotto from(Lotto winningLotto, LottoNumber bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
         return new WinningLotto(winningLotto, bonusNumber);
-    }
-
-    private WinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
-        this.winningLotto = winningLotto;
-        this.bonusNumber = bonusNumber;
     }
 
     public Rank getRank(Lotto userLotto) {

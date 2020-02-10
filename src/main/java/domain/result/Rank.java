@@ -8,8 +8,6 @@ public enum Rank {
     FOURTH(3, 5000),
     MISS(0, 0);
 
-    private static final int WINNING_MIN_COUNT = 3;
-
     private int countOfMatches;
     private long winningMoney;
 

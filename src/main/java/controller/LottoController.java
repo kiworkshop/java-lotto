@@ -5,11 +5,11 @@ import domain.lotto.LottoFactory;
 import domain.lotto.LottoNumber;
 import domain.lotto.UserLottos;
 import domain.lotto.WinningLotto;
-import domain.money.Money;
+import domain.money.LottoMoney;
 import domain.result.Rank;
 import domain.result.UserRanks;
-import input.LottoInputScanner;
-import output.LottoPrinter;
+import view.input.LottoInputScanner;
+import view.output.LottoOutputPrinter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,17 +20,17 @@ import java.util.stream.Collectors;
 public class LottoController {
 
     public void run() {
-        Money money = getMoneyFromUser();
-        UserLottos userLottos = getUserLottos(money);
-        LottoPrinter.printUserLottos(userLottos);
+        LottoMoney lottoMoney = getMoneyFromUser();
+        UserLottos userLottos = getUserLottos(lottoMoney);
+        LottoOutputPrinter.printUserLottos(userLottos);
         WinningLotto winningLotto = getWinningLotto();
         UserRanks userRanks = getUserRank(winningLotto, userLottos);
-        LottoPrinter.printUserRanks(userRanks);
+        LottoOutputPrinter.printUserRanks(userRanks);
     }
 
-    private Money getMoneyFromUser() {
+    private LottoMoney getMoneyFromUser() {
         int moneyFromUser = parseMoneyToInt(inputMoneyFromUser());
-        return Money.from(moneyFromUser);
+        return LottoMoney.from(moneyFromUser);
     }
 
     private String inputMoneyFromUser() {
@@ -45,9 +45,9 @@ public class LottoController {
         }
     }
 
-    private UserLottos getUserLottos(Money money) {
+    private UserLottos getUserLottos(LottoMoney lottoMoney) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < money.getCountOfLotto(); i++) {
+        for (int i = 0; i < lottoMoney.getCountOfLotto(); i++) {
             lottos.add(LottoFactory.publishLotto());
         }
 

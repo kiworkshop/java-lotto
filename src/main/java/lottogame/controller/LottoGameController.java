@@ -3,6 +3,7 @@ package lottogame.controller;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 import lottogame.domain.MoneyAmount;
+import lottogame.domain.statistics.WinningStatistics;
 import lottogame.service.LottoGameService;
 import lottogame.view.InputView;
 import lottogame.view.OutputView;
@@ -31,5 +32,8 @@ public class LottoGameController {
 
         String lottoResultInput = inputView.getLottoResultInput();
         LottoTicket lottoResult = lottoGameService.generateLottoTicket(lottoResultInput);
+
+        WinningStatistics winningStatistics = lottoGameService.generateWinningStatistics(lottoTickets, lottoResult);
+        //LottoStatistics FirstPrizeLottoStatistics
     }
 }

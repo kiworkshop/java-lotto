@@ -31,6 +31,7 @@ class LottoTicketTest {
 
         // then
         assertThat(lottoTicket.toString()).isEqualTo(expected.toString());
+        assertThat(lottoTicket.).isEqualTo(expected);
     }
 
     @Test

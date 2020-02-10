@@ -3,11 +3,8 @@ package lottogame.view;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 
-import java.util.Scanner;
-
 public class OutputView {
 
-    private static final Scanner SCANNER = new Scanner(System.in);
     private static final String MESSAGE_PRINT_LOTTO_COUNT = "개를 구매했습니다.";
 
     public void printLottoCount(int lottoCount) {

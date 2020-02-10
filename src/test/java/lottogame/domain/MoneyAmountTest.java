@@ -27,7 +27,7 @@ class MoneyAmountTest {
     @Test
     void moneyAmount는_천원이상이어야한다() {
         // then
-        assertThrows(IllegalArgumentException.class, () -> new MoneyAmount(999));
+        assertThrows(IllegalArgumentException.class, () -> new MoneyAmount(0));
     }
 
     @Test

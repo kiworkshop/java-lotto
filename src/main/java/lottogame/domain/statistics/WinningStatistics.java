@@ -9,7 +9,8 @@ public class WinningStatistics {
 
     private List<LottoStatistics> winningStatistics;
 
-    public WinningStatistics computeLottoStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
-        computeFisrstPrizeLottoStatistics();
+    public static WinningStatistics computeLottoStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
+        //computeFisrstPrizeLottoStatistics();
+        return new WinningStatistics();
     }
 }

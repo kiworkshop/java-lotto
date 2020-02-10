@@ -19,11 +19,16 @@ public class LottoTicket {
     }
 
     private LottoTicket(final List<Integer> selectedLottoNumbers) {
+        if(selectedLottoNumbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException();
+        }
         this.selectedLottoNumbers = selectedLottoNumbers;
     }
 
     public static LottoTicket of(String lottoNumbersString) {
         List<Integer> lottoNumbers = toLottoNumbers(lottoNumbersString);
+
+        lottoNumbers.forEach(LottoNumbers::validateLottoNumber);
 
         List<Integer> sortedLottoNumbers = sortLottoNumbers(lottoNumbers);
 
@@ -52,6 +57,10 @@ public class LottoTicket {
     private static List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
         lottoNumbers.sort(Comparator.naturalOrder());
         return lottoNumbers;
+    }
+
+    public List<Integer> getSelectedLottoNumbers() {
+        return selectedLottoNumbers;
     }
 
     @Override

@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoNumbersTest {
 
-    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int COUNT_OF_LOTTO_NUMBERS = 6;
 
     private List<Integer> expected = new ArrayList<>();
 
@@ -22,21 +22,12 @@ class LottoNumbersTest {
     }
 
     @Test
-    void LottoNumbers는_모든_로또숫자를_가지고_있다() {
-        // given 
-        LottoNumbers lottoNumbers = new LottoNumbers();
-
-        // then 
-        assertThat(lottoNumbers.getLottoNumbers()).isEqualTo(expected);
-    }
-
-    @Test
     void selectLottoNumbers후에도_리스트는_그대로여야_한다() {
         // given 
         LottoNumbers lottoNumbers = new LottoNumbers();
 
         // when
-        lottoNumbers.selectLottoNumbersBy(LOTTO_NUMBER_COUNT);
+        lottoNumbers.selectLottoNumbersBy(COUNT_OF_LOTTO_NUMBERS);
 
         // then 
         assertThat(lottoNumbers.getLottoNumbers()).isEqualTo(expected);

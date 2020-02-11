@@ -1,5 +1,6 @@
 package lottogame.domain.statistics;
 
+import lottogame.domain.MoneyAmount;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 
@@ -33,5 +34,18 @@ public class WinningStatistics {
             if (rank == lottoStatistics) count += 1;
         }
         return count;
+    }
+
+    public double computeEarningRate() {
+        return (totalPrizeMoney() / (winningStatistics.size() * MoneyAmount.ONE_LOTTO_PRICE))
+                * 100;
+    }
+
+    private double totalPrizeMoney() {
+        double totalPrizeMoney = 0;
+        for(LottoStatistics lottoStatistics : winningStatistics) {
+            totalPrizeMoney += lottoStatistics.getPrizeMoney();
+        }
+        return totalPrizeMoney;
     }
 }

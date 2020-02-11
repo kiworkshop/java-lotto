@@ -26,4 +26,8 @@ public class LottoGameService {
     public WinningStatistics generateWinningStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
         return WinningStatistics.computeWinningStatistics(lottoTickets, lottoResult);
     }
+
+    public double computeEarningRate(WinningStatistics winningStatistics) {
+        return winningStatistics.computeEarningRate();
+    }
 }

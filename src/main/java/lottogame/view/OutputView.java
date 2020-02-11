@@ -42,4 +42,8 @@ public class OutputView {
         System.out.println("5개 일치 (1500000원) - " + winningStatistics.countLottoStatistics(LottoStatistics.SECOND) + "개");
         System.out.println("6개 일치 (2000000000원) - " + winningStatistics.countLottoStatistics(LottoStatistics.FIRST) + "개");
     }
+
+    public void printEarningRate(double earningRate) {
+        System.out.println("총 수익률은 " + (int) earningRate + "%입니다.");
+    }
 }

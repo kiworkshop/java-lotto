@@ -34,7 +34,9 @@ public class LottoGameController {
         LottoTicket lottoResult = lottoGameService.generateLottoTicket(lottoResultInput);
 
         WinningStatistics winningStatistics = lottoGameService.generateWinningStatistics(lottoTickets, lottoResult);
+        double earningRate = lottoGameService.computeEarningRate(winningStatistics);
 
         outputView.printWinningStatistics(winningStatistics);
+        outputView.printEarningRate(earningRate);
     }
 }

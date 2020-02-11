@@ -26,4 +26,12 @@ public class WinningStatistics {
     public List<LottoStatistics> getWinningStatistics() {
         return winningStatistics;
     }
+
+    public int countLottoStatistics(LottoStatistics lottoStatistics) {
+        int count = 0;
+        for (LottoStatistics rank : winningStatistics) {
+            if (rank == lottoStatistics) count += 1;
+        }
+        return count;
+    }
 }

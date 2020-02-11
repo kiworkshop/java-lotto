@@ -7,7 +7,7 @@ public enum LottoStatistics {
     FIRST(6, 2000000000),
     SECOND(5, 1500000),
     THIRD(4, 50000),
-    FORTH(3, 5000),
+    FOURTH(3, 5000),
     OTHERS(0, 0);
 
     private int hitCount;
@@ -19,7 +19,7 @@ public enum LottoStatistics {
         if (hitCount == FIRST.getHitCount()) return FIRST;
         if (hitCount == SECOND.getHitCount()) return SECOND;
         if (hitCount == THIRD.getHitCount()) return THIRD;
-        if (hitCount == FORTH.getHitCount()) return FORTH;
+        if (hitCount == FOURTH.getHitCount()) return FOURTH;
         return OTHERS;
     }
 

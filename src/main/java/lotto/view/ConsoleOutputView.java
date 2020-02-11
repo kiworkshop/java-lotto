@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.List;
 
 import lotto.domain.LottoTicket;
-import lotto.domain.StatisticResult;
+import lotto.domain.Prizes;
 
 public class ConsoleOutputView {
 
@@ -14,10 +14,10 @@ public class ConsoleOutputView {
     }
   }
 
-  public void showResult(StatisticResult result) {
+  public void showResult(Prizes prizes) {
     System.out.println("당첨 통계");
     System.out.println("-------------");
-    result.showMatches();
-    System.out.println("총 수익률은" + result.getEarningRate() + "%입니다.");
+    prizes.showStat();
+    System.out.println("총 수익률은 " + prizes.getEarningRate() + "% 입니다.");
   }
 }

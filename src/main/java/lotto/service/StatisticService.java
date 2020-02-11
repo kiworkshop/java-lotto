@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lotto.domain.LottoTicket;
-import lotto.domain.StatisticResult;
+import lotto.domain.Prizes;
 
 public class StatisticService {
 
-  public StatisticResult calculateResult(List<LottoTicket> lottoTickets, List<Integer> winningNumbers, int price) {
+  public Prizes calculateResult(List<LottoTicket> lottoTickets, List<Integer> winningNumbers) {
     List<Integer> numOfMatches = new ArrayList<>();
     for (LottoTicket lottoTicket : lottoTickets) {
       numOfMatches.add(lottoTicket.calculateNumOfMatch(winningNumbers));
     }
-    return new StatisticResult(numOfMatches, price);
+    return new Prizes(numOfMatches);
   }
 }

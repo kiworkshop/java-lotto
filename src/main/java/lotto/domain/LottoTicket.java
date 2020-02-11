@@ -1,10 +1,11 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import lotto.strategy.RandomNumberStrategy;
 import lotto.strategy.NumberStrategy;
+import lotto.strategy.RandomNumberStrategy;
 
 public class LottoTicket {
   private static final int LOTTO_NUMBERS_SIZE = 6;
@@ -24,7 +25,7 @@ public class LottoTicket {
   }
 
   public void showLottoNumbers() {
-    System.out.println(lottoNumbers.toArray().toString());
+    System.out.println(Arrays.toString(lottoNumbers.toArray()));
   }
 
   public int calculateNumOfMatch(List<Integer> winningNumbers) {

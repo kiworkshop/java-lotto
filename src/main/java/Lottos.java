@@ -21,11 +21,11 @@ public class Lottos {
     }
 
     public LottoResult getResults(List<Integer> winningNumber) {
-        List<Integer> matchCounts = new ArrayList<>();
+        List<Integer> countOfMatchesForEachLotto = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            matchCounts.add(lotto.checkHits(winningNumber));
+            countOfMatchesForEachLotto.add(lotto.checkHits(winningNumber));
         }
-        return LottoResult.of(matchCounts);
+        return LottoResult.of(countOfMatchesForEachLotto);
     }
 
 }

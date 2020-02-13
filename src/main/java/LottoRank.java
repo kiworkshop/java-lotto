@@ -1,10 +1,11 @@
 import java.util.Arrays;
 
 public enum LottoRank {
-    SIX(6, 2000000000),
-    FIVE(5, 1500000),
-    FOUR(4, 50000),
-    THREE(3, 5000);
+    FIRST(6, 2000000000),
+    SECOND(5, 30000000),
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000);
 
     public static int WINNING_COUNT_MIN = 3;
     public static int WINNING_COUNT_MAX = 6;

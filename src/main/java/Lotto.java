@@ -6,7 +6,7 @@ public class Lotto {
     private static final int RAFFLE_TO_INDEX = 6;
     private List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         this.numbers = numbers;    //TODO 숫자 검증 추가
     }
 
@@ -19,6 +19,10 @@ public class Lotto {
         List<Integer> generatedNumbers = numbers.subList(RAFFLE_FROM_INDEX, RAFFLE_TO_INDEX);
         Collections.sort(generatedNumbers);
         return new Lotto(generatedNumbers);
+    }
+
+    public Lotto manualGenerate(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     public String toString() {

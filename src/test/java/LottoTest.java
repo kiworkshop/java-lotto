@@ -23,15 +23,18 @@ class LottoTest {
         List<Integer> winningNumberList = Arrays.asList(winningNumbers);
         List<Integer> winningNumberList1 = Arrays.asList(winningNumbers1);
         List<Integer> winningNumberList2 = Arrays.asList(winningNumbers2);
+        WinningNumbers winningNumber1 = new WinningNumbers(winningNumberList, 12);
+        WinningNumbers winningNumber2 = new WinningNumbers(winningNumberList1, 12);
+        WinningNumbers winningNumber3 = new WinningNumbers(winningNumberList2, 12);
 
         //given
-        int hitCount = new Lotto(targetNumberList).checkHits(winningNumberList);
-        int hitCount1 = new Lotto(targetNumberList).checkHits(winningNumberList1);
-        int hitCount2 = new Lotto(targetNumberList).checkHits(winningNumberList2);
+        LottoRank hitCount = LottoRank.checkHits(Lotto.manualGenerate(targetNumberList), winningNumber1);
+        LottoRank hitCount1 = LottoRank.checkHits(Lotto.manualGenerate(targetNumberList), winningNumber2);
+        LottoRank hitCount2 = LottoRank.checkHits(Lotto.manualGenerate(targetNumberList), winningNumber3);
 
         //then
-        assertThat(hitCount).isEqualTo(1);
-        assertThat(hitCount1).isEqualTo(3);
-        assertThat(hitCount2).isEqualTo(6);
+        assertThat(hitCount).isEqualTo(LottoRank.MISS);
+        assertThat(hitCount1).isEqualTo(LottoRank.FIFTH);
+        assertThat(hitCount2).isEqualTo(LottoRank.FIRST);
     }
 }

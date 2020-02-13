@@ -21,7 +21,7 @@ public class Lotto {
         return new Lotto(generatedNumbers);
     }
 
-    public Lotto manualGenerate(List<Integer> numbers) {
+    public static Lotto manualGenerate(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 
@@ -29,11 +29,17 @@ public class Lotto {
         return Arrays.toString(numbers.toArray());
     }
 
-    public int checkHits(List<Integer> winningNumbers) {
-        List<Integer> addedNumbers = new ArrayList<>();    //TODO  contains를 쓰며 indent를 지키는 방법이 궁금
-        addedNumbers.addAll(numbers);
-        addedNumbers.addAll(winningNumbers);
-
-        return addedNumbers.size() - new HashSet<Integer>(addedNumbers).size();
+    public List<Integer> getNumbers() {
+        return numbers;
     }
+
+
+//    public LottoRank checkHits(WinningNumbers winningNumbers) {
+//        List<Integer> addedNumbers = new ArrayList<>();    //TODO  contains를 쓰며 indent를 지키는 방법이 궁금
+//        addedNumbers.addAll(numbers);
+//        addedNumbers.addAll(winningNumbers.getNumbers());
+//        int countOfMatches = addedNumbers.size() - new HashSet<Integer>(addedNumbers).size();
+//        if (countOfMatches == LottoRank.FIFTH.getCountOfMatches())
+//        return LottoRank.valueOf(countOfMatches);
+//    }
 }

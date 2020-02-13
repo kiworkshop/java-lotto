@@ -20,12 +20,12 @@ public class Lottos {
         this.lottos.add(lotto);
     }
 
-    public LottoResult getResults(WinningNumbers winningNumber) {
-        List<Integer> countOfMatchesForEachLotto = new ArrayList<>();
+    public LottoResults getResults(WinningNumbers winningNumbers) {
+        List<LottoRank> countOfMatchesForEachLotto = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            countOfMatchesForEachLotto.add(lotto.checkHits(winningNumber));
+            countOfMatchesForEachLotto.add(LottoRank.checkHits(lotto, winningNumbers));
         }
-        return LottoResult.of(countOfMatchesForEachLotto);
+        return LottoResults.of(countOfMatchesForEachLotto);
     }
 
 }

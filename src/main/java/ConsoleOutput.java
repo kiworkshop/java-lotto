@@ -1,9 +1,9 @@
 class ConsoleOutput {
-    static void printBuyingMessage(int amount) {
-        System.out.println(amount + "개를 구매하였습니다");
+    static void printBuyingMessage(int manualLottoAmount, int autoLottoAmount) {
+        System.out.println("수동으로 " + manualLottoAmount + ", 자동으로 " + manualLottoAmount + "장을 구매하였습니다");
     }
 
-    static void printResults(LottoResult results) {
+    static void printResults(LottoResults results) {
         System.out.println("당첨통계");
         System.out.println("---------");
         System.out.println(results.toString());

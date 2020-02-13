@@ -23,4 +23,20 @@ class ConsoleInput {
         System.out.println("보너스 번호를 입력해주세요");
         return scanner.nextInt();
     }
+
+    public static int inputManualLottoAmount() {
+        System.out.println("수동으로 구매할 로또 수를 입력해주세요");
+        return scanner.nextInt();
+    }
+
+    public static Lottos inputManualLottoNumbers(int manualLottoAmount) {
+        scanner.nextLine();
+        Lottos lottos = new Lottos();
+        System.out.println("수동으로 구매할 번호를 입력해주세요");
+        for (int i = 0; i < manualLottoAmount; i++) {
+            String winningNumbers = scanner.nextLine();    //TODO 왜 nextline안돼? ㅠ
+            lottos.add(Lotto.manualGenerate(Arrays.stream(winningNumbers.split(",")).map(Integer::parseInt).collect(Collectors.toList())));
+        }
+        return lottos;
+    }
 }

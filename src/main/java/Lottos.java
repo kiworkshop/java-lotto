@@ -20,7 +20,7 @@ public class Lottos {
         this.lottos.add(lotto);
     }
 
-    public LottoResult getResults(List<Integer> winningNumber) {
+    public LottoResult getResults(WinningNumbers winningNumber) {
         List<Integer> countOfMatchesForEachLotto = new ArrayList<>();
         for (Lotto lotto : lottos) {
             countOfMatchesForEachLotto.add(lotto.checkHits(winningNumber));

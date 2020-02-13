@@ -18,4 +18,9 @@ class ConsoleInput {
         String winningNumbers = scanner.next();    //TODO 왜 nextline안돼? ㅠ
         return Arrays.stream(winningNumbers.split(",")).map(Integer::parseInt).collect(Collectors.toList());
     }
+
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해주세요");
+        return scanner.nextInt();
+    }
 }

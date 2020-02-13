@@ -14,7 +14,8 @@ class LottoGame {
         ConsoleOutput.printBuyingMessage(amount);
         Lottos lottos = makeLottosAuto(amount);
         System.out.println(lottos.toString());
-        List<Integer> winningNumbers = ConsoleInput.inputWinningNumbers();
+//        List<Integer> winningNumbers = ConsoleInput.inputWinningNumbers();
+        WinningNumbers winningNumbers = WinningNumbers.of(ConsoleInput.inputWinningNumbers(), ConsoleInput.inputBonusNumber());
         ConsoleOutput.printResults(lottos.getResults(winningNumbers));
         ConsoleOutput.printEarnningRate(getEarningRate(lottos.getResults(winningNumbers).getPrize(), amount * LOTTO_PRICE));
     }

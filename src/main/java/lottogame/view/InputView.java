@@ -6,10 +6,17 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String MESSAGE_GET_MONEY_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String MESSAGE_GET_MANUAL_LOTTO_COUNT = "수동으로 구매할 로또 수를 입력해 주세요.";
     private static final String MESSAGE_GET_LOTTO_RESULT = "지난 주 당첨 번호를 입력해 주세요.";
 
     public int getMoneyAmountInput() {
         System.out.println(MESSAGE_GET_MONEY_AMOUNT);
+
+        return SCANNER.nextInt();
+    }
+
+    public int getManualLottoCount() {
+        System.out.println(MESSAGE_GET_MANUAL_LOTTO_COUNT);
 
         return SCANNER.nextInt();
     }

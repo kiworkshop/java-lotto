@@ -1,5 +1,6 @@
 package lottogame.domain.winninglotto;
 
+import lottogame.domain.LottoCount;
 import lottogame.domain.MoneyAmount;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
@@ -33,7 +34,7 @@ public class WinningLottos {
     }
 
     public double computeEarningRate() {
-        return (totalPrizeMoney() / (winningLottos.size() * MoneyAmount.ONE_LOTTO_PRICE))
+        return (totalPrizeMoney() / (winningLottos.size() * LottoCount.ONE_LOTTO_PRICE))
                 * 100;
     }
 

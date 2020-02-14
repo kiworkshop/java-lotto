@@ -1,5 +1,6 @@
 package lottogame.controller;
 
+import lottogame.domain.LottoCount;
 import lottogame.domain.MoneyAmount;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
@@ -26,7 +27,9 @@ public class LottoGameController {
     public void run() {
         MoneyAmount moneyAmount = moneyAmount();
 
-        int totalLottoCount = getLottoCount(moneyAmount);
+        int totalLottoCount = LottoCount.calculateTotalLottoCount(moneyAmount).getLottoCount();
+        int manualLottoCount = getManualLottoCount(totalLottoCount).getLottoCount();
+        int autoLottoCount = getAutoLottoCount(totalLottoCount, manualLottoCount).getLottoCount();
 
         LottoTickets lottoTickets = autoLottoService.generateLottoTickets(totalLottoCount);
 
@@ -44,19 +47,20 @@ public class LottoGameController {
 
     private MoneyAmount moneyAmount() {
         int moneyAmountInput = inputView.getMoneyAmountInput();
-        return getMoneyAmount(moneyAmountInput);
+        return new MoneyAmount(moneyAmountInput);
+    }
+
+    private LottoCount getManualLottoCount(int totalLottoCount) {
+        int manualLottoCount = inputView.getManualLottoCount();
+        return LottoCount.createLottoCount(manualLottoCount, totalLottoCount);
+    }
+
+    private LottoCount getAutoLottoCount(int totalLottoCount, int manualLottoCount) {
+        return LottoCount.createLottoCount(totalLottoCount - manualLottoCount);
     }
 
     private LottoTicket lottoResult() {
         String lottoResultInput = inputView.getLottoResultInput();
         return manualLottoService.generateLottoTicket(lottoResultInput);
-    }
-
-    private MoneyAmount getMoneyAmount(int input) {
-        return new MoneyAmount(input);
-    }
-
-    private int getLottoCount(MoneyAmount moneyAmount) {
-        return moneyAmount.calculateLottoCount();
     }
 }

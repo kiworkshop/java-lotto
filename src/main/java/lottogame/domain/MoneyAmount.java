@@ -3,7 +3,6 @@ package lottogame.domain;
 public class MoneyAmount {
 
     private static final int MIN_MONEY_AMOUNT = 1000;
-    public static final int ONE_LOTTO_PRICE = 1000;
 
     private final int moneyAmount;
 
@@ -17,11 +16,7 @@ public class MoneyAmount {
     }
 
     private boolean isMultipleOfOneLottoPrice() {
-        return (moneyAmount % ONE_LOTTO_PRICE) == 0;
-    }
-
-    public int calculateLottoCount() {
-        return moneyAmount / ONE_LOTTO_PRICE;
+        return (moneyAmount % LottoCount.ONE_LOTTO_PRICE) == 0;
     }
 
     public int getMoneyAmount() {

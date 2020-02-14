@@ -1,4 +1,4 @@
-package lottogame.domain.statistics;
+package lottogame.domain.winninglotto;
 
 import lottogame.domain.MoneyAmount;
 import lottogame.domain.lottoticket.LottoTicket;

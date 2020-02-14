@@ -3,7 +3,7 @@ package lottogame.controller;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 import lottogame.domain.MoneyAmount;
-import lottogame.domain.statistics.WinningLottos;
+import lottogame.domain.winninglotto.WinningLottos;
 import lottogame.service.AutoLottoService;
 import lottogame.service.UserLottoService;
 import lottogame.service.WinningLottoService;

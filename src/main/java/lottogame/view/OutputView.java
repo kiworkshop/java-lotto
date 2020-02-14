@@ -2,8 +2,8 @@ package lottogame.view;
 
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
-import lottogame.domain.statistics.WinningLotto;
-import lottogame.domain.statistics.WinningLottos;
+import lottogame.domain.winninglotto.WinningLotto;
+import lottogame.domain.winninglotto.WinningLottos;
 
 public class OutputView {
 

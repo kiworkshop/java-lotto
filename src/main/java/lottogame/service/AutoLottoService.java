@@ -2,7 +2,7 @@ package lottogame.service;
 
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
-import lottogame.domain.statistics.WinningLottos;
+import lottogame.domain.winninglotto.WinningLottos;
 
 public class AutoLottoService {
 

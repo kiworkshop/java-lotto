@@ -3,9 +3,10 @@ package lottogame.controller;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 import lottogame.domain.MoneyAmount;
-import lottogame.domain.statistics.WinningStatistics;
+import lottogame.domain.statistics.WinningLottos;
 import lottogame.service.AutoLottoService;
 import lottogame.service.UserLottoService;
+import lottogame.service.WinningLottoService;
 import lottogame.view.InputView;
 import lottogame.view.OutputView;
 
@@ -15,6 +16,7 @@ public class LottoGameController {
     private final OutputView outputView;
     private final UserLottoService userLottoService = new UserLottoService();
     private final AutoLottoService autoLottoService = new AutoLottoService();
+    private final WinningLottoService winningLottoService = new WinningLottoService();
 
     public LottoGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -35,10 +37,10 @@ public class LottoGameController {
         String lottoResultInput = inputView.getLottoResultInput();
         LottoTicket lottoResult = userLottoService.generateLottoTicket(lottoResultInput);
 
-        WinningStatistics winningStatistics = userLottoService.generateWinningStatistics(lottoTickets, lottoResult);
-        double earningRate = userLottoService.computeEarningRate(winningStatistics);
+        WinningLottos winningLottos = winningLottoService.generateWinningStatistics(lottoTickets, lottoResult);
+        double earningRate = winningLottoService.computeEarningRate(winningLottos);
 
-        outputView.printWinningStatistics(winningStatistics);
+        outputView.printWinningStatistics(winningLottos);
         outputView.printEarningRate(earningRate);
     }
 

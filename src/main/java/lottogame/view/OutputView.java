@@ -2,8 +2,8 @@ package lottogame.view;
 
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
-import lottogame.domain.statistics.LottoStatistics;
-import lottogame.domain.statistics.WinningStatistics;
+import lottogame.domain.statistics.WinningLotto;
+import lottogame.domain.statistics.WinningLottos;
 
 public class OutputView {
 
@@ -24,10 +24,10 @@ public class OutputView {
         System.out.println(lottoTicket.toString());
     }
 
-    public void printWinningStatistics(WinningStatistics winningStatistics) {
+    public void printWinningStatistics(WinningLottos winningLottos) {
         printHeader();
 
-        printResult(winningStatistics);
+        printResult(winningLottos);
     }
 
     private void printHeader() {
@@ -36,11 +36,11 @@ public class OutputView {
         System.out.println("---------");
     }
 
-    private void printResult(WinningStatistics winningStatistics) {
-        System.out.println("3개 일치 (5000원) - " + winningStatistics.countLottoStatistics(LottoStatistics.FOURTH) + "개");
-        System.out.println("4개 일치 (50000원) - " + winningStatistics.countLottoStatistics(LottoStatistics.THIRD) + "개");
-        System.out.println("5개 일치 (1500000원) - " + winningStatistics.countLottoStatistics(LottoStatistics.SECOND) + "개");
-        System.out.println("6개 일치 (2000000000원) - " + winningStatistics.countLottoStatistics(LottoStatistics.FIRST) + "개");
+    private void printResult(WinningLottos winningLottos) {
+        System.out.println("3개 일치 (5000원) - " + winningLottos.countLottoStatistics(WinningLotto.FOURTH) + "개");
+        System.out.println("4개 일치 (50000원) - " + winningLottos.countLottoStatistics(WinningLotto.THIRD) + "개");
+        System.out.println("5개 일치 (1500000원) - " + winningLottos.countLottoStatistics(WinningLotto.SECOND) + "개");
+        System.out.println("6개 일치 (2000000000원) - " + winningLottos.countLottoStatistics(WinningLotto.FIRST) + "개");
     }
 
     public void printEarningRate(double earningRate) {

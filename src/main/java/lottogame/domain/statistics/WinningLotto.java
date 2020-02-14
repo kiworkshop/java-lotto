@@ -2,7 +2,7 @@ package lottogame.domain.statistics;
 
 import lottogame.domain.lottoticket.LottoTicket;
 
-public enum LottoStatistics {
+public enum WinningLotto {
 
     FIRST(6, 2000000000),
     SECOND(5, 1500000),
@@ -13,7 +13,7 @@ public enum LottoStatistics {
     private int hitCount;
     private long prizeMoney;
 
-    public static LottoStatistics computeLottoStatistics(LottoTicket lottoTicket, LottoTicket lottoResult) {
+    public static WinningLotto computeLottoStatistics(LottoTicket lottoTicket, LottoTicket lottoResult) {
         int hitCount = compareTwoTickets(lottoTicket, lottoResult);
 
         if (hitCount == FIRST.getHitCount()) return FIRST;
@@ -31,7 +31,7 @@ public enum LottoStatistics {
         return hitCount;
     }
 
-    LottoStatistics(int hitCount, long prizePrice) {
+    WinningLotto(int hitCount, long prizePrice) {
         this.hitCount = hitCount;
         this.prizeMoney = prizePrice;
     }

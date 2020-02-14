@@ -1,9 +1,8 @@
 package lottogame.service;
 
-import lottogame.domain.MoneyAmount;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
-import lottogame.domain.statistics.WinningStatistics;
+import lottogame.domain.statistics.WinningLottos;
 
 public class UserLottoService {
 
@@ -15,11 +14,11 @@ public class UserLottoService {
         return LottoTicket.of(lottoNumbersString);
     }
 
-    public WinningStatistics generateWinningStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
-        return WinningStatistics.computeWinningStatistics(lottoTickets, lottoResult);
+    public WinningLottos generateWinningStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
+        return WinningLottos.computeWinningStatistics(lottoTickets, lottoResult);
     }
 
-    public double computeEarningRate(WinningStatistics winningStatistics) {
-        return winningStatistics.computeEarningRate();
+    public double computeEarningRate(WinningLottos winningLottos) {
+        return winningLottos.computeEarningRate();
     }
 }

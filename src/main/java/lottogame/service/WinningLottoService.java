@@ -4,7 +4,7 @@ import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 import lottogame.domain.statistics.WinningLottos;
 
-public class AutoLottoService {
+public class WinningLottoService {
 
     public LottoTickets generateLottoTickets(int lottoCount) {
         return LottoTickets.with(lottoCount);

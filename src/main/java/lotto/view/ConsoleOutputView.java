@@ -1,17 +1,13 @@
 package lotto.view;
 
-import java.util.List;
-
-import lotto.domain.LottoTicket;
+import lotto.domain.LottoTickets;
 import lotto.domain.Prizes;
 
 public class ConsoleOutputView {
 
-  public void showLottoTickets(List<LottoTicket> lottoTickets) {
-    System.out.println(lottoTickets.size() + "개를 구매했습니다.");
-    for (LottoTicket lottoTicket : lottoTickets) {
-      lottoTicket.showLottoNumbers();
-    }
+  public void showLottoTickets(LottoTickets lottoTickets) {
+    System.out.println(lottoTickets.getLottoTickets().size() + "개를 구매했습니다.");
+    lottoTickets.show();
   }
 
   public void showResult(Prizes prizes) {

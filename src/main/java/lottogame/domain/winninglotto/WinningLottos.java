@@ -9,43 +9,43 @@ import java.util.List;
 
 public class WinningLottos {
 
-    private final List<WinningLotto> winningStatistics;
+    private final List<WinningLotto> winningLottos;
 
     public WinningLottos(List<WinningLotto> winningStatistics) {
-        this.winningStatistics = winningStatistics;
+        this.winningLottos = winningStatistics;
     }
 
     public static WinningLottos computeWinningStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
-        List<WinningLotto> winningStatistics = new ArrayList<>();
+        List<WinningLotto> winningLottos = new ArrayList<>();
         for (LottoTicket lottoTicket : lottoTickets.getLottoTickets()) {
             WinningLotto winningLotto = WinningLotto.computeLottoStatistics(lottoTicket, lottoResult);
-            winningStatistics.add(winningLotto);
+            winningLottos.add(winningLotto);
         }
-        return new WinningLottos(winningStatistics);
+        return new WinningLottos(winningLottos);
     }
 
-    public List<WinningLotto> getWinningStatistics() {
-        return winningStatistics;
-    }
-
-    public int countLottoStatistics(WinningLotto winningLotto) {
+    public int countWinningLotto(WinningLotto winningLotto) {
         int count = 0;
-        for (WinningLotto rank : winningStatistics) {
+        for (WinningLotto rank : winningLottos) {
             if (rank == winningLotto) count += 1;
         }
         return count;
     }
 
     public double computeEarningRate() {
-        return (totalPrizeMoney() / (winningStatistics.size() * MoneyAmount.ONE_LOTTO_PRICE))
+        return (totalPrizeMoney() / (winningLottos.size() * MoneyAmount.ONE_LOTTO_PRICE))
                 * 100;
     }
 
     private double totalPrizeMoney() {
         double totalPrizeMoney = 0;
-        for(WinningLotto winningLotto : winningStatistics) {
+        for(WinningLotto winningLotto : winningLottos) {
             totalPrizeMoney += winningLotto.getPrizeMoney();
         }
         return totalPrizeMoney;
+    }
+
+    public List<WinningLotto> getWinningLottos() {
+        return winningLottos;
     }
 }

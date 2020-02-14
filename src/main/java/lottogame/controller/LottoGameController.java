@@ -31,7 +31,10 @@ public class LottoGameController {
         int manualLottoCount = getManualLottoCount(totalLottoCount).getLottoCount();
         int autoLottoCount = getAutoLottoCount(totalLottoCount, manualLottoCount).getLottoCount();
 
-        LottoTickets lottoTickets = autoLottoService.generateLottoTickets(totalLottoCount);
+        LottoTickets manualLottoTickets = manualLottoService.generateLottoTickets(manualLottoNumbers(manualLottoCount));
+        LottoTickets autoLottoTickets = autoLottoService.generateLottoTickets(autoLottoCount);
+        LottoTickets lottoTickets = autoLottoTickets;
+        //LottoTickets lottoTickets = LottoTickets.joinLottoTickets(manualLottoTickets, autoLottoTickets);
 
         outputView.printLottoCount(totalLottoCount);
         outputView.printLottoTickets(lottoTickets);
@@ -57,6 +60,10 @@ public class LottoGameController {
 
     private LottoCount getAutoLottoCount(int totalLottoCount, int manualLottoCount) {
         return LottoCount.createLottoCount(totalLottoCount - manualLottoCount);
+    }
+
+    private String[] manualLottoNumbers(int manualLottoCount) {
+        return inputView.getManualLottoNumbers(manualLottoCount);
     }
 
     private LottoTicket lottoResult() {

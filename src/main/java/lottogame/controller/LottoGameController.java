@@ -1,5 +1,6 @@
 package lottogame.controller;
 
+import lottogame.domain.BonusNumber;
 import lottogame.domain.LottoCount;
 import lottogame.domain.MoneyAmount;
 import lottogame.domain.lottoticket.LottoTicket;
@@ -39,7 +40,8 @@ public class LottoGameController {
         outputView.printLottoCount(manualLottoCount, autoLottoCount);
         outputView.printLottoTickets(lottoTickets);
 
-        LottoTicket lottoResult = lottoResult();
+        LottoTicket lottoResult = getlottoResult();
+        int bonusNumber = getBonusNumber(lottoResult).getBonusNumber();
 
         WinningLottos winningLottos = winningLottoService.generateWinningStatistics(lottoTickets, lottoResult);
         double earningRate = winningLottoService.computeEarningRate(winningLottos);
@@ -66,8 +68,13 @@ public class LottoGameController {
         return inputView.getManualLottoNumbers(manualLottoCount);
     }
 
-    private LottoTicket lottoResult() {
+    private LottoTicket getlottoResult() {
         String lottoResultInput = inputView.getLottoResultInput();
         return manualLottoService.generateLottoTicket(lottoResultInput);
+    }
+
+    private BonusNumber getBonusNumber(LottoTicket lottoResult) {
+        int bonusNumber = inputView.getBonusNumber();
+        return BonusNumber.create(bonusNumber, lottoResult);
     }
 }

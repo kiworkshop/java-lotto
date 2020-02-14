@@ -9,6 +9,7 @@ public class InputView {
     private static final String MESSAGE_GET_MANUAL_LOTTO_COUNT = "수동으로 구매할 로또 수를 입력해 주세요.";
     private static final String MESSAGE_GET_MANUAL_LOTTO_NUMBERS = "수동으로 구매할 번호를 입력해 주세요.";
     private static final String MESSAGE_GET_LOTTO_RESULT = "지난 주 당첨 번호를 입력해 주세요.";
+    private static final String MESSAGE_GET_BONUS_BALL = "보너스 볼을 입력해 주세요.";
 
     public int getMoneyAmountInput() {
         System.out.println(MESSAGE_GET_MONEY_AMOUNT);
@@ -40,5 +41,11 @@ public class InputView {
         System.out.println(MESSAGE_GET_LOTTO_RESULT);
 
         return SCANNER.nextLine();
+    }
+
+    public int getBonusNumber() {
+        System.out.println(MESSAGE_GET_BONUS_BALL);
+
+        return SCANNER.nextInt();
     }
 }

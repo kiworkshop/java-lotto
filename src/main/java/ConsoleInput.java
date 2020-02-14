@@ -10,7 +10,11 @@ class ConsoleInput {
 
     static int inputBudget() {
         System.out.println(MESSAGE_INPUT_MONEY);
-        return scanner.nextInt();
+        int money = scanner.nextInt();
+        if (money < 0) {
+            throw new IllegalArgumentException();
+        }
+        return money;
     }
 
     static List<Integer> inputWinningNumbers() {
@@ -26,7 +30,11 @@ class ConsoleInput {
 
     static int inputManualLottoAmount() {
         System.out.println("수동으로 구매할 로또 수를 입력해주세요");
-        return scanner.nextInt();
+        int manualLottoAmount  = scanner.nextInt();
+        if (manualLottoAmount < 0) {
+            throw new IllegalArgumentException();
+        }
+        return manualLottoAmount;
     }
 
     static Lottos inputManualLottoNumbers(int manualLottoAmount) {

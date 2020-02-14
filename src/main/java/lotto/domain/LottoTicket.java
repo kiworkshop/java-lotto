@@ -42,4 +42,8 @@ public class LottoTicket {
         .count();
   }
 
+  public boolean hasMatchingNumWith(int ball) {
+    return lottoNumbers.contains(ball);
+  }
+
 }

@@ -6,7 +6,8 @@ import lotto.domain.Prizes;
 public class ConsoleOutputView {
 
   public void showLottoTickets(LottoTickets lottoTickets) {
-    System.out.println(lottoTickets.getLottoTickets().size() + "개를 구매했습니다.");
+    System.out.println(String.format("수동으로 %d장, 자동으로 %d장을 구매했습니다.",
+        lottoTickets.getNumOfManual(), lottoTickets.getNumOfAuto()));
     lottoTickets.show();
   }
 

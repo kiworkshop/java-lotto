@@ -25,6 +25,14 @@ public class LottoTickets {
     return lottoTickets;
   }
 
+  public int getNumOfManual() {
+    return numOfManual;
+  }
+
+  public int getNumOfAuto() {
+    return numOfAuto;
+  }
+
   public void show() {
     for (LottoTicket lottoTicket : lottoTickets) {
       lottoTicket.showLottoNumbers();

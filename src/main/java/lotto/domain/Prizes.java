@@ -1,16 +1,16 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Prizes {
   private static final int TICKET_PRICE = 1000;
-  private List<Prize> prizes;
+  private List<Prize> prizes = new ArrayList<>();
 
-  public Prizes(List<Integer> numOfMatches) {
-    this.prizes = numOfMatches.stream()
-        .map(Prize::getPrizeFrom)
-        .collect(Collectors.toList());
+  public Prizes(List<Integer> numOfMatches, boolean bonusMatch) {
+    for (Integer numOfMatch : numOfMatches) {
+      prizes.add(Prize.getPrizeFrom(numOfMatch, bonusMatch));
+    }
   }
 
   public long getEarningRate() {

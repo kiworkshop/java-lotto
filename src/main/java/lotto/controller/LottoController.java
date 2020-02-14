@@ -7,21 +7,21 @@ import java.util.List;
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoTicket;
 import lotto.domain.LottoTickets;
-import lotto.service.StatisticService;
+import lotto.domain.Prizes;
+import lotto.domain.WinningLotto;
 import lotto.service.TicketService;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
 
 public class LottoController {
   private TicketService ticketService = new TicketService();
-  private StatisticService statisticService = new StatisticService();
 
+  // TODO: 2020-02-15 private method, service로 분리하기
   public void run(ConsoleInputView consoleInputView, ConsoleOutputView consoleOutputView) {
     int totalPrice = parseStringToInt(consoleInputView.getPriceInput());
     int numOfManualLotto = parseStringToInt(consoleInputView.getNumOfManualLotto());
     LottoPurchase lottoPurchase = LottoPurchase.of(totalPrice, numOfManualLotto);
 
-    // TODO: 2020-02-15 service로 분리
     List<LottoTicket> manualLottoTickets = ticketService.toLottoTickets(
         consoleInputView.getManualLottoNumbers(numOfManualLotto));
     List<LottoTicket> autoLottoTickets = ticketService.generateLottoTickets(lottoPurchase);
@@ -29,8 +29,10 @@ public class LottoController {
 
     consoleOutputView.showLottoTickets(lottoTickets);
 
-    String lastWinningNumbersInput = consoleInputView.getWinningNumbers();
-    List<Integer> winningNumbers = ticketService.generateWinningTicket(lastWinningNumbersInput);
-    consoleOutputView.showResult(statisticService.calculateResult(lottoTickets, winningNumbers));
+    String winningNumbersInput = consoleInputView.getWinningNumbers();
+    int bonusBallInput = parseStringToInt(consoleInputView.getWinningNumbers());
+    WinningLotto winningLotto = ticketService.generateWinningLotto(winningNumbersInput, bonusBallInput);
+    Prizes prizes = winningLotto.calculateResult(lottoTickets);
+    consoleOutputView.showResult(prizes);
   }
 }

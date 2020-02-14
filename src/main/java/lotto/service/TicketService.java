@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoTicket;
+import lotto.domain.WinningLotto;
 
 public class TicketService {
   private static final String INPUT_DELIMITER = ",";
@@ -27,9 +28,10 @@ public class TicketService {
     return lottoTickets;
   }
 
-  public List<Integer> generateWinningTicket(String lastWinningNumbersInput) {
-    return Arrays.asList(lastWinningNumbersInput.split(INPUT_DELIMITER)).stream()
+  public WinningLotto generateWinningLotto(String lastWinningNumbersInput, int bonusBall) {
+    List<Integer> winningNumbers = Arrays.asList(lastWinningNumbersInput.split(INPUT_DELIMITER)).stream()
         .map(Integer::parseInt)
         .collect(Collectors.toList());
+    return WinningLotto.of(winningNumbers, bonusBall);
   }
 }

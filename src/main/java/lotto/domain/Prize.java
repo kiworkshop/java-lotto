@@ -5,21 +5,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Prize {
-  FIRST(6, 2000000000),
-  SECOND(5, 1500000),
-  THIRD(4, 50000),
-  FORTH(3, 5000),
-  LOSING(0, 0);
+  FIRST(6, 2000000000, false),
+  SECOND(5, 30000000, true),
+  THIRD(5, 1500000, false),
+  FORTH(4, 50000, false),
+  FIFTH(3, 5000, false),
+  LOSING(0, 0, false);
 
   private int numOfMatches;
   private int winningMoney;
+  private boolean bonusMatch;
 
-  Prize(int numOfMatches, int winningMoney) {
+  Prize(int numOfMatches, int winningMoney, boolean bonusMatch) {
     this.numOfMatches = numOfMatches;
     this.winningMoney = winningMoney;
+    this.bonusMatch = bonusMatch;
   }
 
-  public static Prize getPrizeFrom(int numOfMatches) {
+  public static Prize getPrizeFrom(int numOfMatches, boolean bonusMatched) {
     return Arrays.stream(Prize.values())
         .filter(prize -> prize.numOfMatches == numOfMatches)
         .findAny()
@@ -38,6 +41,9 @@ public enum Prize {
   }
 
   public void showMatchesAndMoney() {
+    if (bonusMatch) {
+      System.out.print(numOfMatches + "개 일치, 보너스볼 일치(" + winningMoney + "원) - ");
+    }
     System.out.print(numOfMatches + "개 일치 (" + winningMoney + "원) - ");
   }
 

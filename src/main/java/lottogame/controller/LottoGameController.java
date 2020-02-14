@@ -43,7 +43,7 @@ public class LottoGameController {
         LottoTicket lottoResult = getlottoResult();
         int bonusNumber = getBonusNumber(lottoResult).getBonusNumber();
 
-        WinningLottos winningLottos = winningLottoService.generateWinningStatistics(lottoTickets, lottoResult);
+        WinningLottos winningLottos = winningLottoService.generateWinningLottos(lottoTickets, lottoResult, bonusNumber);
         double earningRate = winningLottoService.computeEarningRate(winningLottos);
 
         outputView.printWinningStatistics(winningLottos);

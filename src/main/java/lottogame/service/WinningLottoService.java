@@ -6,16 +6,8 @@ import lottogame.domain.winninglotto.WinningLottos;
 
 public class WinningLottoService {
 
-    public LottoTickets generateLottoTickets(int lottoCount) {
-        return LottoTickets.createBy(lottoCount);
-    }
-
-    public LottoTicket generateLottoTicket(String lottoNumbersString) {
-        return LottoTicket.createWith(lottoNumbersString);
-    }
-
-    public WinningLottos generateWinningStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
-        return WinningLottos.computeWinningStatistics(lottoTickets, lottoResult);
+    public WinningLottos generateWinningLottos(LottoTickets lottoTickets, LottoTicket lottoResult, int bonusNumber) {
+        return WinningLottos.createWith(lottoTickets, lottoResult, bonusNumber);
     }
 
     public double computeEarningRate(WinningLottos winningLottos) {

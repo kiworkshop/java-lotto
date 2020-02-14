@@ -15,10 +15,10 @@ public class WinningLottos {
         this.winningLottos = winningStatistics;
     }
 
-    public static WinningLottos computeWinningStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {
+    public static WinningLottos createWith(LottoTickets lottoTickets, LottoTicket lottoResult, int bonusNumber) {
         List<WinningLotto> winningLottos = new ArrayList<>();
         for (LottoTicket lottoTicket : lottoTickets.getLottoTickets()) {
-            WinningLotto winningLotto = WinningLotto.computeLottoStatistics(lottoTicket, lottoResult);
+            WinningLotto winningLotto = WinningLotto.createWith(lottoTicket, lottoResult, bonusNumber);
             winningLottos.add(winningLotto);
         }
         return new WinningLottos(winningLottos);

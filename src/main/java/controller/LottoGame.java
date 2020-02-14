@@ -1,5 +1,11 @@
+package controller;
+
+import domain.LottoMarket;
+import domain.LottoResult;
+import domain.LottoTicket;
+import domain.LottoWallet;
+
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -8,10 +14,9 @@ public class LottoGame {
     private Scanner scanner = new Scanner(System.in);
     LottoWallet wallet = new LottoWallet();
 
-    public static void start() {
-        LottoGame lottoGame = new LottoGame();
-        lottoGame.buyLotto();
-        lottoGame.enterLuckyNumber();
+    public void start() {
+        buyLotto();
+        enterWinningNumber();
     }
 
     private void buyLotto() {
@@ -25,7 +30,7 @@ public class LottoGame {
         return scanner.nextInt();
     }
 
-    private void enterLuckyNumber() {
+    private void enterWinningNumber() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         scanner.nextLine();
         String numbers = scanner.nextLine();

@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+package domain;
 
 public class LottoResult {
     private final int NUM_MATCH_FOR_FIRST_PLACE = 6;

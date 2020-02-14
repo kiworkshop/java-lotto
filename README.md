@@ -13,15 +13,15 @@
 
 ## Requirements
 ### Classes
-- LottoMarket
+- domain.LottoMarket
   - lotto price = 1000 won
   - buy tickets (w/ money)
-- LottoTicket
+- domain.LottoTicket
   - 6 random numbers (in constructor)
-- LottoWallet
+- domain.LottoWallet
   - list of LottoTickets
   - print what I have
-- LottoResult
+- domain.LottoResult
   - 6 winning numbers
   - number of Lottos
   - number of match-3
@@ -30,3 +30,12 @@
   - number of match-6
   - get result (w/ wallet)
   
+----------
+Note
+- domain.LottoTicket
+   - UserLottoTicket
+   - WinningLottoTicket
+- MVC
+   - view에서 input output
+   - Application class 대신에 Application?
+   

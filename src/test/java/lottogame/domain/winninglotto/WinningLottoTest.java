@@ -1,17 +1,15 @@
 package lottogame.domain.winninglotto;
 
 import lottogame.domain.lottoticket.LottoTicket;
-import lottogame.service.UserLottoService;
-import org.junit.jupiter.api.BeforeAll;
+import lottogame.service.ManualLottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinningLottoTest {
 
-    private final UserLottoService userLottoService = new UserLottoService();
+    private final ManualLottoService manualLottoService = new ManualLottoService();
     private LottoTicket lottoResult;
     private String firstRankLottoNumbers;
     private String otherRankLottoNumbers;
@@ -19,7 +17,7 @@ class WinningLottoTest {
     @BeforeEach
     void setUp() {
         String lottoResultInput = "1,3,5,7,9,11";
-        lottoResult = userLottoService.generateLottoTicket(lottoResultInput);
+        lottoResult = manualLottoService.generateLottoTicket(lottoResultInput);
 
         firstRankLottoNumbers = "1,3,5,7,9,11";
         otherRankLottoNumbers = "2,4,6,8,10,12";

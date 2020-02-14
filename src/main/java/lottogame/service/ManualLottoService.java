@@ -4,7 +4,7 @@ import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 import lottogame.domain.winninglotto.WinningLottos;
 
-public class UserLottoService {
+public class ManualLottoService {
 
     public LottoTickets generateLottoTickets(int lottoCount) {
         return LottoTickets.with(lottoCount);

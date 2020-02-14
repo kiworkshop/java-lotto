@@ -36,9 +36,10 @@ public class OutputView {
     }
 
     private void printResult(WinningLottos winningLottos) {
-        System.out.println("3개 일치 (5000원) - " + winningLottos.countWinningLotto(WinningLotto.FOURTH) + "개");
-        System.out.println("4개 일치 (50000원) - " + winningLottos.countWinningLotto(WinningLotto.THIRD) + "개");
+        System.out.println("3개 일치 (5000원) - " + winningLottos.countWinningLotto(WinningLotto.FIFTH) + "개");
+        System.out.println("4개 일치 (50000원) - " + winningLottos.countWinningLotto(WinningLotto.FOURTH) + "개");
         System.out.println("5개 일치 (1500000원) - " + winningLottos.countWinningLotto(WinningLotto.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치(30000000원) - " + winningLottos.countWinningLotto(WinningLotto.SECOND) + "개");
         System.out.println("6개 일치 (2000000000원) - " + winningLottos.countWinningLotto(WinningLotto.FIRST) + "개");
     }
 

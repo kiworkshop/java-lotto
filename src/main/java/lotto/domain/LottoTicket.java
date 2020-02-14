@@ -10,18 +10,16 @@ import lotto.strategy.RandomNumberStrategy;
 public class LottoTicket {
   private static final int LOTTO_NUMBERS_SIZE = 6;
   private static final int LOTTO_MAX_NUMBER = 45;
+  private static final int LOTTO_MIN_NUMBER = 1;
+
   private List<Integer> lottoNumbers = new ArrayList<>();
 
   private LottoTicket(NumberStrategy numberStrategy) {
-    lottoNumbers.addAll(generateLottoNumbers(numberStrategy));
+    lottoNumbers.addAll(numberStrategy.generateNumbers(LOTTO_NUMBERS_SIZE, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER));
   }
 
   public static LottoTicket ofRandom() {
     return new LottoTicket(new RandomNumberStrategy());
-  }
-
-  protected List<Integer> generateLottoNumbers(NumberStrategy numberStrategy) {
-    return numberStrategy.generateNumbers(LOTTO_NUMBERS_SIZE, LOTTO_MAX_NUMBER);
   }
 
   public void showLottoNumbers() {

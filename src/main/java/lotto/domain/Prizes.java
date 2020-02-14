@@ -24,15 +24,19 @@ public class Prizes {
     return TICKET_PRICE * prizes.size();
   }
 
-  private int count(Prize prize) {
-    return (int) this.prizes.stream().filter(prize::equals).count();
-  }
-
   public void showStat() {
     Prize.valuesOfProfit().forEach(prize -> {
       prize.showMatchesAndMoney();
-      System.out.println(count(prize) + "개");
+      showCount(prize);
     });
+  }
+
+  private void showCount(Prize prize) {
+    System.out.println(count(prize) + "개");
+  }
+
+  private int count(Prize prize) {
+    return (int) this.prizes.stream().filter(prize::equals).count();
   }
 
 }

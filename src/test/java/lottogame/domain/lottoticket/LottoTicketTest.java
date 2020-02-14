@@ -1,4 +1,4 @@
-package lottogame.domain;
+package lottogame.domain.lottoticket;
 
 import lottogame.domain.lottoticket.LottoTicket;
 import org.junit.jupiter.api.BeforeEach;

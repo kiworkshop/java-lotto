@@ -1,6 +1,7 @@
 package view;
 
-import domain.LottoTicket;
+import domain.lotto.ticket.LottoTicket;
+import domain.lotto.ticket.WinningLottoTicket;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,14 +23,14 @@ public class LottoInputSysin {
         }
     }
 
-    public static LottoTicket requestWinningTicketNumber() {
+    public static WinningLottoTicket requestWinningTicketNumber() {
         System.out.println(MESSAGE_ASK_WINNING_TICKET_NUMBER);
         try {
             List<Integer> numbers = Arrays.stream(
                     scanner.nextLine().split(", "))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-            return new LottoTicket().ofGiven(numbers);
+            return new WinningLottoTicket().ofGiven(numbers);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }

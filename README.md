@@ -13,15 +13,15 @@
 
 ## Requirements
 ### Classes
-- domain.LottoMarket
+- domain.lotto.LottoGame
   - lotto price = 1000 won
   - buy tickets (w/ money)
-- domain.LottoTicket
+- domain.lotto.ticket.LottoTicket
   - 6 random numbers (in constructor)
-- domain.LottoWallet
+- domain.lotto.LottoWallet
   - list of LottoTickets
   - print what I have
-- domain.LottoResult
+- domain.lotto.LottoResult
   - 6 winning numbers
   - number of Lottos
   - number of match-3
@@ -32,7 +32,7 @@
   
 ----------
 Note
-- domain.LottoTicket
+- domain.lotto.ticket.LottoTicket
    - UserLottoTicket
    - WinningLottoTicket
 - MVC

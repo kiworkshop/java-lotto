@@ -1,4 +1,6 @@
-package domain;
+package domain.lotto.ticket;
+
+import domain.lotto.LottoGame;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,33 +9,31 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoTicket {
-    private final int LOTTO_START_NUMBER = 1;
-    private final int LOTTO_END_NUMBER = 45;
-    private final int LOTTO_PICK_NUMBER = 6;
 
-    private List<Integer> numbers = new ArrayList<>();
+    protected List<Integer> chosenNumbers = new ArrayList<>();
 
     public LottoTicket ofRandom() {
-        List<Integer> lottoNumbers = IntStream.rangeClosed(LOTTO_START_NUMBER, LOTTO_END_NUMBER)
+        List<Integer> lottoNumbers =
+                IntStream.rangeClosed(LottoGame.MIN_LOTTO_NUMBER, LottoGame.MAX_LOTTO_NUMBER)
                 .boxed().collect(Collectors.toList());
 
         Collections.shuffle(lottoNumbers);
 
-        for (int i = 0; i < LOTTO_PICK_NUMBER; i++) {
-            numbers.add(lottoNumbers.get(i));
+        for (int i = 0; i < LottoGame.NUMBER_OF_BALLS; i++) {
+            chosenNumbers.add(lottoNumbers.get(i));
         }
         return this;
     }
 
     public LottoTicket ofGiven(List<Integer> numbers) {
-        this.numbers.addAll(numbers);
+        this.chosenNumbers.addAll(numbers);
         return this;
     }
 
     public int getNumMatchingNumbers(List<Integer> numbers) {
         int numMatchingNumbers = 0;
         for (int number: numbers) {
-            if (this.numbers.contains(number)) {
+            if (this.chosenNumbers.contains(number)) {
                 numMatchingNumbers++;
             }
         }
@@ -42,10 +42,10 @@ public class LottoTicket {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return chosenNumbers.toString();
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public List<Integer> getChosenNumbers() {
+        return chosenNumbers;
     }
 }

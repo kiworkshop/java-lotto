@@ -1,6 +1,6 @@
 package view;
 
-import domain.LottoTicket;
+import domain.lotto.ticket.LottoTicket;
 
 import java.util.List;
 

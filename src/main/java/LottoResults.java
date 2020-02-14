@@ -1,6 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoResults {
     private HashMap<LottoRank, Integer> lottoRankToCountOfMatches;
@@ -20,6 +20,7 @@ public class LottoResults {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        // TODO keyset에 대한 sort 처리
         for (LottoRank lottoRank : lottoRankToCountOfMatches.keySet()) {
             sb.append(lottoRank.getCountOfMatches()).append("개 일치 (").append(lottoRank.getPrize()).append(") - ").append(lottoRankToCountOfMatches.get(lottoRank)).append("개\n");
         }

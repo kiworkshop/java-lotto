@@ -7,7 +7,18 @@ public class Lotto {
     private List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
-        this.numbers = numbers;    //TODO 숫자 검증 추가
+        this.numbers = numbers;
+        validateLottoNumbers(numbers);
+    }
+
+    private void validateLottoNumbers(List<Integer> numbers) {
+        Set<Integer> numbersWithoutDuplication =  new HashSet<>(numbers);
+        if (numbersWithoutDuplication.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+        if (numbersWithoutDuplication.stream().anyMatch(number -> number > 45 || number < 1)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     static Lotto autoGenerate() {
@@ -29,17 +40,8 @@ public class Lotto {
         return Arrays.toString(numbers.toArray());
     }
 
-    public List<Integer> getNumbers() {
+    List<Integer> getNumbers() {
         return numbers;
     }
 
-
-//    public LottoRank checkHits(WinningNumbers winningNumbers) {
-//        List<Integer> addedNumbers = new ArrayList<>();    //TODO  contains를 쓰며 indent를 지키는 방법이 궁금
-//        addedNumbers.addAll(numbers);
-//        addedNumbers.addAll(winningNumbers.getNumbers());
-//        int countOfMatches = addedNumbers.size() - new HashSet<Integer>(addedNumbers).size();
-//        if (countOfMatches == LottoRank.FIFTH.getCountOfMatches())
-//        return LottoRank.valueOf(countOfMatches);
-//    }
 }

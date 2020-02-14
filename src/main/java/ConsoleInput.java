@@ -19,17 +19,17 @@ class ConsoleInput {
         return Arrays.stream(winningNumbers.split(",")).map(Integer::parseInt).collect(Collectors.toList());
     }
 
-    public static int inputBonusNumber() {
+    static int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해주세요");
         return scanner.nextInt();
     }
 
-    public static int inputManualLottoAmount() {
+    static int inputManualLottoAmount() {
         System.out.println("수동으로 구매할 로또 수를 입력해주세요");
         return scanner.nextInt();
     }
 
-    public static Lottos inputManualLottoNumbers(int manualLottoAmount) {
+    static Lottos inputManualLottoNumbers(int manualLottoAmount) {
         scanner.nextLine();
         Lottos lottos = new Lottos();
         System.out.println("수동으로 구매할 번호를 입력해주세요");

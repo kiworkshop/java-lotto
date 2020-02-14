@@ -5,7 +5,7 @@ import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 import lottogame.domain.statistics.WinningStatistics;
 
-public class LottoGameService {
+public class AutoLottoService {
 
     public MoneyAmount getMoneyAmount(int input) {
         return new MoneyAmount(input);

@@ -26,7 +26,7 @@ class WinningLottoTest {
     @Test
     void 로또1등을_잘_찾아내는가() {
         //given
-        LottoTicket lottoTicket = LottoTicket.of(firstRankLottoNumbers);
+        LottoTicket lottoTicket = LottoTicket.createWith(firstRankLottoNumbers);
 
         //when
         WinningLotto winningLotto = WinningLotto.computeLottoStatistics(lottoTicket, lottoResult);
@@ -38,7 +38,7 @@ class WinningLottoTest {
     @Test
     void 로또꽝을_잘_찾아내는가() {
         //given
-        LottoTicket lottoTicket = LottoTicket.of(otherRankLottoNumbers);
+        LottoTicket lottoTicket = LottoTicket.createWith(otherRankLottoNumbers);
 
         //when
         WinningLotto winningLotto = WinningLotto.computeLottoStatistics(lottoTicket, lottoResult);

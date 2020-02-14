@@ -22,14 +22,14 @@ class WinningLottosTest {
     @BeforeEach
     void setUp() {
         String lottoResultInput = "1,3,5,7,9,11";
-        lottoResult = LottoTicket.of(lottoResultInput);
+        lottoResult = LottoTicket.createWith(lottoResultInput);
 
         String thirdRankInput1 = "2,4,5,7,9,11";
         String thirdRankInput2 = "1,3,5,7,44,45";
         String otherRankInput = "2,4,6,8,10,12";
-        thirdRankLottoTicket1 = LottoTicket.of(thirdRankInput1);
-        thirdRankLottoTicket2 = LottoTicket.of(thirdRankInput2);
-        otherRankLottoTicket = LottoTicket.of(otherRankInput);
+        thirdRankLottoTicket1 = LottoTicket.createWith(thirdRankInput1);
+        thirdRankLottoTicket2 = LottoTicket.createWith(thirdRankInput2);
+        otherRankLottoTicket = LottoTicket.createWith(otherRankInput);
 
         List<LottoTicket> lottoTicketList = new ArrayList<>();
         lottoTicketList.add(thirdRankLottoTicket1);

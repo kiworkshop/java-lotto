@@ -13,6 +13,11 @@ public enum WinningLotto {
     private int hitCount;
     private long prizeMoney;
 
+    WinningLotto(int hitCount, long prizePrice) {
+        this.hitCount = hitCount;
+        this.prizeMoney = prizePrice;
+    }
+
     public static WinningLotto computeLottoStatistics(LottoTicket lottoTicket, LottoTicket lottoResult) {
         int hitCount = compareTwoTickets(lottoTicket, lottoResult);
 
@@ -29,11 +34,6 @@ public enum WinningLotto {
             if (lottoResult.getSelectedLottoNumbers().contains(lottoNumber)) hitCount += 1;
         }
         return hitCount;
-    }
-
-    WinningLotto(int hitCount, long prizePrice) {
-        this.hitCount = hitCount;
-        this.prizeMoney = prizePrice;
     }
 
     public int getHitCount() {

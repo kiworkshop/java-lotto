@@ -11,14 +11,14 @@ public class LottoNumbers {
 
     private final List<Integer> lottoNumbers;
 
+    public LottoNumbers() {
+        this.lottoNumbers = generateLottoNumbers();
+    }
+
     public static void validateLottoNumber(int lottoNumber) {
         if (lottoNumber < MIN_LOTTO_NUMBER || lottoNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public LottoNumbers() {
-        this.lottoNumbers = generateLottoNumbers();
     }
 
     private List<Integer> generateLottoNumbers() {

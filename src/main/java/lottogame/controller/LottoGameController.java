@@ -31,7 +31,8 @@ public class LottoGameController {
         int manualLottoCount = getManualLottoCount(totalLottoCount).getLottoCount();
         int autoLottoCount = getAutoLottoCount(totalLottoCount, manualLottoCount).getLottoCount();
 
-        LottoTickets manualLottoTickets = manualLottoService.generateLottoTickets(manualLottoNumbers(manualLottoCount));
+        String[] manualLottoNumbers = manualLottoNumbers(manualLottoCount);
+        LottoTickets manualLottoTickets = manualLottoService.generateLottoTickets(manualLottoNumbers);
         LottoTickets autoLottoTickets = autoLottoService.generateLottoTickets(autoLottoCount);
         LottoTickets lottoTickets = autoLottoTickets;
         //LottoTickets lottoTickets = LottoTickets.joinLottoTickets(manualLottoTickets, autoLottoTickets);

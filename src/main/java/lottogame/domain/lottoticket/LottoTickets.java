@@ -1,15 +1,21 @@
 package lottogame.domain.lottoticket;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class LottoTickets {
 
     private final List<LottoTicket> lottoTickets;
 
-    public static LottoTickets with(int lottoCount) {
+    public LottoTickets(List<LottoTicket> lottoTickets) {
+        this.lottoTickets = lottoTickets;
+    }
+
+    public static LottoTickets createWith(String[] lottoNumbersList) {
+
+    }
+
+    public static LottoTickets createBy(int lottoCount) {
         List<LottoTicket> lottoTickets = generateLottoTickets(lottoCount);
         return new LottoTickets(lottoTickets);
     }
@@ -25,11 +31,7 @@ public class LottoTickets {
 
     private static LottoTicket generateLottoTicket() {
         LottoTicket lottoTicket = new LottoTicket();
-        return lottoTicket.generateLottoTicket();
-    }
-
-    public LottoTickets(List<LottoTicket> lottoTickets) {
-        this.lottoTickets = lottoTickets;
+        return lottoTicket.create();
     }
 
     public List<LottoTicket> getLottoTickets() {

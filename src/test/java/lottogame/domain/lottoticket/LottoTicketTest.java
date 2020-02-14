@@ -1,11 +1,9 @@
 package lottogame.domain.lottoticket;
 
-import lottogame.domain.lottoticket.LottoTicket;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,7 +31,7 @@ class LottoTicketTest {
     @Test
     void 주어진_String에_맞는_로또가_생성되어야한다() {
         // given
-        LottoTicket lottoTicket = LottoTicket.of(ascendingLottoNumbers);
+        LottoTicket lottoTicket = LottoTicket.createWith(ascendingLottoNumbers);
         List<Integer> expected = generateList(ascendingLottoNumbers);
 
         // then
@@ -43,7 +41,7 @@ class LottoTicketTest {
     @Test
     void 로또숫자들이_오름차순으로_정렬되어야한다() {
         // given
-        LottoTicket lottoTicket = LottoTicket.of(descendingLottoNumbers);
+        LottoTicket lottoTicket = LottoTicket.createWith(descendingLottoNumbers);
         List<Integer> expected = generateList(ascendingLottoNumbers);
 
         // then
@@ -52,14 +50,14 @@ class LottoTicketTest {
 
     @Test
     void 잘못된_로또_숫자를_가질_수_없다() {
-        assertThrows(IllegalArgumentException.class, () -> LottoTicket.of(wrongRangeLottoNumbers));
-        assertThrows(IllegalArgumentException.class, () -> LottoTicket.of(wrongCharacterLottoNumbers));
-        assertThrows(IllegalArgumentException.class, () -> LottoTicket.of(wrongSpaceLottoNumbers));
+        assertThrows(IllegalArgumentException.class, () -> LottoTicket.createWith(wrongRangeLottoNumbers));
+        assertThrows(IllegalArgumentException.class, () -> LottoTicket.createWith(wrongCharacterLottoNumbers));
+        assertThrows(IllegalArgumentException.class, () -> LottoTicket.createWith(wrongSpaceLottoNumbers));
     }
 
     @Test
     void 로또숫자의_개수가_정확해야한다() {
-        assertThrows(IllegalArgumentException.class, () -> LottoTicket.of(wrongCountLottoNumbers));
+        assertThrows(IllegalArgumentException.class, () -> LottoTicket.createWith(wrongCountLottoNumbers));
     }
 
 

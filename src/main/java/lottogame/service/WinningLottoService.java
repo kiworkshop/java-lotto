@@ -7,11 +7,11 @@ import lottogame.domain.winninglotto.WinningLottos;
 public class WinningLottoService {
 
     public LottoTickets generateLottoTickets(int lottoCount) {
-        return LottoTickets.with(lottoCount);
+        return LottoTickets.createBy(lottoCount);
     }
 
     public LottoTicket generateLottoTicket(String lottoNumbersString) {
-        return LottoTicket.of(lottoNumbersString);
+        return LottoTicket.createWith(lottoNumbersString);
     }
 
     public WinningLottos generateWinningStatistics(LottoTickets lottoTickets, LottoTicket lottoResult) {

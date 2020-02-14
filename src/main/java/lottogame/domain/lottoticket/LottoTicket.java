@@ -11,11 +11,22 @@ import java.util.stream.Collectors;
 public class LottoTicket {
 
     private static final int LOTTO_NUMBER_COUNT = 6;
+
     private static final String LOTTO_NUMBER_DELIMITER = ",";
 
     private List<Integer> selectedLottoNumbers;
 
-    public static LottoTicket of(String lottoNumbersString) {
+    public LottoTicket() {
+    }
+
+    private LottoTicket(final List<Integer> selectedLottoNumbers) {
+        if (selectedLottoNumbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException();
+        }
+        this.selectedLottoNumbers = selectedLottoNumbers;
+    }
+
+    public static LottoTicket createWith(String lottoNumbersString) {
         List<Integer> lottoNumbers = toLottoNumbers(lottoNumbersString);
 
         lottoNumbers.forEach(LottoNumbers::validateLottoNumber);
@@ -38,17 +49,7 @@ public class LottoTicket {
         return lottoNumbers;
     }
 
-    public LottoTicket() {
-    }
-
-    private LottoTicket(final List<Integer> selectedLottoNumbers) {
-        if(selectedLottoNumbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
-        }
-        this.selectedLottoNumbers = selectedLottoNumbers;
-    }
-
-    public LottoTicket generateLottoTicket() {
+    public LottoTicket create() {
         LottoNumbers lottoNumbers = new LottoNumbers();
         lottoNumbers.shuffle();
 

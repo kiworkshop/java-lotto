@@ -1,7 +1,6 @@
 package lottogame.domain.winninglotto;
 
 import lottogame.domain.LottoCount;
-import lottogame.domain.MoneyAmount;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
 

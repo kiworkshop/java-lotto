@@ -1,6 +1,5 @@
 package lottogame.domain.lottoticket;
 
-import lottogame.domain.lottoticket.LottoTickets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ class LottoTicketsTest {
 
     @BeforeEach
     void setUp() {
-        lottoTickets = LottoTickets.with(lottoCount);
+        lottoTickets = LottoTickets.createBy(lottoCount);
 
     }
 

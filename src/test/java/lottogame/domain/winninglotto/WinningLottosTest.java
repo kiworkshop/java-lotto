@@ -1,5 +1,6 @@
 package lottogame.domain.winninglotto;
 
+import lottogame.domain.LottoCount;
 import lottogame.domain.MoneyAmount;
 import lottogame.domain.lottoticket.LottoTicket;
 import lottogame.domain.lottoticket.LottoTickets;
@@ -83,7 +84,7 @@ class WinningLottosTest {
         //given
         double totalPrizeMoney = WinningLotto.THIRD.getPrizeMoney() * 2;
         double countOfLottos = 3;
-        double expected = (totalPrizeMoney / (countOfLottos * MoneyAmount.ONE_LOTTO_PRICE)) * 100;
+        double expected = (totalPrizeMoney / (countOfLottos * LottoCount.ONE_LOTTO_PRICE)) * 100;
 
         WinningLottos winningLottos = WinningLottos.computeWinningStatistics(lottoTickets, lottoResult);
 

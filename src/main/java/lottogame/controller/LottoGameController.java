@@ -38,6 +38,7 @@ public class LottoGameController {
         //LottoTickets lottoTickets = LottoTickets.joinLottoTickets(manualLottoTickets, autoLottoTickets);
 
         outputView.printLottoCount(totalLottoCount);
+        outputView.printLottoTickets(manualLottoTickets);
         outputView.printLottoTickets(lottoTickets);
 
         LottoTicket lottoResult = lottoResult();

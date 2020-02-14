@@ -39,6 +39,13 @@ public class LottoTickets {
         return lottoTicket.create();
     }
 
+    public static LottoTickets joinLottoTickets(LottoTickets manualLottoTickets, LottoTickets autoLottoTickets) {
+        List<LottoTicket> lottoTickets = new ArrayList<>();
+        lottoTickets.addAll(manualLottoTickets.getLottoTickets());
+        lottoTickets.addAll(autoLottoTickets.getLottoTickets());
+        return new LottoTickets(lottoTickets);
+    }
+
     public List<LottoTicket> getLottoTickets() {
         return lottoTickets;
     }

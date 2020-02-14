@@ -7,11 +7,10 @@ import lottogame.domain.winninglotto.WinningLottos;
 
 public class OutputView {
 
-    private static final String MESSAGE_PRINT_LOTTO_COUNT = "개를 구매했습니다.";
     private static final String MESSAGE_PRINT_LOTTO_RESULT = "당첨 통계";
 
-    public void printLottoCount(int lottoCount) {
-        System.out.println(lottoCount + MESSAGE_PRINT_LOTTO_COUNT);
+    public void printLottoCount(int manualLottoCount, int autoLottoCount) {
+        System.out.println("수동으로 " + manualLottoCount + "개, " + "자동으로 " + autoLottoCount + "개를 구매했습니다.");
     }
 
     public void printLottoTickets(LottoTickets lottoTickets) {

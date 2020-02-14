@@ -25,20 +25,18 @@ public class LottoGameController {
     }
 
     public void run() {
-        MoneyAmount moneyAmount = moneyAmount();
+        MoneyAmount moneyAmount = getMoneyAmount();
 
         int totalLottoCount = LottoCount.calculateTotalLottoCount(moneyAmount).getLottoCount();
         int manualLottoCount = getManualLottoCount(totalLottoCount).getLottoCount();
         int autoLottoCount = getAutoLottoCount(totalLottoCount, manualLottoCount).getLottoCount();
 
-        String[] manualLottoNumbers = manualLottoNumbers(manualLottoCount);
+        String[] manualLottoNumbers = getManualLottoNumbers(manualLottoCount);
         LottoTickets manualLottoTickets = manualLottoService.generateLottoTickets(manualLottoNumbers);
         LottoTickets autoLottoTickets = autoLottoService.generateLottoTickets(autoLottoCount);
-        LottoTickets lottoTickets = autoLottoTickets;
-        //LottoTickets lottoTickets = LottoTickets.joinLottoTickets(manualLottoTickets, autoLottoTickets);
+        LottoTickets lottoTickets = LottoTickets.joinLottoTickets(manualLottoTickets, autoLottoTickets);
 
-        outputView.printLottoCount(totalLottoCount);
-        outputView.printLottoTickets(manualLottoTickets);
+        outputView.printLottoCount(manualLottoCount, autoLottoCount);
         outputView.printLottoTickets(lottoTickets);
 
         LottoTicket lottoResult = lottoResult();
@@ -50,7 +48,7 @@ public class LottoGameController {
         outputView.printEarningRate(earningRate);
     }
 
-    private MoneyAmount moneyAmount() {
+    private MoneyAmount getMoneyAmount() {
         int moneyAmountInput = inputView.getMoneyAmountInput();
         return new MoneyAmount(moneyAmountInput);
     }
@@ -64,7 +62,7 @@ public class LottoGameController {
         return LottoCount.createLottoCount(totalLottoCount - manualLottoCount);
     }
 
-    private String[] manualLottoNumbers(int manualLottoCount) {
+    private String[] getManualLottoNumbers(int manualLottoCount) {
         return inputView.getManualLottoNumbers(manualLottoCount);
     }
 

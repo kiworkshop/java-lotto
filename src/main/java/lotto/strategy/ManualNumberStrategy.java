@@ -2,6 +2,10 @@ package lotto.strategy;
 
 import java.util.List;
 
+import lotto.exception.IllegalNumberSizeException;
+import lotto.exception.LottoNumberExceedMaxException;
+import lotto.exception.LottoNumberExceedMinException;
+
 public class ManualNumberStrategy implements NumberStrategy {
   private List<Integer> ticketInputs;
 
@@ -15,20 +19,19 @@ public class ManualNumberStrategy implements NumberStrategy {
     return ticketInputs;
   }
 
-  // TODO: 2020-02-15 create each exception
   private void validateNumbersSize(int size) {
     if (ticketInputs.size() != size) {
-      throw new IllegalArgumentException();
+      throw new IllegalNumberSizeException(size);
     }
   }
 
   private void validateLimits(int min, int max) {
     for (Integer ticketInput : ticketInputs) {
       if (ticketInput > max) {
-        throw new IllegalArgumentException();
+        throw new LottoNumberExceedMaxException(max);
       }
       if (ticketInput < min) {
-        throw new IllegalArgumentException();
+        throw new LottoNumberExceedMinException(min);
       }
     }
   }

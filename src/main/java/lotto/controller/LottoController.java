@@ -25,11 +25,15 @@ public class LottoController {
   }
 
   public void run() {
-    LottoPurchase lottoPurchase = purchaseLottos();
-    LottoTickets lottoTickets = createAndShowLottoTickets(lottoPurchase);
-    WinningLotto winningLotto = generateWinningLotto();
-    Prizes prizes = winningLotto.calculateResult(lottoTickets);
-    consoleOutputView.showResult(prizes);
+    try {
+      LottoPurchase lottoPurchase = purchaseLottos();
+      LottoTickets lottoTickets = createAndShowLottoTickets(lottoPurchase);
+      WinningLotto winningLotto = generateWinningLotto();
+      Prizes prizes = winningLotto.calculateResult(lottoTickets);
+      consoleOutputView.showResult(prizes);
+    } catch (IllegalArgumentException e) {
+      consoleOutputView.showExceptionMessage(e);
+    }
   }
 
   private LottoPurchase purchaseLottos() {

@@ -5,10 +5,11 @@ import lotto.domain.Prizes;
 
 public class ConsoleOutputView {
 
-  public void showLottoTickets(LottoTickets lottoTickets) {
+  public void showLottoTickets(LottoTickets manualTickets, LottoTickets randomTickets) {
     System.out.println(String.format("수동으로 %d장, 자동으로 %d장을 구매했습니다.",
-        lottoTickets.getNumOfManual(), lottoTickets.getNumOfAuto()));
-    lottoTickets.show();
+        manualTickets.size(), randomTickets.size()));
+    manualTickets.show();
+    randomTickets.show();
   }
 
   public void showResult(Prizes prizes) {

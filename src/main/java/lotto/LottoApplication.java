@@ -7,7 +7,7 @@ import lotto.view.ConsoleOutputView;
 public class LottoApplication {
 
   public static void main(String[] args) {
-    LottoController controller = new LottoController();
-    controller.run(new ConsoleInputView(), new ConsoleOutputView());
+    LottoController controller = new LottoController(new ConsoleInputView(), new ConsoleOutputView());
+    controller.run();
   }
 }

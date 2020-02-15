@@ -7,16 +7,19 @@ public class LottoPurchase {
   private int totalPrice;
   private int numOfManualLottos;
 
-  private LottoPurchase(int totalPrice, int numOfManualLottos) {
+  private LottoPurchase(int totalPrice) {
     this.totalPrice = totalPrice;
+  }
+
+  public static LottoPurchase of(int totalPrice) {
+    return new LottoPurchase(totalPrice);
+  }
+
+  public void setNumOfManualLottos(int numOfManualLottos) {
     if (numOfTotalTickets() < numOfManualLottos) {
       throw new ManualNumberExceedLimitException();
     }
     this.numOfManualLottos = numOfManualLottos;
-  }
-
-  public static LottoPurchase of(int totalPrice, int numOfManualLottos) {
-    return new LottoPurchase(totalPrice, numOfManualLottos);
   }
 
   private int numOfTotalTickets() {
@@ -25,5 +28,9 @@ public class LottoPurchase {
 
   public int numOfAutoTickets() {
     return numOfTotalTickets() - numOfManualLottos;
+  }
+
+  public int getNumOfManualLottos() {
+    return numOfManualLottos;
   }
 }

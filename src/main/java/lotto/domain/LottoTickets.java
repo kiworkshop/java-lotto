@@ -1,36 +1,25 @@
 package lotto.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LottoTickets {
-  private List<LottoTicket> lottoTickets = new ArrayList<>();
-  private int numOfManual;
-  private int numOfAuto;
+  private final List<LottoTicket> lottoTickets;
 
-  private LottoTickets(List<LottoTicket> manualTickets, List<LottoTicket> autoTickets) {
-    this.lottoTickets = Stream.concat(manualTickets.stream(), autoTickets.stream())
-        .collect(Collectors.toList());
-    this.numOfManual = manualTickets.size();
-    this.numOfAuto = autoTickets.size();
+  private LottoTickets(List<LottoTicket> tickets) {
+    this.lottoTickets = tickets;
   }
 
-  public static LottoTickets of(List<LottoTicket> manualTickets, List<LottoTicket> autoTickets) {
-    return new LottoTickets(manualTickets, autoTickets);
+  public static LottoTickets of(List<LottoTicket> tickets) {
+    return new LottoTickets(tickets);
   }
 
   public List<LottoTicket> getLottoTickets() {
-    return lottoTickets;
+    return Collections.unmodifiableList(lottoTickets);
   }
 
-  public int getNumOfManual() {
-    return numOfManual;
-  }
-
-  public int getNumOfAuto() {
-    return numOfAuto;
+  public int size() {
+    return lottoTickets.size();
   }
 
   public void show() {

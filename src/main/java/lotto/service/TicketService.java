@@ -7,25 +7,26 @@ import java.util.stream.Collectors;
 
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoTicket;
+import lotto.domain.LottoTickets;
 import lotto.domain.WinningLotto;
 
 public class TicketService {
   private static final String INPUT_DELIMITER = ",";
 
-  public List<LottoTicket> toLottoTickets(List<String> lottoNumbersInput) {
+  public LottoTickets toManualLottoTickets(List<String> lottoNumbersInput) {
     List<LottoTicket> lottoTickets = new ArrayList<>();
     for (String lotto : lottoNumbersInput) {
       lottoTickets.add(LottoTicket.of(Arrays.asList(lotto.split(INPUT_DELIMITER))));
     }
-    return lottoTickets;
+    return LottoTickets.of(lottoTickets);
   }
 
-  public List<LottoTicket> generateLottoTickets(LottoPurchase purchase) {
+  public LottoTickets toRandomLottoTickets(LottoPurchase purchase) {
     List<LottoTicket> lottoTickets = new ArrayList<>();
     for (int i = 0; i < purchase.numOfAutoTickets(); i++) {
       lottoTickets.add(LottoTicket.ofRandom());
     }
-    return lottoTickets;
+    return LottoTickets.of(lottoTickets);
   }
 
   public WinningLotto generateWinningLotto(String lastWinningNumbersInput, int bonusBall) {

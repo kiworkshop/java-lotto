@@ -4,19 +4,19 @@ import lombok.Getter;
 
 import java.util.regex.Pattern;
 
-public class PurchasePrice {
+public class PurchaseCount {
 
     private static final String NUMBER_REGEX = "^[0-9]*$";
     private static final int MINIMUM_INPUT = 1000;
     private static final int STANDARD = 1000;
 
     @Getter
-    private final int purchasePrice;
+    private final int purchaseCount;
 
-    public PurchasePrice(String input) {
+    public PurchaseCount(String input) {
         input = input.trim();
         validate(input);
-        this.purchasePrice = Integer.parseInt(input);
+        this.purchaseCount = Integer.parseInt(input)/STANDARD;
     }
 
     private void validate(String input) {

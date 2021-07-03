@@ -1,15 +1,13 @@
-import lotto.PurchasePrice;
+import lotto.PurchaseCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PurchasePriceTest {
+public class PurchaseCountTest {
 
     @Test
     @DisplayName("")
@@ -20,7 +18,7 @@ public class PurchasePriceTest {
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            PurchasePrice purchasePrice = new PurchasePrice(input);;
+            PurchaseCount purchaseCount = new PurchaseCount(input);;
         });
     }
 
@@ -31,7 +29,7 @@ public class PurchasePriceTest {
         String input = "2000";
 
         // when, // then
-        assertDoesNotThrow(() -> new PurchasePrice(input));
+        assertDoesNotThrow(() -> new PurchaseCount(input));
     }
 
     @Test
@@ -41,7 +39,7 @@ public class PurchasePriceTest {
         String input = "1234";
 
         // when, then
-        assertThatThrownBy(() -> new PurchasePrice(input))
+        assertThatThrownBy(() -> new PurchaseCount(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -54,7 +52,7 @@ public class PurchasePriceTest {
         // when
 
         // then
-        assertThatThrownBy(() -> new PurchasePrice(input))
+        assertThatThrownBy(() -> new PurchaseCount(input))
                 .isInstanceOf(RuntimeException.class);
     }
 
@@ -65,10 +63,10 @@ public class PurchasePriceTest {
         String input = " 1000";
 
         // when
-        PurchasePrice purchasePrice = new PurchasePrice(input);
+        PurchaseCount purchaseCount = new PurchaseCount(input);
 
         // then
-        assertThat(purchasePrice.getPurchasePrice()).isEqualTo(1000);
+        assertThat(purchaseCount.getPurchaseCount()).isEqualTo(1);
     }
 
     @Test
@@ -78,10 +76,10 @@ public class PurchasePriceTest {
         String input = "1000   ";
 
         // when
-        PurchasePrice purchasePrice = new PurchasePrice(input);
+        PurchaseCount purchaseCount = new PurchaseCount(input);
 
         // then
-        assertThat(purchasePrice.getPurchasePrice()).isEqualTo(1000);
+        assertThat(purchaseCount.getPurchaseCount()).isEqualTo(1);
     }
 
     @Test
@@ -91,9 +89,10 @@ public class PurchasePriceTest {
         String input = "   1000    ";
 
         // when
-        PurchasePrice purchasePrice = new PurchasePrice(input);
+        PurchaseCount purchaseCount = new PurchaseCount(input);
 
         // then
-        assertThat(purchasePrice.getPurchasePrice()).isEqualTo(1000);
+        assertThat(purchaseCount.getPurchaseCount()).isEqualTo(1);
     }
+
 }

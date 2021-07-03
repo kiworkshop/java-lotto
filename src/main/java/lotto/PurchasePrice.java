@@ -11,6 +11,7 @@ public class PurchasePrice {
     private final int purchasePrice;
 
     public PurchasePrice(String input) {
+        input = input.trim();
         validate(input);
         this.purchasePrice = Integer.parseInt(input);
     }

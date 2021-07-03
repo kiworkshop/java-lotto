@@ -1,20 +1,30 @@
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LottoServiceTest {
-    LottoService lottoservice;
+
+    LottoService lottoService = new LottoService();
 
     @Test
-    public void testInputValudUnder1000() throws Exception {
+    public void testInputValueUnder1000() throws Exception {
         // given
         int input = 800;
 
-        // when
-
-        // then
+        // when, then
         assertThrows(RuntimeException.class, () -> {
-            lottoservice.validate(input);
+            lottoService.validate(input);
         });
+    }
+
+    @Test
+    public void testInputValueNotMultiple1000() throws Exception {
+        // given
+        int input = 1234;
+
+        // when, then
+        assertThatThrownBy(() -> lottoService.validate(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

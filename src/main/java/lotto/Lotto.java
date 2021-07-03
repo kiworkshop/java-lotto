@@ -10,6 +10,7 @@ import java.util.List;
 public class Lotto {
     private static final int INDEX_LOWER_BOUND = 0;
     private static final int INDEX_UPPER_BOUND = 6;
+
     private final List<Integer> lotto;
 
     public Lotto() {

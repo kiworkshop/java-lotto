@@ -1,11 +1,13 @@
+import lotto.LottoController;
+import lotto.LottoService;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class LottoServiceTest {
-    LottoService lottoService = new LottoService();
+public class LottoControllerTest {
+    LottoController lottoController = new LottoController();
 
     @Test
     public void testInputValueUnder1000() throws Exception {
@@ -13,8 +15,8 @@ public class LottoServiceTest {
         String input = "800";
 
         // when, then
-        assertThrows(RuntimeException.class, () -> {
-            lottoService.validate(input);
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoController.validate(input);
         });
     }
 
@@ -24,7 +26,7 @@ public class LottoServiceTest {
         String input = "2000";
 
         // when, // then
-        assertDoesNotThrow(() -> lottoService.validate(input));
+        assertDoesNotThrow(() -> lottoController.validate(input));
     }
 
     @Test
@@ -33,7 +35,7 @@ public class LottoServiceTest {
         String input = "1234";
 
         // when, then
-        assertThatThrownBy(() -> lottoService.validate(input))
+        assertThatThrownBy(() -> lottoController.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,7 +47,7 @@ public class LottoServiceTest {
         // when
 
         // then
-        assertThatThrownBy(() -> lottoService.validate(input))
+        assertThatThrownBy(() -> lottoController.validate(input))
                 .isInstanceOf(RuntimeException.class);
     }
 }

@@ -1,5 +1,7 @@
 package lotto;
 
+import lombok.Getter;
+
 import java.util.regex.Pattern;
 
 public class PurchasePrice {
@@ -8,6 +10,7 @@ public class PurchasePrice {
     private static final int MINIMUM_INPUT = 1000;
     private static final int STANDARD = 1000;
 
+    @Getter
     private final int purchasePrice;
 
     public PurchasePrice(String input) {

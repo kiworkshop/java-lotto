@@ -14,7 +14,7 @@ public class LottoMachineTest {
         int givenMoney = 14000;
         LottoMachine lottoMachine = new LottoMachine();
         //when
-        int ticketNumber = lottoMachine.getLottoTickt(givenMoney);
+        int ticketNumber = lottoMachine.getLottoTicktCount(givenMoney);
         //than
         assertThat(ticketNumber).isEqualTo(14);
     }
@@ -30,4 +30,18 @@ public class LottoMachineTest {
         assertThat(lottoNumbers.stream().distinct().count()).isEqualTo(6);
 
     }
+
+    @Test
+    void 부여받은_티켓_개수대로_로또_만들어서_리턴한다() {
+        //given
+        LottoMachine lottoMachine = new LottoMachine();
+        int money = 1000;
+        //when
+        List<Integer> lottoNumbers = lottoMachine.createRandomNumber();
+        List<Lotto> lottos = lottoMachine.buyLottos(money);
+        //than
+        assertThat(lottos.size()).isEqualTo(1);
+
+    }
+
 }

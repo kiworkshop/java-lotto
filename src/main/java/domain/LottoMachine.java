@@ -11,13 +11,14 @@ import java.util.stream.IntStream;
 public class LottoMachine {
 
     public static final int LOTTO_PRICE = 1000;
-    private static List<Integer> balls = IntStream.range(1,45).boxed().collect(Collectors.toList());
+
 
     public int getLottoTicktCount(int givenMoney) {
         return givenMoney/LOTTO_PRICE;
     }
 
     public List<Integer> createRandomNumber() {
+        List<Integer> balls = IntStream.range(1,45).boxed().collect(Collectors.toList());
         Collections.shuffle(balls);
         List<Integer> lottoNumbers = balls.subList(0,6);
         Collections.sort(lottoNumbers);

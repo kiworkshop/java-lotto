@@ -3,8 +3,6 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoGeneratorTest {
@@ -18,11 +16,11 @@ public class LottoGeneratorTest {
         LottoGenerator lottoGenerator = new LottoGenerator();
 
         //when
-        List<Integer> lottoNumber = lottoGenerator.generateLotto();
+        Lotto lotto = lottoGenerator.generateLotto();
 
         //then
-        assertThat(lottoNumber.size()).isEqualTo(LOTTO_SIZE);
-        assertThat(lottoNumber.size()).isEqualTo(lottoNumber.stream()
+        assertThat(lotto.getLottoNumbers().size()).isEqualTo(LOTTO_SIZE);
+        assertThat(lotto.getLottoNumbers().size()).isEqualTo(lotto.getLottoNumbers().stream()
                 .distinct()
                 .count());
 

@@ -16,11 +16,11 @@ public class LottoGenerator {
         return IntStream.range(1, 46).boxed().collect(Collectors.toList());
     }
 
-    public List<Integer> generateLotto() {
+    public Lotto generateLotto() {
         Collections.shuffle(balls);
-        List<Integer> lotto = balls.subList(0, 6);
-        Collections.sort(lotto);
-        return lotto;
+        List<Integer> lottoNumbers = balls.subList(0, 6);
+        Collections.sort(lottoNumbers);
+        return new Lotto(lottoNumbers);
     }
 
 }

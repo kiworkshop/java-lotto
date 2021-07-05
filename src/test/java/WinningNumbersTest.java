@@ -46,8 +46,33 @@ public class WinningNumbersTest {
         String input = "1, a, 3, 4, 5, 6";
 
         // when, then
-        assertThrows(NumberFormatException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             new WinningNumbers(input);
         });
     }
+
+    @Test
+    @DisplayName("로또 번호 입력값이 45 초과면 예외 발생")
+    public void testInputGreaterThanUpperBoundary() throws Exception {
+        // given
+        String input = "1, 2, 3, 4, 5, 46";
+
+        // when, then
+        assertThrows(IllegalArgumentException.class, () -> {
+            new WinningNumbers(input);
+        });
+    }
+
+    @Test
+    @DisplayName("로또 번호 입력값이 1 미만이면 예외 발생")
+    public void testInputSmallerThanLowerBoundary() throws Exception {
+        // given
+        String input = "0, 2, 3, 4, 5, 6";
+
+        // when, then
+        assertThrows(IllegalArgumentException.class, () -> {
+            new WinningNumbers(input);
+        });
+    }
+
 }

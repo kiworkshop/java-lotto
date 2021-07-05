@@ -4,9 +4,11 @@ import lombok.Getter;
 
 import java.util.regex.Pattern;
 
+import static lotto.IntegerValidateUtils.isNumber;
+
 public class PurchaseCount {
 
-    private static final String NUMBER_REGEX = "^[0-9]*$";
+
     private static final int MINIMUM_INPUT = 1000;
     private static final int STANDARD = 1000;
 
@@ -20,7 +22,7 @@ public class PurchaseCount {
     }
 
     private void validate(String input) {
-        if (!Pattern.matches(NUMBER_REGEX, input)) {
+        if (!isNumber(input)) {
             throw new IllegalArgumentException("잘못된 입력입니다");
         }
         int inputConversion = Integer.parseInt(input);

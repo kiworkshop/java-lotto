@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.InstanceOfAssertFactories.PATH;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class WinningNumbersTest {
 
@@ -33,5 +36,18 @@ public class WinningNumbersTest {
         // then
         assertThat(winningNumbers.getWinningNumbers().size()).isEqualTo(6);
 
+    }
+
+
+    @Test
+    @DisplayName("숫자가 아닌 값 포함")
+    public void testInputWithNonInteger() throws Exception {
+        // given
+        String input = "1, a, 3, 4, 5, 6";
+
+        // when, then
+        assertThrows(NumberFormatException.class, () -> {
+            new WinningNumbers(input);
+        });
     }
 }

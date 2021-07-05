@@ -2,12 +2,10 @@ package lotto;
 
 import lombok.Getter;
 
-import java.util.regex.Pattern;
-
 import static lotto.IntegerValidateUtils.isNumber;
 
 public class PurchaseCount {
-    
+
     private static final int MINIMUM_INPUT = 1000;
     private static final int STANDARD = 1000;
 

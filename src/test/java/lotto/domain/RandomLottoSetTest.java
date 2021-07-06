@@ -1,12 +1,10 @@
 package lotto.domain;
 
-import lotto.domain.LottoSet;
-import lotto.domain.PurchaseCount;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LottoSetTest {
+public class RandomLottoSetTest {
 
     private static final int PURCHASE_COUNT_STANDARD = 1000;
 
@@ -17,9 +15,9 @@ public class LottoSetTest {
         PurchaseCount purchaseCount = new PurchaseCount(String.valueOf(targetSize * PURCHASE_COUNT_STANDARD));
 
         // when
-        LottoSet lottoSet = new LottoSet(purchaseCount);
+        RandomLottoSet randomLottoSet = new RandomLottoSet(purchaseCount);
 
         // then
-        assertThat(lottoSet.getLottoSet().size()).isEqualTo(targetSize);
+        assertThat(randomLottoSet.getLottoSet().size()).isEqualTo(targetSize);
     }
 }

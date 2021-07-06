@@ -17,7 +17,8 @@ public class WinningLottoTest {
     public void test() throws Exception {
         // given
         String input = "1, 2, 3, 4, 5, 6";
-        WinningLotto winningLotto = new WinningLotto(input);
+        String bonus = "10";
+        WinningLotto winningLotto = new WinningLotto(input, bonus);
 
         // when
 
@@ -30,9 +31,10 @@ public class WinningLottoTest {
     public void testWinningNumberSize() throws Exception {
         // given
         String input = "1, 2, 3, 4, 5, 6";
+        String bonus = "10";
 
         // when
-        WinningLotto winningLotto = new WinningLotto(input);
+        WinningLotto winningLotto = new WinningLotto(input, bonus);
 
         // then
         assertThat(winningLotto.getLottoNumbers().size()).isEqualTo(6);
@@ -45,10 +47,11 @@ public class WinningLottoTest {
     public void testInputWithNonInteger() throws Exception {
         // given
         String input = "1, a, 3, 4, 5, 6";
+        String bonus = "10";
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningLotto(input);
+            new WinningLotto(input, bonus);
         });
     }
 
@@ -57,10 +60,11 @@ public class WinningLottoTest {
     public void testInputGreaterThanUpperBoundary() throws Exception {
         // given
         String input = "1, 2, 3, 4, 5, 46";
+        String bonus = "10";
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningLotto(input);
+            new WinningLotto(input, bonus);
         });
     }
 
@@ -69,11 +73,26 @@ public class WinningLottoTest {
     public void testInputSmallerThanLowerBoundary() throws Exception {
         // given
         String input = "0, 2, 3, 4, 5, 6";
+        String bonus = "10";
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningLotto(input);
+            new WinningLotto(input, bonus);
         });
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력값을 확인")
+    void testBonusInput() {
+        //given
+        String input = "1, 2, 3, 4, 5, 6";
+        String bonus = "10";
+
+        // when
+        WinningLotto winningLotto = new WinningLotto(input, bonus);
+
+        // then
+        assertThat(winningLotto.getBonusNumber().getLottoNumber()).isEqualTo(10);
     }
 
 }

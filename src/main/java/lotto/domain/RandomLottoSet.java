@@ -5,12 +5,12 @@ import lombok.Getter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LottoSet {
+public class RandomLottoSet {
 
     @Getter
     private final Set<RandomLotto> lottoSet = new HashSet<>();
 
-    public LottoSet(PurchaseCount purchaseCount) {
+    public RandomLottoSet(PurchaseCount purchaseCount) {
         generateRandomLottoSetWithSize(purchaseCount.getPurchaseCount());
     }
 

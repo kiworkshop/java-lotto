@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lombok.Getter;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
@@ -8,10 +9,14 @@ import java.util.stream.Collectors;
 
 public class WinningLotto extends Lotto {
 
-    public WinningLotto(String input) {
-        super(Arrays.stream(input.split(","))
+    @Getter
+    private LottoNumber bonusNumber;
+
+    public WinningLotto(String winningNumberInput, String bonusNumberInput) {
+        super(Arrays.stream(winningNumberInput.split(","))
                 .map(String::trim)
                 .map(LottoNumber::new)
                 .collect(Collectors.toList()));
+        this.bonusNumber = new LottoNumber(bonusNumberInput);
     }
 }

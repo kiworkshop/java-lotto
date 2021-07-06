@@ -3,7 +3,7 @@ package lotto.constant;
 public enum PrizeCondition {
 
     FIRST(6, false),
-    SECOND(6, true),
+    SECOND(5, true),
     THIRD(5, false),
     FOURTH(4, false),
     FIFTH(3, false);
@@ -24,16 +24,16 @@ public enum PrizeCondition {
         if (matchNumbersCount == FOURTH.matchNumbersCount) {
             return FOURTH;
         }
-        if (matchNumbersCount == THIRD.matchNumbersCount) {
-            return THIRD;
+        if (matchNumbersCount == FIRST.matchNumbersCount) {
+            return FIRST;
         }
-        return dissolveFirstOrSecond(isBonus);
+        return dissolveSecondOrThird(isBonus);
     }
 
-    private static PrizeCondition dissolveFirstOrSecond(boolean isBonus) {
+    private static PrizeCondition dissolveSecondOrThird(boolean isBonus) {
         if (isBonus) {
             return PrizeCondition.SECOND;
         }
-        return PrizeCondition.FIRST;
+        return PrizeCondition.THIRD;
     }
 }

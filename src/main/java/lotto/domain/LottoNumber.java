@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import lombok.Getter;
 
-import static lotto.IntegerValidateUtils.isNumber;
+import static lotto.util.NumberValidateUtils.isInteger;
 
 public class LottoNumber {
 
@@ -19,7 +19,7 @@ public class LottoNumber {
     }
 
     private void validate(String input) {
-        if(!isNumber(input)) {
+        if(!isInteger(input)) {
             throw new IllegalArgumentException("숫자를 입력해주세요.");
         }
 

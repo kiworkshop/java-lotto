@@ -1,20 +1,23 @@
-import lotto.Lotto;
+package lotto.domain;
+
+import lotto.domain.RandomLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LottoTest {
-    Lotto lotto = new Lotto();
+public class RandomLottoTest {
 
     @Test
     @DisplayName("로또 1개 생성")
     public void testGenerateLotto() throws Exception {
         // given
+        RandomLotto randomLotto = new RandomLotto();
 
         // when
+        int size = randomLotto.getLottoNumbers().size();
 
         // then
-        assertThat(lotto.getLotto().size()).isEqualTo(6);
+        assertThat(size).isEqualTo(6);
     }
 }

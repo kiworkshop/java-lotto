@@ -1,4 +1,6 @@
-import lotto.WinningNumbers;
+package lotto.domain;
+
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -6,22 +8,21 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.InstanceOfAssertFactories.PATH;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class WinningNumbersTest {
+public class WinningLottoTest {
 
     @Test
     @DisplayName("WinningNumbers 타입 확인")
     public void test() throws Exception {
         // given
         String input = "1, 2, 3, 4, 5, 6";
-        WinningNumbers winningNumbers = new WinningNumbers(input);
+        WinningLotto winningLotto = new WinningLotto(input);
 
         // when
 
         // then
-        assertThat(winningNumbers.getWinningNumbers()).isExactlyInstanceOf(ArrayList.class);
+        assertThat(winningLotto.getLottoNumbers()).isExactlyInstanceOf(ArrayList.class);
     }
 
     @Test
@@ -31,10 +32,10 @@ public class WinningNumbersTest {
         String input = "1, 2, 3, 4, 5, 6";
 
         // when
-        WinningNumbers winningNumbers = new WinningNumbers(input);
+        WinningLotto winningLotto = new WinningLotto(input);
 
         // then
-        assertThat(winningNumbers.getWinningNumbers().size()).isEqualTo(6);
+        assertThat(winningLotto.getLottoNumbers().size()).isEqualTo(6);
 
     }
 
@@ -47,7 +48,7 @@ public class WinningNumbersTest {
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningNumbers(input);
+            new WinningLotto(input);
         });
     }
 
@@ -59,7 +60,7 @@ public class WinningNumbersTest {
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningNumbers(input);
+            new WinningLotto(input);
         });
     }
 
@@ -71,7 +72,7 @@ public class WinningNumbersTest {
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningNumbers(input);
+            new WinningLotto(input);
         });
     }
 

@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import lombok.Getter;
 
-import static lotto.IntegerValidateUtils.isNumber;
+import static lotto.util.NumberValidateUtils.isInteger;
 
 public class PurchaseCount {
 
@@ -19,7 +19,7 @@ public class PurchaseCount {
     }
 
     private void validate(String input) {
-        if (!isNumber(input)) {
+        if (!isInteger(input)) {
             throw new IllegalArgumentException("잘못된 입력입니다");
         }
         int inputConversion = Integer.parseInt(input);

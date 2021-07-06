@@ -1,5 +1,7 @@
-import lotto.LottoSet;
-import lotto.PurchaseCount;
+package lotto.domain;
+
+import lotto.domain.LottoSet;
+import lotto.domain.PurchaseCount;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

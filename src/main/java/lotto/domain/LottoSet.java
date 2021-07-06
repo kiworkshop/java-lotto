@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import lombok.Getter;
 
@@ -8,7 +8,7 @@ import java.util.Set;
 public class LottoSet {
 
     @Getter
-    private final Set<Lotto> lottoSet = new HashSet<>();
+    private final Set<RandomLotto> lottoSet = new HashSet<>();
 
     public LottoSet(PurchaseCount purchaseCount) {
         generateRandomLottoSetWithSize(purchaseCount.getPurchaseCount());
@@ -16,7 +16,7 @@ public class LottoSet {
 
     private void generateRandomLottoSetWithSize(int size) {
         for (int i = 0; i < size; i++) {
-            lottoSet.add(new Lotto());
+            lottoSet.add(new RandomLotto());
         }
     }
 }

@@ -1,11 +1,11 @@
-package lotto;
+package lotto.util;
 
 import java.util.regex.Pattern;
 
-public class IntegerValidateUtils {
+public class NumberValidateUtils {
     private static final String NUMBER_REGEX = "^[0-9]*$";
 
-    public static boolean isNumber(String input) {
+    public static boolean isInteger(String input) {
         return Pattern.matches(NUMBER_REGEX, input);
     }
 

@@ -1,7 +1,5 @@
 package domain;
 
-import org.graalvm.compiler.phases.common.inlining.info.elem.InlineableGraph;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class LottoMachine {
 
-    public static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1000;
 
 
     public int getLottoTicktCount(int givenMoney) {
@@ -18,9 +16,11 @@ public class LottoMachine {
     }
 
     public List<Integer> createRandomNumber() {
-        List<Integer> balls = IntStream.range(1,45).boxed().collect(Collectors.toList());
+        List<Integer> balls = IntStream.range(1, 45)
+                .boxed()
+                .collect(Collectors.toList());
         Collections.shuffle(balls);
-        List<Integer> lottoNumbers = balls.subList(0,6);
+        List<Integer> lottoNumbers = balls.subList(0, 6);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }

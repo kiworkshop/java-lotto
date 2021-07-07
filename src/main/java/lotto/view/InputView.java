@@ -1,26 +1,24 @@
 package lotto.view;
 
-import lotto.domain.dto.PurchasePriceInputDTO;
-import lotto.domain.dto.WinningLottoInputDTO;
-
 import java.util.Scanner;
 
 public class InputView {
+
     private final Scanner scanner = new Scanner(System.in);
 
-    public PurchasePriceInputDTO getPurchaseCost() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String purchaseCountInput = scanner.nextLine();
-
-        return new PurchasePriceInputDTO(purchaseCountInput);
+    private String nextLine() {
+        return scanner.nextLine();
     }
 
-    public WinningLottoInputDTO getWinningLottoAndBonus() {
-        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        String winningLottoNumbers = scanner.nextLine();
+    public String getPurchaseCost() {
+        return nextLine();
+    }
 
-        System.out.println("보너스 볼을 입력해 주세요.");
-        String winningLottoBonus = scanner.nextLine();
-        return new WinningLottoInputDTO(winningLottoNumbers, winningLottoBonus);
+    public String getWinningLottoNumbers() {
+        return nextLine();
+    }
+
+    public String getWinningLottoBonus() {
+        return nextLine();
     }
 }

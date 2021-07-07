@@ -9,6 +9,7 @@ import lotto.domain.dto.StatisticsResultDTO;
 
 public class OutputView {
 
+    private static final String ERROR_HEADER = "[ERROR] ";
     private static final String COMMA = ", ";
     private static final String PARENTHESIS_LEFT = "[";
     private static final String PARENTHESIS_RIGHT = "]";
@@ -76,6 +77,6 @@ public class OutputView {
     }
 
     public void printException(String message) {
-        print(message);
+        print(ERROR_HEADER + message);
     }
 }

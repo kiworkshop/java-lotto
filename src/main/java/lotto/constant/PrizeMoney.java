@@ -1,5 +1,8 @@
 package lotto.constant;
 
+import lombok.Getter;
+
+@Getter
 public enum PrizeMoney {
 
     FIRST(2000000000),
@@ -8,9 +11,9 @@ public enum PrizeMoney {
     FOURTH(50000),
     FIFTH(5000);
 
-    private final int value;
+    private final long value;
 
-    PrizeMoney(int value) {
+    PrizeMoney(long value) {
         this.value = value;
     }
 }

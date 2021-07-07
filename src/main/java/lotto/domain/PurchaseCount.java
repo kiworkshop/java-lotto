@@ -7,7 +7,6 @@ import static lotto.util.NumberValidateUtils.isInteger;
 public class PurchaseCount {
 
     private static final int MINIMUM_INPUT = 1000;
-    private static final int STANDARD = 1000;
 
     @Getter
     private final int purchaseCount;
@@ -15,7 +14,7 @@ public class PurchaseCount {
     public PurchaseCount(String input) {
         input = input.trim();
         validate(input);
-        this.purchaseCount = Integer.parseInt(input)/STANDARD;
+        this.purchaseCount = Integer.parseInt(input) / Lotto.PRICE;
     }
 
     private void validate(String input) {
@@ -33,6 +32,6 @@ public class PurchaseCount {
     }
 
     private boolean notMultipleOfStandard(int input) {
-        return input % STANDARD != 0;
+        return input % Lotto.PRICE != 0;
     }
 }

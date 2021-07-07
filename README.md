@@ -11,8 +11,8 @@
 - [x] 구매 개수 구하기
 - [x] 랜덤 로또번호 구매 개수만큼 만들기
     - [ ] defaultNumberSet 1번만 생성되도록 변경
-    - [ ] RandomLottoTest 상수 리팩토링
-    - [ ] PurchaseCount의 1000 접근
+    - [x] RandomLottoTest 상수 리팩토링
+    - [x] PurchaseCount의 1000 접근
 - [x] 지난 주 당첨 번호 입력받기
     - [x] WinningNumbers 멤버변수 ArrayList 클래스 확인
     - [x] 숫자 개수 6개 확인
@@ -25,6 +25,6 @@
     - [x] 일치 개수 찾기
     - [x] 5개 일치 시 보너스 볼 일치 여부 확인
     - [x] 로또 당첨 개수 구하기
-    - [ ] 당첨값의 합 구하기
-    - [ ] 수익률 구하기
+    - [x] 당첨값의 합 구하기
+    - [x] 수익률 구하기
     - [ ] 결과 출력

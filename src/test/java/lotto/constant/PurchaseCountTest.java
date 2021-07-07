@@ -13,10 +13,9 @@ public class PurchaseCountTest {
 
     @Test
     @DisplayName("")
-    public void testInputValueUnder1000() throws Exception {
+    void testInputValueUnder1000() throws Exception {
         // given
         String input = "800";
-
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
@@ -26,7 +25,7 @@ public class PurchaseCountTest {
 
     @Test
     @DisplayName("")
-    public void testInputValueNotUnder1000() throws Exception {
+    void testInputValueNotUnder1000() throws Exception {
         // given
         String input = "2000";
 
@@ -36,7 +35,7 @@ public class PurchaseCountTest {
 
     @Test
     @DisplayName("")
-    public void testInputValueNotMultiple1000() throws Exception {
+    void testInputValueNotMultiple1000() throws Exception {
         // given
         String input = "1234";
 
@@ -47,7 +46,7 @@ public class PurchaseCountTest {
 
     @Test
     @DisplayName("")
-    public void testInputNotNumber() throws Exception {
+    void testInputNotNumber() throws Exception {
         // given
         String input = "error";
 
@@ -60,7 +59,7 @@ public class PurchaseCountTest {
 
     @Test
     @DisplayName("공백이 오른쪽에 있을 때 정상 처리된다")
-    public void testPriceInputWithLeftBlank() throws Exception {
+    void testPriceInputWithLeftBlank() throws Exception {
         // given
         String input = " 1000";
 
@@ -73,7 +72,7 @@ public class PurchaseCountTest {
 
     @Test
     @DisplayName("공백이 오른쪽에 있을 때 정상 처리된다")
-    public void testPriceInputWithRightBlank() throws Exception {
+    void testPriceInputWithRightBlank() throws Exception {
         // given
         String input = "1000   ";
 
@@ -86,7 +85,7 @@ public class PurchaseCountTest {
 
     @Test
     @DisplayName("공백이 양쪽에 있을 때 정상 처리된다")
-    public void testPriceInputWithLeftAndRightBlank() throws Exception {
+    void testPriceInputWithLeftAndRightBlank() throws Exception {
         // given
         String input = "   1000    ";
 

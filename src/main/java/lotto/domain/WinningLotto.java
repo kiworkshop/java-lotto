@@ -2,14 +2,9 @@ package lotto.domain;
 
 import lombok.Getter;
 import lotto.constant.PrizeCondition;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
+import lotto.parser.LottoParser;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class WinningLotto extends Lotto {
 
@@ -17,10 +12,7 @@ public class WinningLotto extends Lotto {
     private LottoNumber bonusNumber;
 
     public WinningLotto(String winningNumberInput, String bonusNumberInput) {
-        super(Arrays.stream(winningNumberInput.split(","))
-                .map(String::trim)
-                .map(LottoNumber::new)
-                .collect(Collectors.toList()));
+        super(LottoParser.generateLotto(winningNumberInput));
         this.bonusNumber = new LottoNumber(bonusNumberInput);
     }
 
@@ -52,7 +44,7 @@ public class WinningLotto extends Lotto {
                 targetIdx++;
             }
         }
-        System.out.println(matchNumbersCount);
         return matchNumbersCount;
     }
+
 }

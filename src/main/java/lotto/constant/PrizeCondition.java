@@ -6,7 +6,8 @@ public enum PrizeCondition {
     SECOND(5, true),
     THIRD(5, false),
     FOURTH(4, false),
-    FIFTH(3, false);
+    FIFTH(3, false),
+    LOSE(2, false);
 
     private final int matchNumbersCount;
     private final boolean isBonus;
@@ -18,6 +19,9 @@ public enum PrizeCondition {
 
 
     public static PrizeCondition findPrize(int matchNumbersCount, boolean isBonus) {
+        if (matchNumbersCount <= LOSE.matchNumbersCount) {
+            return LOSE;
+        }
         if (matchNumbersCount == FIFTH.matchNumbersCount) {
             return FIFTH;
         }

@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomLottoSetTest {
-
     private static final int PURCHASE_COUNT_STANDARD = 1000;
 
     @Test
-    public void testGenerateLottoSet() throws Exception {
+    void testGenerateLottoSet() throws Exception {
         // given
         int targetSize = 10;
         PurchaseCount purchaseCount = new PurchaseCount(String.valueOf(targetSize * PURCHASE_COUNT_STANDARD));

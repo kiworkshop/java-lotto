@@ -5,18 +5,18 @@ import lombok.Getter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class RandomLottoSet {
-
-    @Getter
-    private final Set<RandomLotto> lottoSet = new HashSet<>();
+public class RandomLottoSet extends LottoSet {
 
     public RandomLottoSet(PurchaseCount purchaseCount) {
-        generateRandomLottoSetWithSize(purchaseCount.getPurchaseCount());
+        super(generateRandomLottoSetWithSize(purchaseCount.getPurchaseCount()));
+
     }
 
-    private void generateRandomLottoSetWithSize(int size) {
+    private static Set<Lotto> generateRandomLottoSetWithSize(int size) {
+        Set<Lotto> lottoSet = new HashSet<>();
         for (int i = 0; i < size; i++) {
             lottoSet.add(new RandomLotto());
         }
+        return lottoSet;
     }
 }

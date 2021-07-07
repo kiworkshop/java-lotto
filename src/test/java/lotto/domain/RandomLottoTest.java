@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.RandomLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,7 @@ public class RandomLottoTest {
 
     @Test
     @DisplayName("로또 1개 생성")
-    public void testGenerateLotto() throws Exception {
+    void testGenerateLotto() throws Exception {
         // given
         RandomLotto randomLotto = new RandomLotto();
 

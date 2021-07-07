@@ -31,8 +31,8 @@ public class Lotto {
     }
 
     public void setRank(List<Integer> winningNumber, int bonusNumber) {
-        countOfMatches(winningNumber);  // 숫자로 몇개 맞는지 count
-        countOfBonusMatch(bonusNumber); // boolean 보너스가 맞는지 줌
+        countOfMatches(winningNumber);
+        countOfBonusMatch(bonusNumber);
         rank = Rank.getRank(matchCount, bonusCount);
     }
 

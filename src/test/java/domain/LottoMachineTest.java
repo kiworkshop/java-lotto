@@ -14,7 +14,7 @@ public class LottoMachineTest {
         int givenMoney = 14000;
         LottoMachine lottoMachine = new LottoMachine();
         //when
-        int ticketNumber = lottoMachine.getLottoTicktCount(givenMoney);
+        int ticketNumber = lottoMachine.getLottoTicketCount(givenMoney);
         //than
         assertThat(ticketNumber).isEqualTo(14);
     }
@@ -38,7 +38,7 @@ public class LottoMachineTest {
         int money = 1000;
         //when
         List<Integer> lottoNumbers = lottoMachine.createRandomNumber();
-        List<Lotto> lottos = lottoMachine.buyLottos(money);
+        List<Lotto> lottos = lottoMachine.buyLotto(money);
         //than
         assertThat(lottos.size()).isEqualTo(1);
 

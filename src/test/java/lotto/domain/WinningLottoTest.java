@@ -1,12 +1,10 @@
 package lotto.domain;
 
 import lotto.constant.PrizeCondition;
+import lotto.parser.LottoParser;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,34 +18,19 @@ public class WinningLottoTest {
 
     @BeforeAll
     private static void generateTargetLotto() {
-        List<LottoNumber> lottoNumbers = new ArrayList<>();
-        lottoNumbers.add(new LottoNumber("1"));
-        lottoNumbers.add(new LottoNumber("2"));
-        lottoNumbers.add(new LottoNumber("3"));
-        lottoNumbers.add(new LottoNumber("4"));
-        lottoNumbers.add(new LottoNumber("5"));
-        lottoNumbers.add(new LottoNumber("6"));
-        targetLotto = new Lotto(lottoNumbers);
+        targetLotto = new Lotto(LottoParser.generateLotto("1, 2, 3, 4, 5, 6"));
     }
 
     @Test
-    @DisplayName("WinningNumbers 타입 확인")
-    public void test() throws Exception {
+    @DisplayName("숫자가 6개인지 확인한다")
+    void testWinningNumberSize() throws Exception {
         // given, when, then
-        assertThat(winningLotto.getLottoNumbers()).isExactlyInstanceOf(ArrayList.class);
+        assertThat(winningLotto.getLottoNumbers().size()).isEqualTo(Lotto.LOTTO_NUMBER_SIZE);
     }
 
     @Test
-    @DisplayName("숫자가 6개인지 확인")
-    public void testWinningNumberSize() throws Exception {
-        // given, when, then
-        assertThat(winningLotto.getLottoNumbers().size()).isEqualTo(6);
-    }
-
-
-    @Test
-    @DisplayName("숫자가 아닌 값 포함")
-    public void testInputWithNonInteger() throws Exception {
+    @DisplayName("숫자가 아닌 값 포함할 때 예외를 던진다")
+    void testInputWithNonInteger() throws Exception {
         // given
         String input = "1, a, 3, 4, 5, 6";
         String bonus = "10";
@@ -59,8 +42,8 @@ public class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("로또 번호 입력값이 45 초과면 예외 발생")
-    public void testInputGreaterThanUpperBoundary() throws Exception {
+    @DisplayName("45 초과인 값 포함할 때 예외를 던진다")
+    void testInputGreaterThanUpperBoundary() throws Exception {
         // given
         String input = "1, 2, 3, 4, 5, 46";
         String bonus = "10";
@@ -72,8 +55,8 @@ public class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("로또 번호 입력값이 1 미만이면 예외 발생")
-    public void testInputSmallerThanLowerBoundary() throws Exception {
+    @DisplayName("1 미만인 값 포함할 때 예외를 던진다")
+    void testInputSmallerThanLowerBoundary() throws Exception {
         // given
         String input = "0, 2, 3, 4, 5, 6";
         String bonus = "10";
@@ -85,14 +68,15 @@ public class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("보너스 번호 입력값을 확인")
+    @DisplayName("보너스 번호 입력값을 확인한다")
     void testBonusInput() {
         //given, when, then
-        assertThat(winningLotto.getBonusNumber().getLottoNumber()).isEqualTo(10);
+        assertThat(winningLotto.getBonusNumber().getLottoNumber())
+                .isEqualTo(Integer.parseInt(bonusNumberInput));
     }
 
     @Test
-    @DisplayName("보너스 미포함 6개 맞으면 1등")
+    @DisplayName("숫자가 6개 일치할 때 1등")
     void testFindPrize_firstWithoutBonus() {
         //given, when
         PrizeCondition prize = winningLotto.findPrize(targetLotto);
@@ -102,7 +86,7 @@ public class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("5개 + 보너스 맞으면 2등")
+    @DisplayName("숫자가 5개 일치하고 보너스번호도 일치할 때 2등")
     void testFindPrize_secondWithBonus() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,7", "6");
@@ -113,7 +97,7 @@ public class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("5개 + 보너스 안 맞으면 3등")
+    @DisplayName("숫자가 5개 일치하고 보너스 번호가 일치하지 않을 때 3등")
     void testFindPrize_third() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,7", bonusNumberInput);
@@ -124,7 +108,7 @@ public class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("보너스 미포함 4개 맞으면 4등")
+    @DisplayName("숫자가 4개 일치할 때 4등")
     void testFindPrize_fourth() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("4,3,2,1,8,7", bonusNumberInput);
@@ -135,7 +119,7 @@ public class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("보너스 미포함 3개 맞으면 5등")
+    @DisplayName("숫자가 3개 일치할 때 5등")
     void testFindPrize_fifth() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("4,3,2,9,8,7", bonusNumberInput);

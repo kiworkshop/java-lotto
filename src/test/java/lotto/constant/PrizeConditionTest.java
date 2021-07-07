@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PrizeConditionTest {
 
     @Test
-    @DisplayName("숫자가 6개 일치하 1등")
+    @DisplayName("숫자가 6개 일치할 때 1등")
     void firstPrize() {
         //given
         int matchNumbersCount = 6;
@@ -35,7 +35,7 @@ public class PrizeConditionTest {
     }
 
     @Test
-    @DisplayName("숫자가 5개 일치하고 보너스 번호가 틀 때 3등")
+    @DisplayName("숫자가 5개 일치하고 보너스 번호가 일치하지 않을 때 3등")
     void thirdPrize() {
         //given
         int matchNumbersCount = 5;
@@ -70,5 +70,44 @@ public class PrizeConditionTest {
                 .isEqualTo(PrizeCondition.FIFTH);
         assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
                 .isEqualTo(PrizeCondition.FIFTH);
+    }
+
+    @Test
+    @DisplayName("숫자가 2개 일치할 때 꽝")
+    void loseMatchesTwo() {
+        //given
+        int matchNumbersCount = 2;
+
+        //when, then
+        assertThat(PrizeCondition.findPrize(matchNumbersCount, false))
+                .isEqualTo(PrizeCondition.LOSE);
+        assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
+                .isEqualTo(PrizeCondition.LOSE);
+    }
+
+    @Test
+    @DisplayName("숫자가 1개 일치할 때 꽝")
+    void loseMatchesOne() {
+        //given
+        int matchNumbersCount = 1;
+
+        //when, then
+        assertThat(PrizeCondition.findPrize(matchNumbersCount, false))
+                .isEqualTo(PrizeCondition.LOSE);
+        assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
+                .isEqualTo(PrizeCondition.LOSE);
+    }
+
+    @Test
+    @DisplayName("숫자가 0개 일치할 때 꽝")
+    void lose() {
+        //given
+        int matchNumbersCount = 0;
+
+        //when, then
+        assertThat(PrizeCondition.findPrize(matchNumbersCount, false))
+                .isEqualTo(PrizeCondition.LOSE);
+        assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
+                .isEqualTo(PrizeCondition.LOSE);
     }
 }

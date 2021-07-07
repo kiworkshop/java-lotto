@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PurchaseCountTest {
 
     @Test
-    @DisplayName("")
+    @DisplayName("구매금액 입력값이 1000 미만이면 예외를 던진다")
     void testInputValueUnder1000() throws Exception {
         // given
         String input = "800";
@@ -24,7 +24,7 @@ public class PurchaseCountTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("구매금액 입력값이 1000 이상이면 정상처리된다")
     void testInputValueNotUnder1000() throws Exception {
         // given
         String input = "2000";
@@ -34,7 +34,7 @@ public class PurchaseCountTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("구매금액 입력값이 1000의 배수가 아니면 예외를 던진다")
     void testInputValueNotMultiple1000() throws Exception {
         // given
         String input = "1234";
@@ -45,7 +45,7 @@ public class PurchaseCountTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("구매금액 입력값이 숫자가 아니면 예외를 던진다")
     void testInputNotNumber() throws Exception {
         // given
         String input = "error";
@@ -58,7 +58,7 @@ public class PurchaseCountTest {
     }
 
     @Test
-    @DisplayName("공백이 오른쪽에 있을 때 정상 처리된다")
+    @DisplayName("공백이 왼쪽에 있을 때 정상 처리된다")
     void testPriceInputWithLeftBlank() throws Exception {
         // given
         String input = " 1000";

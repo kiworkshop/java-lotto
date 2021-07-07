@@ -26,10 +26,14 @@ public class Lotto {
         return lottoString;
     }
 
-    public Rank getRank(List<Integer> winningNumber, int bonusNumber) {
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(List<Integer> winningNumber, int bonusNumber) {
         countOfMatches(winningNumber);  // 숫자로 몇개 맞는지 count
         countOfBonusMatch(bonusNumber); // boolean 보너스가 맞는지 줌
-        return Rank.getRank(matchCount, bonusCount);
+        rank = Rank.getRank(matchCount, bonusCount);
     }
 
     private void countOfMatches(List<Integer> winningNumbers) {

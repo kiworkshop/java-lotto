@@ -33,12 +33,12 @@ public class LottoTest {
 
         //when
         Lotto firstWinningLotto = new Lotto(firstWinningLottoNumbers);
-        firstWinningLotto.getRank(winningNumbers, bonusNumber);
-        Rank firstPlace = firstWinningLotto.getRank(winningNumbers, bonusNumber);
+        firstWinningLotto.setRank(winningNumbers, bonusNumber);
+        Rank firstPlace = firstWinningLotto.getRank();
 
         Lotto secondWinningLotto = new Lotto(secondWinningLottoNumbers);
-        secondWinningLotto.getRank(winningNumbers, bonusNumber);
-        Rank secondPlace = secondWinningLotto.getRank(winningNumbers, bonusNumber);
+        secondWinningLotto.setRank(winningNumbers, bonusNumber);
+        Rank secondPlace = secondWinningLotto.getRank();
 
         //then
         assertThat(firstPlace).isEqualTo(Rank.FIRST_PLACE);

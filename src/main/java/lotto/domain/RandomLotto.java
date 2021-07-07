@@ -19,13 +19,9 @@ public class RandomLotto extends Lotto {
     }
 
     private static List<LottoNumber> generateRandomLottoNumbers() {
-        ArrayList<Integer> defaultNumberSet = new ArrayList<>();
-        for (int i = 0; i < 44; i++) {
-            defaultNumberSet.add(i+1);
-        }
-
-        Collections.shuffle(defaultNumberSet);
-        return defaultNumberSet.subList(INDEX_LOWER_BOUND, INDEX_UPPER_BOUND)
+        List<Integer> defaultNumbers = new ArrayList<>(DefaultNumbers.getDefaultNumbers());
+        Collections.shuffle(defaultNumbers);
+        return defaultNumbers.subList(INDEX_LOWER_BOUND, INDEX_UPPER_BOUND)
                 .stream()
                 .map(String::valueOf)
                 .map(LottoNumber::new)

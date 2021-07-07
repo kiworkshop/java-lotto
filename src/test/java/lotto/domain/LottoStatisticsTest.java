@@ -20,8 +20,11 @@ public class LottoStatisticsTest {
     @Test
     @DisplayName("당첨 로또 개수를 받으면 총 상금액을 반환한다")
     void testLottoStatistics() {
-        //given, when, then
-        assertThat(LottoStatistics.calcProfitRate(PRIZE_COUNT, new PurchaseCount(String.valueOf(PURCHASE_MONEY))))
-                .isEqualTo(RESULT);
+        //given, when
+        LottoStatistics lottoStatistics = new LottoStatistics(PRIZE_COUNT,
+                new PurchaseCount(String.valueOf(PURCHASE_MONEY)));
+
+        // then
+        assertThat(lottoStatistics.calcProfitRate()).isEqualTo(RESULT);
     }
 }

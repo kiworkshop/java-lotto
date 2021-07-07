@@ -14,6 +14,7 @@ public class WinningLotto extends Lotto {
     public WinningLotto(String winningNumberInput, String bonusNumberInput) {
         super(LottoParser.generateLotto(winningNumberInput));
         this.bonusNumber = new LottoNumber(bonusNumberInput);
+        this.lottoNumbers.sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
     }
 
     public PrizeCondition findPrize(Lotto targetLotto) {
@@ -26,7 +27,6 @@ public class WinningLotto extends Lotto {
 
     private int getMatchNumbersCount(Lotto targetLotto) {
         targetLotto.getLottoNumbers().sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
-        this.lottoNumbers.sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
         int targetIdx = 0, winningIdx = 0;
         int matchNumbersCount = 0;
         while (targetIdx < targetLotto.lottoNumbers.size() && winningIdx < this.lottoNumbers.size()) {

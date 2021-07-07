@@ -10,7 +10,7 @@
     - [x] 공백 처리
 - [x] 구매 개수 구하기
 - [x] 랜덤 로또번호 구매 개수만큼 만들기
-    - [ ] defaultNumberSet 1번만 생성되도록 변경
+    - [x] defaultNumberSet 1번만 생성되도록 변경
     - [x] RandomLottoTest 상수 리팩토링
     - [x] PurchaseCount의 1000 접근
 - [x] 지난 주 당첨 번호 입력받기

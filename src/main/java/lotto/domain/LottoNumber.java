@@ -8,8 +8,8 @@ import static lotto.util.NumberValidateUtils.isInteger;
 
 public class LottoNumber {
 
-    private static final int LOWER_BOUND = 1;
-    private static final int UPPER_BOUND = 45;
+    public static final int LOWER_BOUND = 1;
+    public static final int UPPER_BOUND = 45;
 
     @Getter
     private final int lottoNumber;

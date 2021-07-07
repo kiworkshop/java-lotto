@@ -1,12 +1,9 @@
 package lotto.domain;
 
-import lotto.parser.LottoParser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.HashSet;
 
 public class PrizeCountTest {
 

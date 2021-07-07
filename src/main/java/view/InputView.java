@@ -2,6 +2,7 @@ package view;
 
 import utils.InputValidation;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {

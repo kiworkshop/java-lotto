@@ -16,6 +16,7 @@ public class LottoController {
         int money = inputView.inputMoney();
         List<Lotto> lottos = lottoMachine.buyLottos(money);
         outputView.printLottos(lottos);
-
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        int bonusNumber = inputView.inputBonusBall(winningNumbers);
     }
 }

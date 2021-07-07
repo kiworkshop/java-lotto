@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 public class InputValidation {
     private static final String LOTTO_PRICE_PATTERN = "\\d*000";
     private static final String COMMA = ",";
-    private static final int BOUND_MIN = 0;
-    private static final int BOUND_MAX = 46;
+    private static final int BOUND_MIN = 1;
+    private static final int BOUND_MAX = 45;
     private static final int LOTTO_LENGTH = 6;
     private static final String ALERT_CHECK_COMMA = String.format("구분자를 \"%s\"로 입력하셨는지 확인해주세요.", COMMA);
     private static final String ALERT_CHECK_NULL_OR_EMPTY = String.format("\"%s\"로 구분한 지난 주 당첨번호를 입력해주세요.", COMMA);
@@ -59,7 +59,7 @@ public class InputValidation {
         }
     }
 
-    public List<Integer> checkWinningNumber(String winningNumber) {
+    public List<Integer> checkWinningNumbers(String winningNumber) {
         checkNullOrEmpty(winningNumber);
         List<Integer> winningNumbers = toIntegers(splitByComma(winningNumber));
         validate(winningNumbers);
@@ -78,8 +78,8 @@ public class InputValidation {
         }
     }
 
-    private void checkBound(int number) {
-        if (BOUND_MIN < number && BOUND_MAX > number) {
+    public void checkBound(int number) {
+        if (BOUND_MIN > number || number > BOUND_MAX) {
             throw new IllegalArgumentException(ALERT_CHECK_BOUND);
         }
     }

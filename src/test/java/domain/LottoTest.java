@@ -4,6 +4,9 @@ import enums.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoTest {
@@ -17,5 +20,28 @@ public class LottoTest {
         //than
         assertThat(lotto.getLottoNumbers().size()).isEqualTo(6);
         assertThat(lotto.getLottoNumbers().stream().distinct().count()).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("당첨번호가 모두 일치하면 1등 당첨인 로또 랭크를 리턴한다.")
+    public void getRank() {
+        //given
+        List<Integer> firstWinningLottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> secondWinningLottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 7);
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        //when
+        Lotto firstWinningLotto = new Lotto(firstWinningLottoNumbers);
+        firstWinningLotto.getRank(winningNumbers, bonusNumber);
+        Rank firstPlace = firstWinningLotto.getRank(winningNumbers, bonusNumber);
+
+        Lotto secondWinningLotto = new Lotto(secondWinningLottoNumbers);
+        secondWinningLotto.getRank(winningNumbers, bonusNumber);
+        Rank secondPlace = secondWinningLotto.getRank(winningNumbers, bonusNumber);
+
+        //then
+        assertThat(firstPlace).isEqualTo(Rank.FIRST_PLACE);
+        assertThat(secondPlace).isEqualTo(Rank.SECOND_PLACE);
     }
 }

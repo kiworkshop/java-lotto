@@ -20,6 +20,7 @@ public class InputValidation {
     private static final String ALERT_CHECK_BOUND = String.format("당첨번호는 %d - %d 사이값을 입력해주세요", BOUND_MIN, BOUND_MAX);
     private static final String ALERT_CHECK_LENGTH = String.format("당첨번호는 %d개 이어야 합니다.", LOTTO_LENGTH);
     private static final String ALERT_CHECK_DUPLICATION = "중복되는 숫자가 포함되어 있는지 확인해주세요.";
+    private static final String ALERT_CHECK_BONUS_DUPLICATE = "보너스볼이 당첨 번호와 중복되는지 확인해주세요.";
 
     public int checkGivenMoney(String givenMoney) {
         if (!Pattern.matches(LOTTO_PRICE_PATTERN, givenMoney)) {
@@ -28,14 +29,22 @@ public class InputValidation {
         return Integer.parseInt(givenMoney);
     }
 
-    public static List<Integer> toIntegers(List<String> input) {
+    public int checkBonusBall(String bonusInput, List<Integer> winningNumber) {
+        int bonusInputNumber = Integer.parseInt(bonusInput);
+        checkBound(bonusInputNumber);
+        checkBonusDuplicate(bonusInputNumber, winningNumber);
+        return bonusInputNumber;
+    }
+
+
+    private static List<Integer> toIntegers(List<String> input) {
         return new ArrayList<>(Collections.unmodifiableList(input.stream()
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .collect(Collectors.toList())));
     }
 
-    public static List<String> splitByComma(String input) {
+    private static List<String> splitByComma(String input) {
         if (!input.contains(COMMA)) {
             throw new IllegalArgumentException(ALERT_CHECK_COMMA);
         }
@@ -90,6 +99,14 @@ public class InputValidation {
         if (countOfDeDuplication != winningNumbers.size()) {
             throw new IllegalArgumentException(ALERT_CHECK_DUPLICATION);
         }
+    }
 
+    private void checkBonusDuplicate(int bonusInputNumber, List<Integer> winningNumber) {
+        boolean isDuplicate = winningNumber.stream()
+                .anyMatch(number -> bonusInputNumber == number);
+
+        if (isDuplicate) {
+            throw new IllegalArgumentException(ALERT_CHECK_BONUS_DUPLICATE);
+        }
     }
 }

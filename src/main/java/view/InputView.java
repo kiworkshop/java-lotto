@@ -14,4 +14,14 @@ public class InputView {
         return inputValidation.checkGivenMoney(scanner.nextLine());
     }
 
+    public List<Integer> inputWinningNumbers() {
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+        return inputValidation.checkWinningNumbers(scanner.nextLine());
+    }
+
+    public int inputBonusBall(List<Integer> winningNumbers) {
+        System.out.println("보너스 볼을 입력해 주세요.");
+        return inputValidation.checkBonusBall(scanner.nextLine(), winningNumbers);
+    }
+
 }

@@ -9,10 +9,10 @@ import java.util.stream.IntStream;
 public class LottoMachine {
 
     private static final int LOTTO_PRICE = 1000;
+    private int lottoTicketCount = 0;
 
-
-    public int getLottoTicktCount(int givenMoney) {
-        return givenMoney / LOTTO_PRICE;
+    public void getLottoTicketCount(int givenMoney) {
+        lottoTicketCount = givenMoney / LOTTO_PRICE;
     }
 
     public List<Integer> createRandomNumber() {
@@ -25,8 +25,8 @@ public class LottoMachine {
         return lottoNumbers;
     }
 
-    public List<Lotto> buyLottos(int money) {
-        int ticketCount = getLottoTicktCount(money);
+    public List<Lotto> buyLotto(int money) {
+        getLottoTicketCount(money);
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             lottos.add(new Lotto(createRandomNumber()));

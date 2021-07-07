@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lombok.Getter;
 
+import java.util.Collections;
 import java.util.Set;
 
 public class LottoSet {
@@ -10,6 +11,6 @@ public class LottoSet {
     private final Set<Lotto> lottoSet;
 
     public LottoSet(Set<Lotto> lottoSet) {
-        this.lottoSet = lottoSet;
+        this.lottoSet = Collections.unmodifiableSet(lottoSet);
     }
 }

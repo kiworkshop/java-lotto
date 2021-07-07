@@ -10,7 +10,7 @@ public class Lotto {
     public static final int LOTTO_NUMBER_SIZE = 6;
 
     @Getter
-    protected final List<LottoNumber> lottoNumbers;
+    protected List<LottoNumber> lottoNumbers;
 
     public Lotto(List<LottoNumber> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;

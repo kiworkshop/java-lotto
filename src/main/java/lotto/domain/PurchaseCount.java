@@ -1,7 +1,10 @@
 package lotto.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 
+import static lotto.exception.ExceptionMessage.NON_INTEGER_INPUT_FOR_PURCHASE_MONEY;
+import static lotto.exception.ExceptionMessage.NON_MULTIPLE_OF_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY;
 import static lotto.util.NumberValidateUtils.isInteger;
 
 public class PurchaseCount {
@@ -11,27 +14,30 @@ public class PurchaseCount {
     @Getter
     private final int purchaseCount;
 
+    @Builder
     public PurchaseCount(String input) {
         input = input.trim();
         validate(input);
+
         this.purchaseCount = Integer.parseInt(input) / Lotto.PRICE;
     }
 
     private void validate(String input) {
         if (!isInteger(input)) {
-            throw new IllegalArgumentException("잘못된 입력입니다");
+            throw new IllegalArgumentException(NON_INTEGER_INPUT_FOR_PURCHASE_MONEY.getMessage());
         }
-        int inputConversion = Integer.parseInt(input);
-        if (notMatchesCondition(inputConversion)) {
-            throw new IllegalArgumentException("입력값이 잘못되었습니다");
+
+        int purchaseCount = Integer.parseInt(input);
+        if (notMatchesCondition(purchaseCount)) {
+            throw new IllegalArgumentException(NON_MULTIPLE_OF_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY.getMessage());
         }
     }
 
     private boolean notMatchesCondition(int input) {
-        return input < MINIMUM_INPUT || notMultipleOfStandard(input);
+        return input < MINIMUM_INPUT || notMultipleOfLottoPrice(input);
     }
 
-    private boolean notMultipleOfStandard(int input) {
+    private boolean notMultipleOfLottoPrice(int input) {
         return input % Lotto.PRICE != 0;
     }
 }

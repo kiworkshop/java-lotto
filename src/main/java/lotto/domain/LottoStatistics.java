@@ -1,24 +1,26 @@
 package lotto.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lotto.constant.PrizeMoney;
 
 public class LottoStatistics {
 
     @Getter
-    PrizeCount prizeCount;
-    PurchaseCount purchaseCount;
+    private final PrizeCount prizeCount;
+    private final PurchaseCount purchaseCount;
 
+    @Builder
     public LottoStatistics(PrizeCount prizeCount, PurchaseCount purchaseCount) {
         this.prizeCount = prizeCount;
         this.purchaseCount = purchaseCount;
     }
 
     public double calcProfitRate() {
-        return (double) calcSum() / (purchaseCount.getPurchaseCount() * Lotto.PRICE);
+        return (double) sumOfPrizeMoney() / (purchaseCount.getPurchaseCount() * Lotto.PRICE);
     }
 
-    private long calcSum() {
+    private long sumOfPrizeMoney() {
         return prizeCount.getCountFirst() * PrizeMoney.FIRST.getValue()
                 + prizeCount.getCountSecond() * PrizeMoney.SECOND.getValue()
                 + prizeCount.getCountThird() * PrizeMoney.THIRD.getValue()

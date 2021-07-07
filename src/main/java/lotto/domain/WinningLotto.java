@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lotto.constant.PrizeCondition;
 import lotto.parser.LottoParser;
@@ -9,20 +10,17 @@ import java.util.Comparator;
 public class WinningLotto extends Lotto {
 
     @Getter
-    private LottoNumber bonusNumber;
+    private final LottoNumber bonusNumber;
 
-    public WinningLotto(String winningNumberInput, String bonusNumberInput) {
-        super(LottoParser.generateLotto(winningNumberInput));
+    @Builder
+    public WinningLotto(String winningNumberInput, String bonusNumberInput) throws IllegalArgumentException {
+        super(LottoParser.parseInputIntoLottoNumbers(winningNumberInput));
         this.bonusNumber = new LottoNumber(bonusNumberInput);
         this.lottoNumbers.sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
     }
 
-    public PrizeCondition findPrize(Lotto targetLotto) {
+    public PrizeCondition findPrizeCondition(Lotto targetLotto) {
         return PrizeCondition.findPrize(getMatchNumbersCount(targetLotto), isBonusMatch(targetLotto));
-    }
-
-    private boolean isBonusMatch(Lotto targetLotto) {
-        return targetLotto.getLottoNumbers().contains(bonusNumber);
     }
 
     private int getMatchNumbersCount(Lotto targetLotto) {
@@ -36,15 +34,17 @@ public class WinningLotto extends Lotto {
                 matchNumbersCount++;
                 targetIdx++;
                 winningIdx++;
-            }
-            else if (targetNumber > winningNumber) {
+            } else if (targetNumber > winningNumber) {
                 winningIdx++;
-            }
-            else {
+            } else {
                 targetIdx++;
             }
         }
         return matchNumbersCount;
+    }
+
+    private boolean isBonusMatch(Lotto targetLotto) {
+        return targetLotto.getLottoNumbers().contains(bonusNumber);
     }
 
 }

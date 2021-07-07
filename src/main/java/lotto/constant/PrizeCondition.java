@@ -17,7 +17,6 @@ public enum PrizeCondition {
         this.isBonus = isBonus;
     }
 
-
     public static PrizeCondition findPrize(int matchNumbersCount, boolean isBonus) {
         if (matchNumbersCount <= LOSE.matchNumbersCount) {
             return LOSE;

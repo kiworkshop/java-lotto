@@ -19,7 +19,7 @@ public class PurchaseCountTest {
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            PurchaseCount purchaseCount = new PurchaseCount(input);;
+            new PurchaseCount(input);;
         });
     }
 

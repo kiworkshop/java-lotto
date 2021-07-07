@@ -1,30 +1,32 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.dto.StatisticsResultDTO;
 import lotto.domain.dto.PurchasePriceInputDTO;
+import lotto.domain.dto.PurchaseResultDTO;
 import lotto.domain.dto.WinningLottoInputDTO;
+import lotto.service.LottoService;
 import lotto.view.View;
 
 public class LottoController {
+
+    private static final View view = new View();
+    private static final LottoService lottoService = new LottoService();
+
     public static void main(String[] args) {
-        start();
+        try {
+            start();
+        } catch (IllegalArgumentException e) {
+            view.printException(e.getMessage());
+        }
     }
 
-    public static void start() {
-        PurchasePriceInputDTO purchasePriceInputDTO = View.getPurchaseCost();
+    public static void start() throws IllegalArgumentException {
+        PurchasePriceInputDTO purchasePriceInputDTO = view.getPurchaseCost();
+        PurchaseResultDTO purchaseResultDTO = lottoService.purchase(purchasePriceInputDTO);
+        view.printLottoPurchaseResult(purchaseResultDTO);
 
-        PurchaseCount purchaseCount = new PurchaseCount(purchasePriceInputDTO.getInput());
-        RandomLottoSet randomLottoSet = new RandomLottoSet(purchaseCount);
-
-        View.printLottoCount(purchaseCount);
-        View.printLottoSet(randomLottoSet);
-
-        WinningLottoInputDTO winningLottoInputDTO = View.getWinningLottoAndBonus();
-        WinningLotto winningLotto = new WinningLotto(
-                winningLottoInputDTO.getWinningLottoNumbers(),
-                winningLottoInputDTO.getWinningLottoBonus());
-
-        LottoStatistics lottoStatistics = new LottoStatistics(new PrizeCount(randomLottoSet, winningLotto), purchaseCount);
-        View.printLottoStatistics(lottoStatistics);
+        WinningLottoInputDTO winningLottoInputDTO = view.getWinningLottoAndBonus();
+        StatisticsResultDTO statisticsResultDTO = lottoService.calcResult(purchaseResultDTO, winningLottoInputDTO);
+        view.printLottoStatistics(statisticsResultDTO);
     }
 }

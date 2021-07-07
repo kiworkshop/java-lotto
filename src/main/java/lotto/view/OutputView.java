@@ -1,7 +1,11 @@
 package lotto.view;
 
 import lotto.constant.PrizeMessage;
-import lotto.domain.*;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.PurchaseCount;
+import lotto.domain.RandomLottoSet;
+import lotto.domain.dto.StatisticsResultDTO;
 
 public class OutputView {
 
@@ -52,14 +56,14 @@ public class OutputView {
         print("보너스 볼을 입력해 주세요.");
     }
 
-    public void printLottoStatistic(LottoStatistics lottoStatistics) {
+    public void printLottoStatistic(StatisticsResultDTO lottoStatistics) {
         String result = "당첨 통계" + "---------" + NEW_LINE +
                 generatePrizeMessage(PrizeMessage.FIFTH, lottoStatistics.getPrizeCount().getCountFifth()) +
                 generatePrizeMessage(PrizeMessage.FOURTH, lottoStatistics.getPrizeCount().getCountFourth()) +
                 generatePrizeMessage(PrizeMessage.THIRD, lottoStatistics.getPrizeCount().getCountThird()) +
                 generatePrizeMessage(PrizeMessage.SECOND, lottoStatistics.getPrizeCount().getCountSecond()) +
                 generatePrizeMessage(PrizeMessage.FIRST, lottoStatistics.getPrizeCount().getCountFirst()) +
-                generateProfitRateMessage(lottoStatistics.calcProfitRate());
+                generateProfitRateMessage(lottoStatistics.getProfitRate());
         print(result);
     }
 
@@ -69,5 +73,9 @@ public class OutputView {
 
     private String generateProfitRateMessage(double profitRate) {
         return "총 수익률은 " + profitRate + "입니다.";
+    }
+
+    public void printException(String message) {
+        print(message);
     }
 }

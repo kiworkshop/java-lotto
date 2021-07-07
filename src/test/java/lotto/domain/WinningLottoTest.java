@@ -18,7 +18,7 @@ public class WinningLottoTest {
 
     @BeforeAll
     private static void generateTargetLotto() {
-        targetLotto = new Lotto(LottoParser.generateLotto("1, 2, 3, 4, 5, 6"));
+        targetLotto = new Lotto(LottoParser.parseInputIntoLottoNumbers("1, 2, 3, 4, 5, 6"));
     }
 
     @Test
@@ -68,6 +68,19 @@ public class WinningLottoTest {
     }
 
     @Test
+    @DisplayName("6개 이하의 숫자가 입력됐을 때 예외를 던진다")
+    void testInputLengthLessThanStandard() throws Exception {
+        // given
+        String input = "1, 2, 3, 4, 5";
+        String bonus = "10";
+
+        // when, then
+        assertThrows(IllegalArgumentException.class, () -> {
+            new WinningLotto(input, bonus);
+        });
+    }
+
+    @Test
     @DisplayName("보너스 번호 입력값을 확인한다")
     void testBonusInput() {
         //given, when, then
@@ -79,7 +92,7 @@ public class WinningLottoTest {
     @DisplayName("숫자가 6개 일치할 때 1등")
     void testFindPrize_firstWithoutBonus() {
         //given, when
-        PrizeCondition prize = winningLotto.findPrize(targetLotto);
+        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
         assertThat(prize).isEqualTo(PrizeCondition.FIRST);
@@ -90,7 +103,7 @@ public class WinningLottoTest {
     void testFindPrize_secondWithBonus() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,7", "6");
-        PrizeCondition prize = winningLotto.findPrize(targetLotto);
+        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
         assertThat(prize).isEqualTo(PrizeCondition.SECOND);
@@ -101,7 +114,7 @@ public class WinningLottoTest {
     void testFindPrize_third() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,7", bonusNumberInput);
-        PrizeCondition prize = winningLotto.findPrize(targetLotto);
+        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
         assertThat(prize).isEqualTo(PrizeCondition.THIRD);
@@ -112,7 +125,7 @@ public class WinningLottoTest {
     void testFindPrize_fourth() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("4,3,2,1,8,7", bonusNumberInput);
-        PrizeCondition prize = winningLotto.findPrize(targetLotto);
+        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
         assertThat(prize).isEqualTo(PrizeCondition.FOURTH);
@@ -123,7 +136,7 @@ public class WinningLottoTest {
     void testFindPrize_fifth() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("4,3,2,9,8,7", bonusNumberInput);
-        PrizeCondition prize = winningLotto.findPrize(targetLotto);
+        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
         assertThat(prize).isEqualTo(PrizeCondition.FIFTH);

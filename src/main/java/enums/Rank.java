@@ -40,4 +40,8 @@ public enum Rank {
     public int matched() {
         return matched;
     }
+
+    public int bonusMatched() {
+        return bonusMatched;
+    }
 }

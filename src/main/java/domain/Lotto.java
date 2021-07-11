@@ -8,6 +8,7 @@ public class Lotto {
     private final List<Integer> lottoNumbers;
     private int matchCount;
     private int bonusCount;
+    private Rank rank;
 
     public Lotto(List<Integer> randomNumber) {
         this.lottoNumbers = randomNumber;

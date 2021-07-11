@@ -89,3 +89,5 @@ public class LottoMachineTest {
         assertThat(rankResult.get(Rank.SECOND_PLACE)).isEqualTo(1);
     }
 }
+
+

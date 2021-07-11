@@ -61,4 +61,12 @@ public class LottoMachine {
 
         return result;
     }
+
+    public double getProfitRate(int givenMoney, Map<Rank, Integer> rankResult) {
+        double totalPrize = rankResult.entrySet()
+                .stream()
+                .mapToDouble((rank) -> rank.getKey().prize() * rank.getValue())
+                .sum();
+        return totalPrize / givenMoney;
+    }
 }

@@ -25,7 +25,7 @@ public class OutputView {
 //    총 수익률은 0.35입니다. // 기준이 1이기 때문에 결과적으로 손해라는 의미
 
     public void printStatistics(double profitRate) {
-        System.out.printf("총 수익률은 %d입니다.\n", profitRate);
+        System.out.printf("총 수익률은 %.2f 입니다.\n", profitRate);
     }
 
     public void printRankResult(Map<Rank, Integer> rankResult) {

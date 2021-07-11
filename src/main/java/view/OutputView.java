@@ -29,6 +29,8 @@ public class OutputView {
     }
 
     public void printRankResult(Map<Rank, Integer> rankResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
         rankResult.forEach((rank, count) -> {
             result(rank, count);
         });

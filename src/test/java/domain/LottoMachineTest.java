@@ -88,6 +88,52 @@ public class LottoMachineTest {
         //then
         assertThat(rankResult.get(Rank.SECOND_PLACE)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("로또 수익률을 반환한다")
+    void getProfitRate() {
+        //given
+        int money = 1000;
+        LottoMachine lottoMachine = new LottoMachine(money);
+        List<Lotto> lottoTicket = new ArrayList<>();
+
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        lottoTicket.add(lotto);
+
+        //when
+        lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket);
+        double profitRate = lottoMachine.getProfitRate(money, rankResult);
+
+        //then
+        assertThat(profitRate).isEqualTo(2000000);
+    }
+
+    @Test
+    @DisplayName("로또 수익률을 반환한다")
+    void getProfitRate2() {
+        //given
+        int money = 5000;
+        LottoMachine lottoMachine = new LottoMachine(money);
+        List<Lotto> lottoTicket = new ArrayList<>();
+
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(Arrays.asList(6, 7, 8, 9, 10, 11));
+        lottoTicket.add(lotto);
+        lottoTicket.add(lotto2);
+        lottoTicket.add(lotto2);
+        lottoTicket.add(lotto2);
+        lottoTicket.add(lotto2);
+
+        //when
+        lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 11, 12, 13), 7);
+        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket);
+        double profitRate = lottoMachine.getProfitRate(money, rankResult);
+
+        //then
+        assertThat(profitRate).isEqualTo(1);
+    }
+
 }
 
 

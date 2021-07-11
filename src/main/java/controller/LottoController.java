@@ -24,8 +24,8 @@ public class LottoController {
         int bonusNumber = inputView.inputBonusBall(winningNumbers);
 
         List<Lotto> lottoResult = lottoMachine.getRankResult(lottoTickets, winningNumbers, bonusNumber);
-        Map<Rank, Integer> RankResult = lottoMachine.getRankResult(lottoResult);
-        outputView.printRankResult(RankResult);
-
+        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoResult);
+        outputView.printRankResult(rankResult);
+        outputView.printStatistics(lottoMachine.getProfitRate(money, rankResult));
     }
 }

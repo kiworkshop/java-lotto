@@ -1,8 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import enums.Rank;
+
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -31,6 +31,6 @@ public class LottoMachine {
         for (int i = 0; i < ticketCount; i++) {
             lottos.add(new Lotto(createRandomNumber()));
         }
-        return lottos;
+        return lottoTicket;
     }
 }

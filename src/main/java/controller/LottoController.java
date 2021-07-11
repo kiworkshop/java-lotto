@@ -2,6 +2,7 @@ package controller;
 
 import domain.Lotto;
 import domain.LottoMachine;
+import enums.Rank;
 import view.InputView;
 import view.OutputView;
 

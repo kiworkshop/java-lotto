@@ -1,5 +1,7 @@
 package domain;
 
+import enums.Rank;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -40,7 +42,7 @@ public class LottoMachineTest {
         List<Integer> lottoNumbers = lottoMachine.createRandomNumber();
         List<Lotto> lottos = lottoMachine.buyLotto(money);
         //than
-        assertThat(lottos.size()).isEqualTo(1);
+        assertThat(lottoTickets.size()).isEqualTo(1);
 
     }
 

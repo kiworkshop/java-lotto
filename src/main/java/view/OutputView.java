@@ -3,6 +3,7 @@ package view;
 import domain.Lotto;
 import enums.Rank;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

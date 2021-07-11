@@ -4,10 +4,7 @@ import enums.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,9 +15,7 @@ public class LottoMachineTest {
         //given
         int givenMoney = 14000;
         LottoMachine lottoMachine = new LottoMachine(givenMoney);
-        //when
-        lottoMachine.getLottoTicketCount();
-        //than
+        //when //than
         assertThat(lottoMachine.getLottoTicketCount()).isEqualTo(14);
     }
 
@@ -42,7 +37,6 @@ public class LottoMachineTest {
         int money = 1000;
         LottoMachine lottoMachine = new LottoMachine(money);
         //when
-        List<Integer> lottoNumbers = lottoMachine.createRandomNumber();
         List<Lotto> lottoTickets = lottoMachine.getLottoTickets();
         //than
         assertThat(lottoTickets.size()).isEqualTo(1);
@@ -62,7 +56,7 @@ public class LottoMachineTest {
 
         //when
         lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 4, 5, 6), 7);
-        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket);
+        TreeMap<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket);
 
         //then
         assertThat(rankResult.get(Rank.FIRST_PLACE)).isEqualTo(1);
@@ -83,7 +77,7 @@ public class LottoMachineTest {
 
         //when
         lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 4, 5, 7), 6);
-        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket);
+        TreeMap<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket);
 
         //then
         assertThat(rankResult.get(Rank.SECOND_PLACE)).isEqualTo(1);

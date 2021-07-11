@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class LottoMachine {
 
     private static final int LOTTO_PRICE = 1000;
-    private int lottoTicketCount;
+    private final int lottoTicketCount;
 
     public LottoMachine(int givenMoney) {
         this.lottoTicketCount = givenMoney / LOTTO_PRICE;
@@ -44,9 +44,9 @@ public class LottoMachine {
         return lottos;
     }
 
-    public Map getRankResult(List<Lotto> lottos) {
+    public TreeMap getRankResult(List<Lotto> lottos) {
 
-        Map<Rank, Integer> result = new TreeMap<Rank, Integer>() {{
+        TreeMap<Rank, Integer> result = new TreeMap<Rank, Integer>() {{
             put(Rank.FIRST_PLACE, 0);
             put(Rank.SECOND_PLACE, 0);
             put(Rank.THIRD_PLACE, 0);

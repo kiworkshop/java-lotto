@@ -4,13 +4,12 @@ import lotto.domain.BuyingPrice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 public class BuyingPriceTest {
 
     @Test
-    @DisplayName("구입 금액을 인자로 받아 구입 금액 객체를 생성한다")
+    @DisplayName("구입 금액 값 객체를 생성한다")
     void create() {
         //given //when
         BuyingPrice buyingPrice = new BuyingPrice(1000);
@@ -26,9 +25,8 @@ public class BuyingPriceTest {
         int invalidPrice = 999;
 
         //when //then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BuyingPrice(invalidPrice))
-                .withMessage("구입 금액은 1,000원 이상이여야 합니다.");
+        assertThatThrownBy(() -> new BuyingPrice(invalidPrice))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -38,9 +36,8 @@ public class BuyingPriceTest {
         int invalidPrice = 1001;
 
         //when //then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BuyingPrice(invalidPrice))
-                .withMessage("구입 금액은 1,000원 단위여야 합니다.");
+        assertThatThrownBy(() -> new BuyingPrice(invalidPrice))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

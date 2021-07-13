@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottoTicketVendingMachineTest {
 
     @Test
-    @DisplayName("로또 티켓 장수만큼 로또 티켓을 생성한다.")
+    @DisplayName("구입 금액에 따라 로또 티켓을 여러 장 생성한다")
     void issue_tickets_from_buying_price() {
         //given
         BuyingPrice buyingPrice = new BuyingPrice(5000);

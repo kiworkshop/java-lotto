@@ -1,6 +1,9 @@
 package lotto.domain;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningNumbers {
@@ -9,16 +12,16 @@ public class WinningNumbers {
     private final List<LottoNumber> winningNumbers;
     private final LottoNumber bonusNumber;
 
-    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        this(winningNumbers.stream()
-                .map(LottoNumber::new)
-                .collect(Collectors.toList()), new LottoNumber(bonusNumber));
-    }
-
     public WinningNumbers(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
         validateDuplication(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        this(winningNumbers.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList()), new LottoNumber(bonusNumber));
     }
 
     private void validateDuplication(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
@@ -29,14 +32,12 @@ public class WinningNumbers {
         }
     }
 
-    public int matchedWinningNumberCount(LottoTicket lottoTicket) {
-        return (int) winningNumbers.stream()
-                .filter(winningNumber -> lottoTicket.contains(winningNumber))
-                .count();
+    public List<LottoNumber> getWinningNumbers() {
+        return winningNumbers;
     }
 
-    public boolean isMatchedBonusNumber(LottoTicket lottoTicket) {
-        return lottoTicket.contains(bonusNumber);
+    public LottoNumber getBonusNumber() {
+        return bonusNumber;
     }
 
     @Override
@@ -48,9 +49,9 @@ public class WinningNumbers {
                 Objects.equals(bonusNumber, that.bonusNumber);
     }
 
-
     @Override
     public int hashCode() {
         return Objects.hash(winningNumbers, bonusNumber);
     }
+
 }

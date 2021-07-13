@@ -1,62 +1,54 @@
 package lotto.domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static lotto.domain.BuyingPrice.TICKET_PRICE;
-import static lotto.domain.LottoPrize.*;
 
 public class WinningStatistics {
     private final WinningNumbers winningNumbers;
-    private final Map<LottoPrize, Integer> ranks = new LinkedHashMap<>();
+    private final Map<LottoRank, Integer> ranks = new LinkedHashMap<>();
 
     public WinningStatistics(WinningNumbers winningNumbers) {
         this.winningNumbers = winningNumbers;
-        initRanks();
+        initRank();
     }
 
-    private void initRanks() {
-        Arrays.stream(values()).sorted(Comparator.reverseOrder())
-                .filter(v -> v.matchedWinningNumberCount() > NONE.matchedWinningNumberCount())
-                .forEach(v -> ranks.put(v, 0));
+    private void initRank() {
+        Arrays.stream(LottoRank.values())
+                .sorted(Comparator.reverseOrder())
+                .filter(v -> v.getHitCount() > LottoRank.LOSE.getHitCount())
+                .forEach(rank -> ranks.put(rank, 0));
     }
 
-    public Map<LottoPrize, Integer> groupByWinningNumber(List<LottoTicket> lottoTickets) {
-        List<Integer> matchedCounts = matchedCountList(lottoTickets);
+    public int hitCount(LottoTicket lottoTicket) {
+        return (int) winningNumbers.getWinningNumbers().stream()
+                .filter(winningNumber -> lottoTicket.contains(winningNumber))
+                .count();
+    }
 
-        for (int i = 0; i < matchedCounts.size(); i++) {
-            int matchedCount = matchedCounts.get(i);
+    public int hitBonus(LottoTicket lottoTicket) {
+        return lottoTicket.contains(winningNumbers.getBonusNumber()) ? 1 : 0;
+    }
 
-            if (matchedCount < FIFTH.matchedWinningNumberCount()) {
-                continue;
-            }
-
-            if (matchedCount == SECOND.matchedWinningNumberCount() && winningNumbers.isMatchedBonusNumber(lottoTickets.get(i))) {
-                ranks.put(SECOND, ranks.get(SECOND) + 1);
-                continue;
-            }
-
-            LottoPrize matchedLottoPrize = findBy(matchedCount);
-            ranks.put(matchedLottoPrize, ranks.get(matchedLottoPrize) + 1);
-        }
-
+    public Map<LottoRank, Integer> groupByHitCount(List<LottoTicket> lottoTickets) {
+        lottoTickets.stream()
+                .filter(lottoTicket -> hitCount(lottoTicket) >= LottoRank.FIFTH.getHitCount())
+                .forEach(lottoTicket -> {
+                    LottoRank key = LottoRank.findBy(hitCount(lottoTicket), hitBonus(lottoTicket));
+                    ranks.put(key, ranks.get(key) + 1);
+                });
         return ranks;
     }
 
-    private List<Integer> matchedCountList(List<LottoTicket> lottoTickets) {
-        return lottoTickets.stream()
-                .map(lottoTicket -> winningNumbers.matchedWinningNumberCount(lottoTicket))
-                .collect(Collectors.toList());
-    }
-
-    public float profitRate(int ticketAmount, Map<LottoPrize, Integer> lottoPrize) {
-        int totalPrize = totalPrize(lottoPrize);
+    public float profitRate(int ticketAmount, Map<LottoRank, Integer> ranks) {
+        int totalPrize = totalPrize(ranks);
         return (float) totalPrize / (ticketAmount * TICKET_PRICE);
     }
 
-    private int totalPrize(Map<LottoPrize, Integer> lottoPrizes) {
-        return lottoPrizes.keySet().stream()
-                .mapToInt(lottoPrize -> lottoPrize.prizeMoney() * lottoPrizes.get(lottoPrize))
+    private int totalPrize(Map<LottoRank, Integer> ranks) {
+        return ranks.keySet().stream()
+                .mapToInt(lottoRank -> lottoRank.getPrizeMoney() * ranks.get(lottoRank))
                 .sum();
     }
+
 }

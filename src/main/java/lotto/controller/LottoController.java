@@ -31,7 +31,7 @@ public class LottoController {
         WinningNumbers winningNumbers = new WinningNumbers(splitWinningNumbers, bonusNumber);
         WinningStatistics winningStatistics = new WinningStatistics(winningNumbers);
 
-        Map<LottoPrize, Integer> ranks = winningStatistics.groupByWinningNumber(lottoTickets);
+        Map<LottoRank, Integer> ranks = winningStatistics.groupByHitCount(lottoTickets);
         OutputView.printWinningStatistics(ranks);
 
         float profitRate = winningStatistics.profitRate(ticketAmount, ranks);

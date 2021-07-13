@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.LottoPrize;
+import lotto.domain.LottoRank;
 import lotto.domain.LottoTicket;
 
 import java.util.List;
@@ -32,16 +32,16 @@ public class OutputView {
         System.out.printf("총 수익률은 %.2f 입니다.%n", profitRate);
     }
 
-    public static void printWinningStatistics(Map<LottoPrize, Integer> ranks) {
+    public static void printWinningStatistics(Map<LottoRank, Integer> ranks) {
         System.out.println("당첨 통계\n---------");
-        for (LottoPrize lottoPrize : ranks.keySet()) {
-            if (lottoPrize.isMatchedBonusNumber()) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개%n", lottoPrize.matchedWinningNumberCount(),
-                        lottoPrize.prizeMoney(), ranks.get(lottoPrize));
+        for (LottoRank rank : ranks.keySet()) {
+            if ((rank.getHitCount() == 5 ) && (rank.getHitBonus() == 1)) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개%n", rank.getHitCount(),
+                        rank.getPrizeMoney(), ranks.get(rank));
                 continue;
             }
-            System.out.printf("%d개 일치 (%d원) - %d개%n", lottoPrize.matchedWinningNumberCount(),
-                    lottoPrize.prizeMoney(), ranks.get(lottoPrize));
+            System.out.printf("%d개 일치 (%d원) - %d개%n", rank.getHitCount(),
+                    rank.getPrizeMoney(), ranks.get(rank));
         }
     }
 }

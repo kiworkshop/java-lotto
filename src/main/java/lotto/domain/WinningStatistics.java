@@ -3,8 +3,8 @@ package lotto.domain;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static lotto.domain.BuyingPrice.TICKET_PRICE;
 import static lotto.domain.LottoPrize.*;
-import static lotto.domain.LottoTicketVendingMachine.TICKET_PRICE;
 
 public class WinningStatistics {
     private final WinningNumbers winningNumbers;

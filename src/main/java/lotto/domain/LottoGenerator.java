@@ -11,7 +11,7 @@ import static lotto.domain.LottoNumber.MIN_LOTTO_BOUND;
 
 public class LottoGenerator {
 
-    private static final List<LottoNumber> lottoNumberContainer = create();
+    private static final List<LottoNumber> LOTTO_NUMBER_CONTAINER = create();
 
     private static List<LottoNumber> create() {
         return IntStream.rangeClosed(MIN_LOTTO_BOUND, MAX_LOTTO_BOUND)
@@ -20,8 +20,8 @@ public class LottoGenerator {
     }
 
     public List<LottoNumber> issueAutoLottoNumbers() {
-        Collections.shuffle(lottoNumberContainer);
-        return lottoNumberContainer.subList(0, 6).stream()
+        Collections.shuffle(LOTTO_NUMBER_CONTAINER);
+        return LOTTO_NUMBER_CONTAINER.subList(0, 6).stream()
                 .sorted(Comparator.comparing(LottoNumber::value))
                 .collect(Collectors.toList());
     }

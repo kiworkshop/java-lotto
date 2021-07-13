@@ -8,16 +8,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static lotto.domain.LottoTicketVendingMachine.TICKET_PRICE;
-
 public class LottoController {
-    public void run() {
+
+    private static LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
+
+    public static void run() {
         String inputPrice = InputView.getBuyingPrice();
         BuyingPrice buyingPrice = new BuyingPrice(inputPrice);
-        int ticketAmount = buyingPrice.divide(TICKET_PRICE);
+        int ticketAmount = buyingPrice.ticketAmount();
         OutputView.printTicketAmount(ticketAmount);
 
-        LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
         List<LottoTicket> lottoTickets = lottoTicketVendingMachine.issueTickets(buyingPrice);
         OutputView.printLottoTickets(lottoTickets);
 

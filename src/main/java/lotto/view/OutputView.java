@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    private OutputView() {
+    }
+
     public static void printLottoTickets(List<LottoTicket> lottoTickets) {
         for (LottoTicket lottoTicket : lottoTickets) {
             List<String> lottoNumbers = lottoNumberToString(lottoTicket);

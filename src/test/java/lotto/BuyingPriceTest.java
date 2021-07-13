@@ -47,11 +47,10 @@ public class BuyingPriceTest {
     @DisplayName("입력받은 티켓 금액으로 나눈 값을 반환한다")
     void divide_ticket_price() {
         //given
-        int ticketPrice = 1000;
         BuyingPrice buyingPrice = new BuyingPrice(10000);
 
         //when
-        int ticketAmount = buyingPrice.divide(ticketPrice);
+        int ticketAmount = buyingPrice.ticketAmount();
 
         //then
         assertThat(ticketAmount).isEqualTo(10);

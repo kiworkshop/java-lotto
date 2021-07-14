@@ -3,6 +3,8 @@ package lotto.domain.vending;
 import lotto.domain.lotto.LottoGenerator;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoTicket;
+import lotto.domain.lotto.LottoTickets;
+import lotto.domain.util.StringUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,9 +21,24 @@ public class LottoTicketVendingMachine {
                 .collect(Collectors.toList());
     }
 
-    public LottoTicket manualIssueTicket(List<String> manualLottoNumbers) {
-        return new LottoTicket(manualLottoNumbers.stream()
+    public List<LottoTicket>  manualIssueTickets(List<String> inputNumbers) {
+        return inputNumbers.stream()
+                .map(StringUtil::split)
+                .map(manualNumbers -> manualLottoTicket(manualNumbers))
+                .collect(Collectors.toList());
+    }
+
+    private LottoTicket manualLottoTicket(List<String> manualNumbers) {
+        List<LottoNumber> lottoNumbers = manualNumbers.stream()
                 .map(LottoNumber::new)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
+        return new LottoTicket(lottoNumbers);
+    }
+
+    public LottoTickets issueTickets(TicketAmount ticketAmount, List<String> inputManualNumbers) {
+        LottoTickets lottoTickets = new LottoTickets();
+        lottoTickets.add(manualIssueTickets(inputManualNumbers));
+        lottoTickets.add(autoIssueTickets(ticketAmount));
+        return lottoTickets;
     }
 }

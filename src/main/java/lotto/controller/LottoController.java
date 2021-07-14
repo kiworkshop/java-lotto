@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.lotto.LottoTicket;
+import lotto.domain.lotto.LottoTickets;
+import lotto.domain.util.StringUtil;
 import lotto.domain.vending.BuyingPrice;
 import lotto.domain.vending.LottoTicketVendingMachine;
 import lotto.domain.vending.TicketAmount;
@@ -13,7 +14,6 @@ import lotto.view.OutputView;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LottoController {
 
@@ -27,18 +27,11 @@ public class LottoController {
         TicketAmount ticketAmount = new TicketAmount(buyingPrice, inputManualCount);
 
         List<String> inputManualNumbers = InputView.getManualNumbers(ticketAmount);
-        List<LottoTicket> manualLottoTickets = inputManualNumbers.stream()
-                .map(InputView::split)
-                .map(lottoTicketVendingMachine::manualIssueTicket)
-                .collect(Collectors.toList());
-
-        List<LottoTicket> autoLottoTickets = lottoTicketVendingMachine.autoIssueTickets(ticketAmount);
-        List<LottoTicket> lottoTickets = Stream.concat(manualLottoTickets.stream(), autoLottoTickets.stream())
-                .collect(Collectors.toList());
+        LottoTickets lottoTickets = lottoTicketVendingMachine.issueTickets(ticketAmount, inputManualNumbers);
 
         OutputView.printTicketAmount(ticketAmount);
         String inputWinningNumbers = InputView.getWinningNumber();
-        List<Integer> splitWinningNumbers = InputView.split(inputWinningNumbers)
+        List<Integer> splitWinningNumbers = StringUtil.split(inputWinningNumbers)
                 .stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

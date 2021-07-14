@@ -1,7 +1,7 @@
 package lotto.domain.vending;
 
 import lotto.domain.lotto.LottoTicket;
-import lotto.view.InputView;
+import lotto.domain.lotto.LottoTickets;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -41,13 +41,27 @@ public class LottoTicketVendingMachineTest {
         List<String> manualNumbers = generateManualNumbers(manualCount);
 
         //when
-        List<LottoTicket> lottoTickets = manualNumbers.stream()
-                .map(InputView::split)
-                .map(lottoTicketVendingMachine::manualIssueTicket)
-                .collect(Collectors.toList());
+        List<LottoTicket> lottoTickets = lottoTicketVendingMachine.manualIssueTickets(manualNumbers);
 
         //then
         assertThat(lottoTickets.get(index).lottoNumbers()).isEqualTo(generateLottoTicket(index).lottoNumbers());
+    }
+
+    @Test
+    @DisplayName("전체 로또 티켓을 생성한다")
+    void total_lotto_tickets() {
+        //given
+        BuyingPrice buyingPrice = new BuyingPrice(8000);
+        int manualCount = 3;
+        TicketAmount ticketAmount = new TicketAmount(buyingPrice, manualCount);
+        List<String> manualNumbers = generateManualNumbers(ticketAmount.manual());
+
+        //when
+        LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
+        LottoTickets lottoTickets = lottoTicketVendingMachine.issueTickets(ticketAmount, manualNumbers);
+
+        //then
+        assertThat(lottoTickets.size()).isEqualTo(ticketAmount.total());
     }
 
     private List<String> generateManualNumbers(int manualCount) {

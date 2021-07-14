@@ -5,9 +5,8 @@ import enums.Rank;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> lottoNumbers;
-    private int matchCount;
-    private int bonusCount;
     private Rank rank;
 
     public Lotto(List<Integer> randomNumber) {
@@ -34,16 +33,16 @@ public class Lotto {
     public void setRank(List<Integer> winningNumber, int bonusNumber) {
         countOfMatches(winningNumber);
         countOfBonusMatch(bonusNumber);
-        rank = Rank.getRank(matchCount, bonusCount);
+        rank = Rank.getRank(countOfMatches(winningNumber), countOfBonusMatch(bonusNumber));
     }
 
-    private void countOfMatches(List<Integer> winningNumbers) {
-        matchCount = (int) winningNumbers.stream()
+    private int countOfMatches(List<Integer> winningNumbers) {
+        return (int) winningNumbers.stream()
                 .filter(lottoNumbers::contains)
                 .count();
     }
 
-    private void countOfBonusMatch(int bonusNumber) {
-        bonusCount = (lottoNumbers.contains(bonusNumber) ? 1 : 0);
+    private int countOfBonusMatch(int bonusNumber) {
+        return (lottoNumbers.contains(bonusNumber) ? 1 : 0);
     }
 }

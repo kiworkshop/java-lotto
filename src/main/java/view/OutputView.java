@@ -10,7 +10,7 @@ public class OutputView {
     public void printLottoTickets(List<Lotto> lottoTickets) {
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
         for (Lotto lottoTicket : lottoTickets) {
-            System.out.println(lottoTicket.getLottoNumberString());
+            System.out.println(getLottoNumberString(lottoTicket.getLottoNumbers()));
         }
     }
 
@@ -29,5 +29,14 @@ public class OutputView {
             System.out.printf("%d개 일치 (%d원)- %d개\n", rank.matched(), rank.prize(), count);
         if (rank == Rank.SECOND_PLACE)
             System.out.printf("%d개 일치, 보너스볼 일치 (%d원)- %d개\n", rank.matched(), rank.prize(), count);
+    }
+
+    private String getLottoNumberString(List<Integer> lottoNumbers) {
+        String lottoString = "[";
+        for (int i = 0; i < lottoNumbers.size() - 1; i++) {
+            lottoString = lottoString + lottoNumbers.get(i) + ", ";
+        }
+        lottoString = lottoString + lottoNumbers.get(lottoNumbers.size() - 1) + "]";
+        return lottoString;
     }
 }

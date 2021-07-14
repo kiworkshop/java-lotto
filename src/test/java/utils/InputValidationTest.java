@@ -12,10 +12,6 @@ public class InputValidationTest {
 
     static InputValidation inputValidation = new InputValidation();
 
-
-
-
-
     @Test
     void _1에서_45_사이의_로또보너스번호_입력_하면_숫자로_리턴() {
         //given

@@ -1,8 +1,10 @@
-package lotto.domain;
+package lotto.domain.winning;
+
+import lotto.domain.lotto.LottoTicket;
 
 import java.util.*;
 
-import static lotto.domain.BuyingPrice.TICKET_PRICE;
+import static lotto.domain.vending.BuyingPrice.TICKET_PRICE;
 
 public class WinningStatistics {
     private final WinningNumbers winningNumbers;

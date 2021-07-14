@@ -3,6 +3,7 @@ package domain;
 import enums.Rank;
 
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -10,11 +11,19 @@ public class LottoMachine {
 
     private static final int LOTTO_PRICE = 1000;
     private final int lottoTicketCount;
-
-    public LottoMachine(int givenMoney) {
-        this.lottoTicketCount = givenMoney / LOTTO_PRICE;
+    private static final String LOTTO_PRICE_PATTERN = "\\d*000";
+    private final int money;
+    public LottoMachine(String inputMoney) {
+        this.money = checkGivenMoney(inputMoney);
+        this.lottoTicketCount = this.money / LOTTO_PRICE;
     }
 
+    private int checkGivenMoney(String givenMoney) {
+        if (!Pattern.matches(LOTTO_PRICE_PATTERN, givenMoney)) {
+            throw new RuntimeException("1000원 단위의 금액만 투입할 수 있습니다.");
+        }
+        return Integer.parseInt(givenMoney);
+    }
     public int getLottoTicketCount() {
         return this.lottoTicketCount;
     }
@@ -62,11 +71,11 @@ public class LottoMachine {
         return result;
     }
 
-    public double getProfitRate(int givenMoney, Map<Rank, Integer> rankResult) {
+    public double getProfitRate(Map<Rank, Integer> rankResult) {
         double totalPrize = rankResult.entrySet()
                 .stream()
                 .mapToDouble((rank) -> rank.getKey().prize() * rank.getValue())
                 .sum();
-        return totalPrize / givenMoney;
+        return totalPrize / this.money;
     }
 }

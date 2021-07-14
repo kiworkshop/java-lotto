@@ -15,7 +15,7 @@ public class LottoController {
 
 
     public static void main(String[] args) {
-        int money = inputView.inputMoney();
+        String money = inputView.inputMoney();
         LottoMachine lottoMachine = new LottoMachine(money);
         List<Lotto> lottoTickets = lottoMachine.getLottoTickets();
         outputView.printLottoTickets(lottoTickets);
@@ -26,6 +26,6 @@ public class LottoController {
         List<Lotto> lottoResult = lottoMachine.getRankResult(lottoTickets, winningNumbers, bonusNumber);
         Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoResult);
         outputView.printRankResult(rankResult);
-        outputView.printStatistics(lottoMachine.getProfitRate(money, rankResult));
+        outputView.printStatistics(lottoMachine.getProfitRate(rankResult));
     }
 }

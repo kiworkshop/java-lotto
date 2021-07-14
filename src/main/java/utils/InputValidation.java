@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class InputValidation {
-    private static final String LOTTO_PRICE_PATTERN = "\\d*000";
+
     private static final String COMMA = ",";
     private static final int BOUND_MIN = 1;
     private static final int BOUND_MAX = 45;
@@ -21,13 +21,6 @@ public class InputValidation {
     private static final String ALERT_CHECK_LENGTH = String.format("당첨번호는 %d개 이어야 합니다.", LOTTO_LENGTH);
     private static final String ALERT_CHECK_DUPLICATION = "중복되는 숫자가 포함되어 있는지 확인해주세요.";
     private static final String ALERT_CHECK_BONUS_DUPLICATE = "보너스볼이 당첨 번호와 중복되는지 확인해주세요.";
-
-    public int checkGivenMoney(String givenMoney) {
-        if (!Pattern.matches(LOTTO_PRICE_PATTERN, givenMoney)) {
-            throw new RuntimeException("1000원 단위의 금액만 투입할 수 있습니다.");
-        }
-        return Integer.parseInt(givenMoney);
-    }
 
     public int checkBonusBall(String bonusInput, List<Integer> winningNumber) {
         int bonusInputNumber = Integer.parseInt(bonusInput);

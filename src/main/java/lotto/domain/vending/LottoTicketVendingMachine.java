@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.domain.vending;
+
+import lotto.domain.lotto.LottoGenerator;
+import lotto.domain.lotto.LottoTicket;
 
 import java.util.List;
 import java.util.stream.Collectors;

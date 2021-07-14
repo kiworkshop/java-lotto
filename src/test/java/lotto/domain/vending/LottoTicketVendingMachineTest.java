@@ -1,8 +1,6 @@
-package lotto;
+package lotto.domain.vending;
 
-import lotto.domain.BuyingPrice;
-import lotto.domain.LottoTicket;
-import lotto.domain.LottoTicketVendingMachine;
+import lotto.domain.lotto.LottoTicket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

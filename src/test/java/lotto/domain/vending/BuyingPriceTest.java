@@ -1,6 +1,5 @@
-package lotto;
+package lotto.domain.vending;
 
-import lotto.domain.BuyingPrice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

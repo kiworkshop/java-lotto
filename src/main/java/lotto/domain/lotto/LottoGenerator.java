@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.domain.LottoNumber.MAX_LOTTO_BOUND;
-import static lotto.domain.LottoNumber.MIN_LOTTO_BOUND;
+import static lotto.domain.lotto.LottoNumber.MAX_LOTTO_BOUND;
+import static lotto.domain.lotto.LottoNumber.MIN_LOTTO_BOUND;
 
 public class LottoGenerator {
 

@@ -19,10 +19,9 @@ public class LottoTicketVendingMachine {
                 .collect(Collectors.toList());
     }
 
-    public List<LottoTicket> manualIssueTickets(List<LottoNumber> manualNumbers) {
-        return IntStream.range(0, manualNumbers.size())
-                .mapToObj(i -> manualNumbers)
-                .map(LottoTicket::new)
-                .collect(Collectors.toList());
+    public LottoTicket manualIssueTicket(List<String> manualLottoNumbers) {
+        return new LottoTicket(manualLottoNumbers.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList()));
     }
 }

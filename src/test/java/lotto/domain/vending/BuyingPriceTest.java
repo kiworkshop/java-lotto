@@ -3,7 +3,8 @@ package lotto.domain.vending;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BuyingPriceTest {
 
@@ -39,16 +40,4 @@ public class BuyingPriceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("입력받은 티켓 금액으로 나눈 값을 반환한다")
-    void divide_ticket_price() {
-        //given
-        BuyingPrice buyingPrice = new BuyingPrice(10000);
-
-        //when
-        int ticketAmount = buyingPrice.ticketAmount();
-
-        //then
-        assertThat(ticketAmount).isEqualTo(10);
-    }
 }

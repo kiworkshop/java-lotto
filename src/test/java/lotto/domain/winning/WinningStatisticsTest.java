@@ -1,6 +1,8 @@
 package lotto.domain.winning;
 
 import lotto.domain.lotto.LottoTicket;
+import lotto.domain.vending.BuyingPrice;
+import lotto.domain.vending.TicketAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import static lotto.domain.vending.TicketAmount.TICKET_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningStatisticsTest {
@@ -88,18 +91,22 @@ public class WinningStatisticsTest {
     @DisplayName("당첨 순위의 수익률을 계산한다")
     void profit_rate() {
         //given
+        List<LottoTicket> lottoTickets = generateLottoTickets();
+        BuyingPrice buyingPrice = new BuyingPrice(lottoTickets.size() * TICKET_PRICE);
+        TicketAmount ticketAmount = new TicketAmount(buyingPrice, lottoTickets.size());
+
         WinningStatistics winningStatistics = new WinningStatistics(winningNumbers);
-        Map<LottoRank, Integer> ranks = winningStatistics.groupByHitCount(generateLottoTickets());
+        Map<LottoRank, Integer> ranks = winningStatistics.groupByHitCount(lottoTickets);
 
         //when
-        float profit = winningStatistics.profitRate(5, ranks);
+        float profit = winningStatistics.profitRate(ticketAmount, ranks);
 
         //then
         assertThat(profit).isEqualTo(11.0f);
     }
 
-    private ArrayList<LottoTicket> generateLottoTickets() {
-        ArrayList<LottoTicket> lottoTicketList = new ArrayList<>();
+    private List<LottoTicket> generateLottoTickets() {
+        List<LottoTicket> lottoTicketList = new ArrayList<>();
         lottoTicketList.add(new LottoTicket(3, 4, 5, 6, 7, 8)); // 4개 일치
         lottoTicketList.add(new LottoTicket(4, 5, 6, 7, 8, 9)); // 3개 일치
         lottoTicketList.add(new LottoTicket(5, 6, 7, 8, 9, 10)); // 2개 일치

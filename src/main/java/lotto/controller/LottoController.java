@@ -13,7 +13,6 @@ import lotto.view.OutputView;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LottoController {
 
@@ -30,11 +29,10 @@ public class LottoController {
         LottoTickets lottoTickets = lottoTicketVendingMachine.issueTickets(ticketAmount, inputManualNumbers);
 
         OutputView.printTicketAmount(ticketAmount);
+        OutputView.printLottoTickets(lottoTickets);
+
         String inputWinningNumbers = InputView.getWinningNumber();
-        List<Integer> splitWinningNumbers = StringUtil.split(inputWinningNumbers)
-                .stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        List<Integer> splitWinningNumbers = StringUtil.splitParseInt(inputWinningNumbers);
 
         int bonusNumber = Integer.parseInt(InputView.getBonusNumber());
         WinningNumbers winningNumbers = new WinningNumbers(splitWinningNumbers, bonusNumber);

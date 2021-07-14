@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.lotto.LottoTicket;
+import lotto.domain.lotto.LottoTickets;
 import lotto.domain.vending.TicketAmount;
 import lotto.domain.winning.LottoRank;
 
@@ -12,8 +13,8 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLottoTickets(List<LottoTicket> lottoTickets) {
-        for (LottoTicket lottoTicket : lottoTickets) {
+    public static void printLottoTickets(LottoTickets lottoTickets) {
+        for (LottoTicket lottoTicket : lottoTickets.values()) {
             List<String> lottoNumbers = lottoNumberToString(lottoTicket);
             System.out.println("[" + String.join(",", lottoNumbers) + "]");
         }

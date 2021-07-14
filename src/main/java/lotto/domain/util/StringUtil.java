@@ -12,4 +12,10 @@ public class StringUtil {
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
+
+    public static List<Integer> splitParseInt(String input) {
+        return split(input).stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
 }

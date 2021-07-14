@@ -15,16 +15,15 @@ public class LottoController {
 
 
     public static void main(String[] args) {
-        String money = inputView.inputMoney();
-        LottoMachine lottoMachine = new LottoMachine(money);
+
+        LottoMachine lottoMachine = new LottoMachine(inputView.inputMoney());
         List<Lotto> lottoTickets = lottoMachine.getLottoTickets();
         outputView.printLottoTickets(lottoTickets);
 
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
         int bonusNumber = inputView.inputBonusBall(winningNumbers);
 
-        List<Lotto> lottoResult = lottoMachine.getRankResult(lottoTickets, winningNumbers, bonusNumber);
-        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoResult);
+        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTickets, winningNumbers, bonusNumber);
         outputView.printRankResult(rankResult);
         outputView.printStatistics(lottoMachine.getProfitRate(rankResult));
     }

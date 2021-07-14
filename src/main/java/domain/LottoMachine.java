@@ -46,14 +46,7 @@ public class LottoMachine {
         return lottoTicket;
     }
 
-    public List<Lotto> getRankResult(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
-        for (Lotto lotto : lottos) {
-            lotto.setRank(winningNumber, bonusNumber);
-        }
-        return lottos;
-    }
-
-    public TreeMap getRankResult(List<Lotto> lottos) {
+    public TreeMap getRankResult(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
 
         TreeMap<Rank, Integer> result = new TreeMap<Rank, Integer>() {{
             put(Rank.FIRST_PLACE, 0);
@@ -65,7 +58,7 @@ public class LottoMachine {
         }};
 
         for (Lotto lotto : lottos) {
-            result.put(lotto.getRank(), result.get(lotto.getRank()) + 1);
+            result.put(lotto.getRank(winningNumber, bonusNumber), result.get(lotto.getRank(winningNumber, bonusNumber)) + 1);
         }
 
         return result;

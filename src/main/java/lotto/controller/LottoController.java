@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.lotto.LottoTicket;
 import lotto.domain.vending.BuyingPrice;
 import lotto.domain.vending.LottoTicketVendingMachine;
+import lotto.domain.vending.TicketAmount;
 import lotto.domain.winning.LottoRank;
 import lotto.domain.winning.WinningNumbers;
 import lotto.domain.winning.WinningStatistics;
@@ -20,10 +21,13 @@ public class LottoController {
     public static void run() {
         String inputPrice = InputView.getBuyingPrice();
         BuyingPrice buyingPrice = new BuyingPrice(inputPrice);
-        int ticketAmount = buyingPrice.ticketAmount();
+
+        String inputManualCount = InputView.getManualCount();
+        TicketAmount ticketAmount = new TicketAmount(buyingPrice, inputManualCount);
+
         OutputView.printTicketAmount(ticketAmount);
 
-        List<LottoTicket> lottoTickets = lottoTicketVendingMachine.issueTickets(buyingPrice);
+        List<LottoTicket> lottoTickets = lottoTicketVendingMachine.autoIssueTickets(ticketAmount);
         OutputView.printLottoTickets(lottoTickets);
 
         String inputWinningNumbers = InputView.getWinningNumber();

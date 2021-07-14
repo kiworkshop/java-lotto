@@ -1,10 +1,11 @@
 package lotto.domain.winning;
 
 import lotto.domain.lotto.LottoTicket;
+import lotto.domain.vending.TicketAmount;
 
 import java.util.*;
 
-import static lotto.domain.vending.BuyingPrice.TICKET_PRICE;
+import static lotto.domain.vending.TicketAmount.TICKET_PRICE;
 
 public class WinningStatistics {
     private final WinningNumbers winningNumbers;
@@ -42,9 +43,9 @@ public class WinningStatistics {
         return ranks;
     }
 
-    public float profitRate(int ticketAmount, Map<LottoRank, Integer> ranks) {
+    public float profitRate(TicketAmount ticketAmount, Map<LottoRank, Integer> ranks) {
         int totalPrize = totalPrize(ranks);
-        return (float) totalPrize / (ticketAmount * TICKET_PRICE);
+        return (float) totalPrize / (ticketAmount.total() * TICKET_PRICE);
     }
 
     private int totalPrize(Map<LottoRank, Integer> ranks) {

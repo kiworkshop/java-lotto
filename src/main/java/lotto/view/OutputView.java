@@ -1,7 +1,8 @@
 package lotto.view;
 
-import lotto.domain.winning.LottoRank;
 import lotto.domain.lotto.LottoTicket;
+import lotto.domain.vending.TicketAmount;
+import lotto.domain.winning.LottoRank;
 
 import java.util.List;
 import java.util.Map;
@@ -24,8 +25,8 @@ public class OutputView {
                 .collect(Collectors.toList());
     }
 
-    public static void printTicketAmount(int ticketAmount) {
-        System.out.printf("%s개를 구매했습니다.%n", ticketAmount);
+    public static void printTicketAmount(TicketAmount ticketAmount) {
+        System.out.printf("수동으로 %d장, 자동으로 %d장 구매했습니다.%n", ticketAmount.manual(), ticketAmount.auto());
     }
 
     public static void printProfitRate(float profitRate) {
@@ -35,7 +36,7 @@ public class OutputView {
     public static void printWinningStatistics(Map<LottoRank, Integer> ranks) {
         System.out.println("당첨 통계\n---------");
         for (LottoRank rank : ranks.keySet()) {
-            if ((rank.getHitCount() == 5 ) && (rank.getHitBonus() == 1)) {
+            if ((rank.getHitCount() == 5) && (rank.getHitBonus() == 1)) {
                 System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개%n", rank.getHitCount(),
                         rank.getPrizeMoney(), ranks.get(rank));
                 continue;

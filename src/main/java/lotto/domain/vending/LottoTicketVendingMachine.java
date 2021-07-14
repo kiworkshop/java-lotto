@@ -11,8 +11,8 @@ public class LottoTicketVendingMachine {
 
     private static final LottoGenerator LOTTO_GENERATOR = new LottoGenerator();
 
-    public List<LottoTicket> issueTickets(BuyingPrice buyingPrice) {
-        return IntStream.range(0, buyingPrice.ticketAmount())
+    public List<LottoTicket> autoIssueTickets(TicketAmount ticketAmount) {
+        return IntStream.range(0, ticketAmount.auto())
                 .mapToObj(i -> LOTTO_GENERATOR.issueAutoLottoNumbers())
                 .map(LottoTicket::new)
                 .collect(Collectors.toList());

@@ -11,14 +11,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottoTicketVendingMachineTest {
 
     @Test
-    @DisplayName("구입 금액에 따라 로또 티켓을 여러 장 생성한다")
+    @DisplayName("자동으로 로또 티켓을 생성한다")
     void issue_tickets_from_buying_price() {
         //given
         BuyingPrice buyingPrice = new BuyingPrice(5000);
+        TicketAmount ticketAmount = new TicketAmount(buyingPrice, 0);
         LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
 
         //when
-        List<LottoTicket> tickets = lottoTicketVendingMachine.issueTickets(buyingPrice);
+        List<LottoTicket> tickets = lottoTicketVendingMachine.autoIssueTickets(ticketAmount);
 
         //then
         assertThat(tickets).hasSize(5);

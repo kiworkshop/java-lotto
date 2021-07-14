@@ -7,22 +7,54 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoMachineTest {
 
     @Test
     void 돈을_입력받으면_구매한_로또_수를_리턴한다() {
         //given
-        int givenMoney = 14000;
+        String givenMoney = "14000";
         LottoMachine lottoMachine = new LottoMachine(givenMoney);
         //when //than
         assertThat(lottoMachine.getLottoTicketCount()).isEqualTo(14);
+    }
+    @Test
+    void 문자_100을_입력받으면_런타임에러를_리턴한다() {
+        //given
+        String givenMoney = "100";
+        //when
+        //then
+        assertThatThrownBy(() ->
+                new LottoMachine(givenMoney)).
+                isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    void 문자_가를_입력받으면_런타임에러를_리턴한다() {
+        //given
+        String givenMoney = "가";
+        //when
+        //then
+        assertThatThrownBy(() ->
+                new LottoMachine(givenMoney)).
+                isInstanceOf(RuntimeException.class);
+    }
+    @Test
+    void 문자_음수1000_입력받으면_런타임에러를_리턴한다() {
+        //given
+        String givenMoney = "-1000";
+        //when
+        //then
+        assertThatThrownBy(() ->
+                new LottoMachine(givenMoney)).
+                isInstanceOf(RuntimeException.class);
     }
 
     @Test
     void _1부터_45사이의_숫자중_중복되지_않는_7개를_뽑아서_오름차순으로_리턴한다() {
         //given
-        LottoMachine lottoMachine = new LottoMachine(1000);
+        LottoMachine lottoMachine = new LottoMachine("1000");
         //when
         List<Integer> lottoNumbers = lottoMachine.createRandomNumber();
         //than
@@ -34,7 +66,7 @@ public class LottoMachineTest {
     @Test
     void 부여받은_티켓_개수대로_로또_만들어서_리턴한다() {
         //given
-        int money = 1000;
+        String money = "1000";
         LottoMachine lottoMachine = new LottoMachine(money);
         //when
         List<Lotto> lottoTickets = lottoMachine.getLottoTickets();
@@ -47,7 +79,7 @@ public class LottoMachineTest {
     @DisplayName("1등_당첨_결과를_리턴한다")
     void getRankResult() {
         //given
-        int money = 1000;
+        String money = "1000";
         LottoMachine lottoMachine = new LottoMachine(money);
         List<Lotto> lottoTicket = new ArrayList<>();
 
@@ -68,7 +100,7 @@ public class LottoMachineTest {
     @DisplayName("2등_당첨_결과를_리턴한다")
     void getRankResult2() {
         //given
-        int money = 1000;
+        String money = "1000";
         LottoMachine lottoMachine = new LottoMachine(money);
         List<Lotto> lottoTicket = new ArrayList<>();
 
@@ -87,7 +119,7 @@ public class LottoMachineTest {
     @DisplayName("로또 수익률을 반환한다")
     void getProfitRate() {
         //given
-        int money = 1000;
+        String money = "1000";
         LottoMachine lottoMachine = new LottoMachine(money);
         List<Lotto> lottoTicket = new ArrayList<>();
 
@@ -97,7 +129,7 @@ public class LottoMachineTest {
         //when
         lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 4, 5, 6), 7);
         Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket);
-        double profitRate = lottoMachine.getProfitRate(money, rankResult);
+        double profitRate = lottoMachine.getProfitRate(rankResult);
 
         //then
         assertThat(profitRate).isEqualTo(2000000);
@@ -107,7 +139,7 @@ public class LottoMachineTest {
     @DisplayName("로또 수익률을 반환한다")
     void getProfitRate2() {
         //given
-        int money = 5000;
+        String money = "5000";
         LottoMachine lottoMachine = new LottoMachine(money);
         List<Lotto> lottoTicket = new ArrayList<>();
 
@@ -122,7 +154,7 @@ public class LottoMachineTest {
         //when
         lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 11, 12, 13), 7);
         Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket);
-        double profitRate = lottoMachine.getProfitRate(money, rankResult);
+        double profitRate = lottoMachine.getProfitRate(rankResult);
 
         //then
         assertThat(profitRate).isEqualTo(1);

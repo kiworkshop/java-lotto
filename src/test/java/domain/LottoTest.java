@@ -14,7 +14,7 @@ public class LottoTest {
     @Test
     void 로또를_생성하면_로또_로또번호가_부여된다() {
         //given
-        LottoMachine lottoMachine = new LottoMachine(1000);
+        LottoMachine lottoMachine = new LottoMachine("1000");
         Lotto lotto = new Lotto(lottoMachine.createRandomNumber());
         //when
         //than

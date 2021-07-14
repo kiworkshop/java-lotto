@@ -1,6 +1,7 @@
 package lotto.domain.winning;
 
 import lotto.domain.lotto.LottoTicket;
+import lotto.domain.lotto.LottoTickets;
 import lotto.domain.vending.TicketAmount;
 
 import java.util.*;
@@ -33,8 +34,8 @@ public class WinningStatistics {
         return lottoTicket.contains(winningNumbers.getBonusNumber()) ? 1 : 0;
     }
 
-    public Map<LottoRank, Integer> groupByHitCount(List<LottoTicket> lottoTickets) {
-        lottoTickets.stream()
+    public Map<LottoRank, Integer> groupByHitCount(LottoTickets lottoTickets) {
+        lottoTickets.values().stream()
                 .filter(lottoTicket -> hitCount(lottoTicket) >= LottoRank.FIFTH.getHitCount())
                 .forEach(lottoTicket -> {
                     LottoRank key = LottoRank.findBy(hitCount(lottoTicket), hitBonus(lottoTicket));

@@ -30,7 +30,7 @@ public class TicketAmount {
         return autoCount;
     }
 
-    public float total() {
+    public int total() {
         return manualCount + autoCount;
     }
 }

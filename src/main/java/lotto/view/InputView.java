@@ -3,10 +3,8 @@ package lotto.view;
 import lotto.domain.vending.TicketAmount;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
@@ -15,7 +13,6 @@ public class InputView {
     public static final String MANUAL_NUMBER_MESSAGE = "수동으로 구매할 번호를 입력해 주세요.";
     private static final String WINNING_NUMBER_MESSAGE = "지난 주 당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 볼을 입력해 주세요.";
-    private static final String DELIMITER = ",";
 
     private InputView() {
     }
@@ -47,11 +44,5 @@ public class InputView {
     public static String getBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
         return scanner.nextLine().trim();
-    }
-
-    public static List<String> split(String input) {
-        return Arrays.stream(input.split(DELIMITER))
-                .map(String::trim)
-                .collect(Collectors.toList());
     }
 }

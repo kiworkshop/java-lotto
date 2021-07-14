@@ -1,6 +1,7 @@
 package lotto.domain.winning;
 
 import lotto.domain.lotto.LottoTicket;
+import lotto.domain.lotto.LottoTickets;
 import lotto.domain.vending.BuyingPrice;
 import lotto.domain.vending.TicketAmount;
 import org.junit.jupiter.api.DisplayName;
@@ -75,7 +76,7 @@ public class WinningStatisticsTest {
     void group_by_matched_count() {
         //given
         WinningStatistics winningStatistics = new WinningStatistics(winningNumbers);
-        List<LottoTicket> lottoTickets = generateLottoTickets();
+        LottoTickets lottoTickets = generateLottoTickets();
 
         //when
         Map<LottoRank, Integer> ranks = winningStatistics.groupByHitCount(lottoTickets);
@@ -91,7 +92,7 @@ public class WinningStatisticsTest {
     @DisplayName("당첨 순위의 수익률을 계산한다")
     void profit_rate() {
         //given
-        List<LottoTicket> lottoTickets = generateLottoTickets();
+        LottoTickets lottoTickets = generateLottoTickets();
         BuyingPrice buyingPrice = new BuyingPrice(lottoTickets.size() * TICKET_PRICE);
         TicketAmount ticketAmount = new TicketAmount(buyingPrice, lottoTickets.size());
 
@@ -105,13 +106,13 @@ public class WinningStatisticsTest {
         assertThat(profit).isEqualTo(11.0f);
     }
 
-    private List<LottoTicket> generateLottoTickets() {
-        List<LottoTicket> lottoTicketList = new ArrayList<>();
-        lottoTicketList.add(new LottoTicket(3, 4, 5, 6, 7, 8)); // 4개 일치
-        lottoTicketList.add(new LottoTicket(4, 5, 6, 7, 8, 9)); // 3개 일치
-        lottoTicketList.add(new LottoTicket(5, 6, 7, 8, 9, 10)); // 2개 일치
-        lottoTicketList.add(new LottoTicket(6, 7, 8, 9, 10, 11)); // 1개 일치
-        lottoTicketList.add(new LottoTicket(7, 8, 9, 10, 11, 12)); // 0개 일치
-        return lottoTicketList;
+    private LottoTickets generateLottoTickets() {
+        List<LottoTicket> lottoTickets = new ArrayList<>();
+        lottoTickets.add(new LottoTicket(3, 4, 5, 6, 7, 8)); // 4개 일치
+        lottoTickets.add(new LottoTicket(4, 5, 6, 7, 8, 9)); // 3개 일치
+        lottoTickets.add(new LottoTicket(5, 6, 7, 8, 9, 10)); // 2개 일치
+        lottoTickets.add(new LottoTicket(6, 7, 8, 9, 10, 11)); // 1개 일치
+        lottoTickets.add(new LottoTicket(7, 8, 9, 10, 11, 12)); // 0개 일치
+        return new LottoTickets(lottoTickets);
     }
 }

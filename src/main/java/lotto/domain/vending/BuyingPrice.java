@@ -2,9 +2,9 @@ package lotto.domain.vending;
 
 import java.util.Objects;
 
-public class BuyingPrice {
-    public static final int TICKET_PRICE = 1000;
+import static lotto.domain.vending.TicketAmount.TICKET_PRICE;
 
+public class BuyingPrice {
     private final int buyingPrice;
 
     public BuyingPrice(final int buyingPrice) {
@@ -23,18 +23,18 @@ public class BuyingPrice {
 
     private void validateMinimum(int buyingPrice) {
         if (buyingPrice < TICKET_PRICE) {
-            throw new IllegalArgumentException("구입 금액은 "+ TICKET_PRICE +"원 이상이여야 합니다.");
+            throw new IllegalArgumentException("구입 금액은 " + TICKET_PRICE + "원 이상이여야 합니다.");
         }
     }
 
     private void validateDivisible(int buyingPrice) {
         if ((buyingPrice % TICKET_PRICE) != 0) {
-            throw new IllegalArgumentException("구입 금액은 "+ TICKET_PRICE +"원 단위여야 합니다.");
+            throw new IllegalArgumentException("구입 금액은 " + TICKET_PRICE + "원 단위여야 합니다.");
         }
     }
 
-    public int ticketAmount() {
-        return buyingPrice / TICKET_PRICE;
+    public int value() {
+        return buyingPrice;
     }
 
     @Override

@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.domain.vending.TicketAmount;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -27,9 +30,13 @@ public class InputView {
         return scanner.nextLine().trim();
     }
 
-    public static String getManualNumber() {
+    public static List<String> getManualNumbers(TicketAmount ticketAmount) {
         System.out.println(MANUAL_NUMBER_MESSAGE);
-        return scanner.nextLine().trim();
+        List<String> manualNumbers = new ArrayList<>();
+        for (int i = 0; i < ticketAmount.manual(); i++) {
+            manualNumbers.add(scanner.nextLine().trim());
+        }
+        return manualNumbers;
     }
 
     public static String getWinningNumber() {

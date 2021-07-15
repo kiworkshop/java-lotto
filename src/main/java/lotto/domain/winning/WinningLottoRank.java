@@ -4,10 +4,7 @@ import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.LottoTicket;
 import lotto.domain.lotto.LottoTickets;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class WinningLottoRank {
     private final WinningNumbers winningNumbers;
@@ -21,11 +18,15 @@ public class WinningLottoRank {
 
     private void initRank(LottoTickets lottoTickets) {
         Arrays.stream(LottoRank.values())
-                .sorted(Comparator.reverseOrder())
                 .forEach(rank -> winningLottoRank.put(rank, 0));
         groupByWinningCount(lottoTickets);
     }
 
+    private void groupByWinningCount(LottoTickets lottoTickets) {
+        lottoTickets.values().stream()
+                .forEach(lottoTicket -> addWinningCount(lottoTicket));
+        winningLottoRank.remove(LottoRank.LOSE);
+    }
 
     public int hitCount(LottoTicket lottoTicket) {
         return (int) winningNumbers.getWinningNumbers().stream()
@@ -33,20 +34,20 @@ public class WinningLottoRank {
                 .count();
     }
 
-    public int hitBonus(LottoTicket lottoTicket) {
-        return lottoTicket.contains(winningNumbers.getBonusNumber()) ? 1 : 0;
+    public boolean hitBonus(LottoTicket lottoTicket) {
+        return lottoTicket.contains(winningNumbers.getBonusNumber());
     }
 
-    public void groupByWinningCount(LottoTickets lottoTickets) {
-        lottoTickets.values().stream()
-                .filter(lottoTicket -> hitCount(lottoTicket) >= LottoRank.FIFTH.hitCount())
-                .forEach(lottoTicket -> {
-                    LottoRank key = LottoRank.findBy(hitCount(lottoTicket), hitBonus(lottoTicket));
-                    winningLottoRank.put(key, winningLottoRank.get(key) + 1);
-                });
+    private void addWinningCount(LottoTicket lottoTicket) {
+        LottoRank key = LottoRank.findBy(hitCount(lottoTicket), hitBonus(lottoTicket));
+        winningLottoRank.put(key, winningLottoRank.get(key) + 1);
     }
 
     public int count(LottoRank lottoRank) {
         return winningLottoRank.get(lottoRank);
+    }
+
+    public Set<LottoRank> keys() {
+        return winningLottoRank.keySet();
     }
 }

@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,9 +26,8 @@ public class WinningLottoRankTest {
     @ParameterizedTest
     @MethodSource("hitLottoNumbers")
     @DisplayName("당첨 번호와 일치하는 로또 번호 개수를 반환한다")
-    void hit_winning_numbers_count(int[] numbers, int expectedCount) {
+    void hit_winning_numbers_count(LottoTicket lottoTicket, int expectedCount) {
         //given
-        LottoTicket lottoTicket = new LottoTicket(numbers);
         LottoTickets lottoTickets = new LottoTickets(lottoTicket);
         WinningNumbers winningNumbers = generateWinningNumber(45);
 
@@ -51,10 +49,10 @@ public class WinningLottoRankTest {
 
         //when
         WinningLottoRank winningLottoRank = new WinningLottoRank(lottoTickets, winningNumbers);
-        int hitBonus = winningLottoRank.hitBonus(lottoTicket);
+        boolean isBonus = winningLottoRank.hitBonus(lottoTicket);
 
         //then
-        assertThat(hitBonus).isEqualTo(1);
+        assertThat(isBonus).isTrue();
     }
 
     @Test
@@ -74,6 +72,35 @@ public class WinningLottoRankTest {
         assertThat(winningLottoRank.count(LottoRank.FIRST)).isZero();
     }
 
+    @ParameterizedTest
+    @MethodSource("matchedBonusTickets")
+    @DisplayName("보너스 번호가 일치하는 로또 순위를 반환한다")
+    void matched_bonus_tickets(LottoTicket lottoTicket, LottoRank lottoRank) {
+        //given
+        LottoTickets lottoTickets = new LottoTickets(lottoTicket);
+
+        //when
+        WinningNumbers winningNumbers = generateWinningNumber(45);
+        WinningLottoRank winningLottoRank = new WinningLottoRank(lottoTickets, winningNumbers);
+
+        //then
+        assertThat(winningLottoRank.count(lottoRank)).isEqualTo(1);
+    }
+
+    @MethodSource("notMatchedBonusTickets")
+    @DisplayName("보너스 번호가 일치하지 않는 로또 순위를 반환한다")
+    void not_matched_bonus_tickets(LottoTicket lottoTicket, LottoRank lottoRank) {
+        //given
+        LottoTickets lottoTickets = new LottoTickets(lottoTicket);
+
+        //when
+        WinningNumbers winningNumbers = generateWinningNumber(45);
+        WinningLottoRank winningLottoRank = new WinningLottoRank(lottoTickets, winningNumbers);
+
+        //then
+        assertThat(winningLottoRank.count(lottoRank)).isEqualTo(1);
+    }
+
     private LottoTickets generateLottoTickets() {
         List<LottoTicket> lottoTickets = new ArrayList<>();
         lottoTickets.add(new LottoTicket(3, 4, 5, 6, 7, 8)); // 4개 일치
@@ -86,13 +113,33 @@ public class WinningLottoRankTest {
 
     private static Stream<Arguments> hitLottoNumbers() {
         return Stream.of(
-                Arguments.of(new int[]{1, 2, 3, 4, 5, 6}, 6),
-                Arguments.of(new int[]{1, 2, 3, 4, 5, 7}, 5),
-                Arguments.of(new int[]{1, 2, 3, 4, 7, 8}, 4),
-                Arguments.of(new int[]{1, 2, 3, 7, 8, 9}, 3),
-                Arguments.of(new int[]{1, 2, 7, 8, 9, 10}, 2),
-                Arguments.of(new int[]{1, 7, 8, 9, 10, 11}, 1),
-                Arguments.of(new int[]{8, 9, 10, 11, 12, 13}, 0)
+                Arguments.of(new LottoTicket(1, 2, 3, 4, 5, 6), 6),
+                Arguments.of(new LottoTicket(2, 3, 4, 5, 6, 7), 5),
+                Arguments.of(new LottoTicket(3, 4, 5, 6, 7, 8), 4),
+                Arguments.of(new LottoTicket(4, 5, 6, 7, 8, 9), 3),
+                Arguments.of(new LottoTicket(5, 6, 7, 8, 9, 10), 2),
+                Arguments.of(new LottoTicket(6, 7, 8, 9, 10, 11), 1),
+                Arguments.of(new LottoTicket(7, 8, 9, 10, 11, 12), 0)
+        );
+    }
+
+    private static Stream<Arguments> matchedBonusTickets() {
+        return Stream.of(
+                Arguments.of(new LottoTicket(1, 2, 3, 4, 5, 6), LottoRank.FIRST),
+                Arguments.of(new LottoTicket(1, 2, 3, 4, 5, 45), LottoRank.SECOND),
+                Arguments.of(new LottoTicket(2, 3, 4, 5, 6, 7), LottoRank.THIRD),
+                Arguments.of(new LottoTicket(3, 4, 5, 6, 7, 45), LottoRank.FOURTH),
+                Arguments.of(new LottoTicket(4, 5, 6, 7, 8, 45), LottoRank.FIFTH)
+        );
+    }
+
+    private static Stream<Arguments> notMatchedBonusTickets() {
+        return Stream.of(
+                Arguments.of(new LottoTicket(1, 2, 3, 4, 5, 6), LottoRank.FIRST),
+                Arguments.of(new LottoTicket(1, 2, 3, 4, 5, 45), LottoRank.SECOND),
+                Arguments.of(new LottoTicket(2, 3, 4, 5, 6, 7), LottoRank.THIRD),
+                Arguments.of(new LottoTicket(3, 4, 5, 6, 7, 8), LottoRank.FOURTH),
+                Arguments.of(new LottoTicket(4, 5, 6, 7, 8, 9), LottoRank.FIFTH)
         );
     }
 }

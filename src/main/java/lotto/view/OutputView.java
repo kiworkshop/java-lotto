@@ -1,12 +1,12 @@
 package lotto.view;
 
+import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.LottoTicket;
 import lotto.domain.lotto.LottoTickets;
 import lotto.domain.vending.TicketAmount;
-import lotto.domain.winning.LottoRank;
+import lotto.domain.winning.WinningLottoRank;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -34,16 +34,12 @@ public class OutputView {
         System.out.printf("총 수익률은 %.2f 입니다.%n", profitRate);
     }
 
-    public static void printWinningStatistics(Map<LottoRank, Integer> ranks) {
+    public static void printWinningStatistics(WinningLottoRank winningLottoRank) {
         System.out.println("당첨 통계\n---------");
-        for (LottoRank rank : ranks.keySet()) {
-            if ((rank.getHitCount() == 5) && (rank.getHitBonus() == 1)) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개%n", rank.getHitCount(),
-                        rank.getPrizeMoney(), ranks.get(rank));
-                continue;
-            }
-            System.out.printf("%d개 일치 (%d원) - %d개%n", rank.getHitCount(),
-                    rank.getPrizeMoney(), ranks.get(rank));
+        for (LottoRank rank : LottoRank.values()) {
+            String message = (rank == LottoRank.SECOND) ? "%d개 일치, 보너스 볼 일치 (%d원) - %d개%n"
+                                                        : "%d개 일치 (%d원) - %d개%n";
+            System.out.printf(message, rank.hitCount(), rank.prizeMoney(), winningLottoRank.count(rank));
         }
     }
 }

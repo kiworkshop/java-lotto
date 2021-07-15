@@ -1,18 +1,17 @@
 package lotto.controller;
 
-import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.LottoTickets;
 import lotto.domain.util.StringUtil;
 import lotto.domain.vending.BuyingPrice;
 import lotto.domain.vending.LottoTicketVendingMachine;
 import lotto.domain.vending.TicketAmount;
+import lotto.domain.winning.WinningLottoRank;
 import lotto.domain.winning.WinningNumbers;
 import lotto.domain.winning.WinningStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 
 public class LottoController {
 
@@ -36,12 +35,11 @@ public class LottoController {
 
         int bonusNumber = Integer.parseInt(InputView.getBonusNumber());
         WinningNumbers winningNumbers = new WinningNumbers(splitWinningNumbers, bonusNumber);
-        WinningStatistics winningStatistics = new WinningStatistics(winningNumbers);
+        WinningLottoRank winningLottoRank = new WinningLottoRank(lottoTickets, winningNumbers);
+        OutputView.printWinningStatistics(winningLottoRank);
 
-        Map<LottoRank, Integer> ranks = winningStatistics.groupByHitCount(lottoTickets);
-        OutputView.printWinningStatistics(ranks);
-
-        float profitRate = winningStatistics.profitRate(ticketAmount, ranks);
+        WinningStatistics winningStatistics = new WinningStatistics(winningLottoRank);
+        float profitRate = winningStatistics.profitRate(ticketAmount);
         OutputView.printProfitRate(profitRate);
     }
 }

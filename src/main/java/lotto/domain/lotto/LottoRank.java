@@ -1,4 +1,4 @@
-package lotto.domain.winning;
+package lotto.domain.lotto;
 
 import java.util.Arrays;
 
@@ -21,21 +21,21 @@ public enum LottoRank {
     }
 
     public static LottoRank findBy(int hitCount, int hitBonus) {
-        return Arrays.asList(values()).stream()
+        return Arrays.stream(values())
                 .filter(rank -> (rank.hitCount == hitCount) && (rank.hitBonus == hitBonus))
                 .findFirst()
                 .orElse(LottoRank.LOSE);
     }
 
-    public int getHitCount() {
+    public int hitCount() {
         return hitCount;
     }
 
-    public int getHitBonus() {
+    public int hitBonus() {
         return hitBonus;
     }
 
-    public int getPrizeMoney() {
+    public int prizeMoney() {
         return prizeMoney;
     }
 }

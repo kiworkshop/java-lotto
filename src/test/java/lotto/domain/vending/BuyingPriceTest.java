@@ -30,7 +30,7 @@ public class BuyingPriceTest {
     }
 
     @Test
-    @DisplayName("1000 단위가 아닐 경우 예외가 발생한다")
+    @DisplayName("1000원 단위가 아닐 경우 예외가 발생한다")
     void validate_factor() {
         //given
         int invalidPrice = 1001;

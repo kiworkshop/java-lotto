@@ -4,7 +4,6 @@ import lotto.domain.lotto.LottoNumber;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -40,20 +39,6 @@ public class WinningNumbers {
 
     public LottoNumber getBonusNumber() {
         return bonusNumber;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WinningNumbers that = (WinningNumbers) o;
-        return Objects.equals(winningNumbers, that.winningNumbers) &&
-                Objects.equals(bonusNumber, that.bonusNumber);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(winningNumbers, bonusNumber);
     }
 
 }

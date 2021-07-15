@@ -1,10 +1,11 @@
 package lotto.domain.lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoTickets {
-    private List<LottoTicket> lottoTickets;
+    private final List<LottoTicket> lottoTickets;
 
     public LottoTickets() {
         this.lottoTickets = new ArrayList<>();
@@ -12,6 +13,10 @@ public class LottoTickets {
 
     public LottoTickets(List<LottoTicket> lottoTickets) {
         this.lottoTickets = new ArrayList<>(lottoTickets);
+    }
+
+    public LottoTickets(LottoTicket lottoTicket) {
+        this.lottoTickets = Collections.singletonList(lottoTicket);
     }
 
     public void add(List<LottoTicket> lottoTickets) {

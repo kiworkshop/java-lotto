@@ -9,9 +9,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottoRankTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"6, 0, FIRST", "5, 1, SECOND", "5, 0, THIRD", "4, 0, FOURTH", "3, 0, FIFTH"})
+    @CsvSource(value = {"6, false, FIRST", "5, true, SECOND", "5, false, THIRD", "4, false, FOURTH", "3, false, FIFTH"})
     @DisplayName("로또 티의 당첨 갯수개에 따른 순위를 반환한다")
-    void lotto_hit_count_rank(int hitCount, int hitBonus, String ranking) {
+    void lotto_hit_count_rank(int hitCount, boolean hitBonus, String ranking) {
         //given
 
         //when

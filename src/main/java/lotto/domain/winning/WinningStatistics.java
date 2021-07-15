@@ -1,9 +1,6 @@
 package lotto.domain.winning;
 
-import lotto.domain.lotto.LottoRank;
 import lotto.domain.vending.TicketAmount;
-
-import java.util.Arrays;
 
 import static lotto.domain.vending.TicketAmount.TICKET_PRICE;
 
@@ -20,7 +17,7 @@ public class WinningStatistics {
     }
 
     private int totalPrize() {
-        return Arrays.stream(LottoRank.values())
+        return winningLottoRank.keys().stream()
                 .mapToInt(rank -> rank.prizeMoney() * winningLottoRank.count(rank))
                 .sum();
     }

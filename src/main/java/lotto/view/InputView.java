@@ -5,6 +5,8 @@ import lotto.domain.vending.TicketAmount;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
@@ -28,12 +30,13 @@ public class InputView {
     }
 
     public static List<String> getManualNumbers(TicketAmount ticketAmount) {
-        System.out.println(MANUAL_NUMBER_MESSAGE);
-        List<String> manualNumbers = new ArrayList<>();
-        for (int i = 0; i < ticketAmount.manual(); i++) {
-            manualNumbers.add(scanner.nextLine().trim());
+        if (ticketAmount.manual() == 0) {
+            return new ArrayList<>();
         }
-        return manualNumbers;
+        System.out.println(MANUAL_NUMBER_MESSAGE);
+        return IntStream.range(0, ticketAmount.manual())
+                .mapToObj(i -> scanner.nextLine().trim())
+                .collect(Collectors.toList());
     }
 
     public static String getWinningNumber() {

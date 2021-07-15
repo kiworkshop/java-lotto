@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.domain.vending.TicketAmount;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;

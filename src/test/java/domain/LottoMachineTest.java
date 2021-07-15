@@ -54,6 +54,26 @@ public class LottoMachineTest {
         // then
         assertThatIllegalArgumentException().isThrownBy(() -> machine.getBonusBall(bonusNumbers, winningNumber));
     }
+
+    @Test
+    @DisplayName("입력 숫자가 음수 일 경우 경우 예외가 발생한다.")
+    public void checkBoundMinus() {
+        //given
+        String bonusNumbers = "-46";
+        List<Integer> winningNumber = new ArrayList<>();
+        winningNumber.add(1);
+        winningNumber.add(2);
+        winningNumber.add(3);
+        winningNumber.add(4);
+        winningNumber.add(5);
+        winningNumber.add(45);
+
+        //when
+        LottoMachine machine = new LottoMachine("1000");
+        // then
+        assertThatIllegalArgumentException().isThrownBy(() -> machine.getBonusBall(bonusNumbers, winningNumber));
+    }
+
     @Test
     void _1에서_45_사이의_로또보너스번호_입력_하면_숫자로_리턴() {
         //given

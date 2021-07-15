@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
+
     static InputView inputView = new InputView();
     static OutputView outputView = new OutputView();
-
 
     public static void main(String[] args) {
 
@@ -20,8 +20,8 @@ public class LottoController {
         List<Lotto> lottoTickets = lottoMachine.getLottoTickets();
         outputView.printLottoTickets(lottoTickets);
 
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        int bonusNumber = inputView.inputBonusBall(winningNumbers);
+        List<Integer> winningNumbers = lottoMachine.getWinningNumber(inputView.inputWinningNumbers());
+        int bonusNumber = lottoMachine.getBonusBall(inputView.inputBonusBall(), winningNumbers);
 
         Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTickets, winningNumbers, bonusNumber);
         outputView.printRankResult(rankResult);

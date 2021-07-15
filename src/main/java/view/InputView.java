@@ -12,17 +12,21 @@ public class InputView {
 
     public String inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return scanner.nextLine();
+        String money = scanner.nextLine();
+        inputValidation.checkNullOrEmpty(money);
+        return  money;
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public String inputWinningNumbers() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        return inputValidation.checkWinningNumbers(scanner.nextLine());
+        String winningNumber = scanner.nextLine();
+        inputValidation.checkNullOrEmpty(winningNumber);
+        return winningNumber;
     }
 
-    public int inputBonusBall(List<Integer> winningNumbers) {
+    public String inputBonusBall() {
         System.out.println("보너스 볼을 입력해 주세요.");
-        return inputValidation.checkBonusBall(scanner.nextLine(), winningNumbers);
+        return scanner.nextLine();
     }
 
 }

@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.vending.TicketAmount;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class InputView {
 
     public static List<String> getManualNumbers(TicketAmount ticketAmount) {
         if (ticketAmount.manual() == 0) {
-            return new ArrayList<>();
+            return  Collections.emptyList();
         }
         System.out.println(MANUAL_NUMBER_MESSAGE);
         return IntStream.range(0, ticketAmount.manual())

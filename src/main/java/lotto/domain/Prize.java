@@ -1,7 +1,6 @@
-package lotto.constant;
+package lotto.domain;
 
 import lombok.Getter;
-import lotto.domain.PrizeCount;
 
 @Getter
 public enum Prize {

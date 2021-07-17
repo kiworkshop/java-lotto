@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.domain;
 
 import lotto.domain.PurchaseCount;
 import org.junit.jupiter.api.DisplayName;

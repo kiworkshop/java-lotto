@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.constant.Prize;
 import lotto.parser.LottoParser;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;

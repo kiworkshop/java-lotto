@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.constant.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.constant.Prize;
+import lotto.domain.Prize;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseCount;

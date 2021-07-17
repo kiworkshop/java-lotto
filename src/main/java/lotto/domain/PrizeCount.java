@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lombok.Builder;
 import lombok.Getter;
-import lotto.constant.Prize;
 
 @Getter
 public class PrizeCount {

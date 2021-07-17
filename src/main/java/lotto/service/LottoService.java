@@ -18,7 +18,7 @@ public class LottoService {
                 .build();
     }
 
-    public StatisticsResultDTO calcResult(PurchaseResultDTO purchaseResultDTO, WinningLottoInputDTO winningLottoInputDTO) {
+    public StatisticsResultDTO calculateResult(PurchaseResultDTO purchaseResultDTO, WinningLottoInputDTO winningLottoInputDTO) {
         WinningLotto winningLotto = WinningLotto.builder()
                 .winningNumberInput(winningLottoInputDTO.getWinningLottoNumbers())
                 .bonusNumberInput(winningLottoInputDTO.getWinningLottoBonus())
@@ -34,7 +34,7 @@ public class LottoService {
 
         return StatisticsResultDTO.builder()
                 .prizeCount(prizeCount)
-                .profitRate(lottoStatistics.calcProfitRate())
+                .profitRate(lottoStatistics.calculateProfitRate())
                 .build();
     }
 }

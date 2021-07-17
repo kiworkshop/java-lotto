@@ -15,7 +15,7 @@ public class LottoStatistics {
         this.purchaseCount = purchaseCount;
     }
 
-    public double calcProfitRate() {
+    public double calculateProfitRate() {
         return (double) Prize.sumOfPrizeMoney(prizeCount)
                 / (purchaseCount.getPurchaseCount() * Lotto.PRICE);
     }

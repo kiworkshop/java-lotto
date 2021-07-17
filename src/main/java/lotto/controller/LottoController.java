@@ -26,7 +26,7 @@ public class LottoController {
         view.printLottoPurchaseResult(purchaseResultDTO);
 
         WinningLottoInputDTO winningLottoInputDTO = view.getWinningLottoAndBonus();
-        StatisticsResultDTO statisticsResultDTO = lottoService.calcResult(purchaseResultDTO, winningLottoInputDTO);
+        StatisticsResultDTO statisticsResultDTO = lottoService.calculateResult(purchaseResultDTO, winningLottoInputDTO);
         view.printLottoStatistics(statisticsResultDTO);
     }
 }

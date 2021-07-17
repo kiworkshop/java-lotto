@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.dto.WinningLottoInputDTO;
 import lotto.parser.LottoParser;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +14,9 @@ public class WinningLottoTest {
     private final String winningNumberInput = "1, 2, 3, 4, 5, 6";
     private final String bonusNumberInput = "10";
     private static Lotto targetLotto;
-    private final WinningLotto winningLotto = new WinningLotto(winningNumberInput, bonusNumberInput);
+    private final WinningLotto winningLotto = new WinningLotto(
+            new WinningLottoInputDTO(winningNumberInput, bonusNumberInput)
+    );
 
     @BeforeAll
     private static void generateTargetLotto() {
@@ -33,10 +36,14 @@ public class WinningLottoTest {
         // given
         String input = "1, a, 3, 4, 5, 6";
         String bonus = "10";
+        WinningLottoInputDTO winningLottoInputDTO = WinningLottoInputDTO.builder()
+                .winningLottoNumbers(input)
+                .winningLottoBonus(bonus)
+                .build();
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningLotto(input, bonus);
+            new WinningLotto(winningLottoInputDTO);
         });
     }
 
@@ -46,10 +53,14 @@ public class WinningLottoTest {
         // given
         String input = "1, 2, 3, 4, 5, 46";
         String bonus = "10";
+        WinningLottoInputDTO winningLottoInputDTO = WinningLottoInputDTO.builder()
+                .winningLottoNumbers(input)
+                .winningLottoBonus(bonus)
+                .build();
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningLotto(input, bonus);
+            new WinningLotto(winningLottoInputDTO);
         });
     }
 
@@ -59,10 +70,14 @@ public class WinningLottoTest {
         // given
         String input = "0, 2, 3, 4, 5, 6";
         String bonus = "10";
+        WinningLottoInputDTO winningLottoInputDTO = WinningLottoInputDTO.builder()
+                .winningLottoNumbers(input)
+                .winningLottoBonus(bonus)
+                .build();
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningLotto(input, bonus);
+            new WinningLotto(winningLottoInputDTO);
         });
     }
 
@@ -72,10 +87,14 @@ public class WinningLottoTest {
         // given
         String input = "1, 2, 3, 4, 5";
         String bonus = "10";
+        WinningLottoInputDTO winningLottoInputDTO = WinningLottoInputDTO.builder()
+                .winningLottoNumbers(input)
+                .winningLottoBonus(bonus)
+                .build();
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningLotto(input, bonus);
+            new WinningLotto(winningLottoInputDTO);
         });
     }
 
@@ -100,8 +119,14 @@ public class WinningLottoTest {
     @Test
     @DisplayName("숫자가 5개 일치하고 보너스번호도 일치할 때 2등")
     void testFindPrize_secondWithBonus() {
-        //given, when
-        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,7", "6");
+        //given
+        WinningLottoInputDTO winningLottoInputDTO = WinningLottoInputDTO.builder()
+                .winningLottoNumbers("1,2,3,4,5,7")
+                .winningLottoBonus("6")
+                .build();
+
+        // when
+        WinningLotto winningLotto = new WinningLotto(winningLottoInputDTO);
         Prize prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
@@ -111,8 +136,14 @@ public class WinningLottoTest {
     @Test
     @DisplayName("숫자가 5개 일치하고 보너스 번호가 일치하지 않을 때 3등")
     void testFindPrize_third() {
-        //given, when
-        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,7", bonusNumberInput);
+        //given
+        WinningLottoInputDTO winningLottoInputDTO = WinningLottoInputDTO.builder()
+                .winningLottoNumbers("1,2,3,4,5,7")
+                .winningLottoBonus(bonusNumberInput)
+                .build();
+
+        // when
+        WinningLotto winningLotto = new WinningLotto(winningLottoInputDTO);
         Prize prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
@@ -122,8 +153,14 @@ public class WinningLottoTest {
     @Test
     @DisplayName("숫자가 4개 일치할 때 4등")
     void testFindPrize_fourth() {
-        //given, when
-        WinningLotto winningLotto = new WinningLotto("4,3,2,1,8,7", bonusNumberInput);
+        //given
+        WinningLottoInputDTO winningLottoInputDTO = WinningLottoInputDTO.builder()
+                .winningLottoNumbers("4,3,2,1,8,7")
+                .winningLottoBonus(bonusNumberInput)
+                .build();
+
+        // when
+        WinningLotto winningLotto = new WinningLotto(winningLottoInputDTO);
         Prize prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
@@ -133,8 +170,14 @@ public class WinningLottoTest {
     @Test
     @DisplayName("숫자가 3개 일치할 때 5등")
     void testFindPrize_fifth() {
-        //given, when
-        WinningLotto winningLotto = new WinningLotto("4,3,2,9,8,7", bonusNumberInput);
+        //given
+        WinningLottoInputDTO winningLottoInputDTO = WinningLottoInputDTO.builder()
+                .winningLottoNumbers("4,3,2,9,8,7")
+                .winningLottoBonus(bonusNumberInput)
+                .build();
+
+        // when
+        WinningLotto winningLotto = new WinningLotto(winningLottoInputDTO);
         Prize prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then

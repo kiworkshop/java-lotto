@@ -1,9 +1,9 @@
 package lotto.service;
 
 import lotto.domain.*;
-import lotto.domain.dto.StatisticsResultDTO;
 import lotto.domain.dto.PurchasePriceInputDTO;
 import lotto.domain.dto.PurchaseResultDTO;
+import lotto.domain.dto.StatisticsResultDTO;
 import lotto.domain.dto.WinningLottoInputDTO;
 
 public class LottoService {
@@ -20,8 +20,7 @@ public class LottoService {
 
     public StatisticsResultDTO calculateResult(PurchaseResultDTO purchaseResultDTO, WinningLottoInputDTO winningLottoInputDTO) {
         WinningLotto winningLotto = WinningLotto.builder()
-                .winningNumberInput(winningLottoInputDTO.getWinningLottoNumbers())
-                .bonusNumberInput(winningLottoInputDTO.getWinningLottoBonus())
+                .winningLottoInputDTO(winningLottoInputDTO)
                 .build();
         PrizeCount prizeCount = PrizeCount.builder()
                 .lottoset(purchaseResultDTO.getRandomLottoSet())

@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lombok.Builder;
 import lombok.Getter;
-import lotto.constant.PrizeCondition;
+import lotto.constant.Prize;
 
 @Getter
 public class PrizeCount {
@@ -20,24 +20,24 @@ public class PrizeCount {
         }
     }
 
-    private void updateCounts(PrizeCondition prizeCondition) {
-        if (prizeCondition.equals(PrizeCondition.FIRST)) {
+    private void updateCounts(Prize prize) {
+        if (prize.equals(Prize.FIRST)) {
             countFirst++;
             return;
         }
-        if (prizeCondition.equals(PrizeCondition.SECOND)) {
+        if (prize.equals(Prize.SECOND)) {
             countSecond++;
             return;
         }
-        if (prizeCondition.equals(PrizeCondition.THIRD)) {
+        if (prize.equals(Prize.THIRD)) {
             countThird++;
             return;
         }
-        if (prizeCondition.equals(PrizeCondition.FOURTH)) {
+        if (prize.equals(Prize.FOURTH)) {
             countFourth++;
             return;
         }
-        if (prizeCondition.equals(PrizeCondition.FIFTH)) {
+        if (prize.equals(Prize.FIFTH)) {
             countFifth++;
         }
     }

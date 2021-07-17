@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lombok.Builder;
 import lombok.Getter;
-import lotto.constant.PrizeCondition;
+import lotto.constant.Prize;
 import lotto.parser.LottoParser;
 
 import java.util.Comparator;
@@ -19,8 +19,8 @@ public class WinningLotto extends Lotto {
         this.lottoNumbers.sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
     }
 
-    public PrizeCondition findPrizeCondition(Lotto targetLotto) {
-        return PrizeCondition.findPrize(getMatchNumbersCount(targetLotto), isBonusMatch(targetLotto));
+    public Prize findPrizeCondition(Lotto targetLotto) {
+        return Prize.findPrize(getMatchNumbersCount(targetLotto), isBonusMatch(targetLotto));
     }
 
     private int getMatchNumbersCount(Lotto targetLotto) {

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constant.PrizeCondition;
+import lotto.constant.Prize;
 import lotto.parser.LottoParser;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -92,10 +92,10 @@ public class WinningLottoTest {
     @DisplayName("숫자가 6개 일치할 때 1등")
     void testFindPrize_firstWithoutBonus() {
         //given, when
-        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
+        Prize prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
-        assertThat(prize).isEqualTo(PrizeCondition.FIRST);
+        assertThat(prize).isEqualTo(Prize.FIRST);
     }
 
     @Test
@@ -103,10 +103,10 @@ public class WinningLottoTest {
     void testFindPrize_secondWithBonus() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,7", "6");
-        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
+        Prize prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
-        assertThat(prize).isEqualTo(PrizeCondition.SECOND);
+        assertThat(prize).isEqualTo(Prize.SECOND);
     }
 
     @Test
@@ -114,10 +114,10 @@ public class WinningLottoTest {
     void testFindPrize_third() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,7", bonusNumberInput);
-        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
+        Prize prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
-        assertThat(prize).isEqualTo(PrizeCondition.THIRD);
+        assertThat(prize).isEqualTo(Prize.THIRD);
     }
 
     @Test
@@ -125,10 +125,10 @@ public class WinningLottoTest {
     void testFindPrize_fourth() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("4,3,2,1,8,7", bonusNumberInput);
-        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
+        Prize prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
-        assertThat(prize).isEqualTo(PrizeCondition.FOURTH);
+        assertThat(prize).isEqualTo(Prize.FOURTH);
     }
 
     @Test
@@ -136,9 +136,9 @@ public class WinningLottoTest {
     void testFindPrize_fifth() {
         //given, when
         WinningLotto winningLotto = new WinningLotto("4,3,2,9,8,7", bonusNumberInput);
-        PrizeCondition prize = winningLotto.findPrizeCondition(targetLotto);
+        Prize prize = winningLotto.findPrizeCondition(targetLotto);
 
         //then
-        assertThat(prize).isEqualTo(PrizeCondition.FIFTH);
+        assertThat(prize).isEqualTo(Prize.FIFTH);
     }
 }

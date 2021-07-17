@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.constant.PrizeMessage;
+import lotto.constant.Prize;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseCount;
@@ -59,17 +59,30 @@ public class OutputView {
 
     public void printLottoStatistic(StatisticsResultDTO lottoStatistics) {
         String result = "당첨 통계" + "---------" + NEW_LINE +
-                generatePrizeMessage(PrizeMessage.FIFTH, lottoStatistics.getPrizeCount().getCountFifth()) +
-                generatePrizeMessage(PrizeMessage.FOURTH, lottoStatistics.getPrizeCount().getCountFourth()) +
-                generatePrizeMessage(PrizeMessage.THIRD, lottoStatistics.getPrizeCount().getCountThird()) +
-                generatePrizeMessage(PrizeMessage.SECOND, lottoStatistics.getPrizeCount().getCountSecond()) +
-                generatePrizeMessage(PrizeMessage.FIRST, lottoStatistics.getPrizeCount().getCountFirst()) +
+                generatePrizeResultMessage(Prize.FIFTH, lottoStatistics.getPrizeCount().getCountFifth()) +
+                generatePrizeResultMessage(Prize.FOURTH, lottoStatistics.getPrizeCount().getCountFourth()) +
+                generatePrizeResultMessage(Prize.THIRD, lottoStatistics.getPrizeCount().getCountThird()) +
+                generatePrizeResultMessage(Prize.SECOND, lottoStatistics.getPrizeCount().getCountSecond()) +
+                generatePrizeResultMessage(Prize.FIRST, lottoStatistics.getPrizeCount().getCountFirst()) +
                 generateProfitRateMessage(lottoStatistics.getProfitRate());
         print(result);
     }
 
-    private String generatePrizeMessage(PrizeMessage prizeMessage, int prizeCount) {
-        return prizeMessage.getMessage() + prizeCount + UNIT + NEW_LINE;
+    private String generatePrizeResultMessage(Prize prize, int prizeCount) {
+        return generatePrizeResultMessage(prize) + prizeCount + UNIT + NEW_LINE;
+    }
+
+    private String generatePrizeResultMessage(Prize prize) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(prize.getMatchNumbersCount())
+                .append("개 일치");
+        if (prize.isBonus()) {
+            sb.append(", 보너스 볼 일치 ");
+        }
+        sb.append("(")
+                .append(prize.getPrizeMoney())
+                .append("원)- ");
+        return sb.toString();
     }
 
     private String generateProfitRateMessage(double profitRate) {

@@ -1,14 +1,18 @@
 package lotto.view;
 
-import lotto.domain.dto.StatisticsResultDTO;
+import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import lotto.domain.dto.PurchasePriceInputDTO;
 import lotto.domain.dto.PurchaseResultDTO;
+import lotto.domain.dto.StatisticsResultDTO;
 import lotto.domain.dto.WinningLottoInputDTO;
 
+@RequiredArgsConstructor
+@Builder
 public class View {
 
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public PurchasePriceInputDTO getPurchaseCost() {
         outputView.askPurchaseCost();

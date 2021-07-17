@@ -1,24 +1,9 @@
 package lotto.view;
 
-import java.util.Scanner;
+public interface InputView {
+    String getPurchaseCost();
 
-public class InputView {
+    String getWinningLottoNumbers();
 
-    private final Scanner scanner = new Scanner(System.in);
-
-    private String nextLine() {
-        return scanner.nextLine();
-    }
-
-    public String getPurchaseCost() {
-        return nextLine();
-    }
-
-    public String getWinningLottoNumbers() {
-        return nextLine();
-    }
-
-    public String getWinningLottoBonus() {
-        return nextLine();
-    }
+    String getWinningLottoBonus();
 }

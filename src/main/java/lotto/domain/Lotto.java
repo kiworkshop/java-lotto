@@ -16,7 +16,7 @@ public class Lotto {
     public static final int LOTTO_NUMBER_SIZE = 6;
 
     @Getter
-    private List<LottoNumber> lottoNumbers;
+    private final List<LottoNumber> lottoNumbers;
 
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         validate(numbers);

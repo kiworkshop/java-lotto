@@ -1,15 +1,15 @@
 package lotto.service;
 
 import lotto.domain.*;
-import lotto.domain.dto.PurchasePriceInput;
-import lotto.domain.dto.PurchaseResult;
 import lotto.domain.dto.LottoResult;
+import lotto.domain.dto.PurchaseInput;
+import lotto.domain.dto.PurchaseResult;
 import lotto.domain.dto.WinningLottoInput;
 
 public class LottoService {
 
-    public PurchaseResult purchase(PurchasePriceInput purchasePriceInput) {
-        PurchaseCount purchaseCount = new PurchaseCount(purchasePriceInput.getPrice());
+    public PurchaseResult purchase(PurchaseInput purchaseInput) {
+        PurchaseCount purchaseCount = new PurchaseCount(purchaseInput.getPrice());
         LottoSet lottoSet = new LottoSet(purchaseCount);
 
         return PurchaseResult.builder()

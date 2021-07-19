@@ -2,7 +2,7 @@ package lotto.view;
 
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import lotto.domain.dto.PurchasePriceInput;
+import lotto.domain.dto.PurchaseInput;
 import lotto.domain.dto.PurchaseResult;
 import lotto.domain.dto.LottoResult;
 import lotto.domain.dto.WinningLottoInput;
@@ -16,11 +16,11 @@ public class View {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public PurchasePriceInput getPurchaseCost() throws NumberFormatException {
+    public PurchaseInput getPurchasePrice() throws NumberFormatException {
         outputView.askPurchaseCost();
         Integer purchaseCountInput = inputView.getPurchaseCost();
 
-        return PurchasePriceInput.builder()
+        return PurchaseInput.builder()
                 .price(purchaseCountInput)
                 .build();
     }

@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @Builder
 @RequiredArgsConstructor
-public class PurchasePriceInput {
+public class PurchaseInput {
 
     private final Integer price;
 }

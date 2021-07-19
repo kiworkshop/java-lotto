@@ -1,35 +1,24 @@
 package lotto.controller;
 
-import lotto.domain.dto.PurchasePriceInput;
-import lotto.domain.dto.PurchaseResult;
 import lotto.domain.dto.LottoResult;
+import lotto.domain.dto.PurchaseInput;
+import lotto.domain.dto.PurchaseResult;
 import lotto.domain.dto.WinningLottoInput;
 import lotto.service.LottoService;
-import lotto.view.View;
 
 public class LottoController {
 
-    private final View view;
     private final LottoService lottoService;
 
-    public LottoController(View view) {
-        this.view = view;
+    public LottoController() {
         this.lottoService = new LottoService();
     }
 
-    public void start() {
-        try {
-            PurchasePriceInput purchasePriceInput = view.getPurchaseCost();
-            PurchaseResult purchaseResult = lottoService.purchase(purchasePriceInput);
-            view.printLottoPurchaseResult(purchaseResult);
+    public PurchaseResult purchase(PurchaseInput purchaseInput) {
+        return lottoService.purchase(purchaseInput);
+    }
 
-            WinningLottoInput winningLottoInput = view.getWinningLottoAndBonus();
-            LottoResult lottoResult = lottoService.calculateResult(purchaseResult, winningLottoInput);
-            view.printLottoStatistics(lottoResult);
-        } catch (NumberFormatException e) {
-            view.printException(e.getMessage());
-        } catch (IllegalArgumentException e) {
-            view.printException(e.getMessage());
-        }
+    public LottoResult calculateResult(PurchaseResult purchaseResult, WinningLottoInput winningLottoInput) {
+        return lottoService.calculateResult(purchaseResult, winningLottoInput);
     }
 }

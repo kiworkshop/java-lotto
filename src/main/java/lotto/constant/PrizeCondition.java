@@ -1,5 +1,7 @@
 package lotto.constant;
 
+import lombok.Getter;
+
 public enum PrizeCondition {
 
     FIRST(6, false),
@@ -9,6 +11,7 @@ public enum PrizeCondition {
     FIFTH(3, false),
     LOSE(2, false);
 
+    @Getter
     private final int matchNumbersCount;
     private final boolean isBonus;
 

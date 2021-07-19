@@ -3,8 +3,7 @@ package lotto.domain;
 import lombok.Builder;
 import lombok.Getter;
 
-import static lotto.exception.ExceptionMessage.NEGATIVE_INTEGER_INPUT_FOR_PURCHASE_MONEY;
-import static lotto.exception.ExceptionMessage.NON_MULTIPLE_OF_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY;
+import static lotto.exception.ExceptionMessage.*;
 import static lotto.util.NumberValidateUtils.isNonNegativeInteger;
 
 public class PurchaseCount {
@@ -27,14 +26,13 @@ public class PurchaseCount {
             throw new IllegalArgumentException(NEGATIVE_INTEGER_INPUT_FOR_PURCHASE_MONEY.getMessage());
         }
 
-        int purchaseCount = Integer.parseInt(input);
-        if (notMatchesCondition(purchaseCount)) {
+        int inputValue = Integer.parseInt(input);
+        if (inputValue < MINIMUM_INPUT) {
+            throw new IllegalArgumentException(LESS_THAN_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY.getMessage());
+        }
+        if (notMultipleOfLottoPrice(inputValue)) {
             throw new IllegalArgumentException(NON_MULTIPLE_OF_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY.getMessage());
         }
-    }
-
-    private boolean notMatchesCondition(int input) {
-        return input < MINIMUM_INPUT || notMultipleOfLottoPrice(input);
     }
 
     private boolean notMultipleOfLottoPrice(int input) {

@@ -50,11 +50,11 @@ public class ConsoleOutputView implements OutputView {
 
     public void printLottoStatistic(StatisticsResult lottoStatistics) {
         String result = "당첨 통계\n---------\n" +
-                generatePrizeResultMessage(Prize.FIFTH, lottoStatistics.getPrizeCount().getCountFifth()) +
-                generatePrizeResultMessage(Prize.FOURTH, lottoStatistics.getPrizeCount().getCountFourth()) +
-                generatePrizeResultMessage(Prize.THIRD, lottoStatistics.getPrizeCount().getCountThird()) +
-                generatePrizeResultMessage(Prize.SECOND, lottoStatistics.getPrizeCount().getCountSecond()) +
-                generatePrizeResultMessage(Prize.FIRST, lottoStatistics.getPrizeCount().getCountFirst()) +
+                generatePrizeResultMessage(Prize.FIFTH, lottoStatistics.getPrizeCount().getFifth()) +
+                generatePrizeResultMessage(Prize.FOURTH, lottoStatistics.getPrizeCount().getFourth()) +
+                generatePrizeResultMessage(Prize.THIRD, lottoStatistics.getPrizeCount().getThird()) +
+                generatePrizeResultMessage(Prize.SECOND, lottoStatistics.getPrizeCount().getSecond()) +
+                generatePrizeResultMessage(Prize.FIRST, lottoStatistics.getPrizeCount().getFirst()) +
                 generateProfitRateMessage(lottoStatistics.getProfitRate());
         print(result);
     }

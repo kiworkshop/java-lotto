@@ -46,10 +46,10 @@ public enum Prize {
     }
 
     public static long sumOfPrizeMoney(PrizeCount prizeCount) {
-        return prizeCount.getCountFirst() * FIRST.prizeMoney
-                + prizeCount.getCountSecond() * SECOND.prizeMoney
-                + prizeCount.getCountThird() * THIRD.prizeMoney
-                + prizeCount.getCountFourth() * FOURTH.prizeMoney
-                + prizeCount.getCountFifth() * FIFTH.prizeMoney;
+        return prizeCount.getFirst() * FIRST.prizeMoney
+                + prizeCount.getSecond() * SECOND.prizeMoney
+                + prizeCount.getThird() * THIRD.prizeMoney
+                + prizeCount.getFourth() * FOURTH.prizeMoney
+                + prizeCount.getFifth() * FIFTH.prizeMoney;
     }
 }

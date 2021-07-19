@@ -20,10 +20,10 @@ public class PrizeCountTest {
         PrizeCount prizeCount = new PrizeCount(lottoSet, winningLotto);
 
         //then
-        assertThat(prizeCount.getCountFirst()).isEqualTo(1);
-        assertThat(prizeCount.getCountSecond()).isEqualTo(1);
-        assertThat(prizeCount.getCountThird()).isEqualTo(2);
-        assertThat(prizeCount.getCountFourth()).isEqualTo(2);
-        assertThat(prizeCount.getCountFifth()).isEqualTo(2);
+        assertThat(prizeCount.getFirst()).isEqualTo(1);
+        assertThat(prizeCount.getSecond()).isEqualTo(1);
+        assertThat(prizeCount.getThird()).isEqualTo(2);
+        assertThat(prizeCount.getFourth()).isEqualTo(2);
+        assertThat(prizeCount.getFifth()).isEqualTo(2);
     }
 }

@@ -6,11 +6,11 @@ import lombok.Getter;
 @Getter
 public class PrizeCount {
 
-    private int countFirst;
-    private int countSecond;
-    private int countThird;
-    private int countFourth;
-    private int countFifth;
+    private int first;
+    private int second;
+    private int third;
+    private int fourth;
+    private int fifth;
 
     @Builder
     public PrizeCount(LottoSet lottoset, WinningLotto winningLotto) {
@@ -20,24 +20,24 @@ public class PrizeCount {
     }
 
     private void updateCounts(Prize prize) {
-        if (prize.equals(Prize.FIRST)) {
-            countFirst++;
+        if (prize == Prize.FIRST) {
+            first++;
             return;
         }
-        if (prize.equals(Prize.SECOND)) {
-            countSecond++;
+        if (prize == Prize.SECOND) {
+            second++;
             return;
         }
-        if (prize.equals(Prize.THIRD)) {
-            countThird++;
+        if (prize == Prize.THIRD) {
+            third++;
             return;
         }
-        if (prize.equals(Prize.FOURTH)) {
-            countFourth++;
+        if (prize == Prize.FOURTH) {
+            fourth++;
             return;
         }
-        if (prize.equals(Prize.FIFTH)) {
-            countFifth++;
+        if (prize == Prize.FIFTH) {
+            fifth++;
         }
     }
 }

@@ -1,7 +1,7 @@
 package lotto.view;
 
+import lotto.domain.LottoSet;
 import lotto.domain.PurchaseCount;
-import lotto.domain.RandomLottoSet;
 import lotto.domain.dto.StatisticsResult;
 
 public interface OutputView {
@@ -9,7 +9,7 @@ public interface OutputView {
 
     void printLottoCount(PurchaseCount purchaseCount);
 
-    void printLottoSet(RandomLottoSet randomLottoSet);
+    void printLottoSet(LottoSet LottoSet);
 
     void askWinningLottoNumbers();
 

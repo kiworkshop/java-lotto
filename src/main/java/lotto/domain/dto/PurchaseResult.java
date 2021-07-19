@@ -3,8 +3,8 @@ package lotto.domain.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lotto.domain.LottoSet;
 import lotto.domain.PurchaseCount;
-import lotto.domain.RandomLottoSet;
 
 @Getter
 @RequiredArgsConstructor
@@ -12,5 +12,5 @@ import lotto.domain.RandomLottoSet;
 public class PurchaseResult {
 
     private final PurchaseCount purchaseCount;
-    private final RandomLottoSet randomLottoSet;
+    private final LottoSet lottoSet;
 }

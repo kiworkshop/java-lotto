@@ -10,11 +10,11 @@ public class LottoService {
 
     public PurchaseResult purchase(PurchasePriceInput purchasePriceInput) {
         PurchaseCount purchaseCount = new PurchaseCount(purchasePriceInput.getInput());
-        RandomLottoSet randomLottoSet = new RandomLottoSet(purchaseCount);
+        LottoSet lottoSet = new LottoSet(purchaseCount);
 
         return PurchaseResult.builder()
                 .purchaseCount(purchaseCount)
-                .randomLottoSet(randomLottoSet)
+                .lottoSet(lottoSet)
                 .build();
     }
 
@@ -23,7 +23,7 @@ public class LottoService {
                 .winningLottoInput(winningLottoInput)
                 .build();
         PrizeCount prizeCount = PrizeCount.builder()
-                .lottoset(purchaseResult.getRandomLottoSet())
+                .lottoset(purchaseResult.getLottoSet())
                 .winningLotto(winningLotto)
                 .build();
         LottoStatistics lottoStatistics = LottoStatistics.builder()

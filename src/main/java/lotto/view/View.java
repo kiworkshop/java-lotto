@@ -46,6 +46,6 @@ public class View {
 
     public void printLottoPurchaseResult(PurchaseResult purchaseResult) {
         outputView.printLottoCount(purchaseResult.getPurchaseCount());
-        outputView.printLottoSet(purchaseResult.getRandomLottoSet());
+        outputView.printLottoSet(purchaseResult.getLottoSet());
     }
 }

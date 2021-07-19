@@ -5,19 +5,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RandomLottoSetTest {
+public class LottoSetTest {
 
     @Test
     @DisplayName("개수를 입력받으면 개수만큼 랜덤 로또를 생성한다")
-    void testGenerateLottoSet() throws Exception {
+    void testGenerateRandomLottoSet() throws Exception {
         // given
         int targetSize = 10;
         PurchaseCount purchaseCount = new PurchaseCount(String.valueOf(targetSize * Lotto.PRICE));
 
         // when
-        RandomLottoSet randomLottoSet = new RandomLottoSet(purchaseCount);
+        LottoSet lottoSet = new LottoSet(purchaseCount);
 
         // then
-        assertThat(randomLottoSet.getLottoSet().size()).isEqualTo(targetSize);
+        assertThat(lottoSet.getLottoSet().size()).isEqualTo(targetSize);
     }
 }

@@ -6,11 +6,6 @@ import lotto.domain.dto.StatisticsResult;
 public class ConsoleOutputView implements OutputView {
 
     private static final String ERROR_HEADER = "[ERROR] ";
-    private static final String COMMA = ", ";
-    private static final String PARENTHESIS_LEFT = "[";
-    private static final String PARENTHESIS_RIGHT = "]";
-    private static final String UNIT = "개";
-    private static final String NEW_LINE = "\n";
 
     private void print(String contents) {
         System.out.println(contents);
@@ -28,17 +23,17 @@ public class ConsoleOutputView implements OutputView {
     }
 
     private void printLotto(Lotto lotto) {
-        String result = PARENTHESIS_LEFT;
+        String result = "[";
         for (LottoNumber lottoNumber : lotto.getLottoNumbers()) {
-            result += lottoNumber.getLottoNumber() + COMMA;
+            result += lottoNumber.getLottoNumber() + ", ";
         }
-        result = removeCommaAtTheEnd(result) + PARENTHESIS_RIGHT;
+        result = removeCommaAtTheEnd(result) + "]";
 
         print(result);
     }
 
     private String removeCommaAtTheEnd(String str) {
-        return str.substring(0, str.length() - COMMA.length());
+        return str.substring(0, str.length() - 2);
     }
 
     public void askPurchaseCost() {
@@ -54,7 +49,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     public void printLottoStatistic(StatisticsResult lottoStatistics) {
-        String result = "당첨 통계" + NEW_LINE + "---------" + NEW_LINE +
+        String result = "당첨 통계\n---------\n" +
                 generatePrizeResultMessage(Prize.FIFTH, lottoStatistics.getPrizeCount().getCountFifth()) +
                 generatePrizeResultMessage(Prize.FOURTH, lottoStatistics.getPrizeCount().getCountFourth()) +
                 generatePrizeResultMessage(Prize.THIRD, lottoStatistics.getPrizeCount().getCountThird()) +
@@ -65,7 +60,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     private String generatePrizeResultMessage(Prize prize, int prizeCount) {
-        return generatePrizeResultMessage(prize) + prizeCount + UNIT + NEW_LINE;
+        return generatePrizeResultMessage(prize) + prizeCount + "개\n";
     }
 
     private String generatePrizeResultMessage(Prize prize) {

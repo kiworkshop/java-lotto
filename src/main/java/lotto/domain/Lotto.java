@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static lotto.exception.ExceptionMessage.INVALID_LENGTH_INPUT_FOR_WINNING_LOTTO;
+import static lotto.exception.ExceptionMessage.DUPLICATE_LOTTO_NUMBER_INPUT_FOR_LOTTO;
+import static lotto.exception.ExceptionMessage.INVALID_LENGTH_INPUT_FOR_LOTTO;
 
 public class Lotto {
 
@@ -28,7 +29,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != Lotto.LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException(INVALID_LENGTH_INPUT_FOR_WINNING_LOTTO.getMessage());
+            throw new IllegalArgumentException(INVALID_LENGTH_INPUT_FOR_LOTTO.getMessage());
+        }
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER_INPUT_FOR_LOTTO.getMessage());
         }
     }
 

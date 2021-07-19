@@ -22,7 +22,7 @@ public enum Prize {
         this.prizeMoney = prizeMoney;
     }
 
-    public static Prize getPrize(int matchNumbersCount, boolean isBonus) {
+    public static Prize getMatchPrize(int matchNumbersCount, boolean isBonus) {
         if (matchNumbersCount <= LOSE.matchNumbersCount) {
             return LOSE;
         }

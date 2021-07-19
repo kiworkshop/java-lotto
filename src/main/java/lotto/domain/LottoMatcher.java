@@ -13,7 +13,7 @@ public class LottoMatcher {
     public PrizeCount countPrizes() {
         PrizeCount prizeCount = new PrizeCount();
         for (Lotto lotto : lottoSet.getLottoSet()) {
-            Prize prize = Prize.getPrize(getMatchNumbersCount(lotto), isBonusMatch(lotto));
+            Prize prize = Prize.getMatchPrize(getMatchNumbersCount(lotto), isBonusMatch(lotto));
             prizeCount.addPrize(prize);
         }
         return prizeCount;

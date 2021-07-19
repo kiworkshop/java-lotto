@@ -19,11 +19,11 @@ public class PurchaseCount {
 
     private void validate(String input) {
         if (!isInteger(input)) {
-            throw new IllegalArgumentException("잘못된 입력입니다");
+            throw new IllegalArgumentException("숫자만 입력해주세요.");
         }
         int inputConversion = Integer.parseInt(input);
         if (notMatchesCondition(inputConversion)) {
-            throw new IllegalArgumentException("입력값이 잘못되었습니다");
+            throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
         }
     }
 

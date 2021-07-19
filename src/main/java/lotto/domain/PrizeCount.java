@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -12,14 +11,7 @@ public class PrizeCount {
     private int fourth;
     private int fifth;
 
-    @Builder
-    public PrizeCount(LottoSet lottoset, WinningLotto winningLotto) {
-        for (Lotto lotto : lottoset.getLottoSet()) {
-            updateCounts(winningLotto.findPrizeCondition(lotto));
-        }
-    }
-
-    private void updateCounts(Prize prize) {
+    public void addPrize(Prize prize) {
         if (prize == Prize.FIRST) {
             first++;
             return;

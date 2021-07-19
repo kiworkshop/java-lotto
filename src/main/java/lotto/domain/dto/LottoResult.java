@@ -8,7 +8,7 @@ import lotto.domain.PrizeCount;
 @Getter
 @RequiredArgsConstructor
 @Builder
-public class StatisticsResult {
+public class LottoResult {
 
     private final PrizeCount prizeCount;
     private final double profitRate;

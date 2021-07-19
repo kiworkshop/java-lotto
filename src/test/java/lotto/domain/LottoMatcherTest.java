@@ -7,17 +7,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PrizeCountTest {
+public class LottoMatcherTest {
 
     @Test
-    @DisplayName("로또 게임의 당첨 통계를 구한다")
+    @DisplayName("로또의 당첨 개수를 구한다")
     void testCountPrizesOfLottoSet() {
         //given
         TestLottoSet lottoSet = new TestLottoSet();
         TestWinningLotto winningLotto = new TestWinningLotto();
 
         //when
-        PrizeCount prizeCount = new PrizeCount(lottoSet, winningLotto);
+        LottoMatcher lottoMatcher = new LottoMatcher(winningLotto, lottoSet);
+        PrizeCount prizeCount = lottoMatcher.countPrizes();
 
         //then
         assertThat(prizeCount.getFirst()).isEqualTo(1);

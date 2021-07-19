@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.domain.*;
-import lotto.domain.dto.StatisticsResult;
+import lotto.domain.dto.LottoResult;
 
 public class ConsoleOutputView implements OutputView {
 
@@ -48,7 +48,7 @@ public class ConsoleOutputView implements OutputView {
         print("보너스 볼을 입력해 주세요.");
     }
 
-    public void printLottoStatistic(StatisticsResult lottoStatistics) {
+    public void printLottoStatistic(LottoResult lottoStatistics) {
         String result = "당첨 통계\n---------\n" +
                 generatePrizeResultMessage(Prize.FIFTH, lottoStatistics.getPrizeCount().getFifth()) +
                 generatePrizeResultMessage(Prize.FOURTH, lottoStatistics.getPrizeCount().getFourth()) +

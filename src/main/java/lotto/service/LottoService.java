@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.domain.*;
 import lotto.domain.dto.PurchasePriceInput;
 import lotto.domain.dto.PurchaseResult;
-import lotto.domain.dto.StatisticsResult;
+import lotto.domain.dto.LottoResult;
 import lotto.domain.dto.WinningLottoInput;
 
 public class LottoService {
@@ -18,20 +18,14 @@ public class LottoService {
                 .build();
     }
 
-    public StatisticsResult calculateResult(PurchaseResult purchaseResult, WinningLottoInput winningLottoInput) {
-        WinningLotto winningLotto = WinningLotto.builder()
-                .winningLottoInput(winningLottoInput)
-                .build();
-        PrizeCount prizeCount = PrizeCount.builder()
-                .lottoset(purchaseResult.getLottoSet())
-                .winningLotto(winningLotto)
-                .build();
-        LottoStatistics lottoStatistics = LottoStatistics.builder()
-                .prizeCount(prizeCount)
-                .purchaseCount(purchaseResult.getPurchaseCount())
-                .build();
+    public LottoResult calculateResult(PurchaseResult purchaseResult, WinningLottoInput winningLottoInput) {
+        LottoMatcher lottoMatcher = new LottoMatcher(
+                new WinningLotto(winningLottoInput), purchaseResult.getLottoSet()
+        );
+        PrizeCount prizeCount = lottoMatcher.countPrizes();
+        LottoStatistics lottoStatistics = new LottoStatistics(prizeCount, purchaseResult.getPurchaseCount());
 
-        return StatisticsResult.builder()
+        return LottoResult.builder()
                 .prizeCount(prizeCount)
                 .profitRate(lottoStatistics.calculateProfitRate())
                 .build();

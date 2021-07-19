@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lotto.domain.dto.PurchasePriceInput;
 import lotto.domain.dto.PurchaseResult;
-import lotto.domain.dto.StatisticsResult;
+import lotto.domain.dto.LottoResult;
 import lotto.domain.dto.WinningLottoInput;
 
 import java.util.List;
@@ -38,8 +38,8 @@ public class View {
                 .build();
     }
 
-    public void printLottoStatistics(StatisticsResult statisticsResult) {
-        outputView.printLottoStatistic(statisticsResult);
+    public void printLottoStatistics(LottoResult lottoResult) {
+        outputView.printLottoStatistic(lottoResult);
     }
 
     public void printException(String message) {

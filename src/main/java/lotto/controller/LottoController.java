@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.domain.dto.PurchasePriceInput;
 import lotto.domain.dto.PurchaseResult;
-import lotto.domain.dto.StatisticsResult;
+import lotto.domain.dto.LottoResult;
 import lotto.domain.dto.WinningLottoInput;
 import lotto.service.LottoService;
 import lotto.view.View;
@@ -24,8 +24,8 @@ public class LottoController {
             view.printLottoPurchaseResult(purchaseResult);
 
             WinningLottoInput winningLottoInput = view.getWinningLottoAndBonus();
-            StatisticsResult statisticsResult = lottoService.calculateResult(purchaseResult, winningLottoInput);
-            view.printLottoStatistics(statisticsResult);
+            LottoResult lottoResult = lottoService.calculateResult(purchaseResult, winningLottoInput);
+            view.printLottoStatistics(lottoResult);
         } catch (NumberFormatException e) {
             view.printException(e.getMessage());
         } catch (IllegalArgumentException e) {

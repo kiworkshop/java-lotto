@@ -9,19 +9,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoStatisticsTest {
 
-    private static final PrizeCount PRIZE_COUNT = new PrizeCount(new TestLottoSet(), new TestWinningLotto());
-    private static final long PRIZE_SUM = Prize.sumOfPrizeMoney(PRIZE_COUNT);
-    private static final int PURCHASE_MONEY = 18000;
-    private static final double RESULT = (double) PRIZE_SUM / PURCHASE_MONEY;
 
     @Test
     @DisplayName("로또 구매 개수와 당첨 로또 개수를 입력받으면 수익률을 반환한다")
     void testLottoStatistics() {
-        //given, when
-        LottoStatistics lottoStatistics = new LottoStatistics(PRIZE_COUNT,
-                new PurchaseCount(PURCHASE_MONEY));
+        //given
+        LottoMatcher lottoMatcher = new LottoMatcher(new TestWinningLotto(), new TestLottoSet());
+        PrizeCount prizeCount = lottoMatcher.countPrizes();
+        long prizeSum = Prize.sumOfPrizeMoney(prizeCount);
+        int purchaseMoney = 18000;
+        double result = (double) prizeSum / purchaseMoney;
+
+        // when
+        LottoStatistics lottoStatistics = new LottoStatistics(
+                prizeCount, new PurchaseCount(purchaseMoney)
+        );
 
         // then
-        assertThat(lottoStatistics.calculateProfitRate()).isEqualTo(RESULT);
+        assertThat(lottoStatistics.calculateProfitRate()).isEqualTo(result);
     }
 }

@@ -14,9 +14,9 @@ public class PrizeTest {
         int matchNumbersCount = 6;
 
         //when, then
-        assertThat(Prize.findPrize(matchNumbersCount, true))
+        assertThat(Prize.getPrize(matchNumbersCount, true))
                 .isEqualTo(Prize.FIRST);
-        assertThat(Prize.findPrize(matchNumbersCount, false))
+        assertThat(Prize.getPrize(matchNumbersCount, false))
                 .isEqualTo(Prize.FIRST);
     }
 
@@ -28,7 +28,7 @@ public class PrizeTest {
         boolean isBonus = true;
 
         //when
-        Prize prize = Prize.findPrize(matchNumbersCount, isBonus);
+        Prize prize = Prize.getPrize(matchNumbersCount, isBonus);
 
         //then
         assertThat(prize).isEqualTo(Prize.SECOND);
@@ -42,7 +42,7 @@ public class PrizeTest {
         boolean isBonus = false;
 
         //when, then
-        assertThat(Prize.findPrize(matchNumbersCount, isBonus))
+        assertThat(Prize.getPrize(matchNumbersCount, isBonus))
                 .isEqualTo(Prize.THIRD);
     }
 
@@ -53,9 +53,9 @@ public class PrizeTest {
         int matchNumbersCount = 4;
 
         //when, then
-        assertThat(Prize.findPrize(matchNumbersCount, false))
+        assertThat(Prize.getPrize(matchNumbersCount, false))
                 .isEqualTo(Prize.FOURTH);
-        assertThat(Prize.findPrize(matchNumbersCount, true))
+        assertThat(Prize.getPrize(matchNumbersCount, true))
                 .isEqualTo(Prize.FOURTH);
     }
 
@@ -66,9 +66,9 @@ public class PrizeTest {
         int matchNumbersCount = 3;
 
         //when, then
-        assertThat(Prize.findPrize(matchNumbersCount, false))
+        assertThat(Prize.getPrize(matchNumbersCount, false))
                 .isEqualTo(Prize.FIFTH);
-        assertThat(Prize.findPrize(matchNumbersCount, true))
+        assertThat(Prize.getPrize(matchNumbersCount, true))
                 .isEqualTo(Prize.FIFTH);
     }
 
@@ -79,9 +79,9 @@ public class PrizeTest {
         int matchNumbersCount = 2;
 
         //when, then
-        assertThat(Prize.findPrize(matchNumbersCount, false))
+        assertThat(Prize.getPrize(matchNumbersCount, false))
                 .isEqualTo(Prize.LOSE);
-        assertThat(Prize.findPrize(matchNumbersCount, true))
+        assertThat(Prize.getPrize(matchNumbersCount, true))
                 .isEqualTo(Prize.LOSE);
     }
 
@@ -92,9 +92,9 @@ public class PrizeTest {
         int matchNumbersCount = 1;
 
         //when, then
-        assertThat(Prize.findPrize(matchNumbersCount, false))
+        assertThat(Prize.getPrize(matchNumbersCount, false))
                 .isEqualTo(Prize.LOSE);
-        assertThat(Prize.findPrize(matchNumbersCount, true))
+        assertThat(Prize.getPrize(matchNumbersCount, true))
                 .isEqualTo(Prize.LOSE);
     }
 
@@ -105,9 +105,9 @@ public class PrizeTest {
         int matchNumbersCount = 0;
 
         //when, then
-        assertThat(Prize.findPrize(matchNumbersCount, false))
+        assertThat(Prize.getPrize(matchNumbersCount, false))
                 .isEqualTo(Prize.LOSE);
-        assertThat(Prize.findPrize(matchNumbersCount, true))
+        assertThat(Prize.getPrize(matchNumbersCount, true))
                 .isEqualTo(Prize.LOSE);
     }
 }

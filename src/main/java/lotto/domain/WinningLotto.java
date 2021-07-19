@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lombok.Builder;
 import lombok.Getter;
-import lotto.domain.dto.WinningLottoInputDTO;
+import lotto.domain.dto.WinningLottoInput;
 import lotto.parser.LottoParser;
 
 import java.util.Comparator;
@@ -13,9 +13,9 @@ public class WinningLotto extends Lotto {
     private final LottoNumber bonusNumber;
 
     @Builder
-    public WinningLotto(WinningLottoInputDTO winningLottoInputDTO) throws IllegalArgumentException {
-        super(LottoParser.parseInputIntoLottoNumbers(winningLottoInputDTO.getWinningLottoNumbers()));
-        this.bonusNumber = new LottoNumber(winningLottoInputDTO.getWinningLottoBonus());
+    public WinningLotto(WinningLottoInput winningLottoInput) throws IllegalArgumentException {
+        super(LottoParser.parseInputIntoLottoNumbers(winningLottoInput.getWinningLottoNumbers()));
+        this.bonusNumber = new LottoNumber(winningLottoInput.getWinningLottoBonus());
         this.lottoNumbers.sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
     }
 

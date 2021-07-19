@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.dto.WinningLottoInputDTO;
+import lotto.domain.dto.WinningLottoInput;
 
 public class TestWinningLotto extends WinningLotto {
 
@@ -8,7 +8,7 @@ public class TestWinningLotto extends WinningLotto {
     private static final String bonusNumberInput = "7";
 
     public TestWinningLotto() {
-        super(WinningLottoInputDTO.builder()
+        super(WinningLottoInput.builder()
                 .winningLottoNumbers(winningNumberInput)
                 .winningLottoBonus(bonusNumberInput)
                 .build());

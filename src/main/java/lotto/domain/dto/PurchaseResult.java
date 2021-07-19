@@ -9,7 +9,7 @@ import lotto.domain.RandomLottoSet;
 @Getter
 @RequiredArgsConstructor
 @Builder
-public class PurchaseResultDTO {
+public class PurchaseResult {
 
     private final PurchaseCount purchaseCount;
     private final RandomLottoSet randomLottoSet;

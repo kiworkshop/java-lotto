@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @Builder
 @RequiredArgsConstructor
-public class WinningLottoInputDTO {
+public class WinningLottoInput {
 
     private final String winningLottoNumbers;
     private final String winningLottoBonus;

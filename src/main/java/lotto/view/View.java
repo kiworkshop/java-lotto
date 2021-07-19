@@ -2,10 +2,10 @@ package lotto.view;
 
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import lotto.domain.dto.PurchasePriceInputDTO;
-import lotto.domain.dto.PurchaseResultDTO;
-import lotto.domain.dto.StatisticsResultDTO;
-import lotto.domain.dto.WinningLottoInputDTO;
+import lotto.domain.dto.PurchasePriceInput;
+import lotto.domain.dto.PurchaseResult;
+import lotto.domain.dto.StatisticsResult;
+import lotto.domain.dto.WinningLottoInput;
 
 @RequiredArgsConstructor
 @Builder
@@ -14,38 +14,38 @@ public class View {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public PurchasePriceInputDTO getPurchaseCost() {
+    public PurchasePriceInput getPurchaseCost() {
         outputView.askPurchaseCost();
         String purchaseCountInput = inputView.getPurchaseCost();
 
-        return PurchasePriceInputDTO.builder()
+        return PurchasePriceInput.builder()
                 .input(purchaseCountInput)
                 .build();
     }
 
-    public WinningLottoInputDTO getWinningLottoAndBonus() {
+    public WinningLottoInput getWinningLottoAndBonus() {
         outputView.askWinningLottoNumbers();
         String winningLottoNumbers = inputView.getWinningLottoNumbers();
 
         outputView.askWinningLottoBonus();
         String winningLottoBonus = inputView.getWinningLottoBonus();
 
-        return WinningLottoInputDTO.builder()
+        return WinningLottoInput.builder()
                 .winningLottoNumbers(winningLottoNumbers)
                 .winningLottoBonus(winningLottoBonus)
                 .build();
     }
 
-    public void printLottoStatistics(StatisticsResultDTO statisticsResultDTO) {
-        outputView.printLottoStatistic(statisticsResultDTO);
+    public void printLottoStatistics(StatisticsResult statisticsResult) {
+        outputView.printLottoStatistic(statisticsResult);
     }
 
     public void printException(String message) {
         outputView.printException(message);
     }
 
-    public void printLottoPurchaseResult(PurchaseResultDTO purchaseResultDTO) {
-        outputView.printLottoCount(purchaseResultDTO.getPurchaseCount());
-        outputView.printLottoSet(purchaseResultDTO.getRandomLottoSet());
+    public void printLottoPurchaseResult(PurchaseResult purchaseResult) {
+        outputView.printLottoCount(purchaseResult.getPurchaseCount());
+        outputView.printLottoSet(purchaseResult.getRandomLottoSet());
     }
 }

@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.domain.PurchaseCount;
 import lotto.domain.RandomLottoSet;
-import lotto.domain.dto.StatisticsResultDTO;
+import lotto.domain.dto.StatisticsResult;
 
 public interface OutputView {
     void askPurchaseCost();
@@ -15,7 +15,7 @@ public interface OutputView {
 
     void askWinningLottoBonus();
 
-    void printLottoStatistic(StatisticsResultDTO statisticsResultDTO);
+    void printLottoStatistic(StatisticsResult statisticsResult);
 
     void printException(String message);
 }

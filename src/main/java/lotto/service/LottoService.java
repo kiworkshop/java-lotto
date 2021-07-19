@@ -1,37 +1,37 @@
 package lotto.service;
 
 import lotto.domain.*;
-import lotto.domain.dto.PurchasePriceInputDTO;
-import lotto.domain.dto.PurchaseResultDTO;
-import lotto.domain.dto.StatisticsResultDTO;
-import lotto.domain.dto.WinningLottoInputDTO;
+import lotto.domain.dto.PurchasePriceInput;
+import lotto.domain.dto.PurchaseResult;
+import lotto.domain.dto.StatisticsResult;
+import lotto.domain.dto.WinningLottoInput;
 
 public class LottoService {
 
-    public PurchaseResultDTO purchase(PurchasePriceInputDTO purchasePriceInputDTO) {
-        PurchaseCount purchaseCount = new PurchaseCount(purchasePriceInputDTO.getInput());
+    public PurchaseResult purchase(PurchasePriceInput purchasePriceInput) {
+        PurchaseCount purchaseCount = new PurchaseCount(purchasePriceInput.getInput());
         RandomLottoSet randomLottoSet = new RandomLottoSet(purchaseCount);
 
-        return PurchaseResultDTO.builder()
+        return PurchaseResult.builder()
                 .purchaseCount(purchaseCount)
                 .randomLottoSet(randomLottoSet)
                 .build();
     }
 
-    public StatisticsResultDTO calculateResult(PurchaseResultDTO purchaseResultDTO, WinningLottoInputDTO winningLottoInputDTO) {
+    public StatisticsResult calculateResult(PurchaseResult purchaseResult, WinningLottoInput winningLottoInput) {
         WinningLotto winningLotto = WinningLotto.builder()
-                .winningLottoInputDTO(winningLottoInputDTO)
+                .winningLottoInputDTO(winningLottoInput)
                 .build();
         PrizeCount prizeCount = PrizeCount.builder()
-                .lottoset(purchaseResultDTO.getRandomLottoSet())
+                .lottoset(purchaseResult.getRandomLottoSet())
                 .winningLotto(winningLotto)
                 .build();
         LottoStatistics lottoStatistics = LottoStatistics.builder()
                 .prizeCount(prizeCount)
-                .purchaseCount(purchaseResultDTO.getPurchaseCount())
+                .purchaseCount(purchaseResult.getPurchaseCount())
                 .build();
 
-        return StatisticsResultDTO.builder()
+        return StatisticsResult.builder()
                 .prizeCount(prizeCount)
                 .profitRate(lottoStatistics.calculateProfitRate())
                 .build();

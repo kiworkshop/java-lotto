@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.dto.PurchasePriceInputDTO;
-import lotto.domain.dto.PurchaseResultDTO;
-import lotto.domain.dto.StatisticsResultDTO;
-import lotto.domain.dto.WinningLottoInputDTO;
+import lotto.domain.dto.PurchasePriceInput;
+import lotto.domain.dto.PurchaseResult;
+import lotto.domain.dto.StatisticsResult;
+import lotto.domain.dto.WinningLottoInput;
 import lotto.service.LottoService;
 import lotto.view.View;
 
@@ -19,13 +19,13 @@ public class LottoController {
 
     public void start() throws IllegalArgumentException {
         try {
-            PurchasePriceInputDTO purchasePriceInputDTO = view.getPurchaseCost();
-            PurchaseResultDTO purchaseResultDTO = lottoService.purchase(purchasePriceInputDTO);
-            view.printLottoPurchaseResult(purchaseResultDTO);
+            PurchasePriceInput purchasePriceInput = view.getPurchaseCost();
+            PurchaseResult purchaseResult = lottoService.purchase(purchasePriceInput);
+            view.printLottoPurchaseResult(purchaseResult);
 
-            WinningLottoInputDTO winningLottoInputDTO = view.getWinningLottoAndBonus();
-            StatisticsResultDTO statisticsResultDTO = lottoService.calculateResult(purchaseResultDTO, winningLottoInputDTO);
-            view.printLottoStatistics(statisticsResultDTO);
+            WinningLottoInput winningLottoInput = view.getWinningLottoAndBonus();
+            StatisticsResult statisticsResult = lottoService.calculateResult(purchaseResult, winningLottoInput);
+            view.printLottoStatistics(statisticsResult);
         } catch (IllegalArgumentException e) {
             view.printException(e.getMessage());
         }

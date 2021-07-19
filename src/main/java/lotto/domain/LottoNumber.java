@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import static lotto.exception.ExceptionMessage.NON_INTEGER_INPUT_FOR_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.OUT_OF_BOUND_INPUT_FOR_LOTTO_NUMBER;
-import static lotto.util.NumberValidateUtils.isInteger;
+import static lotto.util.NumberValidateUtils.isNonNegativeInteger;
 
 public class LottoNumber {
 
@@ -23,7 +23,7 @@ public class LottoNumber {
     }
 
     private void validate(String input) throws IllegalArgumentException {
-        if (!isInteger(input)) {
+        if (!isNonNegativeInteger(input)) {
             throw new IllegalArgumentException(NON_INTEGER_INPUT_FOR_LOTTO_NUMBER.getMessage());
         }
 

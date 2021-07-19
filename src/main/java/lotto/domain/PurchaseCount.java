@@ -3,9 +3,9 @@ package lotto.domain;
 import lombok.Builder;
 import lombok.Getter;
 
-import static lotto.exception.ExceptionMessage.NON_INTEGER_INPUT_FOR_PURCHASE_MONEY;
+import static lotto.exception.ExceptionMessage.NEGATIVE_INTEGER_INPUT_FOR_PURCHASE_MONEY;
 import static lotto.exception.ExceptionMessage.NON_MULTIPLE_OF_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY;
-import static lotto.util.NumberValidateUtils.isInteger;
+import static lotto.util.NumberValidateUtils.isNonNegativeInteger;
 
 public class PurchaseCount {
 
@@ -23,8 +23,8 @@ public class PurchaseCount {
     }
 
     private void validate(String input) {
-        if (!isInteger(input)) {
-            throw new IllegalArgumentException(NON_INTEGER_INPUT_FOR_PURCHASE_MONEY.getMessage());
+        if (!isNonNegativeInteger(input)) {
+            throw new IllegalArgumentException(NEGATIVE_INTEGER_INPUT_FOR_PURCHASE_MONEY.getMessage());
         }
 
         int purchaseCount = Integer.parseInt(input);

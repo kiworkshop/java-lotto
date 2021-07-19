@@ -6,7 +6,7 @@ public class NumberValidateUtils {
 
     private static final String NUMBER_REGEX = "^[0-9]*$";
 
-    public static boolean isInteger(String input) {
+    public static boolean isNonNegativeInteger(String input) {
         return Pattern.matches(NUMBER_REGEX, input);
     }
 }

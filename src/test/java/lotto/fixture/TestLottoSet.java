@@ -13,7 +13,7 @@ public class TestLottoSet extends LottoSet {
         super(generateLottoSet());
     }
 
-    public static HashSet<Lotto> generateLottoSet() throws IllegalArgumentException {
+    public static HashSet<Lotto> generateLottoSet() {
         HashSet<Lotto> lottos = new HashSet<>();
         // 1등
         lottos.add(new Lotto(Arrays.stream(new int[]{1, 2, 3, 4, 5, 6}).boxed().collect(Collectors.toList())));

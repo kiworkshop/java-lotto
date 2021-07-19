@@ -17,7 +17,7 @@ public class LottoController {
         this.lottoService = new LottoService();
     }
 
-    public void start() throws IllegalArgumentException {
+    public void start() {
         try {
             PurchasePriceInput purchasePriceInput = view.getPurchaseCost();
             PurchaseResult purchaseResult = lottoService.purchase(purchasePriceInput);

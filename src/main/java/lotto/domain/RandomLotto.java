@@ -18,7 +18,7 @@ public class RandomLotto extends Lotto {
         super(generateRandomLottoNumbers());
     }
 
-    private static List<Integer> generateRandomLottoNumbers() throws IllegalArgumentException {
+    private static List<Integer> generateRandomLottoNumbers() {
         List<Integer> defaultNumbers = new ArrayList<>(DEFAULT_NUMBERS);
         Collections.shuffle(defaultNumbers);
         return new ArrayList<>(defaultNumbers.subList(INDEX_LOWER_BOUND, INDEX_UPPER_BOUND));

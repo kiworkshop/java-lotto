@@ -18,7 +18,7 @@ public class Lotto {
     @Getter
     protected List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         validate(numbers);
 
         numbers.sort(Integer::compare);

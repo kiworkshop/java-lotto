@@ -16,7 +16,7 @@ public class View {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public PurchasePriceInput getPurchaseCost() {
+    public PurchasePriceInput getPurchaseCost() throws NumberFormatException {
         outputView.askPurchaseCost();
         Integer purchaseCountInput = inputView.getPurchaseCost();
 

@@ -20,7 +20,7 @@ public class LottoService {
 
     public StatisticsResult calculateResult(PurchaseResult purchaseResult, WinningLottoInput winningLottoInput) {
         WinningLotto winningLotto = WinningLotto.builder()
-                .winningLottoInputDTO(winningLottoInput)
+                .winningLottoInput(winningLottoInput)
                 .build();
         PrizeCount prizeCount = PrizeCount.builder()
                 .lottoset(purchaseResult.getRandomLottoSet())

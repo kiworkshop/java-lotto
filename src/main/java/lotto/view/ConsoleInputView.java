@@ -6,19 +6,15 @@ public class ConsoleInputView implements InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    private String nextLine() {
+    public String getPurchaseCost() {
         return scanner.nextLine();
     }
 
-    public String getPurchaseCost() {
-        return nextLine();
-    }
-
     public String getWinningLottoNumbers() {
-        return nextLine();
+        return scanner.nextLine();
     }
 
     public String getWinningLottoBonus() {
-        return nextLine();
+        return scanner.nextLine();
     }
 }

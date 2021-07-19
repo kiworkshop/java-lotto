@@ -30,6 +30,10 @@ public class LottoNumber {
         return lottoNumber < LOWER_BOUND || lottoNumber > UPPER_BOUND;
     }
 
+    public boolean isGreaterThan(LottoNumber winningNumber) {
+        return this.getLottoNumber() > winningNumber.getLottoNumber();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

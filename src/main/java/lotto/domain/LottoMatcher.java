@@ -20,22 +20,9 @@ public class LottoMatcher {
     }
 
     private int getMatchNumbersCount(Lotto targetLotto) {
-        int targetIdx = 0, winningIdx = 0;
-        int matchNumbersCount = 0;
-        while (targetIdx < targetLotto.getLottoNumbers().size() && winningIdx < winningLotto.getLottoNumbers().size()) {
-            int targetNumber = targetLotto.getLottoNumbers().get(targetIdx).getLottoNumber();
-            int winningNumber = winningLotto.getLottoNumbers().get(winningIdx).getLottoNumber();
-            if (targetNumber == winningNumber) {
-                matchNumbersCount++;
-                targetIdx++;
-                winningIdx++;
-            } else if (targetNumber > winningNumber) {
-                winningIdx++;
-            } else {
-                targetIdx++;
-            }
-        }
-        return matchNumbersCount;
+        return (int) targetLotto.getLottoNumbers().stream()
+                .filter(lottoNumber -> winningLotto.getLottoNumbers().contains(lottoNumber))
+                .count();
     }
 
     private boolean isBonusMatch(Lotto targetLotto) {

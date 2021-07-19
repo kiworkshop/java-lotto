@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RandomLotto extends Lotto {
@@ -19,13 +18,9 @@ public class RandomLotto extends Lotto {
         super(generateRandomLottoNumbers());
     }
 
-    private static List<LottoNumber> generateRandomLottoNumbers() throws IllegalArgumentException {
+    private static List<Integer> generateRandomLottoNumbers() throws IllegalArgumentException {
         List<Integer> defaultNumbers = new ArrayList<>(DEFAULT_NUMBERS);
         Collections.shuffle(defaultNumbers);
-        return defaultNumbers.subList(INDEX_LOWER_BOUND, INDEX_UPPER_BOUND)
-                .stream()
-                .map(String::valueOf)
-                .map(LottoNumber::new)
-                .collect(Collectors.toList());
+        return new ArrayList<>(defaultNumbers.subList(INDEX_LOWER_BOUND, INDEX_UPPER_BOUND));
     }
 }

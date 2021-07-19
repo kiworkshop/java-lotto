@@ -9,5 +9,5 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PurchasePriceInput {
 
-    private final String input;
+    private final Integer price;
 }

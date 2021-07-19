@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.fixture.TestLottoSet;
+import lotto.fixture.TestWinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PrizeCountTest {
 
     @Test
-    @DisplayName("로또 여러 게임의 당첨 통계를 구한다")
+    @DisplayName("로또 게임의 당첨 통계를 구한다")
     void testCountPrizesOfLottoSet() {
         //given
         TestLottoSet lottoSet = new TestLottoSet();
@@ -19,9 +21,9 @@ public class PrizeCountTest {
 
         //then
         assertThat(prizeCount.getCountFirst()).isEqualTo(1);
-        assertThat(prizeCount.getCountSecond()).isEqualTo(2);
-        assertThat(prizeCount.getCountThird()).isEqualTo(3);
-        assertThat(prizeCount.getCountFourth()).isEqualTo(4);
-        assertThat(prizeCount.getCountFifth()).isEqualTo(5);
+        assertThat(prizeCount.getCountSecond()).isEqualTo(1);
+        assertThat(prizeCount.getCountThird()).isEqualTo(2);
+        assertThat(prizeCount.getCountFourth()).isEqualTo(2);
+        assertThat(prizeCount.getCountFifth()).isEqualTo(2);
     }
 }

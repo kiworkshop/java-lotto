@@ -4,11 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @Builder
 @RequiredArgsConstructor
 public class WinningLottoInput {
 
-    private final String winningLottoNumbers;
-    private final String winningLottoBonus;
+    private final List<Integer> numbers;
+    private final Integer bonus;
 }

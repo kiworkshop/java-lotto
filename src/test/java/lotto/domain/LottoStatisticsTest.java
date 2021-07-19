@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.fixture.TestLottoSet;
+import lotto.fixture.TestWinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +19,7 @@ public class LottoStatisticsTest {
     void testLottoStatistics() {
         //given, when
         LottoStatistics lottoStatistics = new LottoStatistics(PRIZE_COUNT,
-                new PurchaseCount(String.valueOf(PURCHASE_MONEY)));
+                new PurchaseCount(PURCHASE_MONEY));
 
         // then
         assertThat(lottoStatistics.calculateProfitRate()).isEqualTo(RESULT);

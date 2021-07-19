@@ -26,6 +26,8 @@ public class LottoController {
             WinningLottoInput winningLottoInput = view.getWinningLottoAndBonus();
             StatisticsResult statisticsResult = lottoService.calculateResult(purchaseResult, winningLottoInput);
             view.printLottoStatistics(statisticsResult);
+        } catch (NumberFormatException e) {
+            view.printException(e.getMessage());
         } catch (IllegalArgumentException e) {
             view.printException(e.getMessage());
         }

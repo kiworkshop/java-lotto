@@ -9,7 +9,7 @@ import lotto.domain.dto.WinningLottoInput;
 public class LottoService {
 
     public PurchaseResult purchase(PurchasePriceInput purchasePriceInput) {
-        PurchaseCount purchaseCount = new PurchaseCount(purchasePriceInput.getInput());
+        PurchaseCount purchaseCount = new PurchaseCount(purchasePriceInput.getPrice());
         LottoSet lottoSet = new LottoSet(purchaseCount);
 
         return PurchaseResult.builder()

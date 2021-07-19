@@ -7,6 +7,8 @@ import lotto.domain.dto.PurchaseResult;
 import lotto.domain.dto.StatisticsResult;
 import lotto.domain.dto.WinningLottoInput;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Builder
 public class View {
@@ -16,23 +18,23 @@ public class View {
 
     public PurchasePriceInput getPurchaseCost() {
         outputView.askPurchaseCost();
-        String purchaseCountInput = inputView.getPurchaseCost();
+        Integer purchaseCountInput = inputView.getPurchaseCost();
 
         return PurchasePriceInput.builder()
-                .input(purchaseCountInput)
+                .price(purchaseCountInput)
                 .build();
     }
 
-    public WinningLottoInput getWinningLottoAndBonus() {
+    public WinningLottoInput getWinningLottoAndBonus() throws NumberFormatException {
         outputView.askWinningLottoNumbers();
-        String winningLottoNumbers = inputView.getWinningLottoNumbers();
+        List<Integer> numbers = inputView.getWinningLottoNumbers();
 
         outputView.askWinningLottoBonus();
-        String winningLottoBonus = inputView.getWinningLottoBonus();
+        Integer bonus = inputView.getWinningLottoBonus();
 
         return WinningLottoInput.builder()
-                .winningLottoNumbers(winningLottoNumbers)
-                .winningLottoBonus(winningLottoBonus)
+                .numbers(numbers)
+                .bonus(bonus)
                 .build();
     }
 

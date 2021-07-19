@@ -12,15 +12,21 @@ public class LottoTest {
     @Test
     void testEqualityOfLottos() {
         // given
-        List<LottoNumber> lottoNumbersOne = new ArrayList<>();
-        lottoNumbersOne.add(new LottoNumber("1"));
-        lottoNumbersOne.add(new LottoNumber("30"));
-        lottoNumbersOne.add(new LottoNumber("22"));
+        List<Integer> lottoNumbersOne = new ArrayList<>();
+        lottoNumbersOne.add(1);
+        lottoNumbersOne.add(30);
+        lottoNumbersOne.add(22);
+        lottoNumbersOne.add(5);
+        lottoNumbersOne.add(42);
+        lottoNumbersOne.add(17);
 
-        List<LottoNumber> lottoNumbersTwo = new ArrayList<>();
-        lottoNumbersTwo.add(new LottoNumber("22"));
-        lottoNumbersTwo.add(new LottoNumber("30"));
-        lottoNumbersTwo.add(new LottoNumber("1"));
+        List<Integer> lottoNumbersTwo = new ArrayList<>();
+        lottoNumbersTwo.add(17);
+        lottoNumbersTwo.add(22);
+        lottoNumbersTwo.add(5);
+        lottoNumbersTwo.add(30);
+        lottoNumbersTwo.add(1);
+        lottoNumbersTwo.add(42);
 
         // when
         Lotto one = new Lotto(lottoNumbersOne);

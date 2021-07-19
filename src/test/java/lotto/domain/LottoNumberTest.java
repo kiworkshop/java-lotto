@@ -15,22 +15,22 @@ public class LottoNumberTest {
     @DisplayName("주어진 1~45 숫자로 LottoNumber 객체를 생성한다")
     void testGenerateLottoNumberWithInteger() {
         // given
-        List<String> inputNumbers = new ArrayList<>();
-        inputNumbers.add("1");
-        inputNumbers.add("2");
-        inputNumbers.add("44");
-        inputNumbers.add("45");
+        List<Integer> inputNumbers = new ArrayList<>();
+        inputNumbers.add(1);
+        inputNumbers.add(2);
+        inputNumbers.add(44);
+        inputNumbers.add(45);
         List<LottoNumber> lottoNumbers = new ArrayList<>();
 
         // when
-        for (String inputNumber : inputNumbers) {
+        for (Integer inputNumber : inputNumbers) {
             lottoNumbers.add(new LottoNumber(inputNumber));
         }
 
         // then
         for (int i = 0; i <lottoNumbers.size() ; i++) {
             assertThat(lottoNumbers.get(i).getLottoNumber())
-                    .isEqualTo(Integer.parseInt(inputNumbers.get(i)));
+                    .isEqualTo(inputNumbers.get(i));
         }
     }
 
@@ -38,7 +38,7 @@ public class LottoNumberTest {
     @DisplayName("1보다 작은 숫자로 LottoNumber 생성 시 예외를 던진다")
     void testGenerateLottoNumberWithIntegerLessThanLowerBound() {
         //given
-        String inputNumber = "0";
+        int inputNumber = 0;
 
         //when, then
         assertThrows(IllegalArgumentException.class, ()-> {
@@ -50,7 +50,7 @@ public class LottoNumberTest {
     @DisplayName("45보다 큰 숫자로 LottoNumber 생성 시 예외를 던진다")
     void testGenerateLottoNumberWithIntegerGreaterThanUpperBound() {
         //given
-        String inputNumber = "46";
+        int inputNumber = 46;
 
         //when, then
         assertThrows(IllegalArgumentException.class, ()-> {

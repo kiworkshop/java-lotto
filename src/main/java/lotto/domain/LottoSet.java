@@ -16,12 +16,12 @@ public class LottoSet {
     }
 
     public LottoSet(PurchaseCount purchaseCount) {
-        this(generateRandomLottoSetWithSize(purchaseCount.getPurchaseCount()));
+        this(generateRandomLottoSet(purchaseCount));
     }
 
-    private static Set<Lotto> generateRandomLottoSetWithSize(int targetSize) {
+    private static Set<Lotto> generateRandomLottoSet(PurchaseCount purchaseCount) {
         Set<Lotto> lottoSet = new HashSet<>();
-        while (lottoSet.size() < targetSize) {
+        while (lottoSet.size() < purchaseCount.getPurchaseCount()) {
             lottoSet.add(new RandomLotto());
         }
         return lottoSet;

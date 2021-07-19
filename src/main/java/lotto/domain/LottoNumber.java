@@ -4,9 +4,7 @@ import lombok.Getter;
 
 import java.util.Objects;
 
-import static lotto.exception.ExceptionMessage.NON_INTEGER_INPUT_FOR_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.OUT_OF_BOUND_INPUT_FOR_LOTTO_NUMBER;
-import static lotto.util.NumberValidateUtils.isNonNegativeInteger;
 
 public class LottoNumber {
 
@@ -16,18 +14,13 @@ public class LottoNumber {
     @Getter
     private final int lottoNumber;
 
-    public LottoNumber(String input) throws IllegalArgumentException {
-        validate(input);
+    public LottoNumber(int lottoNumber) throws IllegalArgumentException {
+        validate(lottoNumber);
 
-        this.lottoNumber = Integer.parseInt(input);
+        this.lottoNumber = lottoNumber;
     }
 
-    private void validate(String input) throws IllegalArgumentException {
-        if (!isNonNegativeInteger(input)) {
-            throw new IllegalArgumentException(NON_INTEGER_INPUT_FOR_LOTTO_NUMBER.getMessage());
-        }
-
-        int lottoNumber = Integer.parseInt(input);
+    private void validate(int lottoNumber) throws IllegalArgumentException {
         if (isOutOfBound(lottoNumber)) {
             throw new IllegalArgumentException(OUT_OF_BOUND_INPUT_FOR_LOTTO_NUMBER.getMessage());
         }

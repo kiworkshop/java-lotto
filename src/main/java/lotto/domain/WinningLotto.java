@@ -3,9 +3,6 @@ package lotto.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lotto.domain.dto.WinningLottoInput;
-import lotto.parser.LottoParser;
-
-import java.util.Comparator;
 
 public class WinningLotto extends Lotto {
 
@@ -14,9 +11,8 @@ public class WinningLotto extends Lotto {
 
     @Builder
     public WinningLotto(WinningLottoInput winningLottoInput) throws IllegalArgumentException {
-        super(LottoParser.parseInputIntoLottoNumbers(winningLottoInput.getWinningLottoNumbers()));
-        this.bonusNumber = new LottoNumber(winningLottoInput.getWinningLottoBonus());
-        this.lottoNumbers.sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
+        super(winningLottoInput.getNumbers());
+        this.bonusNumber = new LottoNumber(winningLottoInput.getBonus());
     }
 
     public Prize findPrizeCondition(Lotto targetLotto) {
@@ -24,7 +20,6 @@ public class WinningLotto extends Lotto {
     }
 
     private int getMatchNumbersCount(Lotto targetLotto) {
-        targetLotto.getLottoNumbers().sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
         int targetIdx = 0, winningIdx = 0;
         int matchNumbersCount = 0;
         while (targetIdx < targetLotto.lottoNumbers.size() && winningIdx < this.lottoNumbers.size()) {

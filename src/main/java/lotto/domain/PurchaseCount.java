@@ -3,34 +3,28 @@ package lotto.domain;
 import lombok.Builder;
 import lombok.Getter;
 
-import static lotto.exception.ExceptionMessage.*;
-import static lotto.util.NumberValidateUtils.isNonNegativeInteger;
+import static lotto.exception.ExceptionMessage.LESS_THAN_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY;
+import static lotto.exception.ExceptionMessage.NON_MULTIPLE_OF_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY;
 
 public class PurchaseCount {
 
     private static final int MINIMUM_INPUT = 1000;
 
     @Getter
-    private final int purchaseCount;
+    private final Integer purchaseCount;
 
     @Builder
-    public PurchaseCount(String input) {
-        input = input.trim();
-        validate(input);
+    public PurchaseCount(int purchasePrice) {
+        validate(purchasePrice);
 
-        this.purchaseCount = Integer.parseInt(input) / Lotto.PRICE;
+        this.purchaseCount = purchasePrice / Lotto.PRICE;
     }
 
-    private void validate(String input) {
-        if (!isNonNegativeInteger(input)) {
-            throw new IllegalArgumentException(NEGATIVE_INTEGER_INPUT_FOR_PURCHASE_MONEY.getMessage());
-        }
-
-        int inputValue = Integer.parseInt(input);
-        if (inputValue < MINIMUM_INPUT) {
+    private void validate(int purchasePrice) {
+        if (purchasePrice < MINIMUM_INPUT) {
             throw new IllegalArgumentException(LESS_THAN_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY.getMessage());
         }
-        if (notMultipleOfLottoPrice(inputValue)) {
+        if (notMultipleOfLottoPrice(purchasePrice)) {
             throw new IllegalArgumentException(NON_MULTIPLE_OF_LOTTO_PRICE_INPUT_FOR_PURCHASE_MONEY.getMessage());
         }
     }

@@ -12,7 +12,7 @@ public class LottoSetTest {
     void testGenerateRandomLottoSet() throws Exception {
         // given
         int targetSize = 10;
-        PurchaseCount purchaseCount = new PurchaseCount(String.valueOf(targetSize * Lotto.PRICE));
+        PurchaseCount purchaseCount = new PurchaseCount(targetSize * Lotto.PRICE);
 
         // when
         LottoSet lottoSet = new LottoSet(purchaseCount);

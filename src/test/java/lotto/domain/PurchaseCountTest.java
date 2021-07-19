@@ -54,7 +54,7 @@ public class PurchaseCountTest {
 
         // then
         assertThatThrownBy(() -> new PurchaseCount(input))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

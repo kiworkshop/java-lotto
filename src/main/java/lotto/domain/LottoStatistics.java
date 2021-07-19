@@ -14,11 +14,11 @@ public class LottoStatistics {
         this.purchaseCount = purchaseCount;
     }
 
-    public double calcProfitRate() {
-        return (double) calcSum() / (purchaseCount.getPurchaseCount() * Lotto.PRICE);
+    public double calculateProfitRate() {
+        return (double) calculateSum() / (purchaseCount.getPurchaseCount() * Lotto.PRICE);
     }
 
-    private long calcSum() {
+    private long calculateSum() {
         return prizeCount.getCountFirst() * PrizeMoney.FIRST.getValue()
                 + prizeCount.getCountSecond() * PrizeMoney.SECOND.getValue()
                 + prizeCount.getCountThird() * PrizeMoney.THIRD.getValue()

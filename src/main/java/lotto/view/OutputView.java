@@ -44,6 +44,6 @@ public class OutputView {
         System.out.println(lottoStatistics.getPrizeCount().getCountSecond() + "개");
         System.out.print(PrizeMessage.FIRST.getMessage());
         System.out.println(lottoStatistics.getPrizeCount().getCountFirst() + "개");
-        System.out.println("총 수익률은 " + lottoStatistics.calcProfitRate() + "입니다.");
+        System.out.println("총 수익률은 " + lottoStatistics.calculateProfitRate() + "입니다.");
     }
 }

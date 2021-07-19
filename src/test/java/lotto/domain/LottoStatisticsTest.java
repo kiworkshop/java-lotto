@@ -25,6 +25,6 @@ public class LottoStatisticsTest {
                 new PurchaseCount(String.valueOf(PURCHASE_MONEY)));
 
         // then
-        assertThat(lottoStatistics.calcProfitRate()).isEqualTo(RESULT);
+        assertThat(lottoStatistics.calculateProfitRate()).isEqualTo(RESULT);
     }
 }

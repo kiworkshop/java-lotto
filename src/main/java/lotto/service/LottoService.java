@@ -8,7 +8,7 @@ import lotto.domain.dto.WinningLottoInput;
 
 public class LottoService {
 
-    public PurchaseResult purchase(PurchaseInput purchaseInput) {
+    public PurchaseResult purchase(PurchaseInput purchaseInput) throws IllegalArgumentException {
         PurchaseCount purchaseCount = new PurchaseCount(purchaseInput.getPrice());
         LottoSet lottoSet = new LottoSet(purchaseCount);
 
@@ -18,7 +18,7 @@ public class LottoService {
                 .build();
     }
 
-    public LottoResult calculateResult(PurchaseResult purchaseResult, WinningLottoInput winningLottoInput) {
+    public LottoResult calculateResult(PurchaseResult purchaseResult, WinningLottoInput winningLottoInput) throws IllegalArgumentException {
         LottoMatcher lottoMatcher = new LottoMatcher(
                 new WinningLotto(winningLottoInput), purchaseResult.getLottoSet()
         );

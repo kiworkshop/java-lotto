@@ -14,11 +14,11 @@ public class LottoController {
         this.lottoService = new LottoService();
     }
 
-    public PurchaseResult purchase(PurchaseInput purchaseInput) {
+    public PurchaseResult purchase(PurchaseInput purchaseInput) throws IllegalArgumentException {
         return lottoService.purchase(purchaseInput);
     }
 
-    public LottoResult calculateResult(PurchaseResult purchaseResult, WinningLottoInput winningLottoInput) {
+    public LottoResult calculateResult(PurchaseResult purchaseResult, WinningLottoInput winningLottoInput) throws IllegalArgumentException {
         return lottoService.calculateResult(purchaseResult, winningLottoInput);
     }
 }

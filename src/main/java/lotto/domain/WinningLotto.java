@@ -6,13 +6,14 @@ import lotto.parser.LottoParser;
 
 import java.util.Comparator;
 
-public class WinningLotto extends Lotto {
+@Getter
+public class WinningLotto {
 
-    @Getter
+    private final Lotto lotto;
     private final LottoNumber bonusNumber;
 
     public WinningLotto(String winningNumberInput, String bonusNumberInput) {
-        super(LottoParser.generateLotto(winningNumberInput));
+        this.lotto = new Lotto(LottoParser.generateLotto(winningNumberInput));
         this.bonusNumber = new LottoNumber(bonusNumberInput);
     }
 
@@ -26,13 +27,13 @@ public class WinningLotto extends Lotto {
 
     private int getMatchNumbersCount(Lotto targetLotto) {
         targetLotto.getLottoNumbers().sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
-        this.lottoNumbers.sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
+        this.lotto.getLottoNumbers().sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
         int targetIdx = 0;
         int winningIdx = 0;
         int matchNumbersCount = 0;
-        while (targetIdx < targetLotto.lottoNumbers.size() && winningIdx < this.lottoNumbers.size()) {
+        while (targetIdx < targetLotto.lottoNumbers.size() && winningIdx < this.lotto.getLottoNumbers().size()) {
             int targetNumber = targetLotto.lottoNumbers.get(targetIdx).getLottoNumber();
-            int winningNumber = this.lottoNumbers.get(winningIdx).getLottoNumber();
+            int winningNumber = this.lotto.getLottoNumbers().get(winningIdx).getLottoNumber();
             if (targetNumber == winningNumber) {
                 matchNumbersCount++;
                 targetIdx++;

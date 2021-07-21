@@ -25,7 +25,7 @@ public class WinningLottoTest {
     @DisplayName("숫자가 6개인지 확인한다")
     void testWinningNumberSize() throws Exception {
         // given, when, then
-        assertThat(winningLotto.getLottoNumbers().size()).isEqualTo(Lotto.LOTTO_NUMBER_SIZE);
+        assertThat(winningLotto.getLotto().getLottoNumbers().size()).isEqualTo(Lotto.LOTTO_NUMBER_SIZE);
     }
 
     @Test

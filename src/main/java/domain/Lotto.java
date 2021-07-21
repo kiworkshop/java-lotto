@@ -17,8 +17,6 @@ public class Lotto {
     }
 
     public Rank getRank(List<Integer> winningNumber, int bonusNumber) {
-        countOfMatches(winningNumber);
-        countOfBonusMatch(bonusNumber);
         return Rank.getRank(countOfMatches(winningNumber), countOfBonusMatch(bonusNumber));
     }
 

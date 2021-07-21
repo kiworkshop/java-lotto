@@ -158,15 +158,15 @@ public class LottoMachineTest {
 
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         lottoTicket.add(lotto);
-
+        Lottos lottos = new Lottos(lottoTicket);
         //when
 
-        TreeMap<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        TreeMap<Rank, Integer> rankResult = lottoMachine.getRankResult(lottos, Arrays.asList(1, 2, 3, 4, 5, 6), 7);
 
         //then
         assertThat(rankResult.get(Rank.FIRST_PLACE)).isEqualTo(1);
-        assertThat(rankResult.get(Rank.SECOND_PLACE)).isEqualTo(0);
-        assertThat(rankResult.get(Rank.THIRD_PLACE)).isEqualTo(0);
+        assertThat(rankResult.get(Rank.SECOND_PLACE)).isZero();
+        assertThat(rankResult.get(Rank.THIRD_PLACE)).isZero();
     }
 
     @Test
@@ -179,10 +179,11 @@ public class LottoMachineTest {
 
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         lottoTicket.add(lotto);
+        Lottos lottos = new Lottos(lottoTicket);
 
         //when
 
-        TreeMap<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 4, 5, 7), 6);
+        TreeMap<Rank, Integer> rankResult = lottoMachine.getRankResult(lottos, Arrays.asList(1, 2, 3, 4, 5, 7), 6);
 
         //then
         assertThat(rankResult.get(Rank.SECOND_PLACE)).isEqualTo(1);
@@ -198,9 +199,9 @@ public class LottoMachineTest {
 
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         lottoTicket.add(lotto);
-
+        Lottos lottos = new Lottos(lottoTicket);
         //when
-        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottos, Arrays.asList(1, 2, 3, 4, 5, 6), 7);
         double profitRate = lottoMachine.getProfitRate(rankResult);
 
         //then
@@ -222,9 +223,9 @@ public class LottoMachineTest {
         lottoTicket.add(lotto2);
         lottoTicket.add(lotto2);
         lottoTicket.add(lotto2);
-
+        Lottos lottos = new Lottos(lottoTicket);
         //when
-        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTicket, Arrays.asList(1, 2, 3, 11, 12, 13), 7);
+        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottos, Arrays.asList(1, 2, 3, 11, 12, 13), 7);
         double profitRate = lottoMachine.getProfitRate(rankResult);
 
         //then

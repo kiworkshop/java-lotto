@@ -2,6 +2,7 @@ package controller;
 
 import domain.Lotto;
 import domain.LottoMachine;
+import domain.Lottos;
 import enums.Rank;
 import view.InputView;
 import view.OutputView;
@@ -17,13 +18,13 @@ public class LottoController {
     public static void main(String[] args) {
 
         LottoMachine lottoMachine = new LottoMachine(inputView.inputMoney());
-        List<Lotto> lottoTickets = lottoMachine.getLottoTickets();
-        outputView.printLottoTickets(lottoTickets);
+        Lottos lottos= new Lottos(lottoMachine.getLottoTickets());
+        outputView.printLottoTickets(lottos);
 
         List<Integer> winningNumbers = lottoMachine.getWinningNumber(inputView.inputWinningNumbers());
         int bonusNumber = lottoMachine.getBonusBall(inputView.inputBonusBall(), winningNumbers);
 
-        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoTickets, winningNumbers, bonusNumber);
+        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottos, winningNumbers, bonusNumber);
         outputView.printRankResult(rankResult);
         outputView.printStatistics(lottoMachine.getProfitRate(rankResult));
     }

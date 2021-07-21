@@ -9,18 +9,42 @@ import java.util.stream.IntStream;
 
 public class LottoMachine {
 
-    private final int lottoTicketCount;
+    private final int lottoTotalTicketCount;
+    private final int lottoAutoTicketCount;
+    private final int lottoManualTicketCount;
     private final int money;
     private static InputValidation inputValidation = new InputValidation();
     private final LottoValication lottoValication= new LottoValication();
 
     public LottoMachine(String inputMoney) {
         this.money = lottoValication.checkGivenMoney(inputMoney);
-        this.lottoTicketCount = this.money / lottoValication.LOTTO_PRICE;
+        this.lottoTotalTicketCount = this.money / lottoValication.LOTTO_PRICE;
+        lottoManualTicketCount = lottoTotalTicketCount;
+        lottoAutoTicketCount = 0;
+    }
+
+//    public LottoMachine(String inputMoney, List<List<Integer>> manulLottos) {
+//        this.money = lottoValication.checkGivenMoney(inputMoney);
+//        lottoValication.canbyAllTickets(money, manulLottos.size());
+//        this.lottoTotalTicketCount = this.money / lottoValication.LOTTO_PRICE;
+//        this.lottoAutoTicketCount = manulLottos.size();
+//        this.lottoManualTicketCount = lottoTotalTicketCount - lottoAutoTicketCount;
+//    }
+
+    public LottoMachine(String inputMoney, int manualTicketCount) {
+        this.money = lottoValication.checkGivenMoney(inputMoney);
+        lottoValication.canbyAllTickets(money, manualTicketCount);
+        this.lottoTotalTicketCount = this.money / lottoValication.LOTTO_PRICE;
+        this.lottoAutoTicketCount = manualTicketCount;
+        this.lottoManualTicketCount = lottoTotalTicketCount - lottoAutoTicketCount;
     }
 
     public int getLottoTicketCount() {
-        return this.lottoTicketCount;
+        return this.lottoTotalTicketCount;
+    }
+
+    public int getLottoManualTicketCount() {
+        return lottoManualTicketCount;
     }
 
     public List<Integer> createRandomNumber() {
@@ -33,10 +57,24 @@ public class LottoMachine {
         return lottoNumbers;
     }
 
-    public List<Lotto> getLottoTickets() {
+    public List<Lotto> getLottoTotalTickets(List<List<Integer>> manualLottos) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        lottoTickets.addAll(getLottoManulTickets(manualLottos));
+        lottoTickets.addAll(getAutoLottoTickets());
+        return lottoTickets;
+    }
+    public List<Lotto> getAutoLottoTickets() {
         List<Lotto> lottoTicket = new ArrayList<>();
-        for (int i = 0; i < lottoTicketCount; i++) {
+        for (int i = 0; i < lottoAutoTicketCount; i++) {
             lottoTicket.add(new Lotto(createRandomNumber()));
+        }
+        return lottoTicket;
+    }
+
+    public List<Lotto> getLottoManulTickets(List<List<Integer>> manualLottos) {
+        List<Lotto> lottoTicket = new ArrayList<>();
+        for (int i = 0; i < lottoManualTicketCount; i++) {
+            lottoTicket.add(new Lotto(manualLottos.get(i)));
         }
         return lottoTicket;
     }
@@ -73,7 +111,7 @@ public class LottoMachine {
 
      public List<Integer> getWinningNumber(String winningNumber) {
         List<Integer> winningNumbers = inputValidation.toIntegers(inputValidation.splitByComma(winningNumber));
-         lottoValication.winningNumberValidate(winningNumbers);
+         lottoValication.lottoNumberValidate(winningNumbers);
         return winningNumbers;
     }
 

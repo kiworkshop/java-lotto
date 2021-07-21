@@ -16,8 +16,9 @@ public class LottoController {
 
     public static void main(String[] args) {
 
-        LottoMachine lottoMachine = new LottoMachine(inputView.inputMoney());
-        Lottos lottos= new Lottos(lottoMachine.getLottoTickets());
+        LottoMachine lottoMachine = new LottoMachine(inputView.inputMoney(), inputView.manualTicketCount());
+        List<List<Integer>> manulLottos = inputView.manualLottlNumbers(lottoMachine.getLottoManualTicketCount());
+        Lottos lottos = new Lottos(lottoMachine.getLottoTotalTickets(manulLottos));
         outputView.printLottoTickets(lottos);
 
         List<Integer> winningNumbers = lottoMachine.getWinningNumber(inputView.inputWinningNumbers());

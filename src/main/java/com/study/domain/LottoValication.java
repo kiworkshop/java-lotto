@@ -15,15 +15,17 @@ public class LottoValication {
     private static final String ALERT_CHECK_LENGTH = String.format("당첨번호는 %d개 이어야 합니다.", LOTTO_LENGTH);
     private static final String ALERT_CHECK_DUPLICATION = "중복되는 숫자가 포함되어 있는지 확인해주세요.";
     private static final String ALERT_CHECK_BONUS_DUPLICATE = "보너스볼이 당첨 번호와 중복되는지 확인해주세요.";
+    private static final String ALERT_CHECK_PAYMENT_MANUAL= "구매 금액 이상의 수동 로또를 살 수 없습니다.";
+    private static final String ALERT_CHECK_PAYMENT= "1000원 단위의 금액만 투입할 수 있습니다.";
 
     public int checkGivenMoney(String givenMoney) {
         if (!Pattern.matches(LOTTO_PRICE_PATTERN, givenMoney)) {
-            throw new RuntimeException("1000원 단위의 금액만 투입할 수 있습니다.");
+            throw new IllegalArgumentException(ALERT_CHECK_PAYMENT);
         }
         return Integer.parseInt(givenMoney);
     }
 
-    public void winningNumberValidate(List<Integer> winningNumbers) {
+    public void lottoNumberValidate(List<Integer> winningNumbers) {
         checkListBound(winningNumbers);
         checkLength(winningNumbers);
         checkDuplicate(winningNumbers);
@@ -62,6 +64,12 @@ public class LottoValication {
 
         if (countOfDeDuplication != winningNumbers.size()) {
             throw new IllegalArgumentException(ALERT_CHECK_DUPLICATION);
+        }
+    }
+
+    public void canbyAllTickets(int totalCount, int manulCount) {
+        if(totalCount<manulCount) {
+            throw new IllegalArgumentException(ALERT_CHECK_PAYMENT_MANUAL);
         }
     }
 }

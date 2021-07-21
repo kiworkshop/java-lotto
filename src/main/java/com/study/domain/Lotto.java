@@ -7,8 +7,10 @@ import java.util.List;
 public class Lotto {
 
     private final List<Integer> lottoNumbers;
+    private final LottoValication lottoValication = new LottoValication();
 
     public Lotto(List<Integer> randomNumber) {
+        lottoValication.lottoNumberValidate(randomNumber);
         this.lottoNumbers = randomNumber;
     }
 

@@ -15,9 +15,6 @@ public class InputValidation {
     private static final String ALERT_CHECK_COMMA = String.format("구분자를 \"%s\"로 입력하셨는지 확인해주세요.", COMMA);
     private static final String ALERT_CHECK_NULL_OR_EMPTY = String.format("\"%s\"로 구분한 지난 주 당첨번호를 입력해주세요.", COMMA);
 
-
-
-
     public static List<Integer> toIntegers(List<String> input) {
         return new ArrayList<>(Collections.unmodifiableList(input.stream()
                 .mapToInt(Integer::parseInt)
@@ -40,5 +37,7 @@ public class InputValidation {
         }
     }
 
-
+    public String removeBlank(String input) {
+        return input.replaceAll(" ", "");
+    }
 }

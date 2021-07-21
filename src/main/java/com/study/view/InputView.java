@@ -1,8 +1,7 @@
-package view;
+package com.study.view;
 
-import utils.InputValidation;
+import com.study.utils.InputValidation;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {

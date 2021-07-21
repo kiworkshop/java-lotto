@@ -1,11 +1,10 @@
-package controller;
+package com.study.controller;
 
-import domain.Lotto;
-import domain.LottoMachine;
-import domain.Lottos;
-import enums.Rank;
-import view.InputView;
-import view.OutputView;
+import com.study.domain.LottoMachine;
+import com.study.domain.Lottos;
+import com.study.enums.Rank;
+import com.study.view.InputView;
+import com.study.view.OutputView;
 
 import java.util.List;
 import java.util.Map;

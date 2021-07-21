@@ -1,8 +1,8 @@
-package view;
+package com.study.view;
 
-import domain.Lotto;
-import domain.Lottos;
-import enums.Rank;
+import com.study.domain.Lotto;
+import com.study.domain.Lottos;
+import com.study.enums.Rank;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package utils;
+package com.study.utils;
 
 import org.apache.commons.lang3.StringUtils;
 

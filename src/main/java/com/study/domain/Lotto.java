@@ -1,6 +1,6 @@
-package domain;
+package com.study.domain;
 
-import enums.Rank;
+import com.study.enums.Rank;
 
 import java.util.List;
 

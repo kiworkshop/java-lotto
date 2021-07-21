@@ -1,6 +1,8 @@
-package domain;
+package com.study.domain;
 
-import enums.Rank;
+import com.study.domain.Lotto;
+import com.study.domain.LottoMachine;
+import com.study.enums.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

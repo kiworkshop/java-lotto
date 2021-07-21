@@ -1,6 +1,7 @@
 package com.study.domain;
 
 import com.study.enums.Rank;
+import com.study.enums.RankMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,7 @@ public class LottoValicationTest {
 
     @Test
     @DisplayName("입력 숫자의 범위가 1-45가 아닐 경우 예외가 발생한다.")
-    public void checkBound() {
+    void checkBound() {
         //given
         List<Integer> winningNumber = new ArrayList<>();
         winningNumber.add(1);
@@ -50,7 +51,7 @@ public class LottoValicationTest {
 
     @Test
     @DisplayName("입력 숫자가 음수 일 경우 경우 예외가 발생한다.")
-    public void checkBoundMinus() {
+    void checkBoundMinus() {
         //given
         List<Integer> winningNumber = new ArrayList<>();
         winningNumber.add(1);
@@ -140,7 +141,7 @@ public class LottoValicationTest {
         Lottos lottos = new Lottos(lottoTicket);
         //when
 
-        TreeMap<Rank, Integer> rankResult = lottoMachine.getRankResult(lottos, Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        RankMap rankResult = lottoMachine.getRankResult(lottos, Arrays.asList(1, 2, 3, 4, 5, 6), 7);
 
         //then
         assertThat(rankResult.get(Rank.FIRST_PLACE)).isEqualTo(1);
@@ -162,7 +163,7 @@ public class LottoValicationTest {
 
         //when
 
-        TreeMap<Rank, Integer> rankResult = lottoMachine.getRankResult(lottos, Arrays.asList(1, 2, 3, 4, 5, 7), 6);
+        RankMap rankResult = lottoMachine.getRankResult(lottos, Arrays.asList(1, 2, 3, 4, 5, 7), 6);
 
         //then
         assertThat(rankResult.get(Rank.SECOND_PLACE)).isEqualTo(1);

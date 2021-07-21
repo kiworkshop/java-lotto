@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class LottoValication {
+
     public static final int LOTTO_PRICE = 1000;
     public static final int BOUND_MIN = 1;
     public static final int BOUND_MAX = 45;
     public static final int LOTTO_LENGTH = 6;
-
 
     private static final String LOTTO_PRICE_PATTERN = "\\d*000";
     private static final String ALERT_CHECK_BOUND = String.format("당첨번호는 %d - %d 사이값을 입력해주세요", BOUND_MIN, BOUND_MAX);

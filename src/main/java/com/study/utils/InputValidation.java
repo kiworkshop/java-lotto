@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class InputValidation {
+public  class InputValidation {
 
     private static final String COMMA = ",";
     private static final String ALERT_CHECK_COMMA = String.format("구분자를 \"%s\"로 입력하셨는지 확인해주세요.", COMMA);
@@ -38,6 +37,6 @@ public class InputValidation {
     }
 
     public String removeBlank(String input) {
-        return input.replaceAll(" ", "");
+        return input.replace(" ", "");
     }
 }

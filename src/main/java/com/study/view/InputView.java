@@ -9,19 +9,19 @@ import java.util.Scanner;
 public class InputView {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static InputValidation inputValidation = new InputValidation();
+    private static final InputValidation INPUT_VALICATION = new InputValidation();
 
     public String inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String money = scanner.nextLine();
-        inputValidation.checkNullOrEmpty(money);
+        INPUT_VALICATION.checkNullOrEmpty(money);
         return money;
     }
 
     public int manualTicketCount() {
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
         String manulTicketCount = scanner.nextLine();
-        inputValidation.checkNullOrEmpty(manulTicketCount);
+        INPUT_VALICATION.checkNullOrEmpty(manulTicketCount);
         return Integer.parseInt(manulTicketCount);
     }
 
@@ -38,7 +38,7 @@ public class InputView {
     public String inputWinningNumbers() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         String winningNumber = scanner.nextLine();
-        inputValidation.checkNullOrEmpty(winningNumber);
+        INPUT_VALICATION.checkNullOrEmpty(winningNumber);
         return winningNumber;
     }
 
@@ -48,12 +48,10 @@ public class InputView {
     }
 
     private List<Integer> manualLottlNumber() {
-
-        String manulTicketCount = inputValidation.removeBlank(scanner.nextLine());
-        inputValidation.checkNullOrEmpty(manulTicketCount);
-        List<String> manulLottoNumbers = inputValidation.splitByComma(manulTicketCount);
-        List<Integer> numberList = inputValidation.toIntegers(manulLottoNumbers);
-        return numberList;
+        String manulTicketCount = INPUT_VALICATION.removeBlank(scanner.nextLine());
+        INPUT_VALICATION.checkNullOrEmpty(manulTicketCount);
+        List<String> manulLottoNumbers = InputValidation.splitByComma(manulTicketCount);
+        return InputValidation.toIntegers(manulLottoNumbers);
     }
 
 }

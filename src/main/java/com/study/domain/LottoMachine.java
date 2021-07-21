@@ -1,6 +1,7 @@
 package com.study.domain;
 
 import com.study.enums.Rank;
+import com.study.enums.RankMap;
 import com.study.utils.InputValidation;
 
 import java.util.*;
@@ -14,29 +15,21 @@ public class LottoMachine {
     private final int lottoManualTicketCount;
     private final int money;
     private static InputValidation inputValidation = new InputValidation();
-    private final LottoValication lottoValication= new LottoValication();
+    private final static LottoValication LOTTO_VALIDATION = new LottoValication();
 
     public LottoMachine(String inputMoney) {
-        this.money = lottoValication.checkGivenMoney(inputMoney);
-        this.lottoTotalTicketCount = this.money / lottoValication.LOTTO_PRICE;
+        this.money = LOTTO_VALIDATION.checkGivenMoney(inputMoney);
+        this.lottoTotalTicketCount = this.money / LOTTO_VALIDATION.LOTTO_PRICE;
         lottoManualTicketCount = lottoTotalTicketCount;
         lottoAutoTicketCount = 0;
     }
 
-//    public LottoMachine(String inputMoney, List<List<Integer>> manulLottos) {
-//        this.money = lottoValication.checkGivenMoney(inputMoney);
-//        lottoValication.canbyAllTickets(money, manulLottos.size());
-//        this.lottoTotalTicketCount = this.money / lottoValication.LOTTO_PRICE;
-//        this.lottoAutoTicketCount = manulLottos.size();
-//        this.lottoManualTicketCount = lottoTotalTicketCount - lottoAutoTicketCount;
-//    }
-
     public LottoMachine(String inputMoney, int manualTicketCount) {
-        this.money = lottoValication.checkGivenMoney(inputMoney);
-        lottoValication.canbyAllTickets(money, manualTicketCount);
-        this.lottoTotalTicketCount = this.money / lottoValication.LOTTO_PRICE;
-        this.lottoAutoTicketCount = manualTicketCount;
-        this.lottoManualTicketCount = lottoTotalTicketCount - lottoAutoTicketCount;
+        this.money = LOTTO_VALIDATION.checkGivenMoney(inputMoney);
+        LOTTO_VALIDATION.canbyAllTickets(money, manualTicketCount);
+        this.lottoTotalTicketCount = this.money / LOTTO_VALIDATION.LOTTO_PRICE;
+        this.lottoManualTicketCount = manualTicketCount;
+        this.lottoAutoTicketCount = lottoTotalTicketCount - lottoManualTicketCount;
     }
 
     public int getLottoTicketCount() {
@@ -63,6 +56,7 @@ public class LottoMachine {
         lottoTickets.addAll(getAutoLottoTickets());
         return lottoTickets;
     }
+
     public List<Lotto> getAutoLottoTickets() {
         List<Lotto> lottoTicket = new ArrayList<>();
         for (int i = 0; i < lottoAutoTicketCount; i++) {
@@ -78,40 +72,33 @@ public class LottoMachine {
         }
         return lottoTicket;
     }
+
     public int getBonusBall(String bonusInput, List<Integer> winningNumber) {
         int bonusInputNumber = Integer.parseInt(bonusInput);
-        lottoValication.checkBound(bonusInputNumber);
-        lottoValication.checkBonusDuplicate(bonusInputNumber, winningNumber);
+        LOTTO_VALIDATION.checkBound(bonusInputNumber);
+        LOTTO_VALIDATION.checkBonusDuplicate(bonusInputNumber, winningNumber);
         return bonusInputNumber;
     }
-    public TreeMap getRankResult(Lottos lottos, List<Integer> winningNumber, int bonusNumber) {
 
-        TreeMap<Rank, Integer> result = new TreeMap<Rank, Integer>() {{
-            put(Rank.FIRST_PLACE, 0);
-            put(Rank.SECOND_PLACE, 0);
-            put(Rank.THIRD_PLACE, 0);
-            put(Rank.FOURTH_PLACE, 0);
-            put(Rank.FIFTH_PLACE, 0);
-            put(Rank.ETC, 0);
-        }};
-
+    public RankMap getRankResult(Lottos lottos, List<Integer> winningNumber, int bonusNumber) {
+        RankMap rankMap = new RankMap(Rank.class);
         for (Lotto lotto : lottos.getLottos()) {
-            result.put(lotto.getRank(winningNumber, bonusNumber), result.get(lotto.getRank(winningNumber, bonusNumber)) + 1);
+            rankMap.put(lotto.getRank(winningNumber, bonusNumber), rankMap.get(lotto.getRank(winningNumber, bonusNumber)) + 1);
         }
-        return result;
+        return rankMap;
     }
 
     public double getProfitRate(Map<Rank, Integer> rankResult) {
         double totalPrize = rankResult.entrySet()
                 .stream()
-                .mapToDouble((rank) -> rank.getKey().prize() * rank.getValue())
+                .mapToDouble(rank -> rank.getKey().prize() * rank.getValue())
                 .sum();
         return totalPrize / this.money;
     }
 
-     public List<Integer> getWinningNumber(String winningNumber) {
+    public List<Integer> getWinningNumber(String winningNumber) {
         List<Integer> winningNumbers = inputValidation.toIntegers(inputValidation.splitByComma(winningNumber));
-         lottoValication.lottoNumberValidate(winningNumbers);
+        LOTTO_VALIDATION.lottoNumberValidate(winningNumbers);
         return winningNumbers;
     }
 

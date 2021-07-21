@@ -12,7 +12,8 @@ public class LottoParser {
     public static List<LottoNumber> generateLotto(String numberInput) {
         return Arrays.stream(numberInput.split(DELIMITER))
                 .map(String::trim)
-                .map(LottoNumber::new)
+                .mapToInt(Integer::parseInt)
+                .mapToObj(LottoNumber::new)
                 .collect(Collectors.toList());
     }
 }

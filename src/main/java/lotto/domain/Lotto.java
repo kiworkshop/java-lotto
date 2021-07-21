@@ -26,7 +26,6 @@ public class Lotto {
         Collections.shuffle(defaultNumbers);
         return new Lotto(defaultNumbers.subList(INDEX_LOWER_BOUND, INDEX_UPPER_BOUND)
                 .stream()
-                .map(String::valueOf)
                 .map(LottoNumber::new)
                 .collect(Collectors.toList()));
     }

@@ -21,6 +21,7 @@ public class InputView {
 
         System.out.println("보너스 볼을 입력해 주세요.");
         String winningLottoBonus = scanner.nextLine();
+
         return new WinningLottoInputDTO(winningLottoNumbers, winningLottoBonus);
     }
 }

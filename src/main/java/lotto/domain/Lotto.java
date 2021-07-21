@@ -29,6 +29,5 @@ public class Lotto {
                 .map(String::valueOf)
                 .map(LottoNumber::new)
                 .collect(Collectors.toList()));
-
     }
 }

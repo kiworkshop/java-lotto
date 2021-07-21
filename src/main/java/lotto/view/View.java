@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.domain.LottoStatistics;
 import lotto.domain.PurchaseCount;
-import lotto.domain.RandomLottoSet;
+import lotto.domain.LottoSet;
 import lotto.domain.dto.PurchasePriceInputDTO;
 import lotto.domain.dto.WinningLottoInputDTO;
 
@@ -22,7 +22,7 @@ public class View {
         outputView.printLottoCount(purchaseCount);
     }
 
-    public static void printLottoSet(RandomLottoSet lottoSet) {
+    public static void printLottoSet(LottoSet lottoSet) {
         outputView.printLottoSet(lottoSet);
     }
 

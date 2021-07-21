@@ -12,7 +12,7 @@ public class OutputView {
         System.out.println(count + "개를 구매했습니다.");
     }
 
-    public void printLottoSet(RandomLottoSet lottoSet) {
+    public void printLottoSet(LottoSet lottoSet) {
         for (Lotto lotto : lottoSet.getLottoSet()) {
             printLotto(lotto);
         }

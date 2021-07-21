@@ -14,7 +14,7 @@ public class LottoController {
         PurchasePriceInputDTO purchasePriceInputDTO = View.getPurchaseCost();
 
         PurchaseCount purchaseCount = new PurchaseCount(purchasePriceInputDTO.getInput());
-        RandomLottoSet randomLottoSet = new RandomLottoSet(purchaseCount);
+        LottoSet randomLottoSet = LottoSet.generateRandomLottoSetWithSize(purchaseCount.getPurchaseCount());
 
         View.printLottoCount(purchaseCount);
         View.printLottoSet(randomLottoSet);

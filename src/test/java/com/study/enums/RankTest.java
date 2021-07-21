@@ -1,5 +1,6 @@
-package enums;
+package com.study.enums;
 
+import com.study.enums.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

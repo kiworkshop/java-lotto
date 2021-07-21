@@ -1,14 +1,16 @@
-package domain;
+package com.study.domain;
 
-import enums.Rank;
+import com.study.enums.Rank;
 
 import java.util.List;
 
 public class Lotto {
 
     private final List<Integer> lottoNumbers;
+    private final LottoValication lottoValication = new LottoValication();
 
     public Lotto(List<Integer> randomNumber) {
+        lottoValication.lottoNumberValidate(randomNumber);
         this.lottoNumbers = randomNumber;
     }
 
@@ -17,8 +19,6 @@ public class Lotto {
     }
 
     public Rank getRank(List<Integer> winningNumber, int bonusNumber) {
-        countOfMatches(winningNumber);
-        countOfBonusMatch(bonusNumber);
         return Rank.getRank(countOfMatches(winningNumber), countOfBonusMatch(bonusNumber));
     }
 

@@ -1,15 +1,16 @@
-package view;
+package com.study.view;
 
-import domain.Lotto;
-import enums.Rank;
+import com.study.domain.Lotto;
+import com.study.domain.Lottos;
+import com.study.enums.Rank;
 
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public void printLottoTickets(List<Lotto> lottoTickets) {
-        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
-        for (Lotto lottoTicket : lottoTickets) {
+    public void printLottoTickets(Lottos lottos) {
+        System.out.println(lottos.getLottos().size() + "개를 구매했습니다.");
+        for (Lotto lottoTicket : lottos.getLottos()) {
             System.out.println(getLottoNumberString(lottoTicket.getLottoNumbers()));
         }
     }

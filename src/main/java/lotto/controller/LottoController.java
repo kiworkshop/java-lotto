@@ -20,10 +20,7 @@ public class LottoController {
         View.printLottoSet(randomLottoSet);
 
         WinningLottoInputDTO winningLottoInputDTO = View.getWinningLottoAndBonus();
-        WinningLotto winningLotto = new WinningLotto(
-                winningLottoInputDTO.getWinningLottoNumbers(),
-                winningLottoInputDTO.getWinningLottoBonus());
-
+        WinningLotto winningLotto = new WinningLotto(winningLottoInputDTO);
         LottoStatistics lottoStatistics = new LottoStatistics(new PrizeCount(randomLottoSet, winningLotto), purchaseCount);
         View.printLottoStatistics(lottoStatistics);
     }

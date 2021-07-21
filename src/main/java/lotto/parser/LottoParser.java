@@ -1,6 +1,7 @@
 package lotto.parser;
 
 import lotto.domain.LottoNumber;
+import lotto.util.NumberValidateUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +13,7 @@ public class LottoParser {
     public static List<LottoNumber> generateLotto(String numberInput) {
         return Arrays.stream(numberInput.split(DELIMITER))
                 .map(String::trim)
+                .map(NumberValidateUtils::numericCheck)
                 .mapToInt(Integer::parseInt)
                 .mapToObj(LottoNumber::new)
                 .collect(Collectors.toList());

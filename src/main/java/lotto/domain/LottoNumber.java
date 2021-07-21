@@ -19,13 +19,7 @@ public class LottoNumber {
     }
 
     private void validateLottoNumberBound(int input) {
-//        if(!isInteger(input)) {
-//            throw new IllegalArgumentException("숫자를 입력해주세요.");
-//        }
-
-        int lottoNumber = input;
-
-        if (isOutOfBound(lottoNumber)) {
+        if (isOutOfBound(input)) {
             throw new IllegalArgumentException("1~45 값을 입력해주세요");
         }
     }

@@ -9,4 +9,12 @@ public class NumberValidateUtils {
         return Pattern.matches(NUMBER_REGEX, input);
     }
 
+    public static String numericCheck(String input) {
+        if(!isInteger(input)) {
+            throw new IllegalArgumentException("숫자만 입력해주세요.");
+        }
+
+        return input;
+    }
+
 }

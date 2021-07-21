@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.dto.PurchasePriceInputDTO;
 import lotto.domain.dto.WinningLottoInputDTO;
+import lotto.util.NumberValidateUtils;
 
 import java.util.Scanner;
 
@@ -21,6 +22,8 @@ public class InputView {
 
         System.out.println("보너스 볼을 입력해 주세요.");
         String winningLottoBonus = scanner.nextLine();
+
+        NumberValidateUtils.numericCheck(winningLottoBonus);
 
         return new WinningLottoInputDTO(winningLottoNumbers, winningLottoBonus);
     }

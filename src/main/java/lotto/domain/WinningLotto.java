@@ -3,7 +3,7 @@ package lotto.domain;
 import lombok.Getter;
 import lotto.constant.PrizeCondition;
 import lotto.parser.LottoParser;
-import static lotto.util.NumberValidateUtils.isInteger;
+import lotto.util.NumberValidateUtils;
 
 import java.util.Comparator;
 
@@ -14,9 +14,7 @@ public class WinningLotto {
     private final LottoNumber bonusNumber;
 
     public WinningLotto(String winningNumberInput, String bonusNumberInput) {
-        if(!isInteger(bonusNumberInput)) {
-            throw new IllegalArgumentException("숫자만 입력해주세요.");
-        }
+        NumberValidateUtils.numericCheck(bonusNumberInput);
         this.lotto = new Lotto(LottoParser.generateLotto(winningNumberInput));
         this.bonusNumber = new LottoNumber(Integer.parseInt(bonusNumberInput));
     }

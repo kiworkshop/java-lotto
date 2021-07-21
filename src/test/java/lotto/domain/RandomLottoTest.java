@@ -10,13 +10,7 @@ public class RandomLottoTest {
     @Test
     @DisplayName("숫자가 6개인 로또를 생성한다")
     void testGenerateLotto() throws Exception {
-        // given
-        RandomLotto randomLotto = new RandomLotto();
-
-        // when
-        int size = randomLotto.getLottoNumbers().size();
-
-        // then
-        assertThat(size).isEqualTo(Lotto.LOTTO_NUMBER_SIZE);
+        // given, when, then
+        assertThat(Lotto.generateRandomLotto().lottoNumbers.size()).isEqualTo(Lotto.LOTTO_NUMBER_SIZE);
     }
 }

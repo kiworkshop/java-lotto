@@ -12,7 +12,7 @@ public class RandomLottoSet extends LottoSet {
     private static Set<Lotto> generateRandomLottoSetWithSize(int size) {
         Set<Lotto> lottoSet = new HashSet<>();
         for (int i = 0; i < size; i++) {
-            lottoSet.add(new RandomLotto());
+            lottoSet.add(Lotto.generateRandomLotto());
         }
         return lottoSet;
     }

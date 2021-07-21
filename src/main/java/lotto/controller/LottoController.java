@@ -7,21 +7,18 @@ import lotto.view.View;
 
 public class LottoController {
     public static void main(String[] args) {
-        start();
-    }
-
-    public static void start() {
-        PurchasePriceInputDTO purchasePriceInputDTO = View.getPurchaseCost();
+        View view = new View();
+        PurchasePriceInputDTO purchasePriceInputDTO = view.getPurchaseCost();
 
         PurchaseCount purchaseCount = new PurchaseCount(purchasePriceInputDTO.getInput());
         LottoSet randomLottoSet = LottoSet.generateRandomLottoSetWithSize(purchaseCount.getPurchaseCount());
 
-        View.printLottoCount(purchaseCount);
-        View.printLottoSet(randomLottoSet);
+        view.printLottoCount(purchaseCount);
+        view.printLottoSet(randomLottoSet);
 
-        WinningLottoInputDTO winningLottoInputDTO = View.getWinningLottoAndBonus();
+        WinningLottoInputDTO winningLottoInputDTO = view.getWinningLottoAndBonus();
         WinningLotto winningLotto = new WinningLotto(winningLottoInputDTO);
         LottoStatistics lottoStatistics = new LottoStatistics(new PrizeCount(randomLottoSet, winningLotto), purchaseCount);
-        View.printLottoStatistics(lottoStatistics);
+        view.printLottoStatistics(lottoStatistics);
     }
 }

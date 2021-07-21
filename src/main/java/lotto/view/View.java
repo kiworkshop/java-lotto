@@ -7,26 +7,26 @@ import lotto.domain.dto.PurchasePriceInputDTO;
 import lotto.domain.dto.WinningLottoInputDTO;
 
 public class View {
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
-    public static PurchasePriceInputDTO getPurchaseCost() {
+    public PurchasePriceInputDTO getPurchaseCost() {
         return inputView.getPurchaseCost();
     }
 
-    public static WinningLottoInputDTO getWinningLottoAndBonus() {
+    public WinningLottoInputDTO getWinningLottoAndBonus() {
         return inputView.getWinningLottoAndBonus();
     }
 
-    public static void printLottoCount(PurchaseCount purchaseCount) {
+    public void printLottoCount(PurchaseCount purchaseCount) {
         outputView.printLottoCount(purchaseCount);
     }
 
-    public static void printLottoSet(LottoSet lottoSet) {
+    public void printLottoSet(LottoSet lottoSet) {
         outputView.printLottoSet(lottoSet);
     }
 
-    public static void printLottoStatistics(LottoStatistics lottoStatistics) {
+    public void printLottoStatistics(LottoStatistics lottoStatistics) {
         outputView.printLottoStatistic(lottoStatistics);
     }
 }

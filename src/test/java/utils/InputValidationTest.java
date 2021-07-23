@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputValidationTest {
 
@@ -58,16 +59,6 @@ public class InputValidationTest {
         assertThatThrownBy(
                 () -> inputValidation.checkBonusBall(bonusNumbers, winningNumber))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("입력 숫자의 범위가 1-45가 아닐 경우 예외가 발생한다.")
-    public void checkBound() {
-        //given
-        int inputNumber = 46;
-
-        //when //then
-        assertThatIllegalArgumentException().isThrownBy(() -> inputValidation.checkBound(inputNumber));
     }
 
     @Test

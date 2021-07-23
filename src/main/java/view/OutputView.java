@@ -24,7 +24,7 @@ public class OutputView {
         rankResult.forEach(this::result);
     }
 
-    private void result(Rank rank, int count) {
+    public void result(Rank rank, int count) {
         if (rank != Rank.ETC)
             System.out.printf("%d개 일치 (%d원)- %d개\n", rank.matched(), rank.prize(), count);
         if (rank == Rank.SECOND_PLACE)

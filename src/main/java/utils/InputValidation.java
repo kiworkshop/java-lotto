@@ -13,7 +13,7 @@ public class InputValidation {
 
     private static final int LOTTO_LENGTH = 6;
     private static final String ALERT_CHECK_COMMA = String.format("구분자를 \"%s\"로 입력하셨는지 확인해주세요.", COMMA);
-    private static final String ALERT_CHECK_NULL_OR_EMPTY = String.format("\"%s\"로 구분한 지난 주 당첨번호를 입력해주세요.", COMMA);
+    private static final String ALERT_CHECK_NULL_OR_EMPTY = "null 또는 빈 값인지 확인해주세요.";
 
     private static final String ALERT_CHECK_LENGTH = String.format("당첨번호는 %d개 이어야 합니다.", LOTTO_LENGTH);
     private static final String ALERT_CHECK_DUPLICATION = "중복되는 숫자가 포함되어 있는지 확인해주세요.";
@@ -43,6 +43,13 @@ public class InputValidation {
                 .collect(Collectors.toList())));
     }
 
+    public void checkNullOrEmpty(String input) {
+        if (StringUtils.isBlank(input)) {
+            throw new IllegalArgumentException(ALERT_CHECK_NULL_OR_EMPTY);
+        }
+    }
+
+
     private static List<String> splitByComma(String input) {
         if (!input.contains(COMMA)) {
             throw new IllegalArgumentException(ALERT_CHECK_COMMA);
@@ -52,14 +59,9 @@ public class InputValidation {
                 .collect(Collectors.toList());
     }
 
-    private void checkNullOrEmpty(String input) {
-        if (StringUtils.isBlank(input)) {
-            throw new IllegalArgumentException(ALERT_CHECK_NULL_OR_EMPTY);
-        }
-    }
 
     public List<Integer> checkWinningNumbers(String winningNumber) {
-        checkNullOrEmpty(winningNumber);
+//        checkNullOrEmpty(winningNumber);
         List<Integer> winningNumbers = toIntegers(splitByComma(winningNumber));
         validate(winningNumbers);
         return winningNumbers;

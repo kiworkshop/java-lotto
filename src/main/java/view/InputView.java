@@ -12,7 +12,13 @@ public class InputView {
 
     public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return inputValidation.checkGivenMoney(scanner.nextLine());
+
+        String givenMoney = scanner.nextLine().trim();
+        if (inputValidation.checkGivenMoney(givenMoney)) {
+            throw new IllegalArgumentException();
+        }
+
+        return Integer.parseInt(givenMoney);
     }
 
     public List<Integer> inputWinningNumbers() {

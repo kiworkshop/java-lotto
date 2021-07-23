@@ -13,46 +13,15 @@ public class InputValidationTest {
     static InputValidation inputValidation = new InputValidation();
 
     @Test
-    void 문자_1000을_입력받으면_숫자1000을_리턴한다() {
+    @DisplayName("사용자가 구매 금액을 문자로 입력한 경우 예외가 발생한다.")
+    void checkGivenMoney() {
         //given
-        String givenMoney = "1000";
-        //when
-        int result = inputValidation.checkGivenMoney(givenMoney);
-        //then
-        assertThat(result).isEqualTo(1000);
-    }
+        String inputMoney = "천원";
 
-    @Test
-    void 문자_100을_입력받으면_런타임에러를_리턴한다() {
-        //given
-        String givenMoney = "100";
-        //when
-        //then
+        //when //then
         assertThatThrownBy(() ->
-                inputValidation.checkGivenMoney(givenMoney)).
-                isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    void 문자_가를_입력받으면_런타임에러를_리턴한다() {
-        //given
-        String givenMoney = "가";
-        //when
-        //then
-        assertThatThrownBy(() ->
-                inputValidation.checkGivenMoney(givenMoney)).
-                isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    void 문자_음수1000_입력받으면_런타임에러를_리턴한다() {
-        //given
-        String givenMoney = "-1000";
-        //when
-        //then
-        assertThatThrownBy(() ->
-                inputValidation.checkGivenMoney(givenMoney)).
-                isInstanceOf(RuntimeException.class);
+                inputValidation.checkGivenMoney(inputMoney)).
+                isInstanceOf(NumberFormatException.class);
     }
 
     @Test

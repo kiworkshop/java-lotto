@@ -8,38 +8,40 @@ import lotto.domain.vending.TicketAmount;
 import lotto.domain.winning.WinningLottoRank;
 import lotto.domain.winning.WinningNumbers;
 import lotto.domain.winning.WinningStatistics;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
 
 public class LottoController {
+    private LottoService lottoService = new LottoService();
 
-    private static final LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
+    public void run() {
+        try {
+            String inputPrice = InputView.getBuyingPrice();
+            String inputManualCount = InputView.getManualCount();
 
-    public static void run() {
-        String inputPrice = InputView.getBuyingPrice();
-        BuyingPrice buyingPrice = new BuyingPrice(inputPrice);
+            BuyingPrice buyingPrice = new BuyingPrice(inputPrice);
+            TicketAmount ticketAmount = new TicketAmount(buyingPrice, inputManualCount);
 
-        String inputManualCount = InputView.getManualCount();
-        TicketAmount ticketAmount = new TicketAmount(buyingPrice, inputManualCount);
+            List<String> inputManualNumbers = InputView.getManualNumbers(ticketAmount);
+            LottoTickets lottoTickets = lottoService.issueTickets(ticketAmount, inputManualNumbers);
 
-        List<String> inputManualNumbers = InputView.getManualNumbers(ticketAmount);
-        LottoTickets lottoTickets = lottoTicketVendingMachine.issueTickets(ticketAmount, inputManualNumbers);
+            OutputView.printTicketAmount(ticketAmount);
+            OutputView.printLottoTickets(lottoTickets);
 
-        OutputView.printTicketAmount(ticketAmount);
-        OutputView.printLottoTickets(lottoTickets);
+            String inputWinningNumbers = InputView.getWinningNumber();
+            List<Integer> splitWinningNumbers = StringUtil.splitParseInt(inputWinningNumbers);
 
-        String inputWinningNumbers = InputView.getWinningNumber();
-        List<Integer> splitWinningNumbers = StringUtil.splitParseInt(inputWinningNumbers);
+            WinningLottoRank winningLottoRank = lottoService.getWinningLottoRank(lottoTickets, splitWinningNumbers);
+            float profitRate = lottoService.getProfitRate(ticketAmount, winningLottoRank);
 
-        int bonusNumber = Integer.parseInt(InputView.getBonusNumber());
-        WinningNumbers winningNumbers = new WinningNumbers(splitWinningNumbers, bonusNumber);
-        WinningLottoRank winningLottoRank = new WinningLottoRank(lottoTickets, winningNumbers);
-        OutputView.printWinningStatistics(winningLottoRank);
-
-        WinningStatistics winningStatistics = new WinningStatistics(winningLottoRank);
-        float profitRate = winningStatistics.profitRate(ticketAmount);
-        OutputView.printProfitRate(profitRate);
+            OutputView.printProfitRate(profitRate);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
+
+
 }

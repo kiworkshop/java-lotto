@@ -12,16 +12,20 @@ import java.util.stream.IntStream;
 
 public class LottoTicketVendingMachine {
 
-    private static final LottoGenerator LOTTO_GENERATOR = new LottoGenerator();
+    private final LottoGenerator lottoGenerator;
+
+    public LottoTicketVendingMachine() {
+        this.lottoGenerator = new LottoGenerator();
+    }
 
     public List<LottoTicket> autoIssueTickets(TicketAmount ticketAmount) {
         return IntStream.range(0, ticketAmount.auto())
-                .mapToObj(i -> LOTTO_GENERATOR.issueAutoLottoNumbers())
+                .mapToObj(i -> lottoGenerator.issueAutoLottoNumbers())
                 .map(LottoTicket::new)
                 .collect(Collectors.toList());
     }
 
-    public List<LottoTicket>  manualIssueTickets(List<String> inputNumbers) {
+    public List<LottoTicket> manualIssueTickets(List<String> inputNumbers) {
         return inputNumbers.stream()
                 .map(StringUtil::split)
                 .map(manualNumbers -> manualLottoTicket(manualNumbers))

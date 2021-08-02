@@ -8,20 +8,24 @@ import java.util.stream.IntStream;
 
 import static lotto.domain.lotto.LottoNumber.MAX_LOTTO_BOUND;
 import static lotto.domain.lotto.LottoNumber.MIN_LOTTO_BOUND;
+import static lotto.domain.lotto.LottoTicket.LOTTO_NUMBER_SIZE;
 
 public class LottoGenerator {
+    private final List<LottoNumber> lottoNumberBox;
 
-    private static final List<LottoNumber> LOTTO_NUMBER_CONTAINER = create();
+    public LottoGenerator() {
+        this.lottoNumberBox = create();
+        Collections.shuffle(lottoNumberBox);
+    }
 
-    private static List<LottoNumber> create() {
+    private List<LottoNumber> create() {
         return IntStream.rangeClosed(MIN_LOTTO_BOUND, MAX_LOTTO_BOUND)
                 .mapToObj(LottoNumber::new)
                 .collect(Collectors.toList());
     }
 
     public List<LottoNumber> issueAutoLottoNumbers() {
-        Collections.shuffle(LOTTO_NUMBER_CONTAINER);
-        return LOTTO_NUMBER_CONTAINER.subList(0, 6).stream()
+        return lottoNumberBox.subList(0, LOTTO_NUMBER_SIZE).stream()
                 .sorted(Comparator.comparing(LottoNumber::value))
                 .collect(Collectors.toList());
     }

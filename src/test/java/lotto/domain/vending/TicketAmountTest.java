@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class TicketAmountTest {
+class TicketAmountTest {
 
     @ParameterizedTest
     @CsvSource(value = {"5000, 1, 4", "10000, 3, 7", "12000, 2, 10"})
@@ -18,7 +18,7 @@ public class TicketAmountTest {
         BuyingPrice buyingPrice = new BuyingPrice(price);
 
         //when
-        TicketAmount ticketAmount = new TicketAmount(buyingPrice, manualCount);
+        TicketAmount ticketAmount = new TicketAmount(buyingPrice.totalTicketAmount(), manualCount);
 
         //then
         assertThat(ticketAmount.manual()).isEqualTo(manualCount);
@@ -30,10 +30,12 @@ public class TicketAmountTest {
     void manual_ticket_amount_more_than_total_amount() {
         //given
         BuyingPrice buyingPrice = new BuyingPrice(5000);
+        int totalTicketAmount = buyingPrice.totalTicketAmount();
         int manualTicketCount = 10;
 
         //when //then
-        assertThatThrownBy(() -> new TicketAmount(buyingPrice, manualTicketCount))
+        assertThatThrownBy(() -> new TicketAmount(totalTicketAmount, manualTicketCount))
                 .isInstanceOf(IllegalArgumentException.class);
+
     }
 }

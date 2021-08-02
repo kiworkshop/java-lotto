@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringUtil {
-    private static final String DELIMITER = ",";
+    public static final String DELIMITER = ",";
+
+    private StringUtil() {
+    }
 
     public static List<String> split(String input) {
         return Arrays.stream(input.split(DELIMITER))

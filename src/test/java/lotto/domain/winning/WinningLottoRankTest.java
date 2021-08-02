@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WinningLottoRankTest {
+class WinningLottoRankTest {
 
     private WinningNumbers generateWinningNumber(int bonusNumber) {
         List<Integer> inputNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);

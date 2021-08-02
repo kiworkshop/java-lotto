@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LottoGeneratorTest {
+class LottoGeneratorTest {
 
     @Test
     @DisplayName("6개의 로또 번호를 반환한다")

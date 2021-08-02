@@ -2,6 +2,7 @@ package lotto.domain.vending;
 
 import lotto.domain.lotto.LottoTicket;
 import lotto.domain.lotto.LottoTickets;
+import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,18 +14,20 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LottoTicketVendingMachineTest {
+class LottoTicketVendingMachineTest {
+
+    private final LottoService lottoService = new LottoService();
+    private final LottoTicketVendingMachine vendingMachine = new LottoTicketVendingMachine();
 
     @Test
     @DisplayName("자동으로 로또 티켓을 생성한다")
     void auto_issue_tickets() {
         //given
         BuyingPrice buyingPrice = new BuyingPrice(5000);
-        TicketAmount ticketAmount = new TicketAmount(buyingPrice, 0);
-        LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
+        TicketAmount ticketAmount = new TicketAmount(buyingPrice.totalTicketAmount(), 0);
 
         //when
-        List<LottoTicket> tickets = lottoTicketVendingMachine.autoIssueTickets(ticketAmount);
+        List<LottoTicket> tickets = vendingMachine.autoIssueTickets(ticketAmount.auto());
 
         //then
         assertThat(tickets).hasSize(5);
@@ -35,13 +38,12 @@ public class LottoTicketVendingMachineTest {
     @DisplayName("수동으로 로또 티켓을 생성한다")
     void manual_issue_tickets(int index) {
         //given
-        BuyingPrice buyingPrice = new BuyingPrice(5000);
         int manualCount = 3;
-        LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
-        List<String> manualNumbers = generateManualNumbers(manualCount);
+        List<String> inputManualLottoNumbers = generateManualNumbers(manualCount);
+        List<List<Integer>> manualLottoNumbers = lottoService.manualLottoNumbers(inputManualLottoNumbers);
 
         //when
-        List<LottoTicket> lottoTickets = lottoTicketVendingMachine.manualIssueTickets(manualNumbers);
+        List<LottoTicket> lottoTickets = vendingMachine.manualLottoTickets(manualLottoNumbers);
 
         //then
         assertThat(lottoTickets.get(index).lottoNumbers()).isEqualTo(generateLottoTicket(index).lottoNumbers());
@@ -53,12 +55,12 @@ public class LottoTicketVendingMachineTest {
         //given
         BuyingPrice buyingPrice = new BuyingPrice(8000);
         int manualCount = 3;
-        TicketAmount ticketAmount = new TicketAmount(buyingPrice, manualCount);
-        List<String> manualNumbers = generateManualNumbers(ticketAmount.manual());
+        TicketAmount ticketAmount = new TicketAmount(buyingPrice.totalTicketAmount(), manualCount);
+        List<String> inputManualNumbers = generateManualNumbers(manualCount);
+        List<List<Integer>> manualLottoNumbers = lottoService.manualLottoNumbers(inputManualNumbers);
 
-        //when
-        LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
-        LottoTickets lottoTickets = lottoTicketVendingMachine.issueTickets(ticketAmount, manualNumbers);
+        //when\
+        LottoTickets lottoTickets = vendingMachine.issueTickets(ticketAmount.auto(), manualLottoNumbers);
 
         //then
         assertThat(lottoTickets.size()).isEqualTo(ticketAmount.total());

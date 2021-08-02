@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.domain.vending.TicketAmount.TICKET_PRICE;
+import static lotto.domain.vending.BuyingPrice.TICKET_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WinningStatisticsTest {
+class WinningStatisticsTest {
     private WinningNumbers generateWinningNumber(int bonusNumber) {
         List<Integer> inputNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         return new WinningNumbers(inputNumbers, bonusNumber);
@@ -26,14 +26,14 @@ public class WinningStatisticsTest {
         //given
         LottoTickets lottoTickets = generateLottoTickets();
         BuyingPrice buyingPrice = new BuyingPrice(lottoTickets.size() * TICKET_PRICE);
-        TicketAmount ticketAmount = new TicketAmount(buyingPrice, lottoTickets.size());
+        TicketAmount ticketAmount = new TicketAmount(buyingPrice.totalTicketAmount(), lottoTickets.size());
 
         WinningNumbers winningNumbers = generateWinningNumber(45);
         WinningLottoRank winningLottoRank = new WinningLottoRank(lottoTickets, winningNumbers);
 
         //when
         WinningStatistics winningStatistics = new WinningStatistics(winningLottoRank);
-        float profit = winningStatistics.profitRate(ticketAmount);
+        float profit = winningStatistics.profitRate(ticketAmount.total());
 
         //then
         assertThat(profit).isEqualTo(11.0f);

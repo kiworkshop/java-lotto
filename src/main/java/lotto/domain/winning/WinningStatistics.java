@@ -1,8 +1,6 @@
 package lotto.domain.winning;
 
-import lotto.domain.vending.TicketAmount;
-
-import static lotto.domain.vending.TicketAmount.TICKET_PRICE;
+import static lotto.domain.vending.BuyingPrice.TICKET_PRICE;
 
 public class WinningStatistics {
     private final WinningLottoRank winningLottoRank;
@@ -11,9 +9,9 @@ public class WinningStatistics {
         this.winningLottoRank = winningLottoRank;
     }
 
-    public float profitRate(TicketAmount ticketAmount) {
+    public float profitRate(int totalTicketAmount) {
         int totalPrize = totalPrize();
-        return (float) totalPrize / (ticketAmount.total() * TICKET_PRICE);
+        return (float) totalPrize / (totalTicketAmount * TICKET_PRICE);
     }
 
     private int totalPrize() {

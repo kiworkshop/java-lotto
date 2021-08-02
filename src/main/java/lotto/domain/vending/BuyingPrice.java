@@ -2,18 +2,14 @@ package lotto.domain.vending;
 
 import java.util.Objects;
 
-import static lotto.domain.vending.TicketAmount.TICKET_PRICE;
-
 public class BuyingPrice {
+    public static final int TICKET_PRICE = 1000;
+
     private final int buyingPrice;
 
-    public BuyingPrice(final int buyingPrice) {
+    public BuyingPrice(int buyingPrice) {
         validate(buyingPrice);
         this.buyingPrice = buyingPrice;
-    }
-
-    public BuyingPrice(String buyingPrice) {
-        this(Integer.parseInt(buyingPrice));
     }
 
     private void validate(int buyingPrice) {
@@ -33,8 +29,8 @@ public class BuyingPrice {
         }
     }
 
-    public int value() {
-        return buyingPrice;
+    public int totalTicketAmount() {
+        return buyingPrice / TICKET_PRICE;
     }
 
     @Override

@@ -4,7 +4,10 @@ import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.LottoTicket;
 import lotto.domain.lotto.LottoTickets;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class WinningLottoRank {
     private final WinningNumbers winningNumbers;
@@ -23,14 +26,13 @@ public class WinningLottoRank {
     }
 
     private void groupByWinningCount(LottoTickets lottoTickets) {
-        lottoTickets.values().stream()
-                .forEach(lottoTicket -> addWinningCount(lottoTicket));
+        lottoTickets.values().forEach(this::addWinningCount);
         winningLottoRank.remove(LottoRank.LOSE);
     }
 
     public int hitCount(LottoTicket lottoTicket) {
         return (int) winningNumbers.getWinningNumbers().stream()
-                .filter(winningNumber -> lottoTicket.contains(winningNumber))
+                .filter(lottoTicket::contains)
                 .count();
     }
 

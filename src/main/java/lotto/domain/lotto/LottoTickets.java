@@ -20,6 +20,9 @@ public class LottoTickets {
     }
 
     public void add(List<LottoTicket> lottoTickets) {
+        if (lottoTickets == null) {
+            throw new NullPointerException("로또 티켓이 비어 있습니다.");
+        }
         this.lottoTickets.addAll(lottoTickets);
     }
 

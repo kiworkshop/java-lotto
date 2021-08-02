@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class WinningNumbersTest {
+class WinningNumbersTest {
     @Test
     @DisplayName("당첨 번호가 중복되는 경우 예외가 발생한다")
     void validate_duplication_winning_number() {

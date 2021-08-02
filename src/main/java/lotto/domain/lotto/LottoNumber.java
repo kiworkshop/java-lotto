@@ -13,10 +13,6 @@ public class LottoNumber {
         this.lottoNumber = lottoNumber;
     }
 
-    public LottoNumber(String lottoNumber) {
-        this(Integer.parseInt(lottoNumber));
-    }
-
     private void validateBound(int lottoNumber) {
         if (lottoNumber < MIN_LOTTO_BOUND || lottoNumber > MAX_LOTTO_BOUND) {
             throw new IllegalArgumentException("로또 번호는 1 ~ 45 까지 입니다.");

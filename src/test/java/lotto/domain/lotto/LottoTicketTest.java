@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LottoTicketTest {
+class LottoTicketTest {
 
     @Test
     @DisplayName("로또 넘버 6개를 인자로 받아 로또 티켓 객체를 생성한다")

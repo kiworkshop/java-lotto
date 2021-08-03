@@ -30,18 +30,8 @@ public class WinningLottoRank {
         winningLottoRank.remove(LottoRank.LOSE);
     }
 
-    public int hitCount(LottoTicket lottoTicket) {
-        return (int) winningNumbers.getWinningNumbers().stream()
-                .filter(lottoTicket::contains)
-                .count();
-    }
-
-    public boolean hitBonus(LottoTicket lottoTicket) {
-        return lottoTicket.contains(winningNumbers.getBonusNumber());
-    }
-
     private void addWinningCount(LottoTicket lottoTicket) {
-        LottoRank key = LottoRank.findBy(hitCount(lottoTicket), hitBonus(lottoTicket));
+        LottoRank key = LottoRank.findBy(winningNumbers.hitCount(lottoTicket), winningNumbers.hitBonus(lottoTicket));
         winningLottoRank.put(key, winningLottoRank.get(key) + 1);
     }
 

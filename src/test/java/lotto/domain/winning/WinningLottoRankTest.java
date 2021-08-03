@@ -17,44 +17,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WinningLottoRankTest {
-
-    private WinningNumbers generateWinningNumber(int bonusNumber) {
-        List<Integer> inputNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        return new WinningNumbers(inputNumbers, bonusNumber);
-    }
-
-    @ParameterizedTest
-    @MethodSource("hitLottoNumbers")
-    @DisplayName("당첨 번호와 일치하는 로또 번호 개수를 반환한다")
-    void hit_winning_numbers_count(LottoTicket lottoTicket, int expectedCount) {
-        //given
-        LottoTickets lottoTickets = new LottoTickets(lottoTicket);
-        WinningNumbers winningNumbers = generateWinningNumber(45);
-
-        //when
-        WinningLottoRank winningLottoRank = new WinningLottoRank(lottoTickets, winningNumbers);
-        int hitCount = winningLottoRank.hitCount(lottoTicket);
-
-        //then
-        assertThat(hitCount).isEqualTo(expectedCount);
-    }
-
-    @Test
-    @DisplayName("보너스 번호 일치하는 로또 번호 개수를 반환한다")
-    void hit_bonus_number_count() {
-        //given
-        LottoTicket lottoTicket = new LottoTicket(5, 10, 15, 20, 25, 30);
-        LottoTickets lottoTickets = new LottoTickets(lottoTicket);
-        WinningNumbers winningNumbers = generateWinningNumber(30);
-
-        //when
-        WinningLottoRank winningLottoRank = new WinningLottoRank(lottoTickets, winningNumbers);
-        boolean isBonus = winningLottoRank.hitBonus(lottoTicket);
-
-        //then
-        assertThat(isBonus).isTrue();
-    }
-
     @Test
     @DisplayName("당첨 번호 개수가 같은 로또 티켓 개수를 반환한다")
     void group_by_rank_count() {
@@ -101,6 +63,11 @@ class WinningLottoRankTest {
         assertThat(winningLottoRank.count(lottoRank)).isEqualTo(1);
     }
 
+    private WinningNumbers generateWinningNumber(int bonusNumber) {
+        List<Integer> inputNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        return new WinningNumbers(inputNumbers, bonusNumber);
+    }
+
     private LottoTickets generateLottoTickets() {
         List<LottoTicket> lottoTickets = new ArrayList<>();
         lottoTickets.add(new LottoTicket(3, 4, 5, 6, 7, 8)); // 4개 일치
@@ -109,18 +76,6 @@ class WinningLottoRankTest {
         lottoTickets.add(new LottoTicket(6, 7, 8, 9, 10, 11)); // 1개 일치
         lottoTickets.add(new LottoTicket(7, 8, 9, 10, 11, 12)); // 0개 일치
         return new LottoTickets(lottoTickets);
-    }
-
-    private static Stream<Arguments> hitLottoNumbers() {
-        return Stream.of(
-                Arguments.of(new LottoTicket(1, 2, 3, 4, 5, 6), 6),
-                Arguments.of(new LottoTicket(2, 3, 4, 5, 6, 7), 5),
-                Arguments.of(new LottoTicket(3, 4, 5, 6, 7, 8), 4),
-                Arguments.of(new LottoTicket(4, 5, 6, 7, 8, 9), 3),
-                Arguments.of(new LottoTicket(5, 6, 7, 8, 9, 10), 2),
-                Arguments.of(new LottoTicket(6, 7, 8, 9, 10, 11), 1),
-                Arguments.of(new LottoTicket(7, 8, 9, 10, 11, 12), 0)
-        );
     }
 
     private static Stream<Arguments> matchedBonusTickets() {

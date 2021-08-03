@@ -1,21 +1,22 @@
 package lotto.domain.winning;
 
 import lotto.domain.lotto.LottoNumber;
+import lotto.domain.lotto.LottoTicket;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class WinningNumbers {
-    private static final int WINNING_NUMBER_SIZE = 6;
+import static lotto.domain.lotto.LottoTicket.LOTTO_NUMBER_SIZE;
 
+public class WinningNumbers {
     private final List<LottoNumber> winningNumbers;
     private final LottoNumber bonusNumber;
 
     public WinningNumbers(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
         validateSize(winningNumbers.size());
-        validateDuplication(winningNumbers, bonusNumber);
+        validateDuplication(new HashSet<>(winningNumbers), bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -27,25 +28,24 @@ public class WinningNumbers {
     }
 
     private void validateSize(int winningNumberSize) {
-        if (winningNumberSize > WINNING_NUMBER_SIZE) {
+        if (winningNumberSize != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException("수동 로또 번호 입력 개수는 6개 입니다.");
         }
     }
 
-    private void validateDuplication(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
-        Set<LottoNumber> lottoNumbers = new HashSet<>(winningNumbers);
-
-        if (lottoNumbers.size() < WINNING_NUMBER_SIZE || winningNumbers.contains(bonusNumber)) {
+    private void validateDuplication(Set<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
+        if (winningNumbers.size() < LOTTO_NUMBER_SIZE || winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("당첨 번호가 중복됩니다.");
         }
     }
 
-    public List<LottoNumber> getWinningNumbers() {
-        return winningNumbers;
+    public int hitCount(LottoTicket lottoTicket) {
+        return (int) winningNumbers.stream()
+                .filter(lottoTicket::contains)
+                .count();
     }
 
-    public LottoNumber getBonusNumber() {
-        return bonusNumber;
+    public boolean hitBonus(LottoTicket lottoTicket) {
+        return lottoTicket.contains(bonusNumber);
     }
-
 }

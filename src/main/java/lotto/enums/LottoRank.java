@@ -1,6 +1,6 @@
 package lotto.enums;
 
-import lotto.domain.LottoResult;
+import lotto.domain.result.LottoResult;
 
 import java.util.Arrays;
 
@@ -45,8 +45,8 @@ public enum LottoRank {
         return matchedCount;
     }
 
-    public int multiplyPrizeBy(final int numberOfRank) {
-        return prize * numberOfRank;
+    public int multiplyPrizeBy(final int rankCount) {
+        return prize * rankCount;
     }
 
     public boolean isNotNoneRank() {

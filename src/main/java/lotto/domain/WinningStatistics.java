@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.result.LottoResults;
+import lotto.domain.ticket.LottoTicketsCount;
 import lotto.enums.LottoRank;
 
 import java.util.Arrays;
@@ -42,12 +44,12 @@ public class WinningStatistics {
         return ranks;
     }
 
-    public float calculateProfit(final NumberOfTickets numberOfTickets) {
+    public float calculateProfit(final LottoTicketsCount lottoTicketsCount) {
         int totalPrize = ranks.keySet()
                 .stream()
                 .mapToInt(rank -> rank.multiplyPrizeBy(ranks.get(rank)))
                 .sum();
 
-        return (float) totalPrize / numberOfTickets.getPaidPurchaseAmount();
+        return (float) totalPrize / lottoTicketsCount.getPaidPurchaseAmount();
     }
 }

@@ -1,20 +1,18 @@
-package lotto.domain;
+package lotto.domain.number;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoTicket {
-    static final int LOTTO_TICKET_PRICE = 1000;
-    static final int LOTTO_NUMBERS_COUNT = 6;
+import static lotto.domain.ticket.LottoTicket.LOTTO_NUMBERS_COUNT;
 
+public class ManualLottoNumbers {
     private final List<LottoNumber> lottoNumbers;
 
-    public LottoTicket(final List<LottoNumber> lottoNumbers) {
+    public ManualLottoNumbers(final List<LottoNumber> lottoNumbers) {
         validateCountOf(lottoNumbers);
-        this.lottoNumbers = new ArrayList<>(lottoNumbers);
+        this.lottoNumbers = lottoNumbers;
     }
 
     private void validateCountOf(final List<LottoNumber> lottoNumbers) {
@@ -27,15 +25,5 @@ public class LottoTicket {
 
     public List<LottoNumber> getLottoNumbers() {
         return Collections.unmodifiableList(lottoNumbers);
-    }
-
-    public int match(final List<LottoNumber> winningNumbers) {
-        return (int) lottoNumbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-    }
-
-    public boolean contains(final LottoNumber lottoNumber) {
-        return lottoNumbers.contains(lottoNumber);
     }
 }

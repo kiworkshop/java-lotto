@@ -40,15 +40,29 @@ public class PurchaseAmountTest {
     }
 
     @Test
-    @DisplayName("구입할 수 있는 로또 티켓의 장수를 반환한다.")
-    void tickets() {
+    @DisplayName("인자로 받은 값보다 비교하여 작을 경우, 참을 반환한다.")
+    void isLessThan() {
         //given
         PurchaseAmount purchaseAmount = new PurchaseAmount(1000);
+        int greaterNumber = 1001;
 
         //when
-        NumberOfTickets numberOfTickets = purchaseAmount.convertToNumberOfTickets();
+        boolean actual = purchaseAmount.isLessThan(greaterNumber);
 
         //then
-        assertThat(numberOfTickets.intValue()).isEqualTo(1);
+        assertThat(actual).isTrue();
+    }
+
+    @Test
+    @DisplayName("현재 금액에서 인자로 받은 금액을 뺀 결과를 반환한다.")
+    void subtract() {
+        //given
+        PurchaseAmount purchaseAmount = new PurchaseAmount(10000);
+
+        //when
+        int leftAmount = purchaseAmount.subtract(1000);
+
+        //then
+        assertThat(leftAmount).isEqualTo(9000);
     }
 }

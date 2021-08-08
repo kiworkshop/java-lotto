@@ -2,6 +2,7 @@ package lotto.constant;
 
 import lombok.Getter;
 
+@Getter
 public enum Prize {
 
     FIRST(6, false, 2000000000),
@@ -11,7 +12,6 @@ public enum Prize {
     FIFTH(3, false, 5000),
     LOSE(2, false, 0);
 
-    @Getter
     private final int matchNumbersCount;
     private final boolean isBonus;
     private final long prizeMoney;

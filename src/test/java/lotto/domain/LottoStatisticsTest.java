@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constant.PrizeMoney;
+import lotto.constant.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,11 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoStatisticsTest {
 
-    private static final long PRIZE_SUM = PrizeMoney.FIRST.getValue()
-            + 2 * PrizeMoney.SECOND.getValue()
-            + 3 * PrizeMoney.THIRD.getValue()
-            + 4 * PrizeMoney.FOURTH.getValue()
-            + 5 * PrizeMoney.FIFTH.getValue();
+    private static final long PRIZE_SUM = Prize.FIRST.getPrizeMoney()
+            + 2 * Prize.SECOND.getPrizeMoney()
+            + 3 * Prize.THIRD.getPrizeMoney()
+            + 4 * Prize.FOURTH.getPrizeMoney()
+            + 5 * Prize.FIFTH.getPrizeMoney();
     private static final int PURCHASE_MONEY = 18000;
     private static final double RESULT = (double) PRIZE_SUM / PURCHASE_MONEY;
     private static final PrizeCount PRIZE_COUNT = new PrizeCount(new TestLottoSet(), new TestWinningLotto());

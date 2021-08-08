@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lombok.Getter;
-import lotto.constant.PrizeMoney;
+import lotto.constant.Prize;
 
 public class LottoStatistics {
 
@@ -19,10 +19,10 @@ public class LottoStatistics {
     }
 
     private long calculateSum() {
-        return prizeCount.getCountFirst() * PrizeMoney.FIRST.getValue()
-                + prizeCount.getCountSecond() * PrizeMoney.SECOND.getValue()
-                + prizeCount.getCountThird() * PrizeMoney.THIRD.getValue()
-                + prizeCount.getCountFourth() * PrizeMoney.FOURTH.getValue()
-                + prizeCount.getCountFifth() * PrizeMoney.FIFTH.getValue();
+        return prizeCount.getCountFirst() * Prize.FIRST.getPrizeMoney()
+                + prizeCount.getCountSecond() * Prize.SECOND.getPrizeMoney()
+                + prizeCount.getCountThird() * Prize.THIRD.getPrizeMoney()
+                + prizeCount.getCountFourth() * Prize.FOURTH.getPrizeMoney()
+                + prizeCount.getCountFifth() * Prize.FIFTH.getPrizeMoney();
     }
 }

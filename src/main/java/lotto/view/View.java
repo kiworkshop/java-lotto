@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.domain.LottoStatistics;
 import lotto.domain.PurchaseCount;
 import lotto.domain.LottoSet;
+import lotto.domain.dto.ManualLottoNumberInputDTO;
+import lotto.domain.dto.ManualPurchaseCountDTO;
 import lotto.domain.dto.PurchasePriceInputDTO;
 import lotto.domain.dto.WinningLottoInputDTO;
 
@@ -28,5 +30,13 @@ public class View {
 
     public void printLottoStatistics(LottoStatistics lottoStatistics) {
         outputView.printLottoStatistic(lottoStatistics);
+    }
+
+    public ManualPurchaseCountDTO getManualPurchaseCount() {
+        return inputView.getManualPurchaseCount();
+    }
+
+    public ManualLottoNumberInputDTO getManualLottoNumbers(int manualPurchaseCount) {
+        return inputView.getManualLottoNumbers(manualPurchaseCount);
     }
 }

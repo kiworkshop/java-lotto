@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import lombok.Getter;
+import lotto.domain.dto.ManualPurchaseCountDTO;
+import lotto.domain.dto.PurchasePriceInputDTO;
 import lotto.util.NumberValidateUtils;
 
 public class PurchaseCount {
@@ -14,6 +16,10 @@ public class PurchaseCount {
         input = input.trim();
         validate(input);
         this.purchaseCount = Integer.parseInt(input) / Lotto.PRICE;
+    }
+
+    public PurchaseCount(PurchasePriceInputDTO purchasePriceInputDTO, ManualPurchaseCountDTO manualPurchaseCountDTO) {
+        this("" + (Integer.parseInt(purchasePriceInputDTO.getInput()) - Integer.parseInt(manualPurchaseCountDTO.getInput()) * Lotto.PRICE));
     }
 
     private void validate(String input) {

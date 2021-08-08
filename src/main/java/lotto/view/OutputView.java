@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.constant.PrizeMessage;
+import lotto.constant.Prize;
 import lotto.domain.*;
 import lotto.domain.dto.ManualLottoNumberInputDTO;
 
@@ -36,15 +36,15 @@ public class OutputView {
     public void printLottoStatistic(LottoStatistics lottoStatistics) {
         System.out.println("당첨 통계");
         System.out.println("---------");
-        System.out.print(PrizeMessage.FIFTH.getMessage());
+        System.out.print(Prize.FIFTH);
         System.out.println(lottoStatistics.getPrizeCount().getCountFifth() + "개");
-        System.out.print(PrizeMessage.FOURTH.getMessage());
+        System.out.print(Prize.FOURTH);
         System.out.println(lottoStatistics.getPrizeCount().getCountFourth() + "개");
-        System.out.print(PrizeMessage.THIRD.getMessage());
+        System.out.print(Prize.THIRD);
         System.out.println(lottoStatistics.getPrizeCount().getCountThird() + "개");
-        System.out.print(PrizeMessage.SECOND.getMessage());
+        System.out.print(Prize.SECOND);
         System.out.println(lottoStatistics.getPrizeCount().getCountSecond() + "개");
-        System.out.print(PrizeMessage.FIRST.getMessage());
+        System.out.print(Prize.FIRST);
         System.out.println(lottoStatistics.getPrizeCount().getCountFirst() + "개");
         System.out.println("총 수익률은 " + lottoStatistics.calculateProfitRate() + "입니다.");
     }

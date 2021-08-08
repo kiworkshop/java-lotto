@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lombok.Getter;
-import lotto.constant.PrizeCondition;
+import lotto.constant.Prize;
 import lotto.domain.dto.WinningLottoInputDTO;
 import lotto.parser.LottoParser;
 import lotto.util.NumberValidateUtils;
@@ -23,8 +23,8 @@ public class WinningLotto {
         this(winningLottoInputDTO.getWinningLottoNumbers(), winningLottoInputDTO.getWinningLottoBonus());
     }
 
-    public PrizeCondition findPrize(Lotto targetLotto) {
-        return PrizeCondition.findPrize(getMatchNumbersCount(targetLotto), isBonusMatch(targetLotto));
+    public Prize findPrize(Lotto targetLotto) {
+        return Prize.findPrize(getMatchNumbersCount(targetLotto), isBonusMatch(targetLotto));
     }
 
     private boolean isBonusMatch(Lotto targetLotto) {

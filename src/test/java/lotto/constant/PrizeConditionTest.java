@@ -14,10 +14,10 @@ public class PrizeConditionTest {
         int matchNumbersCount = 6;
 
         //when, then
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
-                .isEqualTo(PrizeCondition.FIRST);
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, false))
-                .isEqualTo(PrizeCondition.FIRST);
+        assertThat(Prize.findPrize(matchNumbersCount, true))
+                .isEqualTo(Prize.FIRST);
+        assertThat(Prize.findPrize(matchNumbersCount, false))
+                .isEqualTo(Prize.FIRST);
     }
 
     @Test
@@ -28,10 +28,10 @@ public class PrizeConditionTest {
         boolean isBonus = true;
 
         //when
-        PrizeCondition prizeCondition = PrizeCondition.findPrize(matchNumbersCount, isBonus);
+        Prize prize = Prize.findPrize(matchNumbersCount, isBonus);
 
         //then
-        assertThat(prizeCondition).isEqualTo(PrizeCondition.SECOND);
+        assertThat(prize).isEqualTo(Prize.SECOND);
     }
 
     @Test
@@ -42,8 +42,8 @@ public class PrizeConditionTest {
         boolean isBonus = false;
 
         //when, then
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, isBonus))
-                .isEqualTo(PrizeCondition.THIRD);
+        assertThat(Prize.findPrize(matchNumbersCount, isBonus))
+                .isEqualTo(Prize.THIRD);
     }
 
     @Test
@@ -53,10 +53,10 @@ public class PrizeConditionTest {
         int matchNumbersCount = 4;
 
         //when, then
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, false))
-                .isEqualTo(PrizeCondition.FOURTH);
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
-                .isEqualTo(PrizeCondition.FOURTH);
+        assertThat(Prize.findPrize(matchNumbersCount, false))
+                .isEqualTo(Prize.FOURTH);
+        assertThat(Prize.findPrize(matchNumbersCount, true))
+                .isEqualTo(Prize.FOURTH);
     }
 
     @Test
@@ -66,10 +66,10 @@ public class PrizeConditionTest {
         int matchNumbersCount = 3;
 
         //when, then
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, false))
-                .isEqualTo(PrizeCondition.FIFTH);
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
-                .isEqualTo(PrizeCondition.FIFTH);
+        assertThat(Prize.findPrize(matchNumbersCount, false))
+                .isEqualTo(Prize.FIFTH);
+        assertThat(Prize.findPrize(matchNumbersCount, true))
+                .isEqualTo(Prize.FIFTH);
     }
 
     @Test
@@ -79,10 +79,10 @@ public class PrizeConditionTest {
         int matchNumbersCount = 2;
 
         //when, then
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, false))
-                .isEqualTo(PrizeCondition.LOSE);
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
-                .isEqualTo(PrizeCondition.LOSE);
+        assertThat(Prize.findPrize(matchNumbersCount, false))
+                .isEqualTo(Prize.LOSE);
+        assertThat(Prize.findPrize(matchNumbersCount, true))
+                .isEqualTo(Prize.LOSE);
     }
 
     @Test
@@ -92,10 +92,10 @@ public class PrizeConditionTest {
         int matchNumbersCount = 1;
 
         //when, then
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, false))
-                .isEqualTo(PrizeCondition.LOSE);
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
-                .isEqualTo(PrizeCondition.LOSE);
+        assertThat(Prize.findPrize(matchNumbersCount, false))
+                .isEqualTo(Prize.LOSE);
+        assertThat(Prize.findPrize(matchNumbersCount, true))
+                .isEqualTo(Prize.LOSE);
     }
 
     @Test
@@ -105,9 +105,9 @@ public class PrizeConditionTest {
         int matchNumbersCount = 0;
 
         //when, then
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, false))
-                .isEqualTo(PrizeCondition.LOSE);
-        assertThat(PrizeCondition.findPrize(matchNumbersCount, true))
-                .isEqualTo(PrizeCondition.LOSE);
+        assertThat(Prize.findPrize(matchNumbersCount, false))
+                .isEqualTo(Prize.LOSE);
+        assertThat(Prize.findPrize(matchNumbersCount, true))
+                .isEqualTo(Prize.LOSE);
     }
 }

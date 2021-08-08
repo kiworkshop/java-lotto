@@ -13,8 +13,7 @@ public class LottoParser {
     public static List<LottoNumber> generateLotto(String numberInput) {
         return Arrays.stream(numberInput.split(DELIMITER))
                 .map(String::trim)
-                .map(NumberValidateUtils::numericCheck)
-                .mapToInt(Integer::parseInt)
+                .mapToInt(NumberValidateUtils::parseLottoNumber)
                 .mapToObj(LottoNumber::new)
                 .collect(Collectors.toList());
     }

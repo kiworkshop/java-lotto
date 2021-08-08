@@ -17,8 +17,7 @@ public class PurchaseCount {
     }
 
     private void validate(String input) {
-        NumberValidateUtils.numericCheck(input);
-        int inputConversion = Integer.parseInt(input);
+        int inputConversion = NumberValidateUtils.parseLottoNumber(input);
         if (notMatchesCondition(inputConversion)) {
             throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
         }

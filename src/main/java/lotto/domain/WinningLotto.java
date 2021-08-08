@@ -15,9 +15,8 @@ public class WinningLotto {
     private final LottoNumber bonusNumber;
 
     public WinningLotto(String winningNumberInput, String bonusNumberInput) {
-        NumberValidateUtils.numericCheck(bonusNumberInput);
         this.lotto = new Lotto(LottoParser.generateLotto(winningNumberInput));
-        this.bonusNumber = new LottoNumber(Integer.parseInt(bonusNumberInput));
+        this.bonusNumber = new LottoNumber(NumberValidateUtils.parseLottoNumber(bonusNumberInput));
     }
 
     public WinningLotto(WinningLottoInputDTO winningLottoInputDTO) {

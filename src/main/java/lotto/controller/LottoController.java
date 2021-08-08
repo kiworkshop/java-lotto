@@ -6,7 +6,7 @@ import lotto.domain.dto.WinningLottoInputDTO;
 import lotto.view.View;
 
 public class LottoController {
-    public static void main(String[] args) {
+    public static void run() {
         View view = new View();
         PurchasePriceInputDTO purchasePriceInputDTO = view.getPurchaseCost();
 

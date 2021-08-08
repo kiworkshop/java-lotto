@@ -1,8 +1,11 @@
 package lotto.domain;
 
 import lombok.Getter;
+import lotto.domain.dto.ManualLottoNumberInputDTO;
+import lotto.parser.LottoParser;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LottoSet {
@@ -20,5 +23,18 @@ public class LottoSet {
             randomLottos.add(new RandomLotto());
         }
         return new LottoSet(randomLottos);
+    }
+
+    public static LottoSet generateMixedLottoSet(ManualLottoNumberInputDTO manualLottoNumbersInput, PurchaseCount randomPurchaseCount) {
+        Set<Lotto> mixedLottoSet = new HashSet<>();
+        List<String> manualLottoInputs = manualLottoNumbersInput.getInput();
+
+        for(String lottoInput : manualLottoInputs) {
+            mixedLottoSet.add(new Lotto(LottoParser.generateLotto(lottoInput)));
+        }
+
+        mixedLottoSet.addAll(generateRandomLottoSetWithSize(randomPurchaseCount.getPurchaseCount()).getLottoSet());
+
+        return new LottoSet(mixedLottoSet);
     }
 }

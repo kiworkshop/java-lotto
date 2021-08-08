@@ -14,17 +14,17 @@ public class LottoController {
 
         ManualPurchaseCountDTO manualPurchaseCountDTO = view.getManualPurchaseCount();
 
-        ManualLottoNumberInputDTO manualLottoNumberInputDTO = view.getManualLottoNumbers(Integer.parseInt(manualPurchaseCountDTO.getInput())    );
+        ManualLottoNumberInputDTO manualLottoNumberInputDTO = view.getManualLottoNumbers(Integer.parseInt(manualPurchaseCountDTO.getInput()));
 
         PurchaseCount randomPurchaseCount = new PurchaseCount(purchasePriceInputDTO, manualPurchaseCountDTO);
-        LottoSet randomLottoSet = LottoSet.generateRandomLottoSetWithSize(randomPurchaseCount.getPurchaseCount());
+        LottoSet mixedLottoSet = LottoSet.generateMixedLottoSet(manualLottoNumberInputDTO, randomPurchaseCount);
 
-        view.printLottoCount(randomPurchaseCount);
-        view.printLottoSet(randomLottoSet);
+        view.printLottoCount(manualLottoNumberInputDTO, randomPurchaseCount);
+        view.printLottoSet(mixedLottoSet);
 
         WinningLottoInputDTO winningLottoInputDTO = view.getWinningLottoAndBonus();
         WinningLotto winningLotto = new WinningLotto(winningLottoInputDTO);
-        LottoStatistics lottoStatistics = new LottoStatistics(new PrizeCount(randomLottoSet, winningLotto), randomPurchaseCount);
+        LottoStatistics lottoStatistics = new LottoStatistics(new PrizeCount(mixedLottoSet, winningLotto), randomPurchaseCount);
         view.printLottoStatistics(lottoStatistics);
     }
 

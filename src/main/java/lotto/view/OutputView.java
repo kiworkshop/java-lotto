@@ -2,14 +2,16 @@ package lotto.view;
 
 import lotto.constant.PrizeMessage;
 import lotto.domain.*;
+import lotto.domain.dto.ManualLottoNumberInputDTO;
 
 public class OutputView {
 
     private static final String COMMA = ", ";
 
-    public void printLottoCount(PurchaseCount purchaseCount) {
-        int count = purchaseCount.getPurchaseCount();
-        System.out.println(count + "개를 구매했습니다.");
+    public void printLottoCount(ManualLottoNumberInputDTO manualLottoNumberInput, PurchaseCount purchaseCount) {
+        int manualCount = manualLottoNumberInput.getInput().size();
+        int randomCount = purchaseCount.getPurchaseCount();
+        System.out.println("수동으로 " + manualCount + "장, " + "자동으로 " + randomCount + "개를 구매했습니다.");
     }
 
     public void printLottoSet(LottoSet lottoSet) {

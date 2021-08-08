@@ -20,8 +20,8 @@ public class View {
         return inputView.getWinningLottoAndBonus();
     }
 
-    public void printLottoCount(PurchaseCount purchaseCount) {
-        outputView.printLottoCount(purchaseCount);
+    public void printLottoCount(ManualLottoNumberInputDTO manualLottoNumberInput, PurchaseCount purchaseCount) {
+        outputView.printLottoCount(manualLottoNumberInput, purchaseCount);
     }
 
     public void printLottoSet(LottoSet lottoSet) {

@@ -36,7 +36,7 @@ public class View {
         return inputView.getManualPurchaseCount();
     }
 
-    public ManualLottoNumberInputDTO getManualLottoNumbers(int manualPurchaseCount) {
-        return inputView.getManualLottoNumbers(manualPurchaseCount);
+    public ManualLottoNumberInputDTO getManualLottoNumbers(ManualPurchaseCountDTO manualPurchaseCountDTO) {
+        return inputView.getManualLottoNumbers(manualPurchaseCountDTO);
     }
 }

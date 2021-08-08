@@ -14,7 +14,7 @@ public class LottoController {
 
         ManualPurchaseCountDTO manualPurchaseCountDTO = view.getManualPurchaseCount();
 
-        ManualLottoNumberInputDTO manualLottoNumberInputDTO = view.getManualLottoNumbers(Integer.parseInt(manualPurchaseCountDTO.getInput()));
+        ManualLottoNumberInputDTO manualLottoNumberInputDTO = view.getManualLottoNumbers(manualPurchaseCountDTO);
 
         PurchaseCount randomPurchaseCount = new PurchaseCount(purchasePriceInputDTO, manualPurchaseCountDTO);
         LottoSet mixedLottoSet = LottoSet.generateMixedLottoSet(manualLottoNumberInputDTO, randomPurchaseCount);

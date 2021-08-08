@@ -39,9 +39,10 @@ public class InputView {
         return new ManualPurchaseCountDTO(manualPurchaseCountInput);
     }
 
-    public ManualLottoNumberInputDTO getManualLottoNumbers(int manualPurchaseCount) {
+    public ManualLottoNumberInputDTO getManualLottoNumbers(ManualPurchaseCountDTO manualPurchaseCountDTO) {
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
         List<String> manualLottos = new ArrayList<>();
+        int manualPurchaseCount = Integer.parseInt(manualPurchaseCountDTO.getInput());
         for (int i = 0; i < manualPurchaseCount; i++) {
             manualLottos.add(scanner.nextLine());
         }

@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import lotto.domain.lotto.LottoTickets;
+import lotto.domain.rank.WinningLottoRank;
 import lotto.domain.vending.BuyingPrice;
 import lotto.domain.vending.TicketAmount;
-import lotto.domain.winning.WinningLottoRank;
 import lotto.domain.winning.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.util.StringUtil;

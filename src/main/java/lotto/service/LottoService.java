@@ -1,8 +1,8 @@
 package lotto.service;
 
 import lotto.domain.lotto.LottoTickets;
+import lotto.domain.rank.WinningLottoRank;
 import lotto.domain.vending.LottoTicketVendingMachine;
-import lotto.domain.winning.WinningLottoRank;
 import lotto.domain.winning.WinningNumbers;
 import lotto.domain.winning.WinningStatistics;
 import lotto.view.OutputView;

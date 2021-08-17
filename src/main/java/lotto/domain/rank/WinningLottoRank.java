@@ -1,8 +1,8 @@
-package lotto.domain.winning;
+package lotto.domain.rank;
 
-import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.LottoTicket;
 import lotto.domain.lotto.LottoTickets;
+import lotto.domain.winning.WinningNumbers;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

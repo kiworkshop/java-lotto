@@ -1,5 +1,7 @@
 package lotto.domain.winning;
 
+import lotto.domain.rank.WinningLottoRank;
+
 import static lotto.domain.vending.BuyingPrice.TICKET_PRICE;
 
 public class WinningStatistics {

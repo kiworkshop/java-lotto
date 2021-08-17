@@ -14,10 +14,10 @@ class LottoNumberTest {
     @DisplayName("로또 번호 값 객체를 생성한다")
     void create() {
         //given
-        LottoNumber lottoNumber = new LottoNumber(1);
+        LottoNumber lottoNumber = LottoNumber.from(1);
 
         //when //then
-        assertThat(lottoNumber).isEqualTo(new LottoNumber(1));
+        assertThat(lottoNumber).isEqualTo(LottoNumber.from(1));
     }
 
     @ParameterizedTest()
@@ -25,7 +25,7 @@ class LottoNumberTest {
     @DisplayName("로또 번호가 1 ~ 45이 아닐 경우 예외가 발생한다")
     void validate_lotto_number(int invalidLottoNumber) {
         //given //when //then
-        assertThatThrownBy(() -> new LottoNumber(invalidLottoNumber))
+        assertThatThrownBy(() -> LottoNumber.from(invalidLottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

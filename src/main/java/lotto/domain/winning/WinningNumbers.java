@@ -23,8 +23,8 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         this(winningNumbers.stream()
-                .map(LottoNumber::new)
-                .collect(Collectors.toList()), new LottoNumber(bonusNumber));
+                .map(LottoNumber::from)
+                .collect(Collectors.toList()), LottoNumber.from(bonusNumber));
     }
 
     private void validateSize(int winningNumberSize) {

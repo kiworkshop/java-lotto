@@ -38,7 +38,7 @@ public class OutputView {
         System.out.println("\n당첨 통계\n---------");
         for (LottoRank rank : winningLottoRank.keys()) {
             String message = (rank == LottoRank.SECOND) ? "%d개 일치, 보너스 볼 일치 (%d원) - %d개%n"
-                                                        : "%d개 일치 (%d원) - %d개%n";
+                    : "%d개 일치 (%d원) - %d개%n";
             System.out.printf(message, rank.hitCount(), rank.prizeMoney(), winningLottoRank.count(rank));
         }
     }

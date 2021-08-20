@@ -7,7 +7,7 @@ public enum LottoRank {
     FIFTH(3, 5_000),
     FOURTH(4, 50_000),
     THIRD(5, 1_500_000),
-    SECOND(5, 30_000_000), // 보너스볼 일치
+    SECOND(5, 30_000_000),
     FIRST(6, 2_000_000_000);
 
     private final int hitCount;
@@ -19,8 +19,8 @@ public enum LottoRank {
     }
 
     public static LottoRank findBy(int hitCount, boolean isBonus) {
-        if (hitCount == 5) {
-            return isBonus ? LottoRank.SECOND : LottoRank.THIRD;
+        if (hitCount == 5 && isBonus) {
+            return LottoRank.SECOND;
         }
 
         return Arrays.stream(values())

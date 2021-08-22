@@ -7,8 +7,6 @@ import lotto.util.NumberValidateUtils;
 
 public class PurchaseCount {
 
-    private static final int MINIMUM_INPUT = 1000;
-
     @Getter
     private final int purchaseCount;
 
@@ -30,10 +28,6 @@ public class PurchaseCount {
     }
 
     private boolean notMatchesCondition(int input) {
-        return input < MINIMUM_INPUT || notMultipleOfStandard(input);
-    }
-
-    private boolean notMultipleOfStandard(int input) {
         return input % Lotto.PRICE != 0;
     }
 }

@@ -34,18 +34,14 @@ public class OutputView {
     }
 
     public void printLottoStatistic(LottoStatistics lottoStatistics) {
-        System.out.println("당첨 통계");
-        System.out.println("---------");
-        System.out.print(Prize.FIFTH.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(4) + "개");
-        System.out.print(Prize.FOURTH.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(3) + "개");
-        System.out.print(Prize.THIRD.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(2) + "개");
-        System.out.print(Prize.SECOND.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(1) + "개");
-        System.out.print(Prize.FIRST.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(0) + "개");
-        System.out.println("총 수익률은 " + lottoStatistics.calculateProfitRate() + "입니다.");
+        StringBuilder sb = new StringBuilder();
+        sb.append("당첨 통계\n");
+        sb.append("---------\n");
+        for (int i = 4; i >= 0; i--) {
+            sb.append(Prize.values()[i].prizeMessage());
+            sb.append(lottoStatistics.getPrizeCount().returnEachPrizeCount(i) + "개\n");
+        }
+        sb.append("총 수익률은 " + lottoStatistics.calculateProfitRate() + "입니다.");
+        System.out.println(sb);
     }
 }

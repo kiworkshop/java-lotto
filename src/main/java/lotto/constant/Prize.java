@@ -46,9 +46,8 @@ public enum Prize {
         return Prize.THIRD;
     }
 
-    @Override
-    public String toString() {
-        if (this.equals(FIFTH)) {
+    public String prizeMessage() {
+        if (this.equals(SECOND)) {
             return this.matchNumbersCount + "개 일치, 보너스 볼 일치(" + this.prizeMoney + "원) - ";
         }
         return this.matchNumbersCount + "개 일치 (" + this.prizeMoney + "원)- ";

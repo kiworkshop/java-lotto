@@ -36,15 +36,15 @@ public class OutputView {
     public void printLottoStatistic(LottoStatistics lottoStatistics) {
         System.out.println("당첨 통계");
         System.out.println("---------");
-        System.out.print(Prize.FIFTH);
+        System.out.print(Prize.FIFTH.prizeMessage());
         System.out.println(lottoStatistics.getPrizeCount().getCountFifth() + "개");
-        System.out.print(Prize.FOURTH);
+        System.out.print(Prize.FOURTH.prizeMessage());
         System.out.println(lottoStatistics.getPrizeCount().getCountFourth() + "개");
-        System.out.print(Prize.THIRD);
+        System.out.print(Prize.THIRD.prizeMessage());
         System.out.println(lottoStatistics.getPrizeCount().getCountThird() + "개");
-        System.out.print(Prize.SECOND);
+        System.out.print(Prize.SECOND.prizeMessage());
         System.out.println(lottoStatistics.getPrizeCount().getCountSecond() + "개");
-        System.out.print(Prize.FIRST);
+        System.out.print(Prize.FIRST.prizeMessage());
         System.out.println(lottoStatistics.getPrizeCount().getCountFirst() + "개");
         System.out.println("총 수익률은 " + lottoStatistics.calculateProfitRate() + "입니다.");
     }

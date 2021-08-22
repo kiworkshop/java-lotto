@@ -17,12 +17,18 @@ public class PurchaseCount {
     }
 
     public PurchaseCount(PurchasePriceInputDTO purchasePriceInputDTO, ManualPurchaseCountDTO manualPurchaseCountDTO) {
-        this("" + (Integer.parseInt(purchasePriceInputDTO.getInput()) - Integer.parseInt(manualPurchaseCountDTO.getInput()) * Lotto.PRICE));
+        int randomPurchasePrice = Integer.parseInt(purchasePriceInputDTO.getInput()) - Integer.parseInt(manualPurchaseCountDTO.getInput()) * Lotto.PRICE;
+        checkMultiplyOfUnitPrice(randomPurchasePrice);
+        this.purchaseCount = randomPurchasePrice / Lotto.PRICE;
     }
 
     private void validate(String input) {
         int inputConversion = NumberValidateUtils.parseLottoNumber(input);
-        if (notMatchesCondition(inputConversion)) {
+        checkMultiplyOfUnitPrice(inputConversion);
+    }
+
+    private void checkMultiplyOfUnitPrice(int input) {
+        if (notMatchesCondition(input)) {
             throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
         }
     }

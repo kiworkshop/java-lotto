@@ -19,8 +19,7 @@ public class NumberValidateUtils {
     }
 
     public static int parseLottoNumber(String input) {
-        numericCheck(input);
-        return Integer.parseInt(input);
+        return Integer.parseInt(numericCheck(input));
     }
 
 }

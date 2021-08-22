@@ -5,11 +5,7 @@ import lotto.constant.Prize;
 
 @Getter
 public class PrizeCount {
-    private int countFirst;
-    private int countSecond;
-    private int countThird;
-    private int countFourth;
-    private int countFifth;
+    private final int[] countEachPrize = new int[6];
 
     public PrizeCount(LottoSet lottoset, WinningLotto winningLotto) {
         for (Lotto lotto : lottoset.getLottoSet()) {
@@ -18,24 +14,14 @@ public class PrizeCount {
     }
 
     private void updateCounts(Prize condition) {
-        if(condition.equals(Prize.FIRST)) {
-            countFirst++;
-            return;
-        }
-        if(condition.equals(Prize.SECOND)) {
-            countSecond++;
-            return;
-        }
-        if(condition.equals(Prize.THIRD)) {
-            countThird++;
-            return;
-        }
-        if(condition.equals(Prize.FOURTH)) {
-            countFourth++;
-            return;
-        }
-        if(condition.equals(Prize.FIFTH)) {
-            countFifth++;
-        }
+        plusEachPrizeCount(condition.ordinal());
+    }
+
+    private void plusEachPrizeCount(int input) {
+        countEachPrize[input] ++ ;
+    }
+
+    public int returnEachPrizeCount(int prizeOrder) {
+        return countEachPrize[prizeOrder];
     }
 }

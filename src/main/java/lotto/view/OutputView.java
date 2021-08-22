@@ -37,15 +37,15 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---------");
         System.out.print(Prize.FIFTH.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountFifth() + "개");
+        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(4) + "개");
         System.out.print(Prize.FOURTH.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountFourth() + "개");
+        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(3) + "개");
         System.out.print(Prize.THIRD.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountThird() + "개");
+        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(2) + "개");
         System.out.print(Prize.SECOND.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountSecond() + "개");
+        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(1) + "개");
         System.out.print(Prize.FIRST.prizeMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountFirst() + "개");
+        System.out.println(lottoStatistics.getPrizeCount().returnEachPrizeCount(0) + "개");
         System.out.println("총 수익률은 " + lottoStatistics.calculateProfitRate() + "입니다.");
     }
 }

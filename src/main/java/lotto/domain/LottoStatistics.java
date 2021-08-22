@@ -19,10 +19,10 @@ public class LottoStatistics {
     }
 
     private long calculateSum() {
-        return prizeCount.getCountFirst() * Prize.FIRST.getPrizeMoney()
-                + prizeCount.getCountSecond() * Prize.SECOND.getPrizeMoney()
-                + prizeCount.getCountThird() * Prize.THIRD.getPrizeMoney()
-                + prizeCount.getCountFourth() * Prize.FOURTH.getPrizeMoney()
-                + prizeCount.getCountFifth() * Prize.FIFTH.getPrizeMoney();
+        return prizeCount.returnEachPrizeCount(0) * Prize.FIRST.getPrizeMoney()
+                + prizeCount.returnEachPrizeCount(1) * Prize.SECOND.getPrizeMoney()
+                + prizeCount.returnEachPrizeCount(2) * Prize.THIRD.getPrizeMoney()
+                + prizeCount.returnEachPrizeCount(3) * Prize.FOURTH.getPrizeMoney()
+                + prizeCount.returnEachPrizeCount(4) * Prize.FIFTH.getPrizeMoney();
     }
 }

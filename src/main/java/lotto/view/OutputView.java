@@ -10,7 +10,7 @@ public class OutputView {
 
     public void printLottoCount(ManualLottoNumberInputDTO manualLottoNumberInput, PurchaseCount purchaseCount) {
         int manualCount = manualLottoNumberInput.getInput().size();
-        int randomCount = purchaseCount.getPurchaseCount();
+        int randomCount = purchaseCount.getRandomLottoPurchaseCount();
         System.out.println("수동으로 " + manualCount + "장, " + "자동으로 " + randomCount + "개를 구매했습니다.");
     }
 

@@ -3,19 +3,24 @@ package lotto.domain;
 import lombok.Getter;
 import lotto.constant.Prize;
 
+import java.util.Arrays;
+
 public class LottoStatistics {
 
     @Getter
     PrizeCount prizeCount;
     PurchaseCount purchaseCount;
+    int manualPurchaseCount;
 
     public LottoStatistics(PrizeCount prizeCount, PurchaseCount purchaseCount) {
         this.prizeCount = prizeCount;
         this.purchaseCount = purchaseCount;
+        this.manualPurchaseCount = Arrays.stream(prizeCount.getPrizeCounter()).sum() - purchaseCount.getRandomLottoPurchaseCount();
     }
 
     public double calculateProfitRate() {
-        return (double) calculateSum() / (purchaseCount.getPurchaseCount() * Lotto.PRICE);
+        int allPurchaseCount = manualPurchaseCount + purchaseCount.getRandomLottoPurchaseCount();
+        return (double) calculateSum() / (allPurchaseCount * Lotto.PRICE);
     }
 
     private long calculateSum() {

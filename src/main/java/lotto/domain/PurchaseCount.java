@@ -8,18 +8,18 @@ import lotto.util.NumberValidateUtils;
 public class PurchaseCount {
 
     @Getter
-    private final int purchaseCount;
+    private final int randomLottoPurchaseCount;
 
     public PurchaseCount(String input) {
         input = input.trim();
         validate(input);
-        this.purchaseCount = Integer.parseInt(input) / Lotto.PRICE;
+        this.randomLottoPurchaseCount = Integer.parseInt(input) / Lotto.PRICE;
     }
 
     public PurchaseCount(PurchasePriceInputDTO purchasePriceInputDTO, ManualPurchaseCountDTO manualPurchaseCountDTO) {
         int randomPurchasePrice = Integer.parseInt(purchasePriceInputDTO.getInput()) - Integer.parseInt(manualPurchaseCountDTO.getInput()) * Lotto.PRICE;
         checkMultiplyOfUnitPrice(randomPurchasePrice);
-        this.purchaseCount = randomPurchasePrice / Lotto.PRICE;
+        this.randomLottoPurchaseCount = randomPurchasePrice / Lotto.PRICE;
     }
 
     private void validate(String input) {

@@ -33,7 +33,7 @@ public class LottoSet {
             mixedLottoSet.add(new Lotto(LottoParser.generateLotto(lottoInput)));
         }
 
-        mixedLottoSet.addAll(generateRandomLottoSetWithSize(randomPurchaseCount.getPurchaseCount()).getLottoSet());
+        mixedLottoSet.addAll(generateRandomLottoSetWithSize(randomPurchaseCount.getRandomLottoPurchaseCount()).getLottoSet());
 
         return new LottoSet(mixedLottoSet);
     }

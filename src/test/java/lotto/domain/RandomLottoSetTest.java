@@ -15,7 +15,7 @@ public class RandomLottoSetTest {
         PurchaseCount purchaseCount = new PurchaseCount(String.valueOf(targetSize * Lotto.PRICE));
 
         // when
-        LottoSet randomLottoSet = LottoSet.generateRandomLottoSetWithSize(purchaseCount.getPurchaseCount());
+        LottoSet randomLottoSet = LottoSet.generateRandomLottoSetWithSize(purchaseCount.getRandomLottoPurchaseCount());
 
         // then
         assertThat(randomLottoSet.getLottoSet().size()).isEqualTo(targetSize);

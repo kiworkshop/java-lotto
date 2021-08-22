@@ -8,8 +8,13 @@ import lotto.domain.dto.WinningLottoInputDTO;
 import lotto.view.View;
 
 public class LottoController {
-    public static void run() {
-        View view = new View();
+    View view;
+
+    public LottoController(View view) {
+        this.view = view;
+    }
+
+    public void run() {
         PurchasePriceInputDTO purchasePriceInputDTO = view.getPurchaseCost();
         ManualPurchaseCountDTO manualPurchaseCountDTO = view.getManualPurchaseCount();
         validateManualPurchaseCountInputNotOver(purchasePriceInputDTO, manualPurchaseCountDTO);
@@ -28,7 +33,7 @@ public class LottoController {
         view.printLottoStatistics(lottoStatistics);
     }
 
-    private static void validateManualPurchaseCountInputNotOver(PurchasePriceInputDTO purchasePriceInputDTO, ManualPurchaseCountDTO manualPurchaseCountDTO) {
+    private void validateManualPurchaseCountInputNotOver(PurchasePriceInputDTO purchasePriceInputDTO, ManualPurchaseCountDTO manualPurchaseCountDTO) {
         int wholePurchaseCount = Integer.parseInt(purchasePriceInputDTO.getInput()) / Lotto.PRICE;
         int manualPurchaseCount = Integer.parseInt(manualPurchaseCountDTO.getInput());
 

@@ -5,7 +5,7 @@ import lotto.constant.Prize;
 
 @Getter
 public class PrizeCount {
-    private final int[] countEachPrize = new int[6];
+    private final int[] prizeCounter = new int[6];
 
     public PrizeCount(LottoSet lottoset, WinningLotto winningLotto) {
         for (Lotto lotto : lottoset.getLottoSet()) {
@@ -18,10 +18,10 @@ public class PrizeCount {
     }
 
     private void plusEachPrizeCount(int input) {
-        countEachPrize[input] ++ ;
+        prizeCounter[input] ++ ;
     }
 
     public int returnEachPrizeCount(int prizeOrder) {
-        return countEachPrize[prizeOrder];
+        return prizeCounter[prizeOrder];
     }
 }

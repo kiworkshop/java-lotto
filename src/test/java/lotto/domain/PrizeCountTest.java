@@ -18,11 +18,11 @@ public class PrizeCountTest {
         PrizeCount prizeCount = new PrizeCount(lottoSet, winningLotto);
 
         //then
-        assertThat(prizeCount.getCountEachPrize()[0]).isEqualTo(1);
-        assertThat(prizeCount.getCountEachPrize()[1]).isEqualTo(2);
-        assertThat(prizeCount.getCountEachPrize()[2]).isEqualTo(3);
-        assertThat(prizeCount.getCountEachPrize()[3]).isEqualTo(4);
-        assertThat(prizeCount.getCountEachPrize()[4]).isEqualTo(5);
-        assertThat(prizeCount.getCountEachPrize()[5]).isEqualTo(3);
+        assertThat(prizeCount.getPrizeCounter()[0]).isEqualTo(1);
+        assertThat(prizeCount.getPrizeCounter()[1]).isEqualTo(2);
+        assertThat(prizeCount.getPrizeCounter()[2]).isEqualTo(3);
+        assertThat(prizeCount.getPrizeCounter()[3]).isEqualTo(4);
+        assertThat(prizeCount.getPrizeCounter()[4]).isEqualTo(5);
+        assertThat(prizeCount.getPrizeCounter()[5]).isEqualTo(3);
     }
 }

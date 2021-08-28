@@ -8,9 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RandomLottoTest {
 
     @Test
-    @DisplayName("숫자가 6개인 로또를 생성한다")
+    @DisplayName("숫자가 6개인 랜덤 로또를 생성한다")
     void testGenerateLotto() throws Exception {
-        // given, when, then
-        assertThat(Lotto.generateRandomLotto().lottoNumbers.size()).isEqualTo(Lotto.LOTTO_NUMBER_SIZE);
+        // given
+        RandomLotto randomLotto = new RandomLotto();
+        // when, then
+        assertThat(randomLotto.getLottoNumbers().size()).isEqualTo(Lotto.LOTTO_NUMBER_SIZE);
     }
 }

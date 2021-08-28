@@ -1,31 +1,31 @@
 package lotto.domain;
 
 import lombok.Getter;
-import lotto.constant.PrizeCondition;
+import lotto.constant.Prize;
 import lotto.domain.dto.WinningLottoInputDTO;
 import lotto.parser.LottoParser;
 import lotto.util.NumberValidateUtils;
 
-import java.util.Comparator;
+import java.util.HashSet;
 
 @Getter
 public class WinningLotto {
 
+    public static final int ALL_LOTTO_NUMBERS_OF_TWO_LOTTO_TICKET = 12;
     private final Lotto lotto;
     private final LottoNumber bonusNumber;
 
     public WinningLotto(String winningNumberInput, String bonusNumberInput) {
-        NumberValidateUtils.numericCheck(bonusNumberInput);
         this.lotto = new Lotto(LottoParser.generateLotto(winningNumberInput));
-        this.bonusNumber = new LottoNumber(Integer.parseInt(bonusNumberInput));
+        this.bonusNumber = new LottoNumber(NumberValidateUtils.parseLottoNumber(bonusNumberInput));
     }
 
     public WinningLotto(WinningLottoInputDTO winningLottoInputDTO) {
         this(winningLottoInputDTO.getWinningLottoNumbers(), winningLottoInputDTO.getWinningLottoBonus());
     }
 
-    public PrizeCondition findPrize(Lotto targetLotto) {
-        return PrizeCondition.findPrize(getMatchNumbersCount(targetLotto), isBonusMatch(targetLotto));
+    public Prize findPrize(Lotto targetLotto) {
+        return Prize.findPrize(getMatchNumbersCount(targetLotto), isBonusMatch(targetLotto));
     }
 
     private boolean isBonusMatch(Lotto targetLotto) {
@@ -33,27 +33,11 @@ public class WinningLotto {
     }
 
     private int getMatchNumbersCount(Lotto targetLotto) {
-        targetLotto.getLottoNumbers().sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
-        this.lotto.getLottoNumbers().sort(Comparator.comparingInt(LottoNumber::getLottoNumber));
-        int targetIdx = 0;
-        int winningIdx = 0;
-        int matchNumbersCount = 0;
-        while (targetIdx < targetLotto.lottoNumbers.size() && winningIdx < this.lotto.getLottoNumbers().size()) {
-            int targetNumber = targetLotto.lottoNumbers.get(targetIdx).getLottoNumber();
-            int winningNumber = this.lotto.getLottoNumbers().get(winningIdx).getLottoNumber();
-            if (targetNumber == winningNumber) {
-                matchNumbersCount++;
-                targetIdx++;
-                winningIdx++;
-            }
-            else if (targetNumber > winningNumber) {
-                winningIdx++;
-            }
-            else {
-                targetIdx++;
-            }
-        }
-        return matchNumbersCount;
+        HashSet<LottoNumber> distinctLottoNumbersSet = new HashSet<>();
+        distinctLottoNumbersSet.addAll(lotto.getLottoNumbers());
+        distinctLottoNumbersSet.addAll(targetLotto.getLottoNumbers());
+
+        return ALL_LOTTO_NUMBERS_OF_TWO_LOTTO_TICKET - distinctLottoNumbersSet.size();
     }
 
 }

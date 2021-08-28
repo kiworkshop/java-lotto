@@ -1,15 +1,11 @@
 package lotto.domain;
 
 import lombok.Getter;
-import lotto.constant.PrizeCondition;
+import lotto.constant.Prize;
 
 @Getter
 public class PrizeCount {
-    private int countFirst;
-    private int countSecond;
-    private int countThird;
-    private int countFourth;
-    private int countFifth;
+    private final int[] prizeCounter = new int[6];
 
     public PrizeCount(LottoSet lottoset, WinningLotto winningLotto) {
         for (Lotto lotto : lottoset.getLottoSet()) {
@@ -17,25 +13,15 @@ public class PrizeCount {
         }
     }
 
-    private void updateCounts(PrizeCondition condition) {
-        if(condition.equals(PrizeCondition.FIRST)) {
-            countFirst++;
-            return;
-        }
-        if(condition.equals(PrizeCondition.SECOND)) {
-            countSecond++;
-            return;
-        }
-        if(condition.equals(PrizeCondition.THIRD)) {
-            countThird++;
-            return;
-        }
-        if(condition.equals(PrizeCondition.FOURTH)) {
-            countFourth++;
-            return;
-        }
-        if(condition.equals(PrizeCondition.FIFTH)) {
-            countFifth++;
-        }
+    private void updateCounts(Prize condition) {
+        plusEachPrizeCount(condition.ordinal());
+    }
+
+    private void plusEachPrizeCount(int input) {
+        prizeCounter[input] ++ ;
+    }
+
+    public int returnEachPrizeCount(int prizeOrder) {
+        return prizeCounter[prizeOrder];
     }
 }

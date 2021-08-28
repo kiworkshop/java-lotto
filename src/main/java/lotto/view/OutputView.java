@@ -1,15 +1,17 @@
 package lotto.view;
 
-import lotto.constant.PrizeMessage;
+import lotto.constant.Prize;
 import lotto.domain.*;
+import lotto.domain.dto.ManualLottoNumberInputDTO;
 
 public class OutputView {
 
     private static final String COMMA = ", ";
 
-    public void printLottoCount(PurchaseCount purchaseCount) {
-        int count = purchaseCount.getPurchaseCount();
-        System.out.println(count + "개를 구매했습니다.");
+    public void printLottoCount(ManualLottoNumberInputDTO manualLottoNumberInput, PurchaseCount purchaseCount) {
+        int manualCount = manualLottoNumberInput.getInput().size();
+        int randomCount = purchaseCount.getRandomLottoPurchaseCount();
+        System.out.println("수동으로 " + manualCount + "장, " + "자동으로 " + randomCount + "개를 구매했습니다.");
     }
 
     public void printLottoSet(LottoSet lottoSet) {
@@ -32,18 +34,14 @@ public class OutputView {
     }
 
     public void printLottoStatistic(LottoStatistics lottoStatistics) {
-        System.out.println("당첨 통계");
-        System.out.println("---------");
-        System.out.print(PrizeMessage.FIFTH.getMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountFifth() + "개");
-        System.out.print(PrizeMessage.FOURTH.getMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountFourth() + "개");
-        System.out.print(PrizeMessage.THIRD.getMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountThird() + "개");
-        System.out.print(PrizeMessage.SECOND.getMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountSecond() + "개");
-        System.out.print(PrizeMessage.FIRST.getMessage());
-        System.out.println(lottoStatistics.getPrizeCount().getCountFirst() + "개");
-        System.out.println("총 수익률은 " + lottoStatistics.calculateProfitRate() + "입니다.");
+        StringBuilder sb = new StringBuilder();
+        sb.append("당첨 통계\n");
+        sb.append("---------\n");
+        for (int i = 4; i >= 0; i--) {
+            sb.append(Prize.values()[i].prizeMessage());
+            sb.append(lottoStatistics.getPrizeCount().returnEachPrizeCount(i) + "개\n");
+        }
+        sb.append("총 수익률은 " + lottoStatistics.calculateProfitRate() + "입니다.");
+        System.out.println(sb);
     }
 }

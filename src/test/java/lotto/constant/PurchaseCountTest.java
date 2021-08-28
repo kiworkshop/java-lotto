@@ -67,7 +67,7 @@ public class PurchaseCountTest {
         PurchaseCount purchaseCount = new PurchaseCount(input);
 
         // then
-        assertThat(purchaseCount.getPurchaseCount()).isEqualTo(1);
+        assertThat(purchaseCount.getRandomLottoPurchaseCount()).isEqualTo(1);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class PurchaseCountTest {
         PurchaseCount purchaseCount = new PurchaseCount(input);
 
         // then
-        assertThat(purchaseCount.getPurchaseCount()).isEqualTo(1);
+        assertThat(purchaseCount.getRandomLottoPurchaseCount()).isEqualTo(1);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class PurchaseCountTest {
         PurchaseCount purchaseCount = new PurchaseCount(input);
 
         // then
-        assertThat(purchaseCount.getPurchaseCount()).isEqualTo(1);
+        assertThat(purchaseCount.getRandomLottoPurchaseCount()).isEqualTo(1);
     }
 
 }

@@ -42,6 +42,6 @@ public class RankTest {
         assertThat(thirdPlace).isEqualTo(Rank.THIRD_PLACE);
         assertThat(fourthPlace).isEqualTo(Rank.FOURTH_PLACE);
         assertThat(fifthPlace).isEqualTo(Rank.FIFTH_PLACE);
-        assertThat(etc).isEqualTo(Rank.ETC);
+        assertThat(etc).isEqualTo(Rank.MISS);
     }
 }

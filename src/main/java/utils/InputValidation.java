@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,13 +18,12 @@ public class InputValidation {
     private static final String ALERT_CHECK_DUPLICATION = "중복되는 숫자가 포함되어 있는지 확인해주세요.";
     private static final String ALERT_CHECK_BONUS_DUPLICATE = "보너스볼이 당첨 번호와 중복되는지 확인해주세요.";
 
-    public boolean checkGivenMoney(String givenMoney) {
+    public boolean isInvalidGivenMoney(String givenMoney) {
         try {
             Integer.parseInt(givenMoney);
-            return true;
-
-        } catch (NumberFormatException e) {
             return false;
+        } catch (NumberFormatException e) {
+            return true;
         }
     }
 
@@ -37,10 +35,10 @@ public class InputValidation {
 
 
     private static List<Integer> toIntegers(List<String> input) {
-        return new ArrayList<>(Collections.unmodifiableList(input.stream()
+        return new ArrayList<>(input.stream()
                 .mapToInt(Integer::parseInt)
                 .boxed()
-                .collect(Collectors.toList())));
+                .collect(Collectors.toList()));
     }
 
     public void checkNullOrEmpty(String input) {

@@ -1,16 +1,16 @@
 package view;
 
-import domain.Lotto;
+import domain.LottoTicket;
 import enums.Rank;
 
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public void printLottoTickets(List<Lotto> lottoTickets) {
+    public void printLottoTickets(List<LottoTicket> lottoTickets) {
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
-        for (Lotto lottoTicket : lottoTickets) {
-            System.out.println(lottoTicket.getLottoNumberString());
+        for (LottoTicket lottoTicket : lottoTickets) {
+            System.out.println(lottoTicket.getLottoTicketString());
         }
     }
 
@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public void result(Rank rank, int count) {
-        if (rank != Rank.ETC)
+        if (rank != Rank.MISS)
             System.out.printf("%d개 일치 (%d원)- %d개\n", rank.matched(), rank.prize(), count);
         if (rank == Rank.SECOND_PLACE)
             System.out.printf("%d개 일치, 보너스볼 일치 (%d원)- %d개\n", rank.matched(), rank.prize(), count);

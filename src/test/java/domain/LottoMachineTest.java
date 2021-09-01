@@ -20,12 +20,12 @@ public class LottoMachineTest {
     }
 
     @Test
-    void _1부터_45사이의_숫자중_중복되지_않는_7개를_뽑아서_오름차순으로_리턴한다() {
+    void _1부터_45사이의_숫자중_중복되지_않는_6개를_뽑아서_오름차순으로_리턴한다() {
         //given
         LottoMachine lottoMachine = new LottoMachine(1000);
         //when
-        List<Integer> lottoNumbers = lottoMachine.createRandomNumber();
-        //than
+        List<Integer> lottoNumbers = lottoMachine.createNonDuplicateNumbers();
+        //then
         assertThat(lottoNumbers.size()).isEqualTo(6);
         assertThat(lottoNumbers.stream().distinct().count()).isEqualTo(6);
 
@@ -37,8 +37,8 @@ public class LottoMachineTest {
         int money = 1000;
         LottoMachine lottoMachine = new LottoMachine(money);
         //when
-        List<Lotto> lottoTickets = lottoMachine.getLottoTickets();
-        //than
+        List<LottoTicket> lottoTickets = lottoMachine.buyLottoTickets();
+        //then
         assertThat(lottoTickets.size()).isEqualTo(1);
 
     }
@@ -49,9 +49,9 @@ public class LottoMachineTest {
         //given
         int money = 1000;
         LottoMachine lottoMachine = new LottoMachine(money);
-        List<Lotto> lottoTicket = new ArrayList<>();
+        List<WinningLotto> lottoTicket = new ArrayList<>();
 
-        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        WinningLotto lotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         lottoTicket.add(lotto);
 
         //when
@@ -70,9 +70,9 @@ public class LottoMachineTest {
         //given
         int money = 1000;
         LottoMachine lottoMachine = new LottoMachine(money);
-        List<Lotto> lottoTicket = new ArrayList<>();
+        List<WinningLotto> lottoTicket = new ArrayList<>();
 
-        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        WinningLotto lotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         lottoTicket.add(lotto);
 
         //when
@@ -89,9 +89,9 @@ public class LottoMachineTest {
         //given
         int money = 1000;
         LottoMachine lottoMachine = new LottoMachine(money);
-        List<Lotto> lottoTicket = new ArrayList<>();
+        List<WinningLotto> lottoTicket = new ArrayList<>();
 
-        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        WinningLotto lotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         lottoTicket.add(lotto);
 
         //when
@@ -109,10 +109,10 @@ public class LottoMachineTest {
         //given
         int money = 5000;
         LottoMachine lottoMachine = new LottoMachine(money);
-        List<Lotto> lottoTicket = new ArrayList<>();
+        List<WinningLotto> lottoTicket = new ArrayList<>();
 
-        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Lotto lotto2 = new Lotto(Arrays.asList(6, 7, 8, 9, 10, 11));
+        WinningLotto lotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        WinningLotto lotto2 = new WinningLotto(Arrays.asList(6, 7, 8, 9, 10, 11));
         lottoTicket.add(lotto);
         lottoTicket.add(lotto2);
         lottoTicket.add(lotto2);

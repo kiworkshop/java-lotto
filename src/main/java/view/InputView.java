@@ -16,7 +16,7 @@ public class InputView {
 
         String givenMoney = scanner.nextLine().trim();
         PreConditionUtil.checkNullOrEmpty(givenMoney);
-        if (inputValidation.checkGivenMoney(givenMoney)) {
+        if (inputValidation.isInvalidGivenMoney(givenMoney)) {
             throw new IllegalArgumentException();
         }
 

@@ -21,7 +21,7 @@ public class InputValidationTest {
 
         //when //then
         assertThatThrownBy(() ->
-                inputValidation.checkGivenMoney(inputMoney)).
+                inputValidation.isInvalidGivenMoney(inputMoney)).
                 isInstanceOf(NumberFormatException.class);
     }
 

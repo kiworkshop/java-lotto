@@ -2,7 +2,10 @@ package domain;
 
 import enums.Rank;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,48 +22,49 @@ public class LottoMachine {
         return this.lottoTicketCount;
     }
 
-    public List<Integer> createRandomNumber() {
-        List<Integer> balls = IntStream.range(1, 45)
+    public List<Integer> createNonDuplicateNumbers() {
+        List<Integer> balls = IntStream.rangeClosed(1, 45)
                 .boxed()
                 .collect(Collectors.toList());
         Collections.shuffle(balls);
-        List<Integer> lottoNumbers = balls.subList(0, 6);
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
+        List<Integer> numbers = balls.subList(0, 6);
+        Collections.sort(numbers);
+        return numbers;
     }
 
-    public List<Lotto> getLottoTickets() {
-        List<Lotto> lottoTicket = new ArrayList<>();
+    public List<LottoTicket> buyLottoTickets() {
+        List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
         for (int i = 0; i < lottoTicketCount; i++) {
-            lottoTicket.add(new Lotto(createRandomNumber()));
+            LottoTicket lottoTicket = new LottoTicket(createNonDuplicateNumbers());
+            purchasedLottoTickets.add(lottoTicket);
         }
-        return lottoTicket;
+        return purchasedLottoTickets;
     }
 
-    public List<Lotto> getRankResult(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
-        for (Lotto lotto : lottos) {
-            lotto.setRank(winningNumber, bonusNumber);
-        }
-        return lottos;
-    }
-
-    public TreeMap getRankResult(List<Lotto> lottos) {
-
-        TreeMap<Rank, Integer> result = new TreeMap<Rank, Integer>() {{
-            put(Rank.FIRST_PLACE, 0);
-            put(Rank.SECOND_PLACE, 0);
-            put(Rank.THIRD_PLACE, 0);
-            put(Rank.FOURTH_PLACE, 0);
-            put(Rank.FIFTH_PLACE, 0);
-            put(Rank.ETC, 0);
-        }};
-
-        for (Lotto lotto : lottos) {
-            result.put(lotto.getRank(), result.get(lotto.getRank()) + 1);
-        }
-
-        return result;
-    }
+//    public List<LottoTicket> getRankResult(List<LottoTicket> matchingLottos, List<Integer> winningNumber, int bonusNumber) {
+//        for (LottoTicket matchingLotto : matchingLottos) {
+//            matchingLotto.getRank(winningNumber, bonusNumber);
+//        }
+//        return matchingLottos;
+//    }
+//
+//    public Map getRankResult(List<WinningLotto> lottos) {
+//
+//        Map<Rank, Integer> result = new TreeMap<Rank, Integer>() {{
+//            put(Rank.FIRST_PLACE, 0);
+//            put(Rank.SECOND_PLACE, 0);
+//            put(Rank.THIRD_PLACE, 0);
+//            put(Rank.FOURTH_PLACE, 0);
+//            put(Rank.FIFTH_PLACE, 0);
+//            put(Rank.MISS, 0);
+//        }};
+//
+//        for (WinningLotto lotto : lottos) {
+//            result.put(lotto.getRank(), result.get(lotto.getRank()) + 1);
+//        }
+//
+//        return result;
+//    }
 
     public double getProfitRate(int givenMoney, Map<Rank, Integer> rankResult) {
         double totalPrize = rankResult.entrySet()

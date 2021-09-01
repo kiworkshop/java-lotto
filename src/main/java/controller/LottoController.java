@@ -1,16 +1,13 @@
 package controller;
 
-import domain.Lotto;
 import domain.LottoMachine;
-import domain.LottoNumber;
+import domain.LottoTicket;
 import domain.PurchaseMoney;
-import enums.Rank;
+import domain.WinningLotto;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LottoController {
 
@@ -27,16 +24,17 @@ public class LottoController {
         PurchaseMoney purchaseMoney = new PurchaseMoney(money);
 
         LottoMachine lottoMachine = new LottoMachine(money);
-        List<Lotto> lottoTickets = lottoMachine.getLottoTickets();
-        outputView.printLottoTickets(lottoTickets);
+        List<LottoTicket> purchasedLottoTickets = lottoMachine.buyLottoTickets();
+        outputView.printLottoTickets(purchasedLottoTickets);
 
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
         int bonusNumber = inputView.inputBonusBall(winningNumbers);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-        List<Lotto> lottoResult = lottoMachine.getRankResult(lottoTickets, winningNumbers, bonusNumber);
-        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoResult);
-        outputView.printRankResult(rankResult);
-        outputView.printStatistics(lottoMachine.getProfitRate(money, rankResult));
+//        List<WinningLotto> lottoResult = lottoMachine.getRankResult(purchasedLottoTickets, winningNumbers, bonusNumber);
+//        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoResult);
+//        outputView.printRankResult(rankResult);
+//        outputView.printStatistics(lottoMachine.getProfitRate(money, rankResult));
 
     }
 }

@@ -8,7 +8,7 @@ public enum Rank {
     THIRD_PLACE(5, 0, 1_500_000),
     SECOND_PLACE(5, 1, 30_000_000),
     FIRST_PLACE(6, 0, 2_000_000_000),
-    ETC(0, 0, 0);
+    MISS(0, 0, 0);
 
     private final int matched;
     private final int bonusMatched;
@@ -24,7 +24,7 @@ public enum Rank {
         return Arrays.stream(values())
                 .filter(rank -> (rank.matched == matchCount) && (rank.bonusMatched == bonusCount))
                 .findAny()
-                .orElse(ETC);
+                .orElse(MISS);
     }
 
     public int prize() {

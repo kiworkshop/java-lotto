@@ -23,7 +23,7 @@ public class InputValidation {
             Integer.parseInt(givenMoney);
             return false;
         } catch (NumberFormatException e) {
-            return true;
+            throw new NumberFormatException();
         }
     }
 

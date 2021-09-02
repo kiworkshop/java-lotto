@@ -4,6 +4,7 @@ import enums.Rank;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static domain.LottoTicket.LOTTO_NUMBERS_SIZE;
@@ -17,7 +18,7 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Rank getRank(LottoTicket purchasedLottoTicket) {
+    public Optional<Rank> getRank(LottoTicket purchasedLottoTicket) {
         int matchCount = countOfMatches(purchasedLottoTicket);
         int bonusCount = countOfBonusMatch(purchasedLottoTicket);
         return Rank.getRank(matchCount, bonusCount);

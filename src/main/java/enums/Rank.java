@@ -1,14 +1,14 @@
 package enums;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum Rank {
     FIFTH_PLACE(3, 0, 5_000),
     FOURTH_PLACE(4, 0, 50_000),
     THIRD_PLACE(5, 0, 1_500_000),
     SECOND_PLACE(5, 1, 30_000_000),
-    FIRST_PLACE(6, 0, 2_000_000_000),
-    MISS(0, 0, 0);
+    FIRST_PLACE(6, 0, 2_000_000_000);
 
     private final int matched;
     private final int bonusMatched;
@@ -20,18 +20,24 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public static Rank getRank(int matchCount, int bonusCount) {
+    public static Optional<Rank> getRank(int matchCount, int bonusCount) {
         return Arrays.stream(values())
                 .filter(rank -> (rank.matched == matchCount) && (rank.bonusMatched == bonusCount))
-                .findAny()
-                .orElse(MISS);
+                .findAny();
     }
 
-    public int prize() {
+    public int getPrize() {
         return prize;
     }
 
-    public int matched() {
+    public int getMatched() {
         return matched;
+    }
+
+    public boolean isSecondPlace(Rank rank) {
+        if (rank == Rank.SECOND_PLACE) {
+            return true;
+        }
+        return false;
     }
 }

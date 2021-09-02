@@ -19,7 +19,16 @@ class LottoTicketTest {
         List<LottoTicket> lottoTicket = lottoMachine.buyLottoTickets();
 
         //then
-        assertThat(lottoTicket.size()).isEqualTo(6);
-        assertThat(lottoTicket.stream().distinct().count()).isEqualTo(6);
+        assertThat(lottoTicket.get(0)
+                .getLottoTicketNumbers()
+                .size())
+                .isEqualTo(6);
+
+        assertThat(lottoTicket.get(0)
+                .getLottoTicketNumbers()
+                .stream()
+                .distinct()
+                .count())
+                .isEqualTo(6);
     }
 }

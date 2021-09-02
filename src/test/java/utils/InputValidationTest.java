@@ -60,26 +60,5 @@ public class InputValidationTest {
                 () -> inputValidation.checkBonusBall(bonusNumbers, winningNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    void _1에서_45_사이를_벗어니는_로또번호를_입력하면_에러() {
-        //given
-        String bonusNumbers = "46";
-        List<Integer> winningNumber = new ArrayList<>();
-        winningNumber.add(1);
-        winningNumber.add(2);
-        winningNumber.add(3);
-        winningNumber.add(4);
-        winningNumber.add(5);
-        winningNumber.add(45);
-        //when
-
-        //then
-        assertThatThrownBy(
-                () -> inputValidation.checkBonusBall(bonusNumbers, winningNumber))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-
 }
 

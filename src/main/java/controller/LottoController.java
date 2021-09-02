@@ -1,9 +1,6 @@
 package controller;
 
-import domain.LottoMachine;
-import domain.LottoTicket;
-import domain.PurchaseMoney;
-import domain.WinningLotto;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -31,10 +28,12 @@ public class LottoController {
         int bonusNumber = inputView.inputBonusBall(winningNumbers);
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-//        List<WinningLotto> lottoResult = lottoMachine.getRankResult(purchasedLottoTickets, winningNumbers, bonusNumber);
-//        Map<Rank, Integer> rankResult = lottoMachine.getRankResult(lottoResult);
-//        outputView.printRankResult(rankResult);
-//        outputView.printStatistics(lottoMachine.getProfitRate(money, rankResult));
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.getLottoResult(purchasedLottoTickets, winningLotto);
+        outputView.printLottoResult(lottoResult);
+
+        double profitRate = lottoResult.getProfitRate(money, lottoResult.getLottoResult());
+        outputView.printStatistics(profitRate);
 
     }
 }

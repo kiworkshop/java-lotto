@@ -23,7 +23,8 @@ public class InputValidation {
             Integer.parseInt(givenMoney);
             return false;
         } catch (NumberFormatException e) {
-            throw new NumberFormatException();
+            System.out.println(e.getMessage()); // customException 처리
+            return true;
         }
     }
 

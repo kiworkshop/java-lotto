@@ -1,6 +1,5 @@
 package utils;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,17 +12,17 @@ public class InputValidationTest {
 
     static InputValidation inputValidation = new InputValidation();
 
-    @Test
-    @DisplayName("사용자가 구매 금액을 문자로 입력한 경우 예외가 발생한다.")
-    void checkGivenMoney() {
-        //given
-        String inputMoney = "천원";
-
-        //when //then
-        assertThatThrownBy(() ->
-                inputValidation.isInvalidGivenMoney(inputMoney)).
-                isInstanceOf(NumberFormatException.class);
-    }
+//    @Test
+//    @DisplayName("사용자가 구매 금액을 문자로 입력한 경우 예외가 발생한다.")
+//    void checkGivenMoney() {
+//        //given
+//        String inputMoney = "천원";
+//
+//        //when //then
+//        assertThatThrownBy(() ->
+//                inputValidation.isInvalidGivenMoney(inputMoney)).
+//                isInstanceOf(NumberFormatException.class);
+//    }
 
     @Test
     void _1에서_45_사이의_로또보너스번호_입력_하면_숫자로_리턴() {

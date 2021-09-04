@@ -38,18 +38,18 @@ class LottoResultTest {
         Map<Rank, Integer> entry = lottoResult.getLottoResult();
 
         //then
-        assertThat(entry.get(Rank.FIRST_PLACE)).isEqualTo(1);
-        assertThat(entry.get(Rank.SECOND_PLACE)).isEqualTo(1);
-        assertThat(entry.get(Rank.THIRD_PLACE)).isEqualTo(1);
-        assertThat(entry.get(Rank.FOURTH_PLACE)).isEqualTo(1);
-        assertThat(entry.get(Rank.FIFTH_PLACE)).isEqualTo(1);
+        assertThat(entry).containsEntry(Rank.FIRST_PLACE, 1);
+        assertThat(entry).containsEntry(Rank.SECOND_PLACE, 1);
+        assertThat(entry).containsEntry(Rank.THIRD_PLACE, 1);
+        assertThat(entry).containsEntry(Rank.FOURTH_PLACE, 1);
+        assertThat(entry).containsEntry(Rank.FIFTH_PLACE, 1);
     }
 
     @Test
     @DisplayName("로또 수익률을 반환한다.")
     void getProfitRate() {
         //given
-        int money = 1000;
+        PurchaseMoney purchaseMoney = new PurchaseMoney(1000);
         List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
         LottoTicket firstWinningTicket = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
 
@@ -59,7 +59,7 @@ class LottoResultTest {
         //when
         LottoResult lottoResult = new LottoResult();
         lottoResult.getLottoResult(purchasedLottoTickets, firstWinningLotto);
-        double profitRate = lottoResult.getProfitRate(money, lottoResult.getLottoResult());
+        double profitRate = lottoResult.getProfitRate(purchaseMoney, lottoResult.getLottoResult());
 
         //then
         assertThat(profitRate).isEqualTo(2_000_000);
@@ -69,8 +69,8 @@ class LottoResultTest {
     @DisplayName("로또 수익률을 반환한다.")
     void getProfitRate2() {
         //given
-        int money = 5000;
-        LottoMachine lottoMachine = new LottoMachine(money);
+        PurchaseMoney purchaseMoney = new PurchaseMoney(5000);
+        LottoMachine lottoMachine = new LottoMachine(purchaseMoney);
 
         List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
         LottoTicket notWinningTicket = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
@@ -87,7 +87,7 @@ class LottoResultTest {
         //when
         LottoResult lottoResult = new LottoResult();
         lottoResult.getLottoResult(purchasedLottoTickets, fifthWinningLotto);
-        double profitRate = lottoResult.getProfitRate(money, lottoResult.getLottoResult());
+        double profitRate = lottoResult.getProfitRate(purchaseMoney, lottoResult.getLottoResult());
 
         //then
         assertThat(profitRate).isEqualTo(1);

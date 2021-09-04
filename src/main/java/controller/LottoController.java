@@ -8,8 +8,8 @@ import java.util.List;
 
 public class LottoController {
 
-    private static InputView inputView;
-    private static OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -20,7 +20,7 @@ public class LottoController {
         int money = inputView.inputMoney();
         PurchaseMoney purchaseMoney = new PurchaseMoney(money);
 
-        LottoMachine lottoMachine = new LottoMachine(money);
+        LottoMachine lottoMachine = new LottoMachine(purchaseMoney);
         List<LottoTicket> purchasedLottoTickets = lottoMachine.buyLottoTickets();
         outputView.printLottoTickets(purchasedLottoTickets);
 
@@ -32,7 +32,7 @@ public class LottoController {
         lottoResult.getLottoResult(purchasedLottoTickets, winningLotto);
         outputView.printLottoResult(lottoResult);
 
-        double profitRate = lottoResult.getProfitRate(money, lottoResult.getLottoResult());
+        double profitRate = lottoResult.getProfitRate(purchaseMoney, lottoResult.getLottoResult());
         outputView.printStatistics(profitRate);
 
     }

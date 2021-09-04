@@ -34,11 +34,11 @@ public class LottoResult {
         return lottoResult;
     }
 
-    public double getProfitRate(int givenMoney, Map<Rank, Integer> rankResult) {
+    public double getProfitRate(PurchaseMoney purchaseMoney, Map<Rank, Integer> rankResult) {
         double totalPrize = rankResult.entrySet()
                 .stream()
                 .mapToDouble(rank -> rank.getKey().getPrize() * rank.getValue())
                 .sum();
-        return totalPrize / givenMoney;
+        return totalPrize / purchaseMoney.getMoneyValue();
     }
 }

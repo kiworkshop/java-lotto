@@ -11,8 +11,8 @@ public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
     private final int lottoTicketCount;
 
-    public LottoMachine(int givenMoney) {
-        this.lottoTicketCount = givenMoney / LOTTO_PRICE;
+    public LottoMachine(PurchaseMoney purchaseMoney) {
+        this.lottoTicketCount = purchaseMoney.getMoneyValue() / LOTTO_PRICE;
     }
 
     public int getLottoTicketCount() {

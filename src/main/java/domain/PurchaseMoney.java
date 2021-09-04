@@ -13,4 +13,8 @@ public class PurchaseMoney {
         this.money = money;
     }
 
+    public int getMoneyValue() {
+        return money;
+    }
+
 }

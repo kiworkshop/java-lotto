@@ -19,7 +19,16 @@ public class LottoMachine {
         return this.lottoTicketCount;
     }
 
-    public List<Integer> createNonDuplicateNumbers() {
+    public List<LottoTicket> buyLottoTickets() {
+        List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
+        for (int i = 0; i < lottoTicketCount; i++) {
+            LottoTicket lottoTicket = new LottoTicket(createNonDuplicateNumbers());
+            purchasedLottoTickets.add(lottoTicket);
+        }
+        return purchasedLottoTickets;
+    }
+
+    private List<Integer> createNonDuplicateNumbers() {
         List<Integer> balls = IntStream.rangeClosed(1, 45)
                 .boxed()
                 .collect(Collectors.toList());
@@ -29,12 +38,4 @@ public class LottoMachine {
         return numbers;
     }
 
-    public List<LottoTicket> buyLottoTickets() {
-        List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
-        for (int i = 0; i < lottoTicketCount; i++) {
-            LottoTicket lottoTicket = new LottoTicket(createNonDuplicateNumbers());
-            purchasedLottoTickets.add(lottoTicket);
-        }
-        return purchasedLottoTickets;
-    }
 }

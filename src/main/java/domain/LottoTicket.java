@@ -3,16 +3,19 @@ package domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class LottoTicket {
     public static final int LOTTO_NUMBERS_SIZE = 6;
 
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public LottoTicket(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .map(LottoNumber::of)
+                .collect(Collectors.toList());
     }
 
     private void validateDuplicate(List<Integer> numbers) {
@@ -28,16 +31,7 @@ public class LottoTicket {
         }
     }
 
-    public List<Integer> getLottoTicketNumbers() {
+    public List<LottoNumber> getLottoTicketNumbers() {
         return numbers;
-    }
-
-    public String getLottoTicketString() {
-        String LotteryTicket = "[";
-        for (int i = 0; i < LOTTO_NUMBERS_SIZE - 1; i++) {
-            LotteryTicket = LotteryTicket + numbers.get(i) + ", ";
-        }
-        LotteryTicket = LotteryTicket + numbers.get(LOTTO_NUMBERS_SIZE - 1) + "]";
-        return LotteryTicket;
     }
 }

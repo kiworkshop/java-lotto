@@ -1,37 +1,41 @@
 package view;
 
+import domain.LottoNumber;
 import domain.LottoResult;
 import domain.LottoTicket;
 import enums.Rank;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import static domain.LottoTicket.LOTTO_NUMBERS_SIZE;
+
 public class OutputView {
     public void printLottoTickets(List<LottoTicket> lottoTickets) {
-        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
+        StringBuilder sb = new StringBuilder();
+        sb.append(lottoTickets.size())
+                .append("개를 구매했습니다.\n");
+
         for (LottoTicket lottoTicket : lottoTickets) {
-            System.out.println(lottoTicket.getLottoTicketString());
+            sb.append(getLottoTicketString(lottoTicket))
+                    .append("\n");
         }
+        System.out.println(sb);
+    }
+
+    public String getLottoTicketString(LottoTicket lottoTicket) {
+        List<LottoNumber> numbers = lottoTicket.getLottoTicketNumbers();
+        String LotteryTicket = "[";
+        for (int i = 0; i < LOTTO_NUMBERS_SIZE - 1; i++) {
+            LotteryTicket = LotteryTicket + numbers.get(i) + ", ";
+        }
+        LotteryTicket = LotteryTicket + numbers.get(LOTTO_NUMBERS_SIZE - 1) + "]";
+        return LotteryTicket;
     }
 
     public void printStatistics(double profitRate) {
         System.out.printf("총 수익률은 %.2f 입니다.\n", profitRate);
-    }
-
-    public void printLottoResult2(LottoResult lottoResult) {
-        System.out.println("당첨 통계");
-        System.out.println("---------");
-
-        Map<Rank, Integer> rankResult = lottoResult.getLottoResult();
-
-        List<Rank> keyList = new ArrayList<>(rankResult.keySet());
-        keyList.sort(Comparator.comparingLong(Rank::getPrize));
-        for (Rank rank : keyList) {
-            result(rank, rankResult.get(rank));
-        }
     }
 
     public void printLottoResult(LottoResult lottoResult) {

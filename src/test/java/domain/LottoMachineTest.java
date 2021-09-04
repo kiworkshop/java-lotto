@@ -19,20 +19,6 @@ public class LottoMachineTest {
         assertThat(lottoMachine.getLottoTicketCount()).isEqualTo(14);
     }
 
-
-    @Test
-    @DisplayName("1부터 45사이의 숫자 중 중복되지 않는 6개를 뽑아 오름차순으로 반환한다.")
-    void createNonDuplicateNumbers() {
-        //given
-        LottoMachine lottoMachine = new LottoMachine(1000);
-        //when
-        List<Integer> lottoNumbers = lottoMachine.createNonDuplicateNumbers();
-        //then
-        assertThat(lottoNumbers.size()).isEqualTo(6);
-        assertThat(lottoNumbers.stream().distinct().count()).isEqualTo(6);
-
-    }
-
     @Test
     @DisplayName("부여받은 티켓 개수만큼 LottoTicket 을 생성한다.")
     void buyLottoTickets() {

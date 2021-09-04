@@ -1,23 +1,48 @@
 package domain;
 
-import org.junit.jupiter.api.BeforeEach;
+import enums.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoResultTest {
 
-    @BeforeEach
-    void BeforeEach() {
-        LottoTicket firstWinningTicket = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
-        LottoTicket fifthWinningTicket = new LottoTicket(Arrays.asList(6, 7, 8, 9, 10, 11));
-        WinningLotto firstWinningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
-        WinningLotto fifthWinningLotto = new WinningLotto(Arrays.asList(9, 10, 11, 12, 13, 14), 15);
+    @Test
+    @DisplayName("로또 티켓의 당첨 결과를 반환한다.")
+    void getLottoResult() {
+        //given
+        LottoTicket ticket1 = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
+        LottoTicket ticket2 = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 7));
+        LottoTicket ticket3 = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 8));
+        LottoTicket ticket4 = new LottoTicket(Arrays.asList(1, 2, 3, 4, 8, 9));
+        LottoTicket ticket5 = new LottoTicket(Arrays.asList(1, 2, 3, 8, 9, 10));
+
+        List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
+        purchasedLottoTickets.add(ticket1);
+        purchasedLottoTickets.add(ticket2);
+        purchasedLottoTickets.add(ticket3);
+        purchasedLottoTickets.add(ticket4);
+        purchasedLottoTickets.add(ticket5);
+
+        WinningLotto winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        LottoResult lottoResult = new LottoResult();
+
+        //when
+        lottoResult.getLottoResult(purchasedLottoTickets, winningLotto);
+        Map<Rank, Integer> entry = lottoResult.getLottoResult();
+
+        //then
+        assertThat(entry.get(Rank.FIRST_PLACE)).isEqualTo(1);
+        assertThat(entry.get(Rank.SECOND_PLACE)).isEqualTo(1);
+        assertThat(entry.get(Rank.THIRD_PLACE)).isEqualTo(1);
+        assertThat(entry.get(Rank.FOURTH_PLACE)).isEqualTo(1);
+        assertThat(entry.get(Rank.FIFTH_PLACE)).isEqualTo(1);
     }
 
     @Test

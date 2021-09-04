@@ -8,30 +8,29 @@ import enums.Rank;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
-import static domain.LottoTicket.LOTTO_NUMBERS_SIZE;
+import java.util.stream.Collectors;
 
 public class OutputView {
+
     public void printLottoTickets(List<LottoTicket> lottoTickets) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(lottoTickets.size())
-                .append("개를 구매했습니다.\n");
+        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
 
         for (LottoTicket lottoTicket : lottoTickets) {
-            sb.append(getLottoTicketString(lottoTicket))
-                    .append("\n");
+            System.out.println(getLottoTicketString(lottoTicket));
         }
-        System.out.println(sb);
+        System.out.println();
     }
 
-    public String getLottoTicketString(LottoTicket lottoTicket) {
-        List<LottoNumber> numbers = lottoTicket.getLottoTicketNumbers();
-        String LotteryTicket = "[";
-        for (int i = 0; i < LOTTO_NUMBERS_SIZE - 1; i++) {
-            LotteryTicket = LotteryTicket + numbers.get(i) + ", ";
-        }
-        LotteryTicket = LotteryTicket + numbers.get(LOTTO_NUMBERS_SIZE - 1) + "]";
-        return LotteryTicket;
+    public StringBuilder getLottoTicketString(LottoTicket lottoTicket) {
+        List<LottoNumber> lottoNumbers = lottoTicket.getLottoTicketNumbers();
+
+        StringBuilder sb = new StringBuilder("[");
+        sb.append(lottoNumbers.stream()
+                        .map(lottoNumber -> lottoNumber.toString())
+                        .collect(Collectors.joining(", ")))
+                .append("]");
+
+        return sb;
     }
 
     public void printStatistics(double profitRate) {

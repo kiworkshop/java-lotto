@@ -17,4 +17,12 @@ public class PurchaseMoney {
         return money;
     }
 
+    public int getAutoTicketCount(int inputCount) {
+        int possibleLottoTicketCount = this.money / MIN_VALUE;
+
+        if (possibleLottoTicketCount < inputCount) {
+            throw new IllegalArgumentException("구매 가능한 티켓의 수를 초과하여 입력하셨습니다.");
+        }
+        return possibleLottoTicketCount - inputCount;
+    }
 }

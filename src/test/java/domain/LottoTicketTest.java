@@ -15,7 +15,8 @@ class LottoTicketTest {
     void checkLottoTicket() {
         //given
         PurchaseMoney purchaseMoney = new PurchaseMoney(1000);
-        LottoMachine lottoMachine = new LottoMachine(purchaseMoney);
+        int manualTicketCount = 0;
+        LottoMachine lottoMachine = new LottoMachine(purchaseMoney, manualTicketCount);
 
         //when
         List<LottoTicket> lottoTicket = lottoMachine.buyLottoTickets();

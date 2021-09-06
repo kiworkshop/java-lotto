@@ -19,7 +19,7 @@ class LottoTicketTest {
         LottoMachine lottoMachine = new LottoMachine(purchaseMoney, manualTicketCount);
 
         //when
-        List<LottoTicket> lottoTicket = lottoMachine.buyLottoTickets();
+        List<LottoTicket> lottoTicket = lottoMachine.buyAutoTickets();
 
         //then
         assertThat(lottoTicket.get(0)

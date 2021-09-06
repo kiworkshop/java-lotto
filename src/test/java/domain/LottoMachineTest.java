@@ -17,10 +17,21 @@ public class LottoMachineTest {
         int manualTicketCount = 0;
         LottoMachine lottoMachine = new LottoMachine(purchaseMoney, manualTicketCount);
         //when
-        List<LottoTicket> lottoTickets = lottoMachine.buyLottoTickets();
+        List<LottoTicket> lottoTickets = lottoMachine.buyAutoTickets();
         //then
         assertThat(lottoTickets.size()).isEqualTo(1);
 
+    }
+
+    @Test
+    @DisplayName("구매를 원하는 수동 티켓의 수를 입력하면 남은 돈으로 살 수 있는 자동 로또 티켓 개수를 반환한다.")
+    void getAutoTicketCount() {
+        //given
+        PurchaseMoney purchaseMoney = new PurchaseMoney(14000);
+        int manualTicketCount = 0;
+        LottoMachine lottoMachine = new LottoMachine(purchaseMoney, manualTicketCount);
+        //when //than
+        assertThat(lottoMachine.getAutoTicketCount()).isEqualTo(14);
     }
 
 }

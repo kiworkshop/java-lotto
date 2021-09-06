@@ -79,7 +79,7 @@ class LottoResultTest {
 
         purchasedLottoTickets.add(fifthWinningTicket);
 
-        for (int i = 1; i < purchaseMoney.getAutoTicketCount(manualTicketCount); i++) {
+        for (int i = 1; i < lottoMachine.getAutoTicketCount(); i++) {
             purchasedLottoTickets.add(notWinningTicket);
         }
 

@@ -7,21 +7,15 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoMachine {
+    private final int autoTicketCount;
 
-    private static final int LOTTO_PRICE = 1000;
-    private final int lottoTicketCount;
-
-    public LottoMachine(PurchaseMoney purchaseMoney) {
-        this.lottoTicketCount = purchaseMoney.getMoneyValue() / LOTTO_PRICE;
-    }
-
-    public int getLottoTicketCount() {
-        return this.lottoTicketCount;
+    public LottoMachine(PurchaseMoney purchaseMoney, int manualTicketCount) {
+        this.autoTicketCount = purchaseMoney.getAutoTicketCount(manualTicketCount);
     }
 
     public List<LottoTicket> buyLottoTickets() {
         List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
-        for (int i = 0; i < lottoTicketCount; i++) {
+        for (int i = 0; i < autoTicketCount; i++) {
             LottoTicket lottoTicket = new LottoTicket(createNonDuplicateNumbers());
             purchasedLottoTickets.add(lottoTicket);
         }

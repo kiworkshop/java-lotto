@@ -12,6 +12,7 @@ public class PreConditionUtil {
     private static final String ALERT_CHECK_NULL_OR_EMPTY = "null 또는 빈 값인지 확인해주세요.";
     private static final String COMMA = ",";
     private static final String ALERT_CHECK_COMMA = String.format("구분자를 \"%s\"로 입력하셨는지 확인해주세요.", COMMA);
+    private static final String ALERT_CHECK_POSITIVE_NUMBER = "양의 정수값으로 입력해주세요.";
 
     private PreConditionUtil() {
     }
@@ -20,6 +21,13 @@ public class PreConditionUtil {
         if (StringUtils.isBlank(input)) {
             throw new IllegalArgumentException(ALERT_CHECK_NULL_OR_EMPTY);
         }
+    }
+
+    public static int checkPositiveNumber(int input) {
+        if (input <= 0) {
+            throw new IllegalArgumentException(ALERT_CHECK_POSITIVE_NUMBER);
+        }
+        return input;
     }
 
     public static List<Integer> toIntegers(List<String> input) {

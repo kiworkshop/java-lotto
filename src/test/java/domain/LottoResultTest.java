@@ -70,7 +70,8 @@ class LottoResultTest {
     void getProfitRate2() {
         //given
         PurchaseMoney purchaseMoney = new PurchaseMoney(5000);
-        LottoMachine lottoMachine = new LottoMachine(purchaseMoney);
+        int manualTicketCount = 0;
+        LottoMachine lottoMachine = new LottoMachine(purchaseMoney, manualTicketCount);
 
         List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
         LottoTicket notWinningTicket = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
@@ -78,7 +79,7 @@ class LottoResultTest {
 
         purchasedLottoTickets.add(fifthWinningTicket);
 
-        for (int i = 1; i < lottoMachine.getLottoTicketCount(); i++) {
+        for (int i = 1; i < purchaseMoney.getAutoTicketCount(manualTicketCount); i++) {
             purchasedLottoTickets.add(notWinningTicket);
         }
 

@@ -4,6 +4,7 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -18,12 +19,21 @@ public class LottoController {
 
     public void run() {
         int money = inputView.inputMoney();
-        PurchaseMoney purchaseMoney = new PurchaseMoney(money);
-
         int manualTicketCount = inputView.inputManualTicketCount();
+
+
+        PurchaseMoney purchaseMoney = new PurchaseMoney(money);
         LottoMachine lottoMachine = new LottoMachine(purchaseMoney, manualTicketCount);
 
-        List<LottoTicket> purchasedLottoTickets = lottoMachine.buyLottoTickets();
+        List<List<Integer>> manualTicketNumbers = inputView.inputManualNumbers(manualTicketCount);
+
+        List<LottoTicket> manualTickets = lottoMachine.buyManualTickets(manualTicketNumbers);
+        List<LottoTicket> autoTickets = lottoMachine.buyAutoTickets();
+
+        List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
+        purchasedLottoTickets.addAll(manualTickets);
+        purchasedLottoTickets.addAll(autoTickets);
+
         outputView.printLottoTickets(purchasedLottoTickets);
 
         List<Integer> winningNumbers = inputView.inputWinningNumbers();

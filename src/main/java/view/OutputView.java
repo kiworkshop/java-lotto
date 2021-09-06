@@ -12,9 +12,12 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public void printLottoTickets(List<LottoTicket> lottoTickets) {
-        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
+    public void printLottoTicketsMessage(List<LottoTicket> manualTickets, List<LottoTicket> autoTickets) {
+        System.out.println("\n수동으로 " + manualTickets.size() + "장, "
+                + "자동으로 " + autoTickets.size() + "개를 구매했습니다.");
+    }
 
+    public void printLottoTickets(List<LottoTicket> lottoTickets) {
         for (LottoTicket lottoTicket : lottoTickets) {
             System.out.println(getLottoTicketString(lottoTicket));
         }

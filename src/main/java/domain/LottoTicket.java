@@ -14,6 +14,7 @@ public class LottoTicket {
         validateSize(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers.stream()
+                .sorted()
                 .map(LottoNumber::of)
                 .collect(Collectors.toList());
     }

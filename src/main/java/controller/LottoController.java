@@ -21,7 +21,6 @@ public class LottoController {
         int money = inputView.inputMoney();
         int manualTicketCount = inputView.inputManualTicketCount();
 
-
         PurchaseMoney purchaseMoney = new PurchaseMoney(money);
         LottoMachine lottoMachine = new LottoMachine(purchaseMoney, manualTicketCount);
 

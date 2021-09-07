@@ -1,9 +1,9 @@
-package view;
+package lotto.view;
 
-import domain.LottoNumber;
-import domain.LottoResult;
-import domain.LottoTicket;
-import enums.Rank;
+import lotto.domain.LottoNumber;
+import lotto.domain.LottoResult;
+import lotto.domain.LottoTicket;
+import lotto.enums.Rank;
 
 import java.util.Comparator;
 import java.util.List;

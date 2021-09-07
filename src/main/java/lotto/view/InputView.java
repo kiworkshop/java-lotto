@@ -1,6 +1,6 @@
-package view;
+package lotto.view;
 
-import utils.PreConditionUtil;
+import lotto.utils.PreConditionUtil;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

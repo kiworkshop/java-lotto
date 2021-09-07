@@ -1,4 +1,4 @@
-package enums;
+package lotto.enums;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -35,9 +35,6 @@ public enum Rank {
     }
 
     public boolean isSecondPlace(Rank rank) {
-        if (rank == Rank.SECOND_PLACE) {
-            return true;
-        }
-        return false;
+        return rank == Rank.SECOND_PLACE;
     }
 }

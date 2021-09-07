@@ -1,6 +1,6 @@
-package domain;
+package lotto.domain;
 
-import enums.Rank;
+import lotto.enums.Rank;
 
 import java.util.HashSet;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static domain.LottoTicket.LOTTO_NUMBERS_SIZE;
+import static lotto.domain.LottoTicket.LOTTO_NUMBERS_SIZE;
 
 public class WinningLotto {
 

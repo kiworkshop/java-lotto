@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,16 +20,15 @@ class WinningLottoTest {
         LottoTicket fourthWinningLottoTicket = new LottoTicket(Arrays.asList(1, 2, 3, 4, 8, 9));
         LottoTicket fifthWinningLottoTicket = new LottoTicket(Arrays.asList(1, 2, 3, 8, 9, 10));
 
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-        WinningLotto lastWeekWinningNumbers = new WinningLotto(winningNumbers, bonusNumber);
+        LottoNumber bonusNumber = LottoNumber.of(7);
+        WinningLotto lastWeekWinningLotto = new WinningLotto(firstWinningLottoTicket, bonusNumber);
 
         //when
-        Rank firstPlace = lastWeekWinningNumbers.getRank(firstWinningLottoTicket).get();
-        Rank secondPlace = lastWeekWinningNumbers.getRank(secondWinningLottoTicket).get();
-        Rank thirdPlace = lastWeekWinningNumbers.getRank(thirdWinningLottoTicket).get();
-        Rank fourthPlace = lastWeekWinningNumbers.getRank(fourthWinningLottoTicket).get();
-        Rank fifthPlace = lastWeekWinningNumbers.getRank(fifthWinningLottoTicket).get();
+        Rank firstPlace = lastWeekWinningLotto.getRank(firstWinningLottoTicket).get();
+        Rank secondPlace = lastWeekWinningLotto.getRank(secondWinningLottoTicket).get();
+        Rank thirdPlace = lastWeekWinningLotto.getRank(thirdWinningLottoTicket).get();
+        Rank fourthPlace = lastWeekWinningLotto.getRank(fourthWinningLottoTicket).get();
+        Rank fifthPlace = lastWeekWinningLotto.getRank(fifthWinningLottoTicket).get();
 
         //then
         assertThat(firstPlace).isEqualTo(Rank.FIRST_PLACE);

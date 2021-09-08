@@ -35,4 +35,15 @@ public class LottoTicket {
     public List<LottoNumber> getLottoTicketNumbers() {
         return numbers;
     }
+
+    public int countOfMatches(LottoTicket lastWeekWinningTicket) {
+        return Math.toIntExact(lastWeekWinningTicket.numbers
+                .stream()
+                .filter(lottoNumber -> lottoNumber == numbers)
+                .count());
+    }
+
+    public int countOfBonusMatch(LottoNumber bonusNumber) {
+        return numbers.contains(bonusNumber) ? 1 : 0;
+    }
 }

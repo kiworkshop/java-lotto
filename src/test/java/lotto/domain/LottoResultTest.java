@@ -30,7 +30,8 @@ class LottoResultTest {
         purchasedLottoTickets.add(ticket4);
         purchasedLottoTickets.add(ticket5);
 
-        WinningLotto winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        LottoNumber bonusNumber = LottoNumber.of(7);
+        WinningLotto winningLotto = new WinningLotto(ticket1, bonusNumber);
         LottoResult lottoResult = new LottoResult();
 
         //when
@@ -52,9 +53,10 @@ class LottoResultTest {
         PurchaseMoney purchaseMoney = new PurchaseMoney(1000);
         List<LottoTicket> purchasedLottoTickets = new ArrayList<>();
         LottoTicket firstWinningTicket = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
+        LottoNumber bonusNumber = LottoNumber.of(7);
 
         purchasedLottoTickets.add(firstWinningTicket);
-        WinningLotto firstWinningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        WinningLotto firstWinningLotto = new WinningLotto(firstWinningTicket, bonusNumber);
 
         //when
         LottoResult lottoResult = new LottoResult();
@@ -83,7 +85,8 @@ class LottoResultTest {
             purchasedLottoTickets.add(notWinningTicket);
         }
 
-        WinningLotto fifthWinningLotto = new WinningLotto(Arrays.asList(9, 10, 11, 12, 13, 14), 15);
+        LottoNumber bonusNumber = LottoNumber.of(15);
+        WinningLotto fifthWinningLotto = new WinningLotto(fifthWinningTicket, bonusNumber);
 
         //when
         LottoResult lottoResult = new LottoResult();

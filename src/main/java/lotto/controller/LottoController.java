@@ -35,9 +35,9 @@ public class LottoController {
 
         outputView.printLottoTickets(purchasedLottoTickets);
 
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        int bonusNumber = inputView.inputBonusBall();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        LottoTicket lastWeekWinningTicket = new LottoTicket(inputView.inputWinningNumbers());
+        LottoNumber bonusNumber = LottoNumber.of(inputView.inputBonusBall());
+        WinningLotto winningLotto = new WinningLotto(lastWeekWinningTicket, bonusNumber);
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.getLottoResult(purchasedLottoTickets, winningLotto);

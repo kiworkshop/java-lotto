@@ -28,7 +28,7 @@ public class WinningLotto {
 
     private boolean isDuplicate(List<LottoNumber> lottoNumbers, LottoNumber bonusNumber) {
         return lottoNumbers.stream()
-                .anyMatch(number -> bonusNumber == number);
+                .anyMatch(number -> bonusNumber.equals(number));
     }
 
     public Optional<Rank> getRank(LottoTicket purchasedLottoTicket) {

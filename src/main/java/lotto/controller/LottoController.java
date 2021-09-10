@@ -40,10 +40,10 @@ public class LottoController {
         WinningLotto winningLotto = new WinningLotto(lastWeekWinningTicket, bonusNumber);
 
         LottoResult lottoResult = new LottoResult();
-        lottoResult.getLottoResult(purchasedLottoTickets, winningLotto);
+        lottoResult.calculateLottoResult(purchasedLottoTickets, winningLotto);
         outputView.printLottoResult(lottoResult);
 
-        double profitRate = lottoResult.getProfitRate(purchaseMoney, lottoResult.getLottoResult());
+        double profitRate = lottoResult.getProfitRate(purchaseMoney);
         outputView.printStatistics(profitRate);
 
     }

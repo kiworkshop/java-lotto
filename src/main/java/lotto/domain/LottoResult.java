@@ -17,7 +17,7 @@ public class LottoResult {
                 .collect(Collectors.toMap(Function.identity(), count -> 0));
     }
 
-    public Map<Rank, Integer> getLottoResult(List<LottoTicket> purchasedLottoTickets, WinningLotto winningLotto) {
+    public Map<Rank, Integer> calculateLottoResult(List<LottoTicket> purchasedLottoTickets, WinningLotto winningLotto) {
         for (LottoTicket lottoticket : purchasedLottoTickets) {
             addLottoRankCount(winningLotto.getRank(lottoticket));
         }
@@ -34,8 +34,8 @@ public class LottoResult {
         return lottoResult;
     }
 
-    public double getProfitRate(PurchaseMoney purchaseMoney, Map<Rank, Integer> rankResult) {
-        double totalPrize = rankResult.entrySet()
+    public double getProfitRate(PurchaseMoney purchaseMoney) {
+        double totalPrize = lottoResult.entrySet()
                 .stream()
                 .mapToDouble(rank -> rank.getKey().getPrize() * rank.getValue())
                 .sum();

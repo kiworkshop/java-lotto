@@ -35,8 +35,7 @@ class LottoResultTest {
         LottoResult lottoResult = new LottoResult();
 
         //when
-        lottoResult.getLottoResult(purchasedLottoTickets, winningLotto);
-        Map<Rank, Integer> entry = lottoResult.getLottoResult();
+        Map<Rank, Integer> entry = lottoResult.calculateLottoResult(purchasedLottoTickets, winningLotto);
 
         //then
         assertThat(entry).containsEntry(Rank.FIRST_PLACE, 1);
@@ -60,8 +59,8 @@ class LottoResultTest {
 
         //when
         LottoResult lottoResult = new LottoResult();
-        lottoResult.getLottoResult(purchasedLottoTickets, firstWinningLotto);
-        double profitRate = lottoResult.getProfitRate(purchaseMoney, lottoResult.getLottoResult());
+        lottoResult.calculateLottoResult(purchasedLottoTickets, firstWinningLotto);
+        double profitRate = lottoResult.getProfitRate(purchaseMoney);
 
         //then
         assertThat(profitRate).isEqualTo(2_000_000);
@@ -90,8 +89,8 @@ class LottoResultTest {
 
         //when
         LottoResult lottoResult = new LottoResult();
-        lottoResult.getLottoResult(purchasedLottoTickets, fifthWinningLotto);
-        double profitRate = lottoResult.getProfitRate(purchaseMoney, lottoResult.getLottoResult());
+        lottoResult.calculateLottoResult(purchasedLottoTickets, fifthWinningLotto);
+        double profitRate = lottoResult.getProfitRate(purchaseMoney);
 
         //then
         assertThat(profitRate).isEqualTo(1);

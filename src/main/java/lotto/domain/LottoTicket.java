@@ -37,9 +37,9 @@ public class LottoTicket {
     }
 
     public int countOfMatches(LottoTicket lastWeekWinningTicket) {
-        return Math.toIntExact(lastWeekWinningTicket.numbers
+        return Math.toIntExact(lastWeekWinningTicket.getLottoTicketNumbers()
                 .stream()
-                .filter(lottoNumber -> lottoNumber.equals(numbers))
+                .filter(lottoNumber -> numbers.contains(lottoNumber))
                 .count());
     }
 

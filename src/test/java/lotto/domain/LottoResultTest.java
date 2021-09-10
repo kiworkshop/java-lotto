@@ -85,7 +85,8 @@ class LottoResultTest {
         }
 
         LottoNumber bonusNumber = LottoNumber.of(15);
-        WinningLotto fifthWinningLotto = new WinningLotto(fifthWinningTicket, bonusNumber);
+        LottoTicket lastWeekWinningLotto = new LottoTicket(Arrays.asList(6, 7, 8, 16, 17, 18));
+        WinningLotto fifthWinningLotto = new WinningLotto(lastWeekWinningLotto, bonusNumber);
 
         //when
         LottoResult lottoResult = new LottoResult();

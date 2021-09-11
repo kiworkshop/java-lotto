@@ -37,10 +37,10 @@ public class LottoTicket {
     }
 
     public int countOfMatches(LottoTicket lastWeekWinningTicket) {
-        return Math.toIntExact(lastWeekWinningTicket.getLottoTicketNumbers()
-                .stream()
-                .filter(lottoNumber -> numbers.contains(lottoNumber))
-                .count());
+        Set<LottoNumber> lastWeekWinningNumbers = new HashSet<>(lastWeekWinningTicket.getLottoTicketNumbers());
+        Set<LottoNumber> purchasedTicket = new HashSet<>(numbers);
+        lastWeekWinningNumbers.removeAll(purchasedTicket);
+        return LOTTO_NUMBERS_SIZE - lastWeekWinningNumbers.size();
     }
 
     public int countOfBonusMatch(LottoNumber bonusNumber) {

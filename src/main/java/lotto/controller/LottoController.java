@@ -1,40 +1,55 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.lotto.LottoTickets;
+import lotto.domain.rank.WinningLottoRank;
+import lotto.domain.vending.BuyingPrice;
+import lotto.domain.vending.TicketAmount;
+import lotto.domain.winning.WinningNumbers;
+import lotto.service.LottoService;
+import lotto.util.StringUtil;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-import static lotto.domain.LottoTicketVendingMachine.TICKET_PRICE;
-
 public class LottoController {
-    public void run() {
-        String inputPrice = InputView.getBuyingPrice();
-        BuyingPrice buyingPrice = new BuyingPrice(inputPrice);
-        int ticketAmount = buyingPrice.divide(TICKET_PRICE);
-        OutputView.printTicketAmount(ticketAmount);
+    private final LottoService lottoService = new LottoService();
 
-        LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
-        List<LottoTicket> lottoTickets = lottoTicketVendingMachine.issueTickets(buyingPrice);
-        OutputView.printLottoTickets(lottoTickets);
+    public BuyingPrice getBuyingPrice(String price) throws NumberFormatException {
+        try {
+            return new BuyingPrice(Integer.parseInt(price));
 
-        String inputWinningNumbers = InputView.getWinningNumber();
-        List<Integer> splitWinningNumbers = InputView.split(inputWinningNumbers)
-                .stream()
-                .map(Integer::parseInt)
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("구매 금액은 숫자로 입력해 주세요.");
+        }
+    }
+
+    public TicketAmount getTicketAmount(int totalTicketAmount, String manualTicketAmount) {
+        try {
+            return new TicketAmount(totalTicketAmount, Integer.parseInt(manualTicketAmount));
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("수동으로 구매할 티켓 개수를 확인해 주세요.");
+        }
+    }
+
+    public LottoTickets issueTickets(TicketAmount ticketAmount) {
+        List<String> inputManualNumbers = InputView.getManualNumbers(ticketAmount.manual());
+        List<List<Integer>> manualNumbers = inputManualNumbers.stream()
+                .map(StringUtil::splitParseInt)
                 .collect(Collectors.toList());
+        return lottoService.issueTickets(ticketAmount.auto(), manualNumbers);
+    }
 
-        int bonusNumber = Integer.parseInt(InputView.getBonusNumber());
-        WinningNumbers winningNumbers = new WinningNumbers(splitWinningNumbers, bonusNumber);
-        WinningStatistics winningStatistics = new WinningStatistics(winningNumbers);
+    public WinningNumbers validateWinningLottoNumbers(String inputWinningNumbers, String inputBonusNumber) {
+        List<Integer> splitWinningNumbers = StringUtil.splitParseInt(inputWinningNumbers);
+        int bonusNumber = StringUtil.parseInt(inputBonusNumber);
+        return new WinningNumbers(splitWinningNumbers, bonusNumber);
+    }
 
-        Map<LottoPrize, Integer> ranks = winningStatistics.groupByWinningNumber(lottoTickets);
-        OutputView.printWinningStatistics(ranks);
 
-        float profitRate = winningStatistics.profitRate(ticketAmount, ranks);
-        OutputView.printProfitRate(profitRate);
+    public float calculateProfitRate(int totalTicketAmount, LottoTickets lottoTickets, WinningNumbers winningNumbers) {
+        WinningLottoRank winningLottoRank = lottoService.getWinningLottoRank(lottoTickets, winningNumbers);
+        return lottoService.getProfitRate(totalTicketAmount, winningLottoRank);
     }
 }

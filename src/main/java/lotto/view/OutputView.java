@@ -1,15 +1,20 @@
 package lotto.view;
 
-import lotto.domain.LottoPrize;
-import lotto.domain.LottoTicket;
+import lotto.domain.lotto.LottoTicket;
+import lotto.domain.lotto.LottoTickets;
+import lotto.domain.rank.LottoRank;
+import lotto.domain.rank.WinningLottoRank;
+import lotto.domain.vending.TicketAmount;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    public static void printLottoTickets(List<LottoTicket> lottoTickets) {
-        for (LottoTicket lottoTicket : lottoTickets) {
+    private OutputView() {
+    }
+
+    public static void printLottoTickets(LottoTickets lottoTickets) {
+        for (LottoTicket lottoTicket : lottoTickets.values()) {
             List<String> lottoNumbers = lottoNumberToString(lottoTicket);
             System.out.println("[" + String.join(",", lottoNumbers) + "]");
         }
@@ -21,24 +26,20 @@ public class OutputView {
                 .collect(Collectors.toList());
     }
 
-    public static void printTicketAmount(int ticketAmount) {
-        System.out.printf("%s개를 구매했습니다.%n", ticketAmount);
+    public static void printTicketAmount(TicketAmount ticketAmount) {
+        System.out.printf("%n수동으로 %d장, 자동으로 %d장 구매했습니다.%n", ticketAmount.manual(), ticketAmount.auto());
     }
 
     public static void printProfitRate(float profitRate) {
         System.out.printf("총 수익률은 %.2f 입니다.%n", profitRate);
     }
 
-    public static void printWinningStatistics(Map<LottoPrize, Integer> ranks) {
-        System.out.println("당첨 통계\n---------");
-        for (LottoPrize lottoPrize : ranks.keySet()) {
-            if (lottoPrize.isMatchedBonusNumber()) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개%n", lottoPrize.matchedWinningNumberCount(),
-                        lottoPrize.prizeMoney(), ranks.get(lottoPrize));
-                continue;
-            }
-            System.out.printf("%d개 일치 (%d원) - %d개%n", lottoPrize.matchedWinningNumberCount(),
-                    lottoPrize.prizeMoney(), ranks.get(lottoPrize));
+    public static void printWinningStatistics(WinningLottoRank winningLottoRank) {
+        System.out.println("\n당첨 통계\n---------");
+        for (LottoRank rank : winningLottoRank.keys()) {
+            String message = (rank == LottoRank.SECOND) ? "%d개 일치, 보너스 볼 일치 (%d원) - %d개%n"
+                    : "%d개 일치 (%d원) - %d개%n";
+            System.out.printf(message, rank.hitCount(), rank.prizeMoney(), winningLottoRank.count(rank));
         }
     }
 }
